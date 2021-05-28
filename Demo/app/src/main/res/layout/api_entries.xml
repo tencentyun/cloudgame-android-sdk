@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/debug_view"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#f1f1f1"
+        android:text="调试视图" />
+
+    <CheckBox
+        android:id="@+id/gamepad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#f1f1f1"
+        android:text="虚拟手柄" />
+
+    <CheckBox
+        android:id="@+id/keyboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#f1f1f1"
+        android:text="虚拟键盘" />
+    <Button
+        android:text="鼠标左键"
+        android:onClick="clickMouseLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pause"
+        android:text="半退-暂停" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resume"
+        android:text="半退-恢复" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="newGameView"
+        android:text="新建视图" />
+</LinearLayout>
