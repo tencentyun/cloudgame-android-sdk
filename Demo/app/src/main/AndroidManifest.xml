@@ -14,13 +14,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        <activity android:name=".MainActivity" android:screenOrientation="landscape" >
+
+        <activity android:name=".samples.UISample" android:screenOrientation="landscape"
+            android:label="@string/ui_sample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="tcg.sdk.android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
 
+        <activity android:name=".samples.ApiSample" android:screenOrientation="landscape"
+            android:label="@string/simple_api">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="tcg.sdk.android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".samples.SimpleSample" android:screenOrientation="landscape"
+            android:label="@string/simple_sample">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="tcg.sdk.android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ApiDemos">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

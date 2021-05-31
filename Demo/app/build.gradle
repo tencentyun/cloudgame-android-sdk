@@ -35,8 +35,13 @@ android {
 }
 
 dependencies {
+    // 云游戏基础SDK
     implementation(name:'tcgsdk-1.1.6.214_20210316_2029_release', ext:'aar')
+    // 虚拟手柄以及虚拟键盘
     implementation(name:'tcgui-1.1.6.214_20210316_2029_release', ext:'aar')
+    // 自定义虚拟按键
+    implementation(name:'tcgui-gamepad-1.1.6.214_20210316_2029_release', ext:'aar')
+
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
 

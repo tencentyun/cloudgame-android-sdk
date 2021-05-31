@@ -13,22 +13,16 @@
         android:textColor="#f1f1f1"
         android:text="调试视图" />
 
-    <CheckBox
-        android:id="@+id/gamepad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#f1f1f1"
-        android:text="虚拟手柄" />
-
-    <CheckBox
-        android:id="@+id/keyboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#f1f1f1"
-        android:text="虚拟键盘" />
     <Button
         android:text="鼠标左键"
         android:onClick="clickMouseLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:text="回车键"
+        android:onClick="keyEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
@@ -43,6 +37,11 @@
         android:layout_height="wrap_content"
         android:onClick="resume"
         android:text="半退-恢复" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="closeGameView"
+        android:text="关闭视图" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
