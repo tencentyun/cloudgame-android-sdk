@@ -11,7 +11,7 @@ import com.example.demop.expirtationcode.bean.StopGameParam;
 import com.example.demop.util.GsonBodyRequest;
 import com.google.gson.Gson;
 import com.tencent.tcgsdk.TLog;
-import static com.example.demop.Constant.EXPIRATION_CODE;
+import static com.example.demop.Constant.PC_EXPIRATION_CODE;
 import static com.example.demop.Constant.TAG;
 
 /**
@@ -47,8 +47,8 @@ public class CloudGameApi {
      * 开始体验
      * 该接口调用成功后, 云端会锁定机器实例, 并返回相应的server session
      */
-    public void startExperience(String clientSession, IServerSessionListener listener) {
-        String bodyString = mGson.toJson(new ExperienceCodeParam(EXPIRATION_CODE, clientSession, mUserID));
+    public void startExperience(String experienceCode, String clientSession, IServerSessionListener listener) {
+        String bodyString = mGson.toJson(new ExperienceCodeParam(experienceCode, clientSession, mUserID));
 
         String url = address(CREATE_EXPERIENCE_SESSION);
         TLog.d(TAG, "createSession: " + url);
@@ -63,7 +63,7 @@ public class CloudGameApi {
      * 停止体验(释放云端实例)
      */
     public void stopExperience() {
-        String bodyString = mGson.toJson(new StopGameParam(EXPIRATION_CODE, mUserID));
+        String bodyString = mGson.toJson(new StopGameParam(PC_EXPIRATION_CODE, mUserID));
         TLog.d(TAG, "stopGame bodyString: " + bodyString);
         mQueue.add(new GsonBodyRequest(Request.Method.POST, address(STOP_EXPERIENCE_SESSION), bodyString, response -> {
             TLog.d(TAG, "stop game result:" + response);

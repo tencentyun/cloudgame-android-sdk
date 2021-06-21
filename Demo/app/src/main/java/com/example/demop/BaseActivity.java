@@ -30,10 +30,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void onStartExperience(String serverSession);
 
     // 开始体验: 获取服务端server session
-    protected void startExperience(String clientSession) {
+    protected void startExperience(String experienceCode, String clientSession) {
         Log.i(Constant.TAG, "start experience");
         mCloudGameApi = new CloudGameApi(this);
-        mCloudGameApi.startExperience(clientSession, new CloudGameApi.IServerSessionListener() {
+        mCloudGameApi.startExperience(experienceCode, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(String result) {
                 Log.i(Constant.TAG, result);

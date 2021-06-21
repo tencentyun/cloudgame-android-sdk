@@ -77,7 +77,7 @@ public class ApiSample extends BaseActivity {
         // 客户端接入时需要在自己的业务后台返回ServerSession
         // 业务后台的API请参考:
         // https://cloud.tencent.com/document/product/1162/40740
-        super.startExperience(clientSession);
+        super.startExperience(Constant.PC_EXPIRATION_CODE, clientSession);
     }
 
     @Override
