@@ -8,6 +8,8 @@ import com.example.demop.BaseActivity;
 import com.example.demop.Constant;
 import com.tencent.tcgsdk.api.ITcgListener;
 import com.tencent.tcgsdk.api.LogLevel;
+import com.tencent.tcgsdk.api.mobile.Configuration;
+import com.tencent.tcgsdk.api.mobile.ITcgMobileListener;
 import com.tencent.tcgsdk.api.mobile.ITcgSdk;
 import com.tencent.tcgsdk.api.mobile.MobileSurfaceView;
 import com.tencent.tcgsdk.api.mobile.MobileTcgSdk;
@@ -58,7 +60,7 @@ public class MobileSample extends BaseActivity {
     /**
      * TcgSdk生命周期回调
      */
-    private final ITcgListener mTcgLifeCycleImpl = new ITcgListener() {
+    private final ITcgMobileListener mTcgLifeCycleImpl = new ITcgMobileListener() {
         @Override
         public void onConnectionTimeout() {
             // 云游戏连接超时, 用户无法使用, 只能退出
@@ -91,6 +93,11 @@ public class MobileSample extends BaseActivity {
         @Override
         public void onDrawFirstFrame() {
             // 游戏画面首帧回调
+        }
+
+        @Override
+        public void onConfigurationChanged(Configuration configuration) {
+            Log.e(Constant.TAG, "onConfigurationChanged:" + configuration);
         }
     };
 
