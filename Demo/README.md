@@ -4,8 +4,8 @@
 ### 接入
 接入TcgSdk需要有自己的业务后台, TcgSdk无法单独运行．为了便于演示TcgSdk如何使用, 云游戏团队搭建了一个体验码服务后台.
 正式接入时,接入方需要在业务后台完成云游戏的后台交互逻辑．
-[调用流程](https://cloud.tencent.com/document/product/1162/47435)
-[云API](https://cloud.tencent.com/document/product/1162/40740)
+[调用流程](https://cloud.tencent.com/document/product/1162/52326)
+[云API](https://cloud.tencent.com/document/product/1162/40729)
 
 
 ### 体验码
