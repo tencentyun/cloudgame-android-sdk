@@ -38,7 +38,9 @@
                 <category android:name="tcg.sdk.android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-        <activity android:name=".samples.MobileSample" android:screenOrientation="portrait"
+        <activity android:name=".samples.MobileSample"
+                android:configChanges="orientation|screenSize"
+                android:screenOrientation="portrait"
                 android:label="@string/mobile_sample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

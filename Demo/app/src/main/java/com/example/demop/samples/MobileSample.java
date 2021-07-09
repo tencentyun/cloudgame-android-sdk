@@ -2,12 +2,15 @@ package com.example.demop.samples;
 
 import static com.example.demop.Constant.APP_ID;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import com.example.demop.BaseActivity;
 import com.example.demop.Constant;
+import com.example.demop.R;
 import com.tencent.tcgsdk.api.ITcgListener;
 import com.tencent.tcgsdk.api.LogLevel;
+import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.mobile.Configuration;
 import com.tencent.tcgsdk.api.mobile.ITcgMobileListener;
 import com.tencent.tcgsdk.api.mobile.ITcgSdk;
@@ -30,8 +33,8 @@ public class MobileSample extends BaseActivity {
      * 创建游戏画面视图
      */
     private void initView() {
-        mGameView = new MobileSurfaceView(this);
-        setContentView(mGameView);
+        setContentView(R.layout.mobile_sample_layout);
+        mGameView = findViewById(R.id.game_view);
     }
 
     /**
@@ -54,6 +57,8 @@ public class MobileSample extends BaseActivity {
 
         // 给游戏视图设置SDK实例
         mGameView.setSDK(mSDK);
+
+        mGameView.setScaleType(ScaleType.ASPECT_FILL);
     }
 
 
@@ -96,8 +101,14 @@ public class MobileSample extends BaseActivity {
         }
 
         @Override
-        public void onConfigurationChanged(Configuration configuration) {
-            Log.e(Constant.TAG, "onConfigurationChanged:" + configuration);
+        public void onConfigurationChanged(Configuration newConfig) {
+            // 云端屏幕旋转时, 客户端需要同步旋转屏幕并固定下来
+            Log.e(Constant.TAG, "onConfigurationChanged:" + newConfig);
+            if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            }
         }
     };
 
