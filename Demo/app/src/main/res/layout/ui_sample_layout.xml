@@ -20,19 +20,6 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <CheckBox
-            android:id="@+id/gamepad_checkbx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#f1f1f1"
-            android:text="虚拟手柄" />
-
-        <CheckBox
-            android:id="@+id/keyboard_checkbx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#f1f1f1"
-            android:text="虚拟键盘" />
 
         <CheckBox
             android:id="@+id/custom_checkbx"

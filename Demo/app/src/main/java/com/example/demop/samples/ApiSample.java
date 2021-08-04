@@ -1,5 +1,8 @@
 package com.example.demop.samples;
 
+import static com.tencent.tcgsdk.api.BitrateUnit.KB;
+
+import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +32,8 @@ public class ApiSample extends BaseActivity {
     protected GameViewModel mViewModel;
     protected ITcgSdk mSDK;
     protected FrameLayout mContainer;
+
+    private int bitrateIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +197,32 @@ public class ApiSample extends BaseActivity {
             mGameView.setSDK(mSDK);
             mSDK.replaceRenderer(mGameView);
         }
+    }
+
+    // 切换码率
+    public void changeBitrate(View view) {
+        if (mSDK == null) {
+            return;
+        }
+        if (bitrateIndex == 3) {
+            bitrateIndex = 0;
+        }
+        switch (bitrateIndex) {
+            case 0:
+                Toast.makeText(this, "码率2-3M", Toast.LENGTH_LONG).show();
+                mSDK.setStreamProfile(60, 2000, 3000, KB, null);
+                break;
+            case 1:
+                Toast.makeText(this, "码率4-7M", Toast.LENGTH_LONG).show();
+                mSDK.setStreamProfile(60, 4000, 7000, KB, null);
+                break;
+            case 2:
+                Toast.makeText(this, "码率8-12M", Toast.LENGTH_LONG).show();
+                mSDK.setStreamProfile(60, 8000, 12000, KB, null);
+                break;
+            default:
+        }
+        bitrateIndex++;
     }
 
     // 这部分代码演示如何在云端创建udp端口, 并收发数据
