@@ -42,9 +42,6 @@ public class UISample extends BaseActivity {
 
     protected void init() {
         mViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
-        mViewModel.getGamePad().observe(this, result -> {
-            mControlView.joyStick(result);
-        });
 
         mViewModel.getKeyboard().observe(this, result -> {
             mControlView.keyboard(result);
@@ -76,9 +73,6 @@ public class UISample extends BaseActivity {
         setContentView(R.layout.ui_sample_layout);
         mGameView = findViewById(R.id.game_view);
 
-        ((CheckBox)(findViewById(R.id.gamepad_checkbx))).setOnCheckedChangeListener((var1, result) -> {
-            mViewModel.getGamePad().setValue(result);
-        });
         ((CheckBox)(findViewById(R.id.keyboard_checkbx))).setOnCheckedChangeListener((var1, result) -> {
             mViewModel.getKeyboard().setValue(result);
         });

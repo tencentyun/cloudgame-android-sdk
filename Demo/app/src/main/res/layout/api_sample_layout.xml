@@ -47,4 +47,9 @@
         android:layout_height="wrap_content"
         android:onClick="newGameView"
         android:text="新建视图" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="changeBitrate"
+        android:text="切换码率" />
 </LinearLayout>

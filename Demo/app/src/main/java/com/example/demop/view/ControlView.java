@@ -10,24 +10,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
 import com.tencent.tcggamepad.GamepadManager;
 import com.tencent.tcggamepad.IGamepadTouchDelegate;
 import com.tencent.tcgsdk.TLog;
 import com.tencent.tcgsdk.api.ITcgSdk;
-import com.tencent.tcgsdk.util.StringUtil;
-import com.tencent.tcgui.controller.VirtualGameController;
 import com.tencent.tcgui.keyboard.IKeyboardListener;
 import com.tencent.tcgui.keyboard.KeyboardView;
 import com.tencent.tcgui.listener.PackEventListener;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class ControlView extends RelativeLayout implements PackEventListener, IKeyboardListener {
     private static final String TAG = "ControlView";
-    // 手柄视图的父容器
-    private RelativeLayout mJoyStickParent;
     // 键盘视图的父容器
     private RelativeLayout mKeyboardParent;
     // 键盘视图
@@ -53,13 +47,6 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
         init(context);
     }
 
-    private void createTcgJoystick(Context context) {
-        VirtualGameController ctrl = new VirtualGameController(context, mJoyStickParent);
-        ctrl.createViews();
-        ctrl.showViews(true);
-        ctrl.setOuterPackEventListener(this);
-    }
-
     @Override
     public void onPackEventData(String event) {
         if (mSDK == null) {
@@ -70,21 +57,8 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
         }
     }
 
-    private void initJoystick(Context context) {
-        mJoyStickParent = new RelativeLayout(context);
-        LayoutParams lp = new LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        mJoyStickParent.setLayoutParams(lp);
-        addView(mJoyStickParent);
-
-        createTcgJoystick(context);
-        joyStick(false);
-    }
-
     public interface IVirtualControlListener {
         void onKeyboard(boolean show);
-        void onJoystick(boolean show);
     }
 
     public void setOnVirtualControlListener(IVirtualControlListener listener) {
@@ -185,24 +159,8 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     }
 
     private void init(Context context) {
-        initJoystick(context);
         initKeyboard(context);
         initCustomGamePad();
-    }
-
-    public void joyStick(boolean enable) {
-        mJoyStickParent.setVisibility(enable ? View.VISIBLE : View.GONE);
-        if (mSDK != null) {
-            if (enable) {
-                mSDK.sendGamePadConnected();
-            } else {
-                mSDK.sendGamePadDisconnected();
-            }
-        }
-
-        if (mKeyboardShowListener != null) {
-            mKeyboardShowListener.onJoystick(enable);
-        }
     }
 
     public void keyboard(boolean enable) {
@@ -236,7 +194,7 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
 
         if (primaryCode == KeyboardView.KEYCODE_GAME) {
             keyboard(false);
-            joyStick(true);
+            editCustomGamePad(true);
         }
     }
 
