@@ -1,5 +1,8 @@
 package com.example.demop.samples;
 
+import static com.tencent.tcgsdk.api.BitrateUnit.KB;
+
+import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,10 +28,14 @@ import com.tencent.tcgsdk.api.datachannel.IStatusChangeListener;
 import java.nio.charset.Charset;
 
 public class ApiSample extends BaseActivity {
+    private static final int LOW_QUALITY = 1;
+    private static final int MEDIUM_QUALITY = 2;
+    private static final int HIGH_QUALITY = 3;
     protected GameView mGameView;
     protected GameViewModel mViewModel;
     protected ITcgSdk mSDK;
     protected FrameLayout mContainer;
+    private int mCurrentBitrate = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +199,33 @@ public class ApiSample extends BaseActivity {
             mGameView.setSDK(mSDK);
             mSDK.replaceRenderer(mGameView);
         }
+    }
+
+    public void changeBitrate(View view) {
+        int bitrateType = nextBitrate();
+        switch (bitrateType) {
+            case LOW_QUALITY:
+                Toast.makeText(this, "码率2-3M", Toast.LENGTH_LONG).show();
+                mSDK.setStreamProfile(60, 2000, 3000, KB, null);
+                break;
+            case MEDIUM_QUALITY:
+                Toast.makeText(this, "码率4-7M", Toast.LENGTH_LONG).show();
+                mSDK.setStreamProfile(60, 4000, 7000, KB, null);
+                break;
+            case HIGH_QUALITY:
+                Toast.makeText(this, "码率8-12M", Toast.LENGTH_LONG).show();
+                mSDK.setStreamProfile(60, 8000, 12000, KB, null);
+                break;
+            default:
+        }
+    }
+
+    private int nextBitrate() {
+        mCurrentBitrate++;
+        if (mCurrentBitrate > HIGH_QUALITY) {
+            mCurrentBitrate = LOW_QUALITY;
+        }
+        return mCurrentBitrate;
     }
 
     // 这部分代码演示如何在云端创建udp端口, 并收发数据
