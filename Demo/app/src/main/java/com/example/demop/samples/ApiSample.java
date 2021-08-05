@@ -2,6 +2,7 @@ package com.example.demop.samples;
 
 import static com.tencent.tcgsdk.api.BitrateUnit.KB;
 
+import android.os.Build;
 import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
@@ -198,6 +199,21 @@ public class ApiSample extends BaseActivity {
             mContainer.addView(mGameView, 0);
             mGameView.setSDK(mSDK);
             mSDK.replaceRenderer(mGameView);
+        }
+    }
+
+    // 捕获鼠标
+    // 参考 使用指针捕获： https://developer.android.com/training/gestures/movement?hl=zh-cn
+    public void capturePointer(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // 仅鼠标模式为TOUCH模式时支持捕获鼠标
+            mGameView.setCursorType(CursorType.TOUCH);
+            // 捕获鼠标
+            if (mGameView != null) {
+                mGameView.requestPointerCapture();
+            }
+        } else {
+            Toast.makeText(this, "仅Android O以上版本支持鼠标操作", Toast.LENGTH_LONG).show();
         }
     }
 

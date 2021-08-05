@@ -52,4 +52,10 @@
         android:layout_height="wrap_content"
         android:onClick="changeBitrate"
         android:text="切换码率" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="capturePointer"
+            android:text="捕获鼠标" />
 </LinearLayout>
