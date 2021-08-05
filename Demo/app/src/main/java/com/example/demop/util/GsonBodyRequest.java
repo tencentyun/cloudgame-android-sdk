@@ -6,8 +6,10 @@ import com.android.volley.Response;
 import com.tencent.tcgsdk.TLog;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
 
 public class GsonBodyRequest extends GsonRequest{
+    private static final String TAG = "GsonBodyRequest";
 
     /** Default charset for JSON request. */
     private static final String PROTOCOL_CHARSET = "utf-8";
@@ -34,7 +36,7 @@ public class GsonBodyRequest extends GsonRequest{
             if (error.networkResponse != null && error.networkResponse.data != null) {
                 errorMsg = errorMsg + "\nnetwork response: " + new String(error.networkResponse.data);
             }
-            TLog.e("url: " + url + ", requestBody: " + requestBody + ", error: " + errorMsg);
+            TLog.e(TAG, "url: " + url + ", requestBody: " + requestBody + ", error: " + errorMsg);
             if (errorListener != null) {
                 errorListener.onErrorResponse(error);
             }
@@ -54,8 +56,9 @@ public class GsonBodyRequest extends GsonRequest{
             return mRequestBody == null ? null : mRequestBody.getBytes(PROTOCOL_CHARSET);
         } catch (UnsupportedEncodingException uee) {
             TLog.d(TAG,
-                    "Unsupported Encoding while trying to get the bytes of %s using %s",
-                    mRequestBody, PROTOCOL_CHARSET);
+                    String.format(Locale.ENGLISH,
+                            "Unsupported Encoding while trying to get the bytes of %s using %s",
+                            mRequestBody, PROTOCOL_CHARSET));
             return null;
         }
     }
