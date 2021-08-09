@@ -56,7 +56,7 @@ public class ApiSample extends BaseActivity {
     }
 
     private void initView() {
-        setContentView(R.layout.mobile_sample_layout);
+        setContentView(R.layout.pc_sample_layout);
         mContainer = findViewById(R.id.container);
 
         //　创建游戏画面视图
