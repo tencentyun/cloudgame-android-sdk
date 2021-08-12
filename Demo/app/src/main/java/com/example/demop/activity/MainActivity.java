@@ -1,4 +1,4 @@
-package com.example.demop;
+package com.example.demop.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -7,9 +7,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
 import com.example.demop.adapter.SimpleAdapterWithDesc;
-
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ApiDemos extends ListActivity {
+/**
+ * 该Demo的启动入口
+ */
+public class MainActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

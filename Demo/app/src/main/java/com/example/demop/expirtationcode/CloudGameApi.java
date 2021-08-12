@@ -3,10 +3,14 @@ package com.example.demop.expirtationcode;
 import android.content.Context;
 import android.os.Build;
 
+import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.demop.Constant;
 import com.example.demop.expirtationcode.bean.ExperienceCodeParam;
+import com.example.demop.expirtationcode.bean.ExperienceCodeResp;
 import com.example.demop.expirtationcode.bean.StopGameParam;
 import com.example.demop.util.GsonBodyRequest;
 import com.google.gson.Gson;
@@ -26,7 +30,7 @@ public class CloudGameApi {
     public static final String STOP_EXPERIENCE_SESSION = "/StopExperienceSession";
 
     public interface IServerSessionListener {
-        void onSuccess(String result);
+        void onSuccess(ExperienceCodeResp result);
         void onFailed(String msg);
     }
 
@@ -53,7 +57,14 @@ public class CloudGameApi {
         String url = address(CREATE_EXPERIENCE_SESSION);
         TLog.d(TAG, "createSession: " + url);
         TLog.d(TAG, "createSession bodyString: " + bodyString);
-        mQueue.add(new GsonBodyRequest(Request.Method.POST, url, bodyString, listener::onSuccess, error -> {
+
+        mQueue.add(new GsonBodyRequest(Request.Method.POST, url, bodyString, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i(TAG, response);
+                listener.onSuccess(new Gson().fromJson(response, ExperienceCodeResp.class));
+            }
+        }, error -> {
             TLog.d(TAG, "createSession error: " + error);
             listener.onFailed(error.getMessage());
         }));

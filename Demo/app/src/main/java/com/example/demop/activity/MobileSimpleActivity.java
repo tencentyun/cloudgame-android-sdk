@@ -1,14 +1,18 @@
-package com.example.demop.samples;
+package com.example.demop.activity;
 
 import static com.example.demop.Constant.APP_ID;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
-import com.example.demop.BaseActivity;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.demop.Constant;
 import com.example.demop.R;
-import com.tencent.tcgsdk.api.ITcgListener;
+import com.example.demop.expirtationcode.CloudGameApi;
+import com.example.demop.expirtationcode.bean.ExperienceCodeResp;
 import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.mobile.Configuration;
@@ -18,15 +22,24 @@ import com.tencent.tcgsdk.api.mobile.MobileSurfaceView;
 import com.tencent.tcgsdk.api.mobile.MobileTcgSdk;
 import java.util.Locale;
 
-public class MobileSample extends BaseActivity {
+/**
+ * 端游示例演示: 如何简单地启动手游
+ */
+public class MobileSimpleActivity extends AppCompatActivity {
     private MobileSurfaceView mGameView;
     private ITcgSdk mSDK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initWindow();
         initView();
         initSdk();
+    }
+
+    private void initWindow() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     /**
@@ -42,6 +55,7 @@ public class MobileSample extends BaseActivity {
      */
     private void initSdk() {
         Log.i(Constant.TAG, "initSdk");
+
         // 创建Builder
         MobileTcgSdk.Builder builder = new MobileTcgSdk.Builder(
                 this.getApplicationContext(),
@@ -75,7 +89,7 @@ public class MobileSample extends BaseActivity {
         @Override
         public void onInitSuccess(String clientSession) {
             // 初始化成功
-            start(clientSession);
+            startExperience(clientSession);
         }
 
         @Override
@@ -113,23 +127,34 @@ public class MobileSample extends BaseActivity {
     };
 
     /**
-     * 启动云游戏, 云端实例启动成功后会回调onStartExperience
+     * 开始体验: 获取服务端server session
      *
-     * @param clientSession 用于云端初始化的client session
-     * @see SimpleSample#onStartExperience(String)
+     * 请注意: 请求的后台服务是云游团队的体验服务
+     * 客户端接入时需要在自己的业务后台返回ServerSession
+     *
+     * 业务后台的API请参考:
+     * https://cloud.tencent.com/document/product/1162/40740
+     *
+     * @param clientSession sdk初始化成功后返回的client session
      */
-    protected void start(String clientSession) {
-        Log.i(Constant.TAG, "start client Session");
-        // 以下请求ServerSession的后端支持是云游团队的体验服务
-        // 客户端接入时需要在自己的业务后台返回ServerSession
-        // 业务后台的API请参考:
-        // https://cloud.tencent.com/document/product/1162/40740
-        super.startExperience(Constant.MOBILE_EXPIRATION_CODE, clientSession);
-    }
+    protected void startExperience(String clientSession) {
+        Log.i(Constant.TAG, "start experience");
+        CloudGameApi cloudGameApi = new CloudGameApi(this);
+        cloudGameApi.startExperience(Constant.MOBILE_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+            @Override
+            public void onSuccess(ExperienceCodeResp resp) {
+                if (resp.Code == 0) {
+                    //　启动游戏
+                    mSDK.start(resp.ServerSession);
+                } else {
+                    Toast.makeText(MobileSimpleActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
 
-    @Override
-    public void onStartExperience(String serverSession) {
-        //　启动游戏
-        mSDK.start(serverSession);
+            @Override
+            public void onFailed(String msg) {
+                Log.i(Constant.TAG, msg);
+            }
+        });
     }
 }

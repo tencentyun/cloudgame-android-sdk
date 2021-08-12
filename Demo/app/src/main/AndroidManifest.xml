@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
 
-        <activity android:name=".samples.UISample" android:screenOrientation="landscape"
+        <activity android:name=".activity.PcGamePadActivity" android:screenOrientation="landscape"
             android:label="@string/ui_sample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".samples.ApiSample" android:screenOrientation="landscape"
+        <activity android:name=".activity.PcApiActivity" android:screenOrientation="landscape"
             android:label="@string/simple_api">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,14 +31,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".samples.SimpleSample" android:screenOrientation="landscape"
+        <activity android:name=".activity.PcSimpleActivity" android:screenOrientation="landscape"
             android:label="@string/simple_sample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="tcg.sdk.android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-        <activity android:name=".samples.MobileSample"
+        <activity android:name=".activity.MobileSimpleActivity"
                 android:configChanges="orientation|screenSize"
                 android:screenOrientation="portrait"
                 android:label="@string/mobile_sample">
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ApiDemos">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />

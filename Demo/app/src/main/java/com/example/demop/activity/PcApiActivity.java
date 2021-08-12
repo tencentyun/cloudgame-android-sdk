@@ -1,9 +1,12 @@
-package com.example.demop.samples;
+package com.example.demop.activity;
 
 import static com.tencent.tcgsdk.api.BitrateUnit.KB;
 
 import android.os.Build;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,9 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import com.example.demop.BaseActivity;
 import com.example.demop.Constant;
 import com.example.demop.R;
+import com.example.demop.expirtationcode.CloudGameApi;
+import com.example.demop.expirtationcode.bean.ExperienceCodeResp;
 import com.example.demop.model.GameViewModel;
 import com.tencent.tcgsdk.TLog;
 import com.tencent.tcgsdk.api.CursorStyle;
@@ -28,7 +32,21 @@ import com.tencent.tcgsdk.api.TcgSdk2;
 import com.tencent.tcgsdk.api.datachannel.IStatusChangeListener;
 import java.nio.charset.Charset;
 
-public class ApiSample extends BaseActivity {
+/**
+ * 端游示例演示: 演示如何调用端游SDK接口, 调用接口的示例包括
+ * 1.初始化SDK
+ * 2.鼠标左键点击: clickMouseLeft
+ * 3.发送按键(示例是回车键): keyEnter
+ * 4.暂停服务端推流: pause
+ * 5.恢复服务端推流: resume
+ * 6.关闭游戏视图(可能在退出界面时会用到): closeGameView
+ * 7.恢复游戏视图: newGameView
+ * 8.外界鼠标操作(捕获鼠标): capturePointer
+ * 9.切换码率: changeBitrate
+ * 10.自定义数据通道: testDataChannel
+ *
+ */
+public class PcApiActivity extends AppCompatActivity {
     private static final int LOW_QUALITY = 1;
     private static final int MEDIUM_QUALITY = 2;
     private static final int HIGH_QUALITY = 3;
@@ -41,10 +59,16 @@ public class ApiSample extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initWindow();
         init();
         initView();
         initSdk();
         initApiView();
+    }
+
+    private void initWindow() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     protected void init() {
@@ -75,23 +99,35 @@ public class ApiSample extends BaseActivity {
     }
 
     /**
-     * 启动云游戏, 云端实例启动成功后会回调onStartExperience
+     * 开始体验: 获取服务端server session
      *
-     * @param clientSession 用于云端初始化的client session
-     * @see ApiSample#onStartExperience(String)
+     * 请注意: 请求的后台服务是云游团队的体验服务
+     * 客户端接入时需要在自己的业务后台返回ServerSession
+     *
+     * 业务后台的API请参考:
+     * https://cloud.tencent.com/document/product/1162/40740
+     *
+     * @param clientSession sdk初始化成功后返回的client session
      */
-    protected void start(String clientSession) {
-        // 以下请求ServerSession的后端支持是云游团队的体验服务
-        // 客户端接入时需要在自己的业务后台返回ServerSession
-        // 业务后台的API请参考:
-        // https://cloud.tencent.com/document/product/1162/40740
-        super.startExperience(Constant.PC_EXPIRATION_CODE, clientSession);
-    }
+    protected void startExperience(String clientSession) {
+        Log.i(Constant.TAG, "start experience");
+        CloudGameApi cloudGameApi = new CloudGameApi(this);
+        cloudGameApi.startExperience(Constant.PC_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+            @Override
+            public void onSuccess(ExperienceCodeResp resp) {
+                if (resp.Code == 0) {
+                    //　启动游戏
+                    mSDK.start(resp.ServerSession);
+                } else {
+                    Toast.makeText(PcApiActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
 
-    @Override
-    public void onStartExperience(String serverSession) {
-        //　启动游戏
-        mSDK.start(serverSession);
+            @Override
+            public void onFailed(String msg) {
+                Log.i(Constant.TAG, msg);
+            }
+        });
     }
 
     // TcgSdk生命周期回调
@@ -104,7 +140,7 @@ public class ApiSample extends BaseActivity {
         @Override
         public void onInitSuccess(String clientSession) {
             // 初始化成功
-            start(clientSession);
+            startExperience(clientSession);
         }
 
         @Override
@@ -141,7 +177,7 @@ public class ApiSample extends BaseActivity {
 
     private void initSdk() {
         // 创建SDK的接口
-        TcgSdk2.Builder builder = new TcgSdk2.Builder(this.getApplicationContext(), Constant.APP_ID, mTcgLifeCycleImpl , mGameView.getSurfaceRenderer());
+        TcgSdk2.Builder builder = new TcgSdk2.Builder(this.getApplicationContext(), Constant.APP_ID, mTcgLifeCycleImpl , mGameView.getViewRenderer());
         // 设置日志级别
         builder.logLevel(LogLevel.VERBOSE);
 
