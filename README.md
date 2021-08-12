@@ -3,12 +3,21 @@
 
 
 ## SDK 下载
-您可以在腾讯云官网下载页面 [DOWNLOAD](https://cloud.tencent.com/document/product/1162) 获取SDK下载链接：
+您可以在以下链接中获取最新SDK：
 
-| 所属平台 | Zip下载 | Demo运行说明 | SDK集成指引 | API 列表 |
-|:---------:| :--------:|:--------:| :--------:|:--------:|
-| Android | [下载](https://recorder-10018504.cos.ap-shanghai.myqcloud.com/tcgsdk-android/tcgsdk_latest.zip)| [DOC](https://cloud.tencent.com/document/product/1162/README.md)| [DOC](https://cloud.tencent.com/document/product/1162) | [API](https://cloud.tencent.com/document/product/1162) |
+| 所属平台 | Zip下载 | Demo运行说明 | 端游集成指引| 手游集成指引 | API 列表 |
+|:---------:| :--------:|:--------:| :--------:| :--------:|:--------:|
+| Android | [下载](https://recorder-10018504.cos.ap-shanghai.myqcloud.com/tcgsdk-android/tcgsdk_latest.zip)| [DOC](Demo/README.md)| [端游集成指引](Doc/端游接入文档.md) | [手游集成指引](Doc/手游接入文档.md) | [API](Doc/APIDocs.md) |
 
-### Version 1.1.8
-- 支持多人云游功能
--　支持语音上传
+### Version 1.2.3 (2021-08-09)
+Features
+- 支持[自定义虚拟按键](Doc/自定义虚拟按键.md)
+- 支持云手游
+- 低延迟优化
+- 重连优化
+
+Bug Fixes
+- 修复网络超时情况下的偶现崩溃问题
+
+
+
