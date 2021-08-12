@@ -1,5 +1,5 @@
 # 腾讯云云游戏 Android SDK
-- [腾讯云　云游戏](https://cloud.tencent.com/solution/gs)：稳定低延时的音视频能力，配合腾讯云丰富的边缘计算节点和灵活的 GPU 虚拟化技术，为云游戏开发者提供一站式端游+手游 PaaS 解决方案。
+- [腾讯云云游戏](https://cloud.tencent.com/solution/gs)：稳定低延时的音视频能力，配合腾讯云丰富的边缘计算节点和灵活的 GPU 虚拟化技术，为云游戏开发者提供一站式端游+手游 PaaS 解决方案。
 
 
 ## SDK 下载
