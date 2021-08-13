@@ -5,17 +5,33 @@
 ![](https://main.qcloudimg.com/raw/d7d82673b8e1ead4a31301ef2c7de3c9.png)
 ## Android SDK 接口概览
 
+### 构建器接口
+
+| 接口名称                                                      | 接口描述                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Builder(context,appID,listener,viewRenderer)](#Builder(context,appID,listener,viewRenderer))| 构建一个sdk的构建器                                                     |
+| [Builder.idleTimeMs(durationMs)](#Builder.idleTimeMs(durationMs))                            | 设置用户空闲时长                                                     |
+| [Builder.autoReconnect(enable)](#Builder.autoReconnect(enable))                  | 率掉0或者异常断开自动重连                                                       |
+| [Builder.localVideo(enable)](#Builder.localVideo(enable))      | 开启本地视频上传能力，默认关闭                                             |
+| [Builder.localAudio(enable)](#Builder.localAudio(enable)) | 开启本地音频上传能力，默认关闭                          |
+| [Builder.timeout(timeoutMs)](#Builder.timeout(timeoutMs)) | 从发起连接到连上远端节点的超时时间, 超时则会触发超时回调                      |
+| [Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold)](#Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold)) | 低码率阀值                      |
+| [Builder.softDecodingThreadNum(num)](#Builder.softDecodingThreadNum(num)) | 指定软解编码的线程数                      |
+| [Builder.logLevel(level)](#Builder.logLevel(level)) | 指定日志级别                      |
+| [Builder.enableHwCodec(enableHwCodec)](#Builder.enableHwCodec(enableHwCodec)) | 是否优先使用硬解                      |
+| [Builder.build()](#Builder.build()) | 构建一个TcgSdk并开始初始化                      |
+
 ### 生命周期相关接口
 
-| 接口名称                                                     | 接口描述                                                     |
+| 接口名称                                                      | 接口描述                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [ITcgSdk.start(ServerSession)](#ITcgSdk.start(ServerSession)) | 启动云游戏                                                   |
-| [ITcgSdk.stop()](#ITcgSdk.stop())                            | 停止云游戏                                                   |
-| [ITcgSdk.reconnect()](#ITcgSdk.reconnect())                  | 重新连接                                                     |
-| [ITcgSdk.replace(gameView)](#ITcgSdk.replace(gameView))      | 替换 SDK 的游戏画面                                          |
-| [ITcgSdk.registerTcgListener(listener)](#ITcgSdk.registerTcgListener(listener)) | 设置生命周期回调监听                                         |
-| [ITcgSdk.unRegisterTcgListener(listener)](#ITcgSdk.unRegisterTcgListener(listener)) | 注销生命周期回调监听                                         |
-| [ITcgListener](#ITcgListener)                                | TcgSdk 生命周期回调，TcgSdk 在调用 start 接口之后进行初始化 |
+| [ITcgSdk.start(ServerSession)](#ITcgSdk.start(ServerSession))| 启动云游戏                                                     |
+| [ITcgSdk.stop()](#ITcgSdk.stop())                            | 停止云游戏                                                     |
+| [ITcgSdk.reconnect()](#ITcgSdk.reconnect())                  | 重新连接                                                       |
+| [ITcgSdk.replace(gameView)](#ITcgSdk.replace(gameView))      | 替换 SDK 的游戏画面                                             |
+| [ITcgSdk.registerTcgListener(listener)](#ITcgSdk.registerTcgListener(listener)) | 设置生命周期回调监听                          |
+| [ITcgSdk.unRegisterTcgListener(listener)](#ITcgSdk.unRegisterTcgListener(listener)) | 注销生命周期回调监听                      |
+| [ITcgListener](#ITcgListener)                                | TcgSdk 生命周期回调，TcgSdk 在调用 start 接口之后进行初始化         |
 
 
 ### 鼠标键盘控制相关接口
@@ -159,6 +175,126 @@
 | [TcgErrorType](#TcgErrorType) | 错误码定义               |
 | [GameView](#GameView)         | 该视图代理了远程设备视图 |
 | [CursorType](#CursorType)     | 鼠标类型                 |
+
+## 构建器接口
+
+[](id:Builder(context,appID,listener,viewRenderer))
+### Builder(context,appID,listener,viewRenderer)
+
+启动云游戏。
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| context | Context | Android Context |
+| appID | long | 应用的AppID |
+| listener | ITcgListener | 生命周期回调 |
+| viewRenderer | IViewRenderer | 用于展示游戏画面的绘制器, 从GameView中获取|
+
+[](id:Builder.idleTimeMs(durationMs))
+### Builder.idleTimeMs(durationMs)
+
+设置用户空闲时长
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| durationMs | long | 若用户在这个时间内没有操作会触发IIDleListener.onIdle()回调 |
+
+
+[](id:Builder.autoReconnect(enable))
+### Builder.autoReconnect(enable)
+
+率掉0或者异常断开自动重连
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| enable | boolean | true表示帧率掉0或者异常断开自动重连,false表示不重连,默认为true |
+
+[](id:Builder.localVideo(enable))
+### Builder.localVideo(enable)
+
+开启本地视频上传能力，默认关闭
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| enable | boolean | true表示开启本地视频上传 |
+
+[](id:Builder.localAudio(enable))
+### Builder.localAudio(enable)
+
+开启本地音频上传能力，默认关闭
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| enable | boolean | true表示开启本地音频上传 |
+
+[](id:Builder.timeout(timeoutMs))
+### Builder.timeout(timeoutMs)
+
+从发起连接到首帧绘制的超时时间, 超时则会触发超时回调ITcgListener.onConnectionTimeout()
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| timeoutMs | long | 超时时间, 默认60s |
+
+
+[](id:Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold))
+### Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold)
+
+低码率阀值, 连续lowFpsCountThreshold秒码率低于lowFpsThreshold会触发ILowFPSListener回调
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| lowFpsThreshold | int | 最低帧率 |
+| lowFpsCountThreshold | int | 出现低帧的秒数 |
+
+[](id:Builder.softDecodingThreadNum(num))
+### Builder.softDecodingThreadNum(num)
+
+指定软解编码的线程数
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| num | int | 软解编码需要使用的线程数 |
+
+
+[](id:Builder.logLevel(level))
+### Builder.logLevel(level)
+
+指定日志级别
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| level | LogLevel | 启动后指定的日志级别 |
+
+
+[](id:LogLevel)
+### LogLevel
+
+日志级别
+
+| 错误码                            | 说明                                               |
+| --------------------------------- | -------------------------------------------------- |
+| INFO                     | 默认日志级别，只输出关键信息                                           |
+| DEBUG               | 调试日志级别，输入部分调试信息                               |
+| VERBOSE               | 输出全部日志信息                               |
+
+[](id:Builder.enableHwCodec(enableHwCodec))
+### Builder.enableHwCodec(enableHwCodec)
+
+是否优先使用硬解
+
+| 参数    | 类型          | 描述                                                    |
+| ------- | ------------- | ------------------------------------------------------- |
+| enableHwCodec | boolean | true 优先使用硬解, false使用软解 |
+
+[](id:Builder.build())
+### Builder.build()
+
+构建一个TcgSdk并开始初始化, 初始化成功会回调ITcgListener.onInitSuccess
+
+| 参数     | 返回值 | 描述               |
+| -------- | ------ | ------------------ |
+| 无 |  ITcgSdkBase     | 构建一个TcgSdk并开始初始化, 初始化成功会回调onInitSuccess |
 
 ## 生命周期相关接口
 
