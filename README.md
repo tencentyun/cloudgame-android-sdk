@@ -21,15 +21,9 @@
 |:---------:| :--------:|:--------:| :--------:| :--------:|:--------:|
 | Android | [下载](https://recorder-10018504.cos.ap-shanghai.myqcloud.com/tcgsdk-android/tcgsdk_latest.zip)| [DOC](Demo/README.md)| [端游集成指引](Doc/端游接入文档.md) | [手游集成指引](Doc/手游接入文档.md) | [API](Doc/APIDocs.md) |
 
-### 三、Version 1.2.3 (2021-08-09)
-Features
-- 支持[自定义虚拟按键](Doc/自定义虚拟按键.md)
-- 支持云手游
-- 低延迟优化
-- 重连优化
-
+### 三、Version 1.2.5 (2021-08-17)
 Bug Fixes
-- 修复网络超时情况下的偶现崩溃问题
-
+- 修复游戏视图缩放后画面模糊问题
+- 修复View Port计算错误时触摸无效问题
 
 
