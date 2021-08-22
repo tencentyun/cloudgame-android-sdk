@@ -21,9 +21,7 @@
 |:---------:| :--------:|:--------:| :--------:| :--------:|:--------:|
 | Android | [下载](https://recorder-10018504.cos.ap-shanghai.myqcloud.com/tcgsdk-android/tcgsdk_latest.zip)| [DOC](Demo/README.md)| [端游集成指引](Doc/端游接入文档.md) | [手游集成指引](Doc/手游接入文档.md) | [API](Doc/APIDocs.md) |
 
-### 三、Version 1.2.5 (2021-08-17)
-Bug Fixes
-- 修复游戏视图缩放后画面模糊问题
-- 修复View Port计算错误时触摸无效问题
+## 三、[历史版本变更](Doc/历史版本.md)
 
+ 
 
