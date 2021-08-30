@@ -1,7 +1,6 @@
 package com.example.demop.server;
 
 import static com.example.demop.Constant.PC_GAME_CODE;
-import static com.example.demop.Constant.TAG;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,10 +11,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.demop.Constant;
 import com.example.demop.server.param.GameStartParam;
 import com.example.demop.server.param.GameStopParam;
 import com.google.gson.Gson;
-import com.tencent.tcgsdk.TLog;
 import java.util.UUID;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,16 +74,16 @@ public class CloudGameApi {
         JSONObject request = null;
         try {
             request = new JSONObject(bodyString);
-            Log.d(TAG, "startGame: request: " + request);
+            Log.d(Constant.TAG, "startGame: request: " + request);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(Constant.TAG, e.getMessage());
         }
         String url = address(CREATE_GAME_SESSION);
-        TLog.d(TAG, "createSession: " + url);
-        TLog.d(TAG, "createSession bodyString: " + bodyString);
-        TLog.d(TAG, "createSession UserID: " + mUserID);
+        Log.d(Constant.TAG, "createSession: " + url);
+        Log.d(Constant.TAG, "createSession bodyString: " + bodyString);
+        Log.d(Constant.TAG, "createSession UserID: " + mUserID);
         mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request, listener::onSuccess, error -> {
-            TLog.d(TAG, "createSession error: " + error);
+            Log.d(Constant.TAG, "createSession error: " + error);
             listener.onFailed(error.getMessage());
         }));
     }
@@ -94,16 +93,16 @@ public class CloudGameApi {
      */
     public void stopGame() {
         String bodyString = mGson.toJson(new GameStopParam(PC_GAME_CODE, mUserID));
-        TLog.d(TAG, "stopGame bodyString: " + bodyString);
+        Log.d(Constant.TAG, "stopGame bodyString: " + bodyString);
         JSONObject request = null;
         try {
             request = new JSONObject(bodyString);
-            Log.d(TAG, "stopGame: request: " + request);
+            Log.d(Constant.TAG, "stopGame: request: " + request);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         mQueue.add(new JsonObjectRequest(Request.Method.POST, address(STOP_GAME_SESSION), request, response -> {
-            TLog.d(TAG, "stopGame result:" + response);
+            Log.d(Constant.TAG, "stopGame result:" + response);
         }, null));
     }
 }

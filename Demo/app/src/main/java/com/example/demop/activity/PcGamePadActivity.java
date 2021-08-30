@@ -156,11 +156,12 @@ public class PcGamePadActivity extends AppCompatActivity {
      * @param clientSession sdk初始化成功后返回的client session
      */
     protected void startGame(String clientSession) {
-        Log.i(Constant.TAG, "start experience");
+        Log.i(Constant.TAG, "start game");
         CloudGameApi cloudGameApi = new CloudGameApi(this);
         cloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(JSONObject result) {
+                Log.d(Constant.TAG, "onSuccess: " + result.toString());
                 ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
                 if (resp.Code == 0) {
                     //　启动游戏

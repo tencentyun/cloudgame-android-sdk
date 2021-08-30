@@ -145,6 +145,7 @@ public class MobileSimpleActivity extends AppCompatActivity {
         cloudGameApi.startGame(Constant.MOBILE_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(JSONObject result) {
+                Log.d(Constant.TAG, "onSuccess: " + result.toString());
                 ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
                 if (resp.Code == 0) {
                     //　启动游戏

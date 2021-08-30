@@ -10,9 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import com.example.demop.Constant;
 import com.tencent.tcggamepad.GamepadManager;
 import com.tencent.tcggamepad.IGamepadTouchDelegate;
-import com.tencent.tcgsdk.TLog;
 import com.tencent.tcgsdk.api.ITcgSdk;
 import com.tencent.tcgui.keyboard.IKeyboardListener;
 import com.tencent.tcgui.keyboard.KeyboardView;
@@ -21,7 +21,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class ControlView extends RelativeLayout implements PackEventListener, IKeyboardListener {
-    private static final String TAG = "ControlView";
     // 键盘视图的父容器
     private RelativeLayout mKeyboardParent;
     // 键盘视图
@@ -50,9 +49,9 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     @Override
     public void onPackEventData(String event) {
         if (mSDK == null) {
-            Log.e(TAG, "To call method setSDK is needed!!!");
+            Log.e(Constant.TAG, "To call method setSDK is needed!!!");
         } else {
-            Log.d(TAG, "" + event);
+            Log.d(Constant.TAG, "" + event);
             mSDK.sendRawEvent(event);
         }
     }
@@ -153,7 +152,7 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
             is.close();
             return new String(input);
         } catch (Exception e) {
-            TLog.e(TAG, "readConfigFile failed:" + e);
+            Log.e(Constant.TAG, "readConfigFile failed:" + e);
         }
         return null;
     }
@@ -183,9 +182,9 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     @Override
     public void onPress(int primaryCode, boolean isShift) {
         if (mSDK == null) {
-            Log.e(TAG, "To call method setSDK is needed!!!");
+            Log.e(Constant.TAG, "To call method setSDK is needed!!!");
         } else {
-            Log.d(TAG, "press " + primaryCode + (isShift ? "shifted" : ""));
+            Log.d(Constant.TAG, "press " + primaryCode + (isShift ? "shifted" : ""));
             if (isShift) {
                 mSDK.sendShiftKey(true);
             }
@@ -202,9 +201,9 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     @Override
     public void onRelease(int primaryCode, boolean isShift) {
         if (mSDK == null) {
-            Log.e(TAG, "To call method setSDK is needed!!!");
+            Log.e(Constant.TAG, "To call method setSDK is needed!!!");
         } else {
-            Log.d(TAG, "release " + primaryCode + (isShift ? " shifted" : ""));
+            Log.d(Constant.TAG, "release " + primaryCode + (isShift ? " shifted" : ""));
             mSDK.sendKeyboardEvent(primaryCode, false, null);
             if (isShift) {
                 mSDK.sendShiftKey(false);

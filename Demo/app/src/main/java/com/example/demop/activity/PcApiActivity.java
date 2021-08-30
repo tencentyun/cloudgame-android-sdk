@@ -21,7 +21,6 @@ import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
 import com.example.demop.model.GameViewModel;
 import com.google.gson.Gson;
-import com.tencent.tcgsdk.TLog;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.GameView;
@@ -112,11 +111,12 @@ public class PcApiActivity extends AppCompatActivity {
      * @param clientSession sdk初始化成功后返回的client session
      */
     protected void startGame(String clientSession) {
-        Log.i(Constant.TAG, "start experience");
+        Log.i(Constant.TAG, "start game");
         CloudGameApi cloudGameApi = new CloudGameApi(this);
         cloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(JSONObject result) {
+                Log.d(Constant.TAG, "onSuccess: " + result.toString());
                 ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
                 if (resp.Code == 0) {
                     //　启动游戏
@@ -308,7 +308,7 @@ public class PcApiActivity extends AppCompatActivity {
                 // 云端端口创建成功
                 // 发送数据到云端
                 mSDK.send(REMOTE_UDP_PORT, "Data to be sent.".getBytes());
-                TLog.d(Constant.TAG, "send data for " + REMOTE_UDP_PORT);
+                Log.d(Constant.TAG, "send data for " + REMOTE_UDP_PORT);
             }
         });
 
@@ -316,7 +316,7 @@ public class PcApiActivity extends AppCompatActivity {
         mSDK.listen(REMOTE_UDP_PORT, (buffer) -> {
             Charset charset = Charset.forName("utf-8");
             String data2beRead = charset.decode(buffer.data).toString();
-            TLog.d(Constant.TAG, "receive data:" + data2beRead);
+            Log.d(Constant.TAG, "receive data:" + data2beRead);
         });
     }
 }
