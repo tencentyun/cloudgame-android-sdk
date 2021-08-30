@@ -10,10 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.demop.Constant;
 import com.example.demop.R;
-import com.example.demop.expirtationcode.CloudGameApi;
-import com.example.demop.expirtationcode.bean.ExperienceCodeResp;
+import com.example.demop.server.CloudGameApi;
+import com.example.demop.server.param.ServerResponse;
 import com.example.demop.model.GameViewModel;
 import com.example.demop.view.ControlView;
+import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.GameView;
@@ -24,6 +25,7 @@ import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.TcgSdk2;
 
 import java.util.Locale;
+import org.json.JSONObject;
 
 /**
  * 端游示例演示: 演示如何使用自定义虚拟手柄以及虚拟键盘
@@ -105,7 +107,7 @@ public class PcGamePadActivity extends AppCompatActivity {
         @Override
         public void onInitSuccess(String clientSession) {
             // 初始化成功
-            startExperience(clientSession);
+            startGame(clientSession);
         }
 
         @Override
@@ -143,7 +145,7 @@ public class PcGamePadActivity extends AppCompatActivity {
     };
 
     /**
-     * 开始体验: 获取服务端server session
+     * 启动游戏: 获取服务端server session
      *
      * 请注意: 请求的后台服务是云游团队的体验服务
      * 客户端接入时需要在自己的业务后台返回ServerSession
@@ -153,12 +155,13 @@ public class PcGamePadActivity extends AppCompatActivity {
      *
      * @param clientSession sdk初始化成功后返回的client session
      */
-    protected void startExperience(String clientSession) {
+    protected void startGame(String clientSession) {
         Log.i(Constant.TAG, "start experience");
         CloudGameApi cloudGameApi = new CloudGameApi(this);
-        cloudGameApi.startExperience(Constant.PC_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+        cloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
-            public void onSuccess(ExperienceCodeResp resp) {
+            public void onSuccess(JSONObject result) {
+                ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
                 if (resp.Code == 0) {
                     //　启动游戏
                     mSDK.start(resp.ServerSession);

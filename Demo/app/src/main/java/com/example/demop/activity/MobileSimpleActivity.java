@@ -11,8 +11,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.demop.Constant;
 import com.example.demop.R;
-import com.example.demop.expirtationcode.CloudGameApi;
-import com.example.demop.expirtationcode.bean.ExperienceCodeResp;
+import com.example.demop.server.CloudGameApi;
+import com.example.demop.server.param.ServerResponse;
+import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.mobile.Configuration;
@@ -21,6 +22,7 @@ import com.tencent.tcgsdk.api.mobile.ITcgSdk;
 import com.tencent.tcgsdk.api.mobile.MobileSurfaceView;
 import com.tencent.tcgsdk.api.mobile.MobileTcgSdk;
 import java.util.Locale;
+import org.json.JSONObject;
 
 /**
  * 端游示例演示: 如何简单地启动手游
@@ -140,9 +142,10 @@ public class MobileSimpleActivity extends AppCompatActivity {
     protected void startExperience(String clientSession) {
         Log.i(Constant.TAG, "start experience");
         CloudGameApi cloudGameApi = new CloudGameApi(this);
-        cloudGameApi.startExperience(Constant.MOBILE_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+        cloudGameApi.startGame(Constant.MOBILE_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
-            public void onSuccess(ExperienceCodeResp resp) {
+            public void onSuccess(JSONObject result) {
+                ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
                 if (resp.Code == 0) {
                     //　启动游戏
                     mSDK.start(resp.ServerSession);
