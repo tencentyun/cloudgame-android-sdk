@@ -71,17 +71,17 @@ public class CloudGameApi {
      */
     public void startGame(String gameCode, String clientSession, IServerSessionListener listener) {
         String bodyString = mGson.toJson(new GameStartParam(gameCode, clientSession, mUserID));
+        String url = address(CREATE_GAME_SESSION);
+        Log.d(Constant.TAG, "createSession url: " + url);
         JSONObject request = null;
         try {
             request = new JSONObject(bodyString);
-            Log.d(Constant.TAG, "startGame: request: " + request);
+            Log.d(Constant.TAG, "createSession clientSession: " + request.getString("ClientSession"));
+            Log.d(Constant.TAG, "createSession UserID: " + request.getString("UserId"));
+            Log.d(Constant.TAG, "createSession ExperienceCode: " + request.getString("ExperienceCode"));
         } catch (JSONException e) {
             Log.e(Constant.TAG, e.getMessage());
         }
-        String url = address(CREATE_GAME_SESSION);
-        Log.d(Constant.TAG, "createSession: " + url);
-        Log.d(Constant.TAG, "createSession bodyString: " + bodyString);
-        Log.d(Constant.TAG, "createSession UserID: " + mUserID);
         mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request, listener::onSuccess, error -> {
             Log.d(Constant.TAG, "createSession error: " + error);
             listener.onFailed(error.getMessage());

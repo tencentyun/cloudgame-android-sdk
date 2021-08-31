@@ -163,9 +163,9 @@ public class PcGamePadActivity extends AppCompatActivity {
             public void onSuccess(JSONObject result) {
                 Log.d(Constant.TAG, "onSuccess: " + result.toString());
                 ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
-                if (resp.Code == 0) {
+                if (resp.code == 0) {
                     //　启动游戏
-                    mSDK.start(resp.ServerSession);
+                    mSDK.start(resp.serverSession);
                 } else {
                     Toast.makeText(PcGamePadActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
                 }

@@ -91,7 +91,7 @@ public class MobileSimpleActivity extends AppCompatActivity {
         @Override
         public void onInitSuccess(String clientSession) {
             // 初始化成功
-            startExperience(clientSession);
+            startGame(clientSession);
         }
 
         @Override
@@ -129,7 +129,7 @@ public class MobileSimpleActivity extends AppCompatActivity {
     };
 
     /**
-     * 开始体验: 获取服务端server session
+     * 开始游戏: 获取服务端server session
      *
      * 请注意: 请求的后台服务是云游团队的体验服务
      * 客户端接入时需要在自己的业务后台返回ServerSession
@@ -139,17 +139,17 @@ public class MobileSimpleActivity extends AppCompatActivity {
      *
      * @param clientSession sdk初始化成功后返回的client session
      */
-    protected void startExperience(String clientSession) {
-        Log.i(Constant.TAG, "start experience");
+    protected void startGame(String clientSession) {
+        Log.i(Constant.TAG, "start game");
         CloudGameApi cloudGameApi = new CloudGameApi(this);
-        cloudGameApi.startGame(Constant.MOBILE_EXPIRATION_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+        cloudGameApi.startGame(Constant.MOBILE_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.d(Constant.TAG, "onSuccess: " + result.toString());
                 ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
-                if (resp.Code == 0) {
+                if (resp.code == 0) {
                     //　启动游戏
-                    mSDK.start(resp.ServerSession);
+                    mSDK.start(resp.serverSession);
                 } else {
                     Toast.makeText(MobileSimpleActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
                 }
