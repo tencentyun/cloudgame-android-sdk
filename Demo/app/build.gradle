@@ -36,7 +36,7 @@ android {
 
 dependencies {
     // 云游戏基础SDK
-    implementation(name:'tcgsdk-1.2.3.6_20210811_1730_release', ext:'aar')
+    implementation(name:'tcgsdk-1.1.0.151_20210901_0501_release', ext:'aar')
     // 虚拟手柄以及虚拟键盘
     implementation(name:'tcgui-1.2.3.6_20210811_1730_release', ext:'aar')
     // 自定义虚拟按键

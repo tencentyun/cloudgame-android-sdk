@@ -20,17 +20,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * 这个类用于请求云游团队体验后台, 客户端接入SDK时无法使用
- * 客户端的业务后台需要支持客户端调用接口, 以便通过client session获取到server session.
+ * 该类用于请求业务后台
+ * 客户端请求业务后台，传入client session获取到server session
+ * 客户可以根据实际需求实现自己的业务后台
  * 业务后台的API请参考:
  * https://cloud.tencent.com/document/product/1162/40740
  */
 public class CloudGameApi {
+    private final static String TAG = "CloudGameApi";
 
+    // 业务后台地址
     public static final String SERVER = "code.cloud-gaming.myqcloud.com";
     public static final String CREATE_GAME_SESSION = "/CreateExperienceSession";
     public static final String STOP_GAME_SESSION = "/StopExperienceSession";
 
+    // 业务后台返回结果监听
     public interface IServerSessionListener {
         void onFailed(String msg);
         void onSuccess(JSONObject result);
@@ -38,6 +42,7 @@ public class CloudGameApi {
 
     private final RequestQueue mQueue;
     private final Gson mGson = new Gson();
+    // 标识请求来自哪个用户
     private final String mUserID;
 
     private String address(String path) {
@@ -52,6 +57,7 @@ public class CloudGameApi {
     /**
      * 通过自定义全局唯一 ID (GUID) 对应用实例进行唯一标识
      * 参考Google唯一标识符最佳做法：https://developer.android.com/training/articles/user-data-ids?hl=zh-cn
+     * 卸载之后UserId会发生更改
      */
     public String getIdentity(Context context) {
         SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(context);
@@ -66,43 +72,48 @@ public class CloudGameApi {
     }
 
     /**
-     * 开始游戏
+     * 开始请求业务后台，获取云端游戏实例
      * 该接口调用成功后, 云端会锁定机器实例, 并返回相应的server session
+     *
+     * @param gameCode 游戏体验码
+     * @param clientSession sdk初始化成功后返回的client session
+     * @param listener 服务端返回结果
      */
     public void startGame(String gameCode, String clientSession, IServerSessionListener listener) {
         String bodyString = mGson.toJson(new GameStartParam(gameCode, clientSession, mUserID));
         String url = address(CREATE_GAME_SESSION);
-        Log.d(Constant.TAG, "createSession url: " + url);
+        Log.d(TAG, "createSession url: " + url);
         JSONObject request = null;
         try {
+            // 构造JSONObject类型的请求对象
             request = new JSONObject(bodyString);
-            Log.d(Constant.TAG, "createSession clientSession: " + request.getString("ClientSession"));
-            Log.d(Constant.TAG, "createSession UserID: " + request.getString("UserId"));
-            Log.d(Constant.TAG, "createSession ExperienceCode: " + request.getString("ExperienceCode"));
+            Log.d(TAG, "createSession clientSession: " + request.getString("ClientSession"));
+            Log.d(TAG, "createSession UserID: " + request.getString("UserId"));
+            Log.d(TAG, "createSession ExperienceCode: " + request.getString("ExperienceCode"));
         } catch (JSONException e) {
-            Log.e(Constant.TAG, e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
         mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request, listener::onSuccess, error -> {
-            Log.d(Constant.TAG, "createSession error: " + error);
+            Log.d(TAG, "createSession error: " + error);
             listener.onFailed(error.getMessage());
         }));
     }
 
     /**
-     * 停止游戏(释放云端实例)
+     * 请求业务后台，停止游戏(释放云端实例)
      */
     public void stopGame() {
         String bodyString = mGson.toJson(new GameStopParam(PC_GAME_CODE, mUserID));
-        Log.d(Constant.TAG, "stopGame bodyString: " + bodyString);
+        Log.d(TAG, "stopGame bodyString: " + bodyString);
         JSONObject request = null;
         try {
             request = new JSONObject(bodyString);
-            Log.d(Constant.TAG, "stopGame: request: " + request);
+            Log.d(TAG, "stopGame: request: " + request);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         mQueue.add(new JsonObjectRequest(Request.Method.POST, address(STOP_GAME_SESSION), request, response -> {
-            Log.d(Constant.TAG, "stopGame result:" + response);
+            Log.d(TAG, "stopGame result:" + response);
         }, null));
     }
 }

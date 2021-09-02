@@ -17,11 +17,11 @@
 ## 二、SDK 下载
 您可以在以下链接中获取最新SDK：
 
-| 所属平台 | Zip下载 | Demo运行说明 | 端游集成指引| 手游集成指引 | API 列表 |
-|:---------:| :--------:|:--------:| :--------:| :--------:|:--------:|
-| Android | [下载](https://recorder-10018504.cos.ap-shanghai.myqcloud.com/tcgsdk-android/tcgsdk_latest.zip)| [DOC](Demo/README.md)| [端游集成指引](Doc/端游接入文档.md) | [手游集成指引](Doc/手游接入文档.md) | [API](Doc/APIDocs.md) |
+| 所属平台 | Zip下载 | Demo运行说明 | 端游集成指引| 手游集成指引 | 虚拟按键接入 |API 列表|
+|:---------:| :--------:|:--------:| :--------:| :--------:|:--------:|:--------:|
+| Android | [下载](https://recorder-10018504.cos.ap-shanghai.myqcloud.com/tcgsdk-android/tcgsdk_latest.zip)| [DOC](Demo/README.md)| [端游集成指引](Doc/端游接入文档.md) | [手游集成指引](Doc/手游接入文档.md) | [虚拟按键接入](Doc/自定义虚拟按键.md) |[API](Doc/APIDocs.md)|
 
 ## 三、[历史版本变更](Doc/历史版本.md)
 
- 
+
 

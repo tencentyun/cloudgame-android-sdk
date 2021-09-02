@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import com.example.demop.Constant;
 import com.tencent.tcggamepad.GamepadManager;
 import com.tencent.tcggamepad.IGamepadTouchDelegate;
-import com.tencent.tcgsdk.api.ITcgSdk;
+import com.tencent.tcgsdk.api.IPcTcgSdk;
 import com.tencent.tcgui.keyboard.IKeyboardListener;
 import com.tencent.tcgui.keyboard.KeyboardView;
 import com.tencent.tcgui.listener.PackEventListener;
@@ -21,12 +21,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class ControlView extends RelativeLayout implements PackEventListener, IKeyboardListener {
+    private final static String TAG = "ControlView";
+
     // 键盘视图的父容器
     private RelativeLayout mKeyboardParent;
     // 键盘视图
     private KeyboardView mKeyboardView;
     // 云游戏SDK调用接口
-    protected ITcgSdk mSDK;
+    protected IPcTcgSdk mSDK;
 
     // 自定义虚拟按键
     private GamepadManager mCustomGamePad;
@@ -49,9 +51,9 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     @Override
     public void onPackEventData(String event) {
         if (mSDK == null) {
-            Log.e(Constant.TAG, "To call method setSDK is needed!!!");
+            Log.e(TAG, "To call method setSDK is needed!!!");
         } else {
-            Log.d(Constant.TAG, "" + event);
+            Log.d(TAG, "" + event);
             mSDK.sendRawEvent(event);
         }
     }
@@ -119,7 +121,6 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
         }
     }
 
-
     private void initCustomGamePad() {
         mCustomGamePad = new GamepadManager(this.getContext());
         mCustomGamePad.setInstructionListener(instruction -> {
@@ -141,6 +142,7 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
         mCustomGamePad.setVisibility(GONE);
     }
 
+    // 读取手柄配置文件
     private String readConfigFile(String fileName) {
         try {
             AssetManager am = this.getContext().getAssets();
@@ -152,7 +154,7 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
             is.close();
             return new String(input);
         } catch (Exception e) {
-            Log.e(Constant.TAG, "readConfigFile failed:" + e);
+            Log.e(TAG, "readConfigFile failed:" + e);
         }
         return null;
     }
@@ -173,6 +175,7 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
             }
         }
 
+        // 通知输入法的状态
         if (mKeyboardShowListener != null) {
             mKeyboardShowListener.onKeyboard(enable);
         }
@@ -182,9 +185,9 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     @Override
     public void onPress(int primaryCode, boolean isShift) {
         if (mSDK == null) {
-            Log.e(Constant.TAG, "To call method setSDK is needed!!!");
+            Log.e(TAG, "To call method setSDK is needed!!!");
         } else {
-            Log.d(Constant.TAG, "press " + primaryCode + (isShift ? "shifted" : ""));
+            Log.d(TAG, "press " + primaryCode + (isShift ? "shifted" : ""));
             if (isShift) {
                 mSDK.sendShiftKey(true);
             }
@@ -201,9 +204,9 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     @Override
     public void onRelease(int primaryCode, boolean isShift) {
         if (mSDK == null) {
-            Log.e(Constant.TAG, "To call method setSDK is needed!!!");
+            Log.e(TAG, "To call method setSDK is needed!!!");
         } else {
-            Log.d(Constant.TAG, "release " + primaryCode + (isShift ? " shifted" : ""));
+            Log.d(TAG, "release " + primaryCode + (isShift ? " shifted" : ""));
             mSDK.sendKeyboardEvent(primaryCode, false, null);
             if (isShift) {
                 mSDK.sendShiftKey(false);
@@ -215,7 +218,7 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     public void onKey(int primaryCode, boolean isShift) {
     }
 
-    public void setSDK(ITcgSdk sdk) {
+    public void setSDK(IPcTcgSdk sdk) {
         mSDK = sdk;
     }
 }

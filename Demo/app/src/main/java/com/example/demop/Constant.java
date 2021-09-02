@@ -2,7 +2,7 @@ package com.example.demop;
 
 public class Constant {
     // 云游戏团队提供的端游体验码, 有效期7天
-    public static final String PC_GAME_CODE = "CQDHMPGJ";
+    public static final String PC_GAME_CODE = "AQWM3ONR";
     // 云游戏团队提供的手游体验码, 有效期7天
     public static final String MOBILE_GAME_CODE = "PJ0OJ7KA";
     // 应用的AppID

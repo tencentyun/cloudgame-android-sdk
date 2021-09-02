@@ -17,7 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 该Demo的启动入口
+ * 该Demo启动的入口
+ * 显示四个不同Activity的启动入口：
+ * 1、端游-简单示例{@link PcSimpleActivity}
+ * 2、端游-虚拟按键{@link PcGamePadActivity}
+ * 3、端游-API调用{@link PcApiActivity}
+ * 4、手游-示例{@link MobileSimpleActivity}
  */
 public class MainActivity extends ListActivity {
     @Override

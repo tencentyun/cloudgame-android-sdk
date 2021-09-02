@@ -3,30 +3,31 @@ package com.example.demop.activity;
 import static com.tencent.tcgsdk.api.BitrateUnit.KB;
 
 import android.os.Build;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import com.example.demop.Constant;
 import com.example.demop.R;
+import com.example.demop.model.GameViewModel;
 import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
-import com.example.demop.model.GameViewModel;
 import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
-import com.tencent.tcgsdk.api.GameView;
+import com.tencent.tcgsdk.api.IPcTcgSdk;
 import com.tencent.tcgsdk.api.ITcgListener;
-import com.tencent.tcgsdk.api.ITcgSdk;
 import com.tencent.tcgsdk.api.LogLevel;
+import com.tencent.tcgsdk.api.PcSurfaceGameView;
+import com.tencent.tcgsdk.api.PcTcgSdk;
 import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.TcgSdk2;
 import com.tencent.tcgsdk.api.datachannel.IStatusChangeListener;
@@ -34,7 +35,8 @@ import java.nio.charset.Charset;
 import org.json.JSONObject;
 
 /**
- * 端游示例演示: 演示如何调用端游SDK接口, 调用接口的示例包括
+ * 端游-API调用
+ * 演示如何调用端游SDK接口, 调用接口的示例包括
  * 1.初始化SDK
  * 2.鼠标左键点击: clickMouseLeft
  * 3.发送按键(示例是回车键): keyEnter
@@ -45,16 +47,27 @@ import org.json.JSONObject;
  * 8.外界鼠标操作(捕获鼠标): capturePointer
  * 9.切换码率: changeBitrate
  * 10.自定义数据通道: testDataChannel
- *
  */
 public class PcApiActivity extends AppCompatActivity {
+
+    private final static String TAG = "PcApiActivity";
+
+    // 码率质量
     private static final int LOW_QUALITY = 1;
     private static final int MEDIUM_QUALITY = 2;
     private static final int HIGH_QUALITY = 3;
-    protected GameView mGameView;
+
+    // 业务后台交互的API
+    private CloudGameApi mCloudGameApi;
+    // 端游游戏视图
+    protected PcSurfaceGameView mGameView;
+    // 云游交互的主要入口
+    protected IPcTcgSdk mSDK;
     protected GameViewModel mViewModel;
-    protected ITcgSdk mSDK;
     protected FrameLayout mContainer;
+
+    // 当前码率质量，初始值为0
+    // 可选质量 LOW_QUALITY（1），MEDIUM_QUALITY（2），HIGH_QUALITY（3）
     private int mCurrentBitrate = 0;
 
     @Override
@@ -69,15 +82,14 @@ public class PcApiActivity extends AppCompatActivity {
 
     private void initWindow() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     protected void init() {
+        mCloudGameApi = new CloudGameApi(this);
         mViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
 
-        mViewModel.getDebugView().observe(this, result -> {
-            mGameView.enableDebugView(result);
-        });
+        mViewModel.getDebugView().observe(this, result -> mGameView.enableDebugView(result));
     }
 
     private void initView() {
@@ -85,41 +97,38 @@ public class PcApiActivity extends AppCompatActivity {
         mContainer = findViewById(R.id.container);
 
         //　创建游戏画面视图
-        mGameView = new GameView(this);
-        mGameView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mGameView = new PcSurfaceGameView(this);
+        mGameView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
         mContainer.addView(mGameView);
     }
 
     protected void initApiView() {
         View apiEntries = LayoutInflater.from(this).inflate(R.layout.api_sample_layout, null);
-        ((CheckBox)(apiEntries.findViewById(R.id.debug_view))).setOnCheckedChangeListener((var1, result) -> {
-            mViewModel.getDebugView().setValue(result);
-        });
+        ((CheckBox) (apiEntries.findViewById(R.id.debug_view))).
+                setOnCheckedChangeListener((var1, result) -> mViewModel.getDebugView().setValue(result));
 
         mContainer.addView(apiEntries);
     }
 
     /**
-     * 启动游戏: 获取服务端server session
+     * 开始请求业务后台启动游戏，获取服务端server session
      *
-     * 请注意: 请求的后台服务是云游团队的体验服务
-     * 客户端接入时需要在自己的业务后台返回ServerSession
-     *
-     * 业务后台的API请参考:
-     * https://cloud.tencent.com/document/product/1162/40740
+     * 注意：客户在接入时需要请求自己的业务后台返回ServerSession
+     * 业务后台实现请参考API：https://cloud.tencent.com/document/product/1162/40740
      *
      * @param clientSession sdk初始化成功后返回的client session
      */
     protected void startGame(String clientSession) {
-        Log.i(Constant.TAG, "start game");
-        CloudGameApi cloudGameApi = new CloudGameApi(this);
-        cloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+        Log.i(TAG, "start game");
+        // 请求业务后台来启动游戏
+        mCloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(JSONObject result) {
-                Log.d(Constant.TAG, "onSuccess: " + result.toString());
+                Log.d(TAG, "onSuccess: " + result.toString());
                 ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
                 if (resp.code == 0) {
-                    //　启动游戏
+                    //　请求成功，获取服务端的server session，启动游戏
                     mSDK.start(resp.serverSession);
                 } else {
                     Toast.makeText(PcApiActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
@@ -128,7 +137,7 @@ public class PcApiActivity extends AppCompatActivity {
 
             @Override
             public void onFailed(String msg) {
-                Log.i(Constant.TAG, msg);
+                Log.i(TAG, msg);
             }
         });
     }
@@ -180,7 +189,11 @@ public class PcApiActivity extends AppCompatActivity {
 
     private void initSdk() {
         // 创建SDK的接口
-        TcgSdk2.Builder builder = new TcgSdk2.Builder(this.getApplicationContext(), Constant.APP_ID, mTcgLifeCycleImpl , mGameView.getViewRenderer());
+        PcTcgSdk.Builder builder = new PcTcgSdk.Builder(
+                this,
+                Constant.APP_ID,
+                mTcgLifeCycleImpl, // 生命周期回调
+                mGameView.getViewRenderer());
         // 设置日志级别
         builder.logLevel(LogLevel.VERBOSE);
 
@@ -234,7 +247,7 @@ public class PcApiActivity extends AppCompatActivity {
     // 重新创建游戏视图
     public void newGameView(View view) {
         if (mGameView == null) {
-            mGameView = new GameView(this);
+            mGameView = new PcSurfaceGameView(this);
             mContainer.addView(mGameView, 0);
             mGameView.setSDK(mSDK);
             mSDK.replaceRenderer(mGameView);
@@ -256,6 +269,7 @@ public class PcApiActivity extends AppCompatActivity {
         }
     }
 
+    // 切换码率
     public void changeBitrate(View view) {
         int bitrateType = nextBitrate();
         switch (bitrateType) {
@@ -295,7 +309,7 @@ public class PcApiActivity extends AppCompatActivity {
             public void onFailed(String msg) {
                 // 数据通道创建失败, 或者数据通道出现异常
                 // 请注意: 创建成功回调之后并不意味着不会出现异常, 如运行过程中网络连接断开仍会回调该函数
-                Log.d(Constant.TAG, "DataChannel failure:" + msg);
+                Log.d(TAG, "DataChannel failure:" + msg);
             }
 
             @Override
@@ -308,7 +322,7 @@ public class PcApiActivity extends AppCompatActivity {
                 // 云端端口创建成功
                 // 发送数据到云端
                 mSDK.send(REMOTE_UDP_PORT, "Data to be sent.".getBytes());
-                Log.d(Constant.TAG, "send data for " + REMOTE_UDP_PORT);
+                Log.d(TAG, "send data for " + REMOTE_UDP_PORT);
             }
         });
 
@@ -316,7 +330,14 @@ public class PcApiActivity extends AppCompatActivity {
         mSDK.listen(REMOTE_UDP_PORT, (buffer) -> {
             Charset charset = Charset.forName("utf-8");
             String data2beRead = charset.decode(buffer.data).toString();
-            Log.d(Constant.TAG, "receive data:" + data2beRead);
+            Log.d(TAG, "receive data:" + data2beRead);
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
+        mCloudGameApi.stopGame();
     }
 }
