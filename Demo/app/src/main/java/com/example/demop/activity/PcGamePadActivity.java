@@ -162,7 +162,7 @@ public class PcGamePadActivity extends AppCompatActivity {
     /**
      * 开始请求业务后台启动游戏，获取服务端server session
      *
-     * 注意：客户在接入时需要请求自己的业务后台返回ServerSession
+     * 注意：客户在接入时需要请求自己的业务后台，获取ServerSession
      * 业务后台实现请参考API：https://cloud.tencent.com/document/product/1162/40740
      *
      * @param clientSession sdk初始化成功后返回的client session
@@ -172,9 +172,8 @@ public class PcGamePadActivity extends AppCompatActivity {
         // 通过业务后台来启动游戏
         mCloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
-            public void onSuccess(JSONObject result) {
-                Log.d(TAG, "onSuccess: " + result.toString());
-                ServerResponse resp = new Gson().fromJson(result.toString(), ServerResponse.class);
+            public void onSuccess(ServerResponse resp) {
+                Log.d(TAG, "onSuccess: " + resp.toString());
                 if (resp.code == 0) {
                     // 请求成功，从服务端获取到server session，启动游戏
                     mSDK.start(resp.serverSession);

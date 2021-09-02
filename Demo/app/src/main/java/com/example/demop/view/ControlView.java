@@ -10,17 +10,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import com.example.demop.Constant;
 import com.tencent.tcggamepad.GamepadManager;
 import com.tencent.tcggamepad.IGamepadTouchDelegate;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
 import com.tencent.tcgui.keyboard.IKeyboardListener;
 import com.tencent.tcgui.keyboard.KeyboardView;
-import com.tencent.tcgui.listener.PackEventListener;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ControlView extends RelativeLayout implements PackEventListener, IKeyboardListener {
+public class ControlView extends RelativeLayout implements IKeyboardListener {
     private final static String TAG = "ControlView";
 
     // 键盘视图的父容器
@@ -46,16 +44,6 @@ public class ControlView extends RelativeLayout implements PackEventListener, IK
     public ControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
-    }
-
-    @Override
-    public void onPackEventData(String event) {
-        if (mSDK == null) {
-            Log.e(TAG, "To call method setSDK is needed!!!");
-        } else {
-            Log.d(TAG, "" + event);
-            mSDK.sendRawEvent(event);
-        }
     }
 
     public interface IVirtualControlListener {

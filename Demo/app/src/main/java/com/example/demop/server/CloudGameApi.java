@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.demop.Constant;
 import com.example.demop.server.param.GameStartParam;
 import com.example.demop.server.param.GameStopParam;
+import com.example.demop.server.param.ServerResponse;
 import com.google.gson.Gson;
 import java.util.UUID;
 import org.json.JSONException;
@@ -37,7 +38,7 @@ public class CloudGameApi {
     // 业务后台返回结果监听
     public interface IServerSessionListener {
         void onFailed(String msg);
-        void onSuccess(JSONObject result);
+        void onSuccess(ServerResponse resp);
     }
 
     private final RequestQueue mQueue;
@@ -93,10 +94,16 @@ public class CloudGameApi {
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
         }
-        mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request, listener::onSuccess, error -> {
-            Log.d(TAG, "createSession error: " + error);
-            listener.onFailed(error.getMessage());
-        }));
+        mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request,
+                success -> {
+                    Log.d(TAG, "createSession sucess: " + success);
+                    ServerResponse resp = new Gson().fromJson(success.toString(), ServerResponse.class);
+                    listener.onSuccess(resp);
+                },
+                error -> {
+                    Log.d(TAG, "createSession error: " + error);
+                    listener.onFailed(error.getMessage());
+                }));
     }
 
     /**
