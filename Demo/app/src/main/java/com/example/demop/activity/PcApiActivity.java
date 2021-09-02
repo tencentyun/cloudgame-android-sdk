@@ -61,7 +61,7 @@ public class PcApiActivity extends AppCompatActivity {
     private CloudGameApi mCloudGameApi;
     // 端游游戏视图
     protected PcSurfaceGameView mGameView;
-    // 云游交互的主要入口
+    // 云端游SDK调用接口
     protected IPcTcgSdk mSDK;
     protected GameViewModel mViewModel;
     protected FrameLayout mContainer;

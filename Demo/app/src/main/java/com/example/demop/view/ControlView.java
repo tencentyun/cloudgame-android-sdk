@@ -25,7 +25,7 @@ public class ControlView extends RelativeLayout implements IKeyboardListener {
     private RelativeLayout mKeyboardParent;
     // 键盘视图
     private KeyboardView mKeyboardView;
-    // 云游戏SDK调用接口
+    // 云端游SDK调用接口
     protected IPcTcgSdk mSDK;
 
     // 自定义虚拟按键

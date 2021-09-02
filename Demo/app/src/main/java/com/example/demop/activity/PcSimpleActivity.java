@@ -29,7 +29,7 @@ public class PcSimpleActivity extends AppCompatActivity {
     private CloudGameApi mCloudGameApi;
     // 显示端游的视图
     private PcSurfaceGameView mGameView;
-    // 云游交互的主要入口
+    // 云端游SDK调用接口
     private IPcTcgSdk mSDK;
 
     @Override

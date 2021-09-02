@@ -30,7 +30,7 @@ public class MobileSimpleActivity extends AppCompatActivity {
     private final static String TAG = "MobileSimpleActivity";
     // 手游视图
     private MobileSurfaceView mGameView;
-    // 云游交互的主要入口
+    // 云手游SDK调用接口
     private IMobileTcgSdk mSDK;
     // 业务后台交互的API
     private CloudGameApi mCloudGameApi;

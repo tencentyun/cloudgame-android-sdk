@@ -37,7 +37,7 @@ public class PcGamePadActivity extends AppCompatActivity {
     private CloudGameApi mCloudGameApi;
     // 我们把虚拟手柄、虚拟按键、自定义虚拟按键添加到这一层
     protected ControlView mControlView;
-    // 云游交互的主要入口
+    // 云端游SDK调用接口
     protected IPcTcgSdk mSDK;
     // 显示端游的视图
     protected PcSurfaceGameView mGameView;
