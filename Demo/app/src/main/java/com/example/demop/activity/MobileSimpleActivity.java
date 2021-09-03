@@ -11,7 +11,6 @@ import com.example.demop.Constant;
 import com.example.demop.R;
 import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
-import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.mobile.Configuration;
@@ -20,7 +19,6 @@ import com.tencent.tcgsdk.api.mobile.ITcgMobileListener;
 import com.tencent.tcgsdk.api.mobile.MobileSurfaceView;
 import com.tencent.tcgsdk.api.mobile.MobileTcgSdk;
 import java.util.Locale;
-import org.json.JSONObject;
 
 /**
  * 手游-简单示例

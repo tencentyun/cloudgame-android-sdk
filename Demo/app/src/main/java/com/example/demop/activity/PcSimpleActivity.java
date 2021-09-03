@@ -9,14 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.demop.Constant;
 import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
-import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
 import com.tencent.tcgsdk.api.ITcgListener;
 import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.PcSurfaceGameView;
 import com.tencent.tcgsdk.api.PcTcgSdk;
 import java.util.Locale;
-import org.json.JSONObject;
 
 /**
  * 端游-简单示例演示

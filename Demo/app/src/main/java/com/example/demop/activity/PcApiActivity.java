@@ -20,7 +20,6 @@ import com.example.demop.R;
 import com.example.demop.model.GameViewModel;
 import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
-import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
@@ -29,10 +28,8 @@ import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.PcSurfaceGameView;
 import com.tencent.tcgsdk.api.PcTcgSdk;
 import com.tencent.tcgsdk.api.ScaleType;
-import com.tencent.tcgsdk.api.TcgSdk2;
 import com.tencent.tcgsdk.api.datachannel.IStatusChangeListener;
 import java.nio.charset.Charset;
-import org.json.JSONObject;
 
 /**
  * 端游-API调用

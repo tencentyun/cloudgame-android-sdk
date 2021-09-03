@@ -14,7 +14,6 @@ import com.example.demop.model.GameViewModel;
 import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
 import com.example.demop.view.ControlView;
-import com.google.gson.Gson;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
@@ -24,7 +23,6 @@ import com.tencent.tcgsdk.api.PcSurfaceGameView;
 import com.tencent.tcgsdk.api.PcTcgSdk;
 import com.tencent.tcgsdk.api.ScaleType;
 import java.util.Locale;
-import org.json.JSONObject;
 
 /**
  * 端游-虚拟按键 示例演示
