@@ -5,33 +5,17 @@
 ![](https://main.qcloudimg.com/raw/d7d82673b8e1ead4a31301ef2c7de3c9.png)
 ## Android SDK 接口概览
 
-### 构建器接口
-
-| 接口名称                                                      | 接口描述                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Builder(context,appID,listener,viewRenderer)](#Builder(context,appID,listener,viewRenderer))| 构建一个sdk的构建器                                                     |
-| [Builder.idleTimeMs(durationMs)](#Builder.idleTimeMs(durationMs))                            | 设置用户空闲时长                                                     |
-| [Builder.autoReconnect(enable)](#Builder.autoReconnect(enable))                  | 率掉0或者异常断开自动重连                                                       |
-| [Builder.localVideo(enable)](#Builder.localVideo(enable))      | 开启本地视频上传能力，默认关闭                                             |
-| [Builder.localAudio(enable)](#Builder.localAudio(enable)) | 开启本地音频上传能力，默认关闭                          |
-| [Builder.timeout(timeoutMs)](#Builder.timeout(timeoutMs)) | 从发起连接到连上远端节点的超时时间, 超时则会触发超时回调                      |
-| [Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold)](#Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold)) | 低码率阀值                      |
-| [Builder.softDecodingThreadNum(num)](#Builder.softDecodingThreadNum(num)) | 指定软解编码的线程数                      |
-| [Builder.logLevel(level)](#Builder.logLevel(level)) | 指定日志级别                      |
-| [Builder.enableHwCodec(enableHwCodec)](#Builder.enableHwCodec(enableHwCodec)) | 是否优先使用硬解                      |
-| [Builder.build()](#Builder.build()) | 构建一个TcgSdk并开始初始化                      |
-
 ### 生命周期相关接口
 
-| 接口名称                                                      | 接口描述                                                        |
+| 接口名称                                                     | 接口描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [ITcgSdk.start(ServerSession)](#ITcgSdk.start(ServerSession))| 启动云游戏                                                     |
-| [ITcgSdk.stop()](#ITcgSdk.stop())                            | 停止云游戏                                                     |
-| [ITcgSdk.reconnect()](#ITcgSdk.reconnect())                  | 重新连接                                                       |
-| [ITcgSdk.replace(gameView)](#ITcgSdk.replace(gameView))      | 替换 SDK 的游戏画面                                             |
-| [ITcgSdk.registerTcgListener(listener)](#ITcgSdk.registerTcgListener(listener)) | 设置生命周期回调监听                          |
-| [ITcgSdk.unRegisterTcgListener(listener)](#ITcgSdk.unRegisterTcgListener(listener)) | 注销生命周期回调监听                      |
-| [ITcgListener](#ITcgListener)                                | TcgSdk 生命周期回调，TcgSdk 在调用 start 接口之后进行初始化         |
+| [ITcgSdk.start(ServerSession)](#ITcgSdk.start(ServerSession)) | 启动云游戏                                                   |
+| [ITcgSdk.stop()](#ITcgSdk.stop())                            | 停止云游戏                                                   |
+| [ITcgSdk.reconnect()](#ITcgSdk.reconnect())                  | 重新连接                                                     |
+| [ITcgSdk.replace(pcSurfaceGameView)](#ITcgSdk.replace(pcSurfaceGameView))      | 替换 SDK 的游戏视图                                          |
+| [ITcgSdk.registerTcgListener(listener)](#ITcgSdk.registerTcgListener(listener)) | 设置生命周期回调监听                                         |
+| [ITcgSdk.unRegisterTcgListener(listener)](#ITcgSdk.unRegisterTcgListener(listener)) | 注销生命周期回调监听                                         |
+| [ITcgListener](#ITcgListener)                                | TcgSdk 生命周期回调，TcgSdk 在调用 start 接口之后进行初始化 |
 
 
 ### 鼠标键盘控制相关接口
@@ -52,6 +36,7 @@
 | [ITcgSdk.clearRemoteKeys(callback)](#ITcgSdk.clearRemoteKeys(callback)) | 重置云端按键状态                     |
 | [ITcgSdk.registerIDleListener(listener)](#ITcgSdk.registerIDleListener(listener)) | 注册空闲状态监听器，监听用户空闲状态 |
 | [ITcgSdk.unRegisterIDleListener(listener)](#ITcgSdk.unRegisterIDleListener(listener)) | 注销空闲状态监听器                   |
+| [ITcgSdk.setCursorStyle(style,callback)](#ITcgSdk.setCursorStyle(style,callback)) | 设置云端鼠标样式          |
 
 
 ### 运行状态监控接口
@@ -163,10 +148,9 @@
 
 | 接口名称                                                     | 接口描述                              |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [IDataChannel.connect(port,listener)](#IDataChannel.connect(port,listener)) | 调用该接口在远端服务创建一个 UDP 连接 |
-| [IDataChannel.listen(port,listener)](#IDataChannel.listen(port,listener)) | 监听云端发送的数据                    |
-| [IDataChannel.send(port,data)](#IDataChannel.send(port,data)) | 调用该接口给远端 UDP 端口发送数据     |
-| [IDataChannel.close(port)](#IDataChannel.close(port))        | 关闭数据通道                          |
+| [ITcgSdk.createDataChannel(port,listener)](#ITcgSdk.createDataChannel(port,listener)) |创建一个可以和云端应用交互的数据通道     |
+| [IDataChannel.send(data)](#IDataChannel.send(data)) |调用该接口给远端UDP端口发送数据     |
+| [IDataChannel.close()](#IDataChannel.close())        | 关闭数据通道                          |
 
 ### 其他说明
 
@@ -175,126 +159,6 @@
 | [TcgErrorType](#TcgErrorType) | 错误码定义               |
 | [GameView](#GameView)         | 该视图代理了远程设备视图 |
 | [CursorType](#CursorType)     | 鼠标类型                 |
-
-## 构建器接口
-
-[](id:Builder(context,appID,listener,viewRenderer))
-### Builder(context,appID,listener,viewRenderer)
-
-启动云游戏。
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| context | Context | Android Context |
-| appID | long | 应用的AppID |
-| listener | ITcgListener | 生命周期回调 |
-| viewRenderer | IViewRenderer | 用于展示游戏画面的绘制器, 从GameView中获取|
-
-[](id:Builder.idleTimeMs(durationMs))
-### Builder.idleTimeMs(durationMs)
-
-设置用户空闲时长
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| durationMs | long | 若用户在这个时间内没有操作会触发IIDleListener.onIdle()回调 |
-
-
-[](id:Builder.autoReconnect(enable))
-### Builder.autoReconnect(enable)
-
-率掉0或者异常断开自动重连
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| enable | boolean | true表示帧率掉0或者异常断开自动重连,false表示不重连,默认为true |
-
-[](id:Builder.localVideo(enable))
-### Builder.localVideo(enable)
-
-开启本地视频上传能力，默认关闭
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| enable | boolean | true表示开启本地视频上传 |
-
-[](id:Builder.localAudio(enable))
-### Builder.localAudio(enable)
-
-开启本地音频上传能力，默认关闭
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| enable | boolean | true表示开启本地音频上传 |
-
-[](id:Builder.timeout(timeoutMs))
-### Builder.timeout(timeoutMs)
-
-从发起连接到首帧绘制的超时时间, 超时则会触发超时回调ITcgListener.onConnectionTimeout()
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| timeoutMs | long | 超时时间, 默认60s |
-
-
-[](id:Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold))
-### Builder.lowFpsThreshold(lowFpsThreshold,lowFpsCountThreshold)
-
-低码率阀值, 连续lowFpsCountThreshold秒码率低于lowFpsThreshold会触发ILowFPSListener回调
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| lowFpsThreshold | int | 最低帧率 |
-| lowFpsCountThreshold | int | 出现低帧的秒数 |
-
-[](id:Builder.softDecodingThreadNum(num))
-### Builder.softDecodingThreadNum(num)
-
-指定软解编码的线程数
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| num | int | 软解编码需要使用的线程数 |
-
-
-[](id:Builder.logLevel(level))
-### Builder.logLevel(level)
-
-指定日志级别
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| level | LogLevel | 启动后指定的日志级别 |
-
-
-[](id:LogLevel)
-### LogLevel
-
-日志级别
-
-| 错误码                            | 说明                                               |
-| --------------------------------- | -------------------------------------------------- |
-| INFO                     | 默认日志级别，只输出关键信息                                           |
-| DEBUG               | 调试日志级别，输入部分调试信息                               |
-| VERBOSE               | 输出全部日志信息                               |
-
-[](id:Builder.enableHwCodec(enableHwCodec))
-### Builder.enableHwCodec(enableHwCodec)
-
-是否优先使用硬解
-
-| 参数    | 类型          | 描述                                                    |
-| ------- | ------------- | ------------------------------------------------------- |
-| enableHwCodec | boolean | true 优先使用硬解, false使用软解 |
-
-[](id:Builder.build())
-### Builder.build()
-
-构建一个TcgSdk并开始初始化, 初始化成功会回调ITcgListener.onInitSuccess
-
-| 参数     | 返回值 | 描述               |
-| -------- | ------ | ------------------ |
-| 无 |  ITcgSdkBase     | 构建一个TcgSdk并开始初始化, 初始化成功会回调onInitSuccess |
 
 ## 生命周期相关接口
 
@@ -317,14 +181,15 @@
 
 重新连接。
 
-[](id:ITcgSdk.replace(gameView))
-### ITcgSdk.replace(gameView)
+[](id:ITcgSdk.replace(pcSurfaceGameView))
+### ITcgSdk.replace(pcSurfaceGameView)
 
-替换游戏画面，调用后会导致旧视图被释放。
+替换游戏视图，调用后原游戏视图不会释放，若不再使用需手动释放。 
+请注意: 如果传入的游戏视图已被释放, 该调用会抛IllegalStateException异常
 
 | 参数     | 类型           | 返回值 | 描述                    |
 | -------- | -------------- | ------ | ----------------------- |
-| gameView | SimpleGameView | 无     | 游戏画面视图，可传 null |
+| pcSurfaceGameView | SimpleGameView | 无     | 游戏视图，可传 null |
 
 [](id:ITcgSdk.registerTcgListener(listener))
 ### ITcgSdk.registerTcgListener(listener)  
@@ -574,6 +439,17 @@ SDK 初始化成功回调。
 
 | 参数     | 类型       | 描述                      |
 | -------- | ---------- | ------------------------- |
+| callback | IRTCResult | callback 远端接口调用结果 |
+
+
+[](id:ITcgSdk.setCursorStyle(style,callback))
+### ITcgSdk.setCursorStyle(style,callback)
+
+设置云端鼠标样式
+
+| 参数     | 类型       | 描述                      |
+| -------- | ---------- | ------------------------- |
+| style | CursorStyle | 需要的鼠标样式 |
 | callback | IRTCResult | callback 远端接口调用结果 |
 
 [](id:ITcgSdk.registerIDleListener(listener))
@@ -1268,6 +1144,10 @@ SDK 初始化成功回调。
 
 设置鼠标灵敏度。
 
+| 参数 | 类型 | 描述                                |
+| ---- | ---- | ----------------------------------- |
+| value | float | 鼠标灵敏度, value为[0.01, 10.0]之间的的浮点数 |
+
 [](id:GameView.setCursorType(mode))
 ### GameView.setCursorType(mode)
 
@@ -1442,55 +1322,61 @@ SDK 初始化成功回调。
 
 注销席位信息监听器。
 
-
 ## 数据通道交互接口
 
-[](id:IDataChannel.connect(port,listener))
-### IDataChannel.connect(port,listener)
+[](id:ITcgSdk.createDataChannel(port,listener))
+### ITcgSdk.createDataChannel(port,listener)
 
-调用该接口在远端服务创建一个 UDP 连接。
+创建一个可以和云端应用交互的数据通道,
+通过该通道可以将任意数据流送到云端应用监听的port端口
 
 | 参数     | 类型                                            | 描述                |
 | -------- | ----------------------------------------------- | ------------------- |
-| port     | int                                             | 云端 UDP 连接的端口 |
-| listener | [IStatusChangeListener](#IStatusChangeListener) | 数据通道状态监听器  |
+| port     | int                                             | 云端应用监听的端口 |
+| listener | [IDataChannelListener](#IDataChannelListener) | 数据通道监听器，用于回调数据通道的连接状态和数据  |
 
-[](id:IStatusChangeListener)
-#### IStatusChangeListener
+[](id:IDataChannelListener)
+### IDataChannelListener
 
-数据通道状态监听器。
+数据通道监听器
 
-##### IStatusChangeListener.onFailed(msg)
+| 接口名称                                                     | 接口描述           |
+| ------------------------------------------------------------ | ------------------ |
+| [IDataChannelListener.onMessage(port,buffer)](#IDataChannelListener.onMessage(port,buffer)) | 云端数据响应回调 |
+| [IDataChannelListener.onConnectFailed(port,msg)](#IDataChannelListener.onConnectFailed(port,msg)) | 连接失败         |
+| [IDataChannelListener.onConnectSuccess(port)](#IDataChannelListener.onConnectSuccess(port)) | 连接成功,可以通过数据通道给云端应用发送消息       |
 
-数据通道创建失败，或者数据通道出现异常。
+[](id:IDataChannelListener.onMessage(port,buffer))
+### IDataChannelListener.onMessage(port,buffer)  
 
->! 创建成功回调之后并不意味着不会出现异常，如运行过程中网络连接断开仍会回调该函数。
+云端数据响应回调
 
-##### IStatusChangeListener.onTimeout()
+| 参数     | 类型         | 描述                                                        |
+| -------- | ------------ | ------ | ----------------------------------------------------------- |
+| port | int | 目标端口 |
+| buffer | ByteBuffer | 云端发送的数据内容 |
 
-创建数据通道超时。
+[](id:IDataChannelListener.onConnectFailed(port,msg))
+### IDataChannelListener.onConnectFailed(port,msg)  
 
-##### IStatusChangeListener.onSuccess()
+云端数据响应回调
 
-创建数据通道成。
+| 参数     | 类型         | 描述                                                        |
+| -------- | ------------ | ------ | ----------------------------------------------------------- |
+| port | int | 连接失败的云端端口 |
+| msg | String | 连接失败的提示信息 |
 
-[](id:IDataChannel.listen(port,listener))
-### IDataChannel.listen(port,listener)
+[](id:IDataChannelListener.onConnectSuccess(port))
+### IDataChannelListener.onConnectSuccess(port)  
 
-监听云端发送的数据。
+连接成功,可以通过数据通道给云端应用发送消息
 
-| 参数     | 类型          | 描述               |
-| -------- | ------------- | ------------------ |
-| port     | int           | 监听的端口         |
-| listener | IDataListener | 数据通道状态监听器 |
+| 参数     | 类型         | 描述                                                        |
+| -------- | ------------ | ------ | ----------------------------------------------------------- |
+| port | int | 连接成功的云端端口 |
 
-[](id:IDataListener.onMessage(buffer))
-#### IDataListener.onMessage(buffer)
-
-云端数据响应回调。
-
-[](id:IDataChannel.send(port,data))
-### IDataChannel.send(port,data)
+[](id:IDataChannel.send(data))
+### IDataChannel.send(data)
 
 调用该接口给远端 UDP 端口发送数据。
 
@@ -1498,18 +1384,12 @@ SDK 初始化成功回调。
 
 | 参数 | 类型   | 描述                                           |
 | ---- | ------ | ---------------------------------------------- |
-| port | int    | 远端端口                                       |
-| data | byte[] | 需要发送的数据内容，单次发送大小限制在1200字节 |
+| data | byte[] | 需要发送的数据内容, 单次发送大小限制在1200字节 |
 
+[](id:IDataChannel.close())
+### IDataChannel.close()
 
-[](id:IDataChannel.close(port))
-### IDataChannel.close(port)
-
-关闭数据通道，return 是否成功关闭。
-
-| 参数 | 类型 | 描述     |
-| ---- | ---- | -------- |
-| port | int  | 云端端口 |
+关闭数据通道
 
 ## 其他说明
 
@@ -1571,3 +1451,14 @@ SDK 初始化成功回调。
 | TOUCH           | 触控，鼠标跟随手指移动，点击可以单击按键（鼠标左键或右键）   |
 | RELATIVE_TOUCH  | 滑鼠点击，轻触触发鼠标左键，长按触发按点击鼠标左键，可以拖动，滑动仅触发鼠标移动 |
 | RELATIVE_MOVE   | 滑屏，鼠标在相对位置移动，不触发点击事件（可以发送其他按键事件） |
+
+
+[](id:CursorStyle)
+### CursorStyle
+
+ 鼠标样式
+
+| 状态定义        | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| NORMAL       | 默认鼠标样式                            |
+| HUGE | 大号鼠标       |
