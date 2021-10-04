@@ -28,7 +28,11 @@ import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.PcSurfaceGameView;
 import com.tencent.tcgsdk.api.PcTcgSdk;
 import com.tencent.tcgsdk.api.ScaleType;
+import com.tencent.tcgsdk.api.datachannel.IDataChannel;
+import com.tencent.tcgsdk.api.datachannel.IDataChannelListener;
 import com.tencent.tcgsdk.api.datachannel.IStatusChangeListener;
+
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 /**
@@ -293,6 +297,9 @@ public class PcApiActivity extends AppCompatActivity {
         return mCurrentBitrate;
     }
 
+    // 数据通道
+    private IDataChannel mDataChannel;
+
     // 这部分代码演示如何在云端创建udp端口, 并收发数据
     // 由于用的是UDP, 需要客户端自行保证传输的可靠性
     // NOTE: 该能力需要云端应用能够支持
@@ -300,34 +307,34 @@ public class PcApiActivity extends AppCompatActivity {
         final int REMOTE_UDP_PORT = 6666;
 
         // 云端创建udp端口6666
-        mSDK.connect(REMOTE_UDP_PORT, new IStatusChangeListener() {
+        mDataChannel = mSDK.createDataChannel(REMOTE_UDP_PORT, new IDataChannelListener() {
             @Override
-            public void onFailed(String msg) {
+            public void onMessage(int i, ByteBuffer byteBuffer) {
+                Charset charset = Charset.forName("utf-8");
+                String data2beRead = charset.decode(byteBuffer).toString();
+                Log.d(TAG, "receive data:" + data2beRead);
+            }
+
+            @Override
+            public void onConnectFailed(int i, String msg) {
                 // 数据通道创建失败, 或者数据通道出现异常
-                // 请注意: 创建成功回调之后并不意味着不会出现异常, 如运行过程中网络连接断开仍会回调该函数
                 Log.d(TAG, "DataChannel failure:" + msg);
             }
 
             @Override
-            public void onTimeout() {
-
-            }
-
-            @Override
-            public void onSuccess() {
+            public void onConnectSuccess(int i) {
                 // 云端端口创建成功
                 // 发送数据到云端
-                mSDK.send(REMOTE_UDP_PORT, "Data to be sent.".getBytes());
-                Log.d(TAG, "send data for " + REMOTE_UDP_PORT);
+                sendData("Data to be sent.");
             }
         });
+    }
 
-        // 监听云端返回数据
-        mSDK.listen(REMOTE_UDP_PORT, (buffer) -> {
-            Charset charset = Charset.forName("utf-8");
-            String data2beRead = charset.decode(buffer.data).toString();
-            Log.d(TAG, "receive data:" + data2beRead);
-        });
+    private void sendData(String data) {
+        if (mDataChannel != null) {
+            mDataChannel.send(ByteBuffer.wrap(data.getBytes()));
+            Log.d(TAG, "send data:" + data);
+        }
     }
 
     @Override
