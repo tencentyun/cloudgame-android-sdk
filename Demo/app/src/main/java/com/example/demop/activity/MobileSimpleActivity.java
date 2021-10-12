@@ -13,6 +13,7 @@ import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
 import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.ScaleType;
+import com.tencent.tcgsdk.api.VideoRotation;
 import com.tencent.tcgsdk.api.mobile.Configuration;
 import com.tencent.tcgsdk.api.mobile.IMobileTcgSdk;
 import com.tencent.tcgsdk.api.mobile.ITcgMobileListener;
@@ -134,6 +135,22 @@ public class MobileSimpleActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mGameView == null) {
+            return;
+        }
+
+        if (newConfig.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT) {
+            mGameView.setVideoRotation(VideoRotation.ROTATION_0);
+        } else if (newConfig.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
+            mGameView.setVideoRotation(VideoRotation.ROTATION_270);
+        } else {
+            Log.w(TAG, "There is no rotation for unexpected orientation:" + newConfig.orientation);
+        }
+    }
 
     /**
      * 开始请求业务后台启动游戏，获取服务端server session
