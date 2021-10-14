@@ -1,6 +1,7 @@
 package com.example.demop.server.param;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.UUID;
 
 /**
  * 该类封装了开始游戏所需要的参数
@@ -14,7 +15,8 @@ public class GameStartParam {
     public String clientSession;
     @SerializedName("UserId")
     public String userId;
-
+    @SerializedName("RequestId")
+    public String requestId = UUID.randomUUID().toString();
     /**
      * @param gameCode 游戏代码
      * @param clientSession 客户端请求参数
