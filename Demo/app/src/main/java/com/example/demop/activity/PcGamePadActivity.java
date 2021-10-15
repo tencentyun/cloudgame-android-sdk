@@ -100,6 +100,9 @@ public class PcGamePadActivity extends AppCompatActivity {
         });
         ((CheckBox) (findViewById(R.id.custom_checkbx))).setOnCheckedChangeListener((var1, result) -> {
             mViewModel.getCustomGamePad().setValue(result);
+
+            // 云端接入手柄(需要确保在onConnectionSuccess回调之后调用)
+            mSDK.sendGamePadConnected();
         });
 
         mControlView = findViewById(R.id.control_view);
