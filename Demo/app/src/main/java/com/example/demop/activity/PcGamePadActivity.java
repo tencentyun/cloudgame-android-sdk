@@ -78,16 +78,13 @@ public class PcGamePadActivity extends AppCompatActivity {
                 this,
                 Constant.APP_ID,
                 mTcgLifeCycleImpl, // 生命周期回调
-                mGameView.getViewRenderer());
+                mGameView);
 
         // 设置日志级别
         builder.logLevel(LogLevel.VERBOSE);
 
         // 通过Builder创建SDK接口实例
         mSDK = builder.build();
-
-        // 给游戏视图设置SDK实例
-        mGameView.setSDK(mSDK);
 
         // 给控制视图设置SDK实例
         mControlView.setSDK(mSDK);

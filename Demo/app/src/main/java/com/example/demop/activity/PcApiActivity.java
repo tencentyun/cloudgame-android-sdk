@@ -193,15 +193,12 @@ public class PcApiActivity extends AppCompatActivity {
                 this,
                 Constant.APP_ID,
                 mTcgLifeCycleImpl, // 生命周期回调
-                mGameView.getViewRenderer());
+                mGameView);
         // 设置日志级别
         builder.logLevel(LogLevel.VERBOSE);
 
         // 通过Builder创建SDK接口实例
         mSDK = builder.build();
-
-        // 给游戏视图设置SDK实例
-        mGameView.setSDK(mSDK);
     }
 
     //　鼠标左键点击
@@ -249,7 +246,6 @@ public class PcApiActivity extends AppCompatActivity {
         if (mGameView == null) {
             mGameView = new PcSurfaceGameView(this);
             mContainer.addView(mGameView, 0);
-            mGameView.setSDK(mSDK);
             mSDK.replaceRenderer(mGameView);
         }
     }
