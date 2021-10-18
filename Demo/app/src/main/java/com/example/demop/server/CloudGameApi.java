@@ -89,6 +89,7 @@ public class CloudGameApi {
             // 构造JSONObject类型的请求对象
             request = new JSONObject(bodyString);
             Log.d(TAG, "createSession clientSession: " + request.getString("ClientSession"));
+            Log.d(TAG, "createSession RequestId: " + request.getString("RequestId"));
             Log.d(TAG, "createSession UserID: " + request.getString("UserId"));
             Log.d(TAG, "createSession ExperienceCode: " + request.getString("ExperienceCode"));
         } catch (JSONException e) {
