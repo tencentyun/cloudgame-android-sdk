@@ -126,7 +126,7 @@ public class ControlView extends RelativeLayout implements IKeyboardListener {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         addView(mCustomGamePad, lp);
-        mCustomGamePadCfg = readConfigFile("lol_5v5_default.cfg");
+        mCustomGamePadCfg = readConfigFile("xbox.cfg");
         mCustomGamePad.setVisibility(GONE);
     }
 
