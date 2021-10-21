@@ -168,13 +168,13 @@ public class PcGamePadActivity extends AppCompatActivity {
     protected void startGame(String clientSession) {
         Log.i(TAG, "start game");
         // 通过业务后台来启动游戏
-        mCloudGameApi.startGame(Constant.PC_GAME_CODE, clientSession, new CloudGameApi.IServerSessionListener() {
+        mCloudGameApi.startGame(Constant.PC_GAME_ID, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(ServerResponse resp) {
                 Log.d(TAG, "onSuccess: " + resp.toString());
                 if (resp.code == 0) {
                     // 请求成功，从服务端获取到server session，启动游戏
-                    mSDK.start(resp.serverSession);
+                    mSDK.start(resp.data.serverSession);
                 } else {
                     Toast.makeText(PcGamePadActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
                 }
@@ -185,6 +185,24 @@ public class PcGamePadActivity extends AppCompatActivity {
                 Log.i(TAG, msg);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        Log.i(TAG, "onResume: ");
+        super.onResume();
+        if (mSDK != null) {
+            mSDK.setVolume(1);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        Log.i(TAG, "onStop: ");
+        super.onStop();
+        if (mSDK != null) {
+            mSDK.setVolume(0);
+        }
     }
 
     @Override
