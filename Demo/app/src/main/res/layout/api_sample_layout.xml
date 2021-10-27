@@ -1,61 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/debug_view"
-        android:checked="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#f1f1f1"
-        android:text="调试视图" />
+    <com.tencent.tcgsdk.api.PcSurfaceGameView
+            android:id="@+id/game_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <Button
-        android:text="鼠标左键"
-        android:onClick="clickMouseLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+    <include
+            android:id="@+id/game_setting"
+            layout="@layout/game_float_setting_view"/>
 
-    <Button
-        android:text="回车键"
-        android:onClick="keyEnter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="pause"
-        android:text="半退-暂停" />
+    <ImageView
+            android:id="@+id/loading"
+            android:src="@drawable/login_logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="resume"
-        android:text="半退-恢复" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="closeGameView"
-        android:text="关闭视图" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="newGameView"
-        android:text="新建视图" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="changeBitrate"
-        android:text="切换码率" />
-
-    <Button
+    <LinearLayout
+            android:id="@+id/api_view"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="capturePointer"
-            android:text="捕获鼠标" />
-</LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <Button
+                android:text="鼠标左键"
+                android:onClick="clickMouseLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                />
+
+        <Button
+                android:text="回车键"
+                android:onClick="keyEnter"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                />
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                android:onClick="pause"
+                android:text="半退-暂停" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                android:onClick="resume"
+                android:text="半退-恢复" />
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                android:onClick="closeGameView"
+                android:text="关闭视图" />
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                android:onClick="newGameView"
+                android:text="新建视图" />
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                android:onClick="changeBitrate"
+                android:text="切换码率" />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight ="1"
+                android:onClick="capturePointer"
+                android:text="捕获鼠标" />
+    </LinearLayout>
+
+</FrameLayout>

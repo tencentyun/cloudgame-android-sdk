@@ -7,20 +7,13 @@ import androidx.lifecycle.ViewModel;
  * 该类用于存储和GameView相关的数据
  */
 public class GameViewModel extends ViewModel {
-    // 调试界面开关
-    private final MutableLiveData<Boolean> mDebugView = new MutableLiveData<>();
     // 虚拟键盘开关
     private final MutableLiveData<Boolean> mKeyboard = new MutableLiveData<>();
     // 自定义虚拟手柄开关
     private final MutableLiveData<Boolean> mCustomGamePad = new MutableLiveData<>();
     public GameViewModel() {
-        mDebugView.setValue(true);
         mKeyboard.setValue(false);
         mCustomGamePad.setValue(false);
-    }
-
-    public MutableLiveData<Boolean> getDebugView() {
-        return mDebugView;
     }
 
     public MutableLiveData<Boolean> getKeyboard() {

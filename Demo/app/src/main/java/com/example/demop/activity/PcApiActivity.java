@@ -2,16 +2,18 @@ package com.example.demop.activity;
 
 import static com.tencent.tcgsdk.api.BitrateUnit.KB;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,20 +22,23 @@ import com.example.demop.R;
 import com.example.demop.model.GameViewModel;
 import com.example.demop.server.CloudGameApi;
 import com.example.demop.server.param.ServerResponse;
+import com.example.demop.view.FloatingSettingBarView;
+import com.example.demop.view.FloatingSettingBarView.SettingEventListener;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
+import com.tencent.tcgsdk.api.IStatsListener;
 import com.tencent.tcgsdk.api.ITcgListener;
 import com.tencent.tcgsdk.api.LogLevel;
 import com.tencent.tcgsdk.api.PcSurfaceGameView;
 import com.tencent.tcgsdk.api.PcTcgSdk;
+import com.tencent.tcgsdk.api.PerfValue;
 import com.tencent.tcgsdk.api.ScaleType;
 import com.tencent.tcgsdk.api.datachannel.IDataChannel;
 import com.tencent.tcgsdk.api.datachannel.IDataChannelListener;
-import com.tencent.tcgsdk.api.datachannel.IStatusChangeListener;
-
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.util.Locale;
 
 /**
  * 端游-API调用
@@ -57,6 +62,9 @@ public class PcApiActivity extends AppCompatActivity {
     private static final int LOW_QUALITY = 1;
     private static final int MEDIUM_QUALITY = 2;
     private static final int HIGH_QUALITY = 3;
+    // 回车键键值
+    // 其他按键值请通过该网址查询: https://keycode.info/
+    final int ENTER_KEY_CODE = 13;
 
     // 业务后台交互的API
     private CloudGameApi mCloudGameApi;
@@ -67,49 +75,120 @@ public class PcApiActivity extends AppCompatActivity {
     protected GameViewModel mViewModel;
     protected FrameLayout mContainer;
 
+    // 数据通道
+    private IDataChannel mDataChannel;
+
     // 当前码率质量，初始值为0
     // 可选质量 LOW_QUALITY（1），MEDIUM_QUALITY（2），HIGH_QUALITY（3）
     private int mCurrentBitrate = 0;
 
+    private LinearLayout mApiView;
+
+    // 悬浮菜单
+    private FloatingSettingBarView mSettingBarView;
+    private ImageView mLoadingView;
+
+    private AlertDialog gameStartErrorDialog;
+
+    //是否显示调试信息
+    private boolean isDebugMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initWindow();
         init();
+        initWindow();
         initView();
         initSdk();
-        initApiView();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.i(TAG, "onResume: ");
+        super.onResume();
+        if (mSDK != null) {
+            mSDK.setVolume(1);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        Log.i(TAG, "onStop: ");
+        super.onStop();
+        if (mSDK != null) {
+            mSDK.setVolume(0);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: ");
+        mCloudGameApi.stopGame();
+    }
+
+    private void init() {
+        Log.d(TAG, "init: ");
+        mCloudGameApi = new CloudGameApi(this);
+        mViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
     }
 
     private void initWindow() {
+        Log.d(TAG, "initWindow: ");
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    protected void init() {
-        mCloudGameApi = new CloudGameApi(this);
-        mViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
-
-        mViewModel.getDebugView().observe(this, result -> mGameView.enableDebugView(result));
-    }
-
+    /**
+     * 创建游戏画面视图
+     */
     private void initView() {
-        setContentView(R.layout.pc_sample_layout);
+        Log.d(TAG, "initView: ");
+        setContentView(R.layout.api_sample_layout);
         mContainer = findViewById(R.id.container);
-
         //　创建游戏画面视图
-        mGameView = new PcSurfaceGameView(this);
-        mGameView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        mContainer.addView(mGameView);
+        mGameView = findViewById(R.id.game_view);
+        mApiView = findViewById(R.id.api_view);
+        mSettingBarView = new FloatingSettingBarView(findViewById(R.id.game_setting));
+        mLoadingView = findViewById(R.id.loading);
+        mSettingBarView.setEventListener(mSettingsListener);
+        initStartGameErrorDialog();
     }
 
-    protected void initApiView() {
-        View apiEntries = LayoutInflater.from(this).inflate(R.layout.api_sample_layout, null);
-        ((CheckBox) (apiEntries.findViewById(R.id.debug_view))).
-                setOnCheckedChangeListener((var1, result) -> mViewModel.getDebugView().setValue(result));
+    private void initStartGameErrorDialog() {
+        Log.i(TAG, "initStartGameFailedDialog: ");
+        AlertDialog.Builder builder = new Builder(this);
+        builder.setTitle("游戏启动失败");
+        builder.setCancelable(false);
+        builder.setPositiveButton("退出游戏", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d(TAG, "exit game");
+                finish();
+            }
+        });
+        gameStartErrorDialog = builder.create();
+    }
 
-        mContainer.addView(apiEntries);
+    /**
+     * 初始化SDK
+     */
+    private void initSdk() {
+        Log.i(TAG, "initSdk");
+        // 创建Builder
+        PcTcgSdk.Builder builder = new PcTcgSdk.Builder(
+                this,
+                Constant.APP_ID,
+                mTcgLifeCycleImpl, // 生命周期回调
+                mGameView);
+
+        // 设置日志级别
+        builder.logLevel(LogLevel.VERBOSE);
+
+        // 通过Builder创建SDK接口实例
+        mSDK = builder.build();
+
+        mSDK.registerStatsListener(mStatsListener);
     }
 
     /**
@@ -126,109 +205,59 @@ public class PcApiActivity extends AppCompatActivity {
         mCloudGameApi.startGame(Constant.PC_GAME_ID, clientSession, new CloudGameApi.IServerSessionListener() {
             @Override
             public void onSuccess(ServerResponse resp) {
-                Log.d(TAG, "onSuccess: " + resp.toString());
                 if (resp.code == 0) {
-                    //　请求成功，获取服务端的server session，启动游戏
+                    Log.d(TAG, "Response Success: " + resp.toString());
+                    //　请求成功，从服务端获取到server session，启动游戏
                     mSDK.start(resp.data.serverSession);
                 } else {
-                    Toast.makeText(PcApiActivity.this, resp.toString(), Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Response Failed: " + resp.toString());
+                    if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
+                        gameStartErrorDialog.setMessage("游戏资源不足,请30s后重试！\n错误信息：" + resp.toString());
+                        gameStartErrorDialog.show();
+                    }
                 }
             }
 
             @Override
             public void onFailed(String msg) {
-                Log.i(TAG, msg);
+                Log.e(TAG, msg);
+                if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
+                    gameStartErrorDialog.setMessage("请求服务器失败,请稍后重试！\n错误信息：" + msg);
+                    gameStartErrorDialog.show();
+                }
             }
         });
     }
 
-    // TcgSdk生命周期回调
-    private final ITcgListener mTcgLifeCycleImpl = new ITcgListener() {
-        @Override
-        public void onConnectionTimeout() {
-            // 云游戏连接超时, 用户无法使用, 只能退出
-        }
-
-        @Override
-        public void onInitSuccess(String clientSession) {
-            // 初始化成功
-            startGame(clientSession);
-        }
-
-        @Override
-        public void onInitFailure(int errorCode) {
-            // 初始化失败, 用户无法使用, 只能退出
-        }
-
-        @Override
-        public void onConnectionFailure(int errorCode, String errorMsg) {
-            // 云游戏连接失败
-        }
-
-        @Override
-        public void onConnectionSuccess() {
-            // 云游戏连接成功, 所有SDK的设置必须在这个回调之后进行
-
-            // 云端相关设置需要在连接成功之后才生效
-            // 设置鼠标样式为HUGE
-            mSDK.setCursorStyle(CursorStyle.HUGE, null);
-
-            // 设置鼠标模式, 具体请见API文档
-            mGameView.setCursorType(CursorType.RELATIVE_TOUCH);
-            mGameView.setTouchClickKey(CursorType.TouchClickKey.MOUSE_LEFT);
-
-            // 填充画面
-            mGameView.setScaleType(ScaleType.ASPECT_FILL);
-        }
-
-        @Override
-        public void onDrawFirstFrame() {
-            // 游戏画面首帧回调
-        }
-    };
-
-    private void initSdk() {
-        // 创建SDK的接口
-        PcTcgSdk.Builder builder = new PcTcgSdk.Builder(
-                this,
-                Constant.APP_ID,
-                mTcgLifeCycleImpl, // 生命周期回调
-                mGameView);
-        // 设置日志级别
-        builder.logLevel(LogLevel.VERBOSE);
-
-        // 通过Builder创建SDK接口实例
-        mSDK = builder.build();
-    }
-
     //　鼠标左键点击
     public void clickMouseLeft(View view) {
+        Log.d(TAG, "clickMouseLeft: ");
         mSDK.sendMouseLeft(true);
         mSDK.sendMouseLeft(false);
     }
 
-    // 回车键键值
-    // 其他按键值请通过该网址查询: https://keycode.info/
-    final int ENTER_KEY_CODE = 13;
-
     // 发送回车键
     public void keyEnter(View view) {
+        Log.d(TAG, "keyEnter: ");
         mSDK.sendKeyboardEvent(ENTER_KEY_CODE, true, null);
         mSDK.sendKeyboardEvent(ENTER_KEY_CODE, false, null);
     }
 
     // 停止云端画面传输
     public void pause(View view) {
+        Log.d(TAG, "pause: ");
         mSDK.pause(null);
     }
 
     // 恢复云端画面传输
     public void resume(View view) {
+        Log.d(TAG, "resume: ");
         mSDK.resume(null);
     }
 
     // 关闭当前游戏视图
     public void closeGameView(View view) {
+        Log.d(TAG, "closeGameView: ");
         if (mGameView != null) {
             // 从View树上移除GameView
             mContainer.removeView(mGameView);
@@ -243,6 +272,7 @@ public class PcApiActivity extends AppCompatActivity {
 
     // 重新创建游戏视图
     public void newGameView(View view) {
+        Log.d(TAG, "newGameView: ");
         if (mGameView == null) {
             mGameView = new PcSurfaceGameView(this);
             mContainer.addView(mGameView, 0);
@@ -253,6 +283,7 @@ public class PcApiActivity extends AppCompatActivity {
     // 捕获鼠标
     // 参考 使用指针捕获： https://developer.android.com/training/gestures/movement?hl=zh-cn
     public void capturePointer(View view) {
+        Log.d(TAG, "capturePointer: ");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // 仅鼠标模式为TOUCH模式时支持捕获鼠标
             mGameView.setCursorType(CursorType.TOUCH);
@@ -267,6 +298,7 @@ public class PcApiActivity extends AppCompatActivity {
 
     // 切换码率
     public void changeBitrate(View view) {
+        Log.d(TAG, "changeBitrate: ");
         int bitrateType = nextBitrate();
         switch (bitrateType) {
             case LOW_QUALITY:
@@ -286,6 +318,7 @@ public class PcApiActivity extends AppCompatActivity {
     }
 
     private int nextBitrate() {
+        Log.d(TAG, "nextBitrate: ");
         mCurrentBitrate++;
         if (mCurrentBitrate > HIGH_QUALITY) {
             mCurrentBitrate = LOW_QUALITY;
@@ -293,13 +326,11 @@ public class PcApiActivity extends AppCompatActivity {
         return mCurrentBitrate;
     }
 
-    // 数据通道
-    private IDataChannel mDataChannel;
-
     // 这部分代码演示如何在云端创建udp端口, 并收发数据
     // 由于用的是UDP, 需要客户端自行保证传输的可靠性
     // NOTE: 该能力需要云端应用能够支持
     private void testDataChannel() {
+        Log.d(TAG, "testDataChannel: ");
         final int REMOTE_UDP_PORT = 6666;
 
         // 云端创建udp端口6666
@@ -327,34 +358,107 @@ public class PcApiActivity extends AppCompatActivity {
     }
 
     private void sendData(String data) {
+        Log.d(TAG, "sendData: ");
         if (mDataChannel != null) {
             mDataChannel.send(ByteBuffer.wrap(data.getBytes()));
             Log.d(TAG, "send data:" + data);
         }
     }
-
-    @Override
-    protected void onResume() {
-        Log.i(TAG, "onResume: ");
-        super.onResume();
-        if (mSDK != null) {
-            mSDK.setVolume(1);
+    private final SettingEventListener mSettingsListener = new SettingEventListener() {
+        @Override
+        public void onClickDebug() {
+            Log.d(TAG, "onClickDebug: isDebugMode=" + isDebugMode);
+            if (mGameView == null) {
+                return;
+            }
+            isDebugMode = !isDebugMode;
+            mGameView.enableDebugView(isDebugMode);
         }
-    }
 
-    @Override
-    protected void onStop() {
-        Log.i(TAG, "onStop: ");
-        super.onStop();
-        if (mSDK != null) {
-            mSDK.setVolume(0);
+        @Override
+        public void onExit() {
+            Log.d(TAG, "onExit: ");
+            finish();
         }
-    }
+    };
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: ");
-        mCloudGameApi.stopGame();
-    }
+    private final IStatsListener mStatsListener = new IStatsListener() {
+        @Override
+        public void onStats(PerfValue perfValue, String s, String s1, String s2) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mSettingBarView.setFps(perfValue.fps);
+                    mSettingBarView.setNetworkInfo((int) perfValue.rtt);
+                }
+            });
+        }
+    };
+
+    /**
+     * TcgSdk生命周期回调
+     */
+    private final ITcgListener mTcgLifeCycleImpl = new ITcgListener() {
+        @Override
+        public void onConnectionTimeout() {
+            // 云游戏连接超时, 用户无法使用, 只能退出
+            Log.e(TAG, "onConnectionTimeout");
+            if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
+                gameStartErrorDialog.setMessage("服务器连接超时,请稍后重试！");
+                gameStartErrorDialog.show();
+            }
+        }
+
+        @Override
+        public void onInitSuccess(String clientSession) {
+            // 初始化成功，在此处请求业务后台
+            Log.d(TAG, "onInitSuccess: ");
+            startGame(clientSession);
+        }
+
+        @Override
+        public void onInitFailure(int errorCode) {
+            // 初始化失败, 用户无法使用, 只能退出
+            Log.e(TAG, String.format(Locale.ENGLISH, "onInitFailure:%d", errorCode));
+            if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
+                gameStartErrorDialog.setMessage("初始化失败,请稍后重试！\n错误信息：" + errorCode);
+                gameStartErrorDialog.show();
+            }
+        }
+
+        @Override
+        public void onConnectionFailure(int errorCode, String errorMsg) {
+            // 云游戏连接失败
+            Log.e(TAG, String.format(Locale.ENGLISH, "onConnectionFailure:%d %s", errorCode, errorMsg));
+            if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
+                gameStartErrorDialog.setMessage("连接服务器失败,请稍后重试！\n错误信息：" + errorMsg);
+                gameStartErrorDialog.show();
+            }
+        }
+
+        @Override
+        public void onConnectionSuccess() {
+            // 云游戏连接成功, 所有SDK的设置必须在这个回调之后进行
+
+            // 云端相关设置需要在连接成功之后才生效
+            // 设置鼠标样式为HUGE
+            mSDK.setCursorStyle(CursorStyle.HUGE, null);
+
+            // 设置鼠标模式, 具体请见API文档
+            mGameView.setCursorType(CursorType.RELATIVE_TOUCH);
+            mGameView.setTouchClickKey(CursorType.TouchClickKey.MOUSE_LEFT);
+
+            // 填充画面
+            mGameView.setScaleType(ScaleType.ASPECT_FILL);
+        }
+
+        @Override
+        public void onDrawFirstFrame() {
+            // 游戏画面首帧回调
+            Log.d(TAG, "onDrawFirstFrame: ");
+            mSettingBarView.setViewShow(true);
+            mLoadingView.setVisibility(View.GONE);
+            mApiView.setVisibility(View.VISIBLE);
+        }
+    };
 }
