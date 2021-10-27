@@ -167,7 +167,7 @@ public class PcSimpleActivity extends AppCompatActivity {
                 } else {
                     Log.e(TAG, "Response Failed: " + resp.toString());
                     if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                        gameStartErrorDialog.setMessage("游戏资源不足,请30s后重试！\n错误信息：" + resp.toString());
+                        gameStartErrorDialog.setMessage("云端无空闲实例，请稍后再试～");
                         gameStartErrorDialog.show();
                     }
                 }
@@ -177,7 +177,7 @@ public class PcSimpleActivity extends AppCompatActivity {
             public void onFailed(String msg) {
                 Log.e(TAG, msg);
                 if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                    gameStartErrorDialog.setMessage("请求服务器失败,请稍后重试！\n错误信息：" + msg);
+                    gameStartErrorDialog.setMessage("请求服务器失败,请稍后再试～");
                     gameStartErrorDialog.show();
                 }
             }
@@ -225,7 +225,7 @@ public class PcSimpleActivity extends AppCompatActivity {
             // 云游戏连接超时, 用户无法使用, 只能退出
             Log.e(TAG, "onConnectionTimeout");
             if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                gameStartErrorDialog.setMessage("服务器连接超时,请稍后重试！");
+                gameStartErrorDialog.setMessage("服务器连接超时,请稍后再试～");
                 gameStartErrorDialog.show();
             }
         }
@@ -242,7 +242,7 @@ public class PcSimpleActivity extends AppCompatActivity {
             // 初始化失败, 用户无法使用, 只能退出
             Log.e(TAG, String.format(Locale.ENGLISH, "onInitFailure:%d", errorCode));
             if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                gameStartErrorDialog.setMessage("初始化失败,请稍后重试！\n错误信息：" + errorCode);
+                gameStartErrorDialog.setMessage("初始化失败,请稍后再试～");
                 gameStartErrorDialog.show();
             }
         }
@@ -252,7 +252,7 @@ public class PcSimpleActivity extends AppCompatActivity {
             // 云游戏连接失败
             Log.e(TAG, String.format(Locale.ENGLISH, "onConnectionFailure:%d %s", errorCode, errorMsg));
             if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                gameStartErrorDialog.setMessage("连接服务器失败,请稍后重试！\n错误信息：" + errorMsg);
+                gameStartErrorDialog.setMessage("连接服务器失败,请稍后再试～");
                 gameStartErrorDialog.show();
             }
         }
