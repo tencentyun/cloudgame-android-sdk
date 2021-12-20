@@ -80,16 +80,16 @@ public class CloudGameApi {
      * @param listener 服务端返回结果
      */
     public void startGame(String gameId, String clientSession, IServerSessionListener listener) {
-        String bodyString = mGson.toJson(new GameStartParam(gameId, clientSession, mUserID));
+        GameStartParam param = new GameStartParam(gameId, clientSession, mUserID);
+        String bodyString = mGson.toJson(param);
         String url = address(CREATE_GAME);
         Log.d(TAG, "startGame request url: " + url);
+        Log.d(TAG, "startGame: " + param.userId);
+        Log.d(TAG, "startGame: " + param.gameId);
         JSONObject request = null;
         try {
             // 构造JSONObject类型的请求对象
             request = new JSONObject(bodyString);
-            Log.d(TAG, "createSession ClientSession: " + request.getString("ClientSession"));
-            Log.d(TAG, "createSession UserID: " + request.getString("UserId"));
-            Log.d(TAG, "createSession GameID: " + request.getString("GameID"));
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
         }

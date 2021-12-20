@@ -27,4 +27,13 @@ public class GameStartParam {
         this.clientSession = clientSession;
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "GameStartParam{" +
+                "gameId='" + gameId + '\'' +
+                ", clientSession='" + clientSession + '\'' +
+                ", userId='" + userId + '\'' +
+                '}';
+    }
 }
