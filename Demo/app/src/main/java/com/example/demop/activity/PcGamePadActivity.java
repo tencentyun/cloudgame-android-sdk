@@ -5,6 +5,7 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,6 +23,7 @@ import com.example.demop.server.param.ServerResponse;
 import com.example.demop.view.ControlView;
 import com.example.demop.view.FloatingSettingBarView;
 import com.example.demop.view.FloatingSettingBarView.SettingEventListener;
+import com.tencent.tcggamepad.IGamepadTouchDelegate;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
@@ -137,6 +139,14 @@ public class PcGamePadActivity extends AppCompatActivity {
             mSDK.sendGamePadConnected();
         });
 
+        // 将触摸事件传递给GameView
+        mControlView.setGamePadTouchDelegate(new IGamepadTouchDelegate() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mGameView.handleMotion(motionEvent);
+                return true;
+            }
+        });
     }
     private void initStartGameErrorDialog() {
         Log.i(TAG, "initStartGameFailedDialog: ");
