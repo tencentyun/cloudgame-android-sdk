@@ -5,18 +5,21 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.demop.Constant;
 import com.example.demop.R;
 import com.example.demop.server.CloudGameApi;
-import com.example.demop.server.param.ServerResponse;
+import com.example.demop.server.CloudGameApi.IServerResponseListener;
+import com.example.demop.server.param.ResponseResult;
+import com.example.demop.server.param.StartGameResponseResult;
+import com.example.demop.utils.CommonUtil;
 import com.example.demop.view.FloatingSettingBarView;
 import com.example.demop.view.FloatingSettingBarView.SettingEventListener;
 import com.tencent.tcgsdk.TLog;
@@ -42,8 +45,6 @@ public class MobileSimpleActivity extends AppCompatActivity {
     private MobileSurfaceView mGameView;
     // 云手游SDK调用接口
     private IMobileTcgSdk mSDK;
-    // 业务后台交互的API
-    private CloudGameApi mCloudGameApi;
     // 悬浮菜单
     private FloatingSettingBarView mSettingBarView;
     private ImageView mLoadingView;
@@ -52,6 +53,8 @@ public class MobileSimpleActivity extends AppCompatActivity {
 
     //是否显示调试信息
     private boolean isDebugMode;
+    private String mUserId;
+    private RequestQueue mRequestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,13 @@ public class MobileSimpleActivity extends AppCompatActivity {
         initWindow();
         initView();
         initSdk();
+    }
+
+    private void init() {
+        Log.d(TAG, "init: ");
+        mUserId = CommonUtil.getIdentity(this);
+        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        CloudGameApi.getInstance().init(mRequestQueue, mUserId);
     }
 
     @Override
@@ -84,7 +94,7 @@ public class MobileSimpleActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: ");
-        mCloudGameApi.stopGame();
+        CloudGameApi.getInstance().stopGame(null);
     }
 
     @Override
@@ -112,11 +122,6 @@ public class MobileSimpleActivity extends AppCompatActivity {
         } else {
             Log.w(TAG, "There is no rotation for unexpected orientation:" + newConfig.orientation);
         }
-    }
-
-    private void init() {
-        Log.d(TAG, "init: ");
-        mCloudGameApi = new CloudGameApi(this);
     }
 
     private void initWindow() {
@@ -189,28 +194,22 @@ public class MobileSimpleActivity extends AppCompatActivity {
     protected void startGame(String clientSession) {
         Log.i(TAG, "start game");
         // 通过业务后台来启动游戏
-        mCloudGameApi.startGame(Constant.MOBILE_GAME_ID, clientSession, new CloudGameApi.IServerSessionListener() {
+        CloudGameApi.getInstance().startGame(Constant.MOBILE_GAME_ID, clientSession, new IServerResponseListener() {
             @Override
-            public void onSuccess(ServerResponse resp) {
-                if (resp.code == 0) {
-                    Log.d(TAG, "Response Success: " + resp.toString());
-                    //　请求成功，从服务端获取到server session，启动游戏
-                    mSDK.start(resp.data.serverSession);
-                } else {
-                    Log.e(TAG, "Response Failed: " + resp.toString());
-                    if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                        gameStartErrorDialog.setMessage("云端无空闲实例，请稍后再试～");
-                        gameStartErrorDialog.show();
-                    }
+            public void onFailed(String msg) {
+                Log.e(TAG, "Response Failed: " + msg);
+                if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
+                    gameStartErrorDialog.setMessage("云端无空闲实例，请稍后再试～");
+                    gameStartErrorDialog.show();
                 }
             }
 
             @Override
-            public void onFailed(String msg) {
-                Log.e(TAG, msg);
-                if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                    gameStartErrorDialog.setMessage("请求服务器失败,请稍后再试～" + msg);
-                    gameStartErrorDialog.show();
+            public void onSuccess(ResponseResult response) {
+                StartGameResponseResult result = (StartGameResponseResult) response;
+                TLog.i(TAG, "Response Success: " + result.toString());
+                if (result.sessionDescribe != null) {
+                    mSDK.start(result.sessionDescribe.serverSession);
                 }
             }
         });

@@ -12,18 +12,23 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.demop.Constant;
 import com.example.demop.R;
 import com.example.demop.model.GameViewModel;
 import com.example.demop.server.CloudGameApi;
-import com.example.demop.server.param.ServerResponse;
+import com.example.demop.server.CloudGameApi.IServerResponseListener;
+import com.example.demop.server.param.ResponseResult;
+import com.example.demop.server.param.StartGameResponseResult;
+import com.example.demop.utils.CommonUtil;
 import com.example.demop.view.ControlView;
 import com.example.demop.view.FloatingSettingBarView;
 import com.example.demop.view.FloatingSettingBarView.SettingEventListener;
 import com.tencent.tcggamepad.IGamepadTouchDelegate;
+import com.tencent.tcgsdk.TLog;
 import com.tencent.tcgsdk.api.CursorStyle;
 import com.tencent.tcgsdk.api.CursorType;
 import com.tencent.tcgsdk.api.IPcTcgSdk;
@@ -43,8 +48,6 @@ import java.util.Locale;
 public class PcGamePadActivity extends AppCompatActivity {
     private final static String TAG = "PcGamePadActivity";
 
-    // 业务后台API
-    private CloudGameApi mCloudGameApi;
     // 我们把虚拟手柄、虚拟按键、自定义虚拟按键添加到这一层
     protected ControlView mControlView;
     // 云端游SDK调用接口
@@ -62,6 +65,8 @@ public class PcGamePadActivity extends AppCompatActivity {
 
     //是否显示调试信息
     private boolean isDebugMode;
+    private String mUserId;
+    private RequestQueue mRequestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,13 +99,14 @@ public class PcGamePadActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: ");
-        mCloudGameApi.stopGame();
+        CloudGameApi.getInstance().stopGame(null);
     }
 
     private void init() {
         Log.d(TAG, "init: ");
-        mCloudGameApi = new CloudGameApi(this);
-
+        mUserId = CommonUtil.getIdentity(this);
+        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        CloudGameApi.getInstance().init(mRequestQueue, mUserId);
         mViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(GameViewModel.class);
 
         mViewModel.getKeyboard().observe(this, result -> {
@@ -195,28 +201,22 @@ public class PcGamePadActivity extends AppCompatActivity {
     protected void startGame(String clientSession) {
         Log.i(TAG, "start game");
         // 通过业务后台来启动游戏
-        mCloudGameApi.startGame(Constant.PC_GAME_ID, clientSession, new CloudGameApi.IServerSessionListener() {
-            @Override
-            public void onSuccess(ServerResponse resp) {
-                if (resp.code == 0) {
-                    Log.d(TAG, "Response Success: " + resp.toString());
-                    //　请求成功，从服务端获取到server session，启动游戏
-                    mSDK.start(resp.data.serverSession);
-                } else {
-                    Log.e(TAG, "Response Failed: " + resp.toString());
-                    if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
-                        gameStartErrorDialog.setMessage("云端无空闲实例，请稍后再试～");
-                        gameStartErrorDialog.show();
-                    }
-                }
-            }
-
+        CloudGameApi.getInstance().startGame(Constant.PC_GAME_ID, clientSession, new IServerResponseListener() {
             @Override
             public void onFailed(String msg) {
                 Log.e(TAG, msg);
                 if (!gameStartErrorDialog.isShowing() && !isFinishing()) {
                     gameStartErrorDialog.setMessage("请求服务器失败，请稍后再试～");
                     gameStartErrorDialog.show();
+                }
+            }
+
+            @Override
+            public void onSuccess(ResponseResult response) {
+                StartGameResponseResult result = (StartGameResponseResult) response;
+                TLog.i(TAG, "Response Success: " + result.toString());
+                if (result.sessionDescribe != null) {
+                    mSDK.start(result.sessionDescribe.serverSession);
                 }
             }
         });

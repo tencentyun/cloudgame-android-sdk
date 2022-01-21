@@ -1,19 +1,20 @@
 package com.example.demop.server;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.preference.PreferenceManager;
-import android.util.Log;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.demop.server.param.GameStartParam;
-import com.example.demop.server.param.GameStopParam;
-import com.example.demop.server.param.ServerResponse;
+import com.example.demop.Constant;
+import com.example.demop.server.param.ReportActiveRequestParam;
+import com.example.demop.server.param.RequestParam;
+import com.example.demop.server.param.ResponseResult;
+import com.example.demop.server.param.StartGameRequestParam;
+import com.example.demop.server.param.StartGameResponseResult;
+import com.example.demop.server.param.StopGameRequestParam;
 import com.google.gson.Gson;
-import java.util.UUID;
+import com.tencent.tcgsdk.TLog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,106 +22,145 @@ import org.json.JSONObject;
  * 该类用于请求业务后台
  * 客户端请求业务后台，传入client session获取到server session
  * 客户可以根据实际需求实现自己的业务后台
- * 如何搭建业务后台请参考：
- * https://docs.qq.com/doc/DRUZsV3VHbm1ERE5U
  * 业务后台的API请参考:
  * https://cloud.tencent.com/document/product/1162/40740
  */
 public class CloudGameApi {
-    private final static String TAG = "CloudGameApi";
 
-    // 搭建完成自己的业务后台后可以修改为自己的server地址
-    public static final String SERVER = "service-dn0r2sec-1304469412.gz.apigw.tencentcs.com/release";
-    public static final String CREATE_GAME = "/StartCloudGame";
-    public static final String STOP_GAME = "/StopCloudGame";
+    private final static String TAG = Constant.TAG + "CloudGameApi";
 
-    // 业务后台返回结果监听
-    public interface IServerSessionListener {
-        void onFailed(String msg);
-        void onSuccess(ServerResponse resp);
-    }
+    // 业务后台请求参数
+    public static final String START_GAME = "/StartGame";
+    public static final String STOP_GAME = "/StopGame";
+    public static final String REPORT_ACTIVE = "/ReportActive";
+    public static final int REQUEST_SUCCESS = 0;
+    private static final int TIMEOUT = 50000;
+    private static final int RETRY_TIMES = 0;
 
-    private final RequestQueue mQueue;
-    private final Gson mGson = new Gson();
+    private static final Gson mGson = new Gson();
+
+    private static CloudGameApi sCloudGameApi;
+
+    private RequestQueue mQueue;
     // 标识请求来自哪个用户
-    private final String mUserID;
+    private String mUserID;
 
-    private String address(String path) {
-        return "https://" + SERVER + path;
+
+    private CloudGameApi() {
     }
 
-    public CloudGameApi(Context context) {
-        mQueue = Volley.newRequestQueue(context);
-        mUserID = getIdentity(context);
+    private static String address(String path) {
+        return "https://" + Constant.SERVER + path;
     }
 
-    /**
-     * 通过自定义全局唯一 ID (GUID) 对应用实例进行唯一标识
-     * 参考Google唯一标识符最佳做法：https://developer.android.com/training/articles/user-data-ids?hl=zh-cn
-     * 卸载之后UserId会发生更改
-     */
-    public String getIdentity(Context context) {
-        SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(context);
-        String identity = preference.getString("identity", null);
-        if (identity == null) {
-            identity = UUID.randomUUID().toString();
-            Editor editor = preference.edit();
-            editor.putString("identity", identity);
-            editor.apply();
+    public static CloudGameApi getInstance() {
+        if (sCloudGameApi == null) {
+            synchronized (CloudGameApi.class) {
+                if (sCloudGameApi == null) {
+                    sCloudGameApi = new CloudGameApi();
+                }
+            }
         }
-        return identity;
+        return sCloudGameApi;
+    }
+
+    private static JsonObjectRequest createRequest(String requestAddress, RequestParam param,
+            Listener<JSONObject> listener, ErrorListener errorListener) {
+        TLog.i(TAG, "createRequest url " + address(requestAddress));
+        TLog.i(TAG, "createRequest " + param);
+        JSONObject requestJson = null;
+        try {
+            requestJson = new JSONObject(mGson.toJson(param));
+        } catch (JSONException e) {
+            TLog.e(TAG, "Create request error " + e.getMessage());
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
+                address(requestAddress), requestJson, listener, errorListener);
+        request.setRetryPolicy(new DefaultRetryPolicy(TIMEOUT, RETRY_TIMES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        return request;
+    }
+
+    public void init(RequestQueue queue, String userID) {
+        mQueue = queue;
+        mUserID = userID;
     }
 
     /**
      * 开始请求业务后台，获取云端游戏实例
      * 该接口调用成功后, 云端会锁定机器实例, 并返回相应的server session
      *
-     * @param gameId 游戏ID
+     * @param gameId 游戏体验码
      * @param clientSession sdk初始化成功后返回的client session
      * @param listener 服务端返回结果
      */
-    public void startGame(String gameId, String clientSession, IServerSessionListener listener) {
-        GameStartParam param = new GameStartParam(gameId, clientSession, mUserID);
-        String bodyString = mGson.toJson(param);
-        String url = address(CREATE_GAME);
-        Log.d(TAG, "startGame request url: " + url);
-        Log.d(TAG, "startGame: " + param.userId);
-        Log.d(TAG, "startGame: " + param.gameId);
-        JSONObject request = null;
-        try {
-            // 构造JSONObject类型的请求对象
-            request = new JSONObject(bodyString);
-        } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
-        }
-        mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request,
-                success -> {
-                    Log.d(TAG, "startGame success: " + success);
-                    ServerResponse resp = new Gson().fromJson(success.toString(), ServerResponse.class);
-                    listener.onSuccess(resp);
-                },
-                error -> {
-                    Log.d(TAG, "createSession error: " + error);
-                    listener.onFailed(error.getMessage());
-                }));
+    public void startGame(String gameId, String clientSession, final IServerResponseListener listener) {
+        RequestParam param = new StartGameRequestParam(mUserID, gameId, clientSession, 30, 1, 5);
+        JsonObjectRequest request = createRequest(START_GAME, param, response -> {
+            ResponseResult result = mGson.fromJson(response.toString(), StartGameResponseResult.class);
+            onResultCallback(result, listener);
+        }, error -> {
+            TLog.e(TAG, "request failed, reason is " + (error == null ? "msg is null" : error.getMessage()));
+            listener.onFailed((error == null ? "msg is null" : error.getMessage()));
+        });
+        mQueue.add(request);
     }
 
     /**
      * 请求业务后台，停止游戏(释放云端实例)
      */
-    public void stopGame() {
-        String url = address(STOP_GAME);
-        String bodyString = mGson.toJson(new GameStopParam(mUserID));
-        Log.d(TAG, "stopGame request url: " + url);
-        JSONObject request = null;
-        try {
-            request = new JSONObject(bodyString);
-            Log.d(TAG, "createSession UserID: " + request.getString("UserId"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+    public void stopGame(final IServerResponseListener listener) {
+        RequestParam param = new StopGameRequestParam(mUserID);
+        JsonObjectRequest request = createRequest(STOP_GAME, param, response -> {
+            ResponseResult result = new Gson().fromJson(response.toString(),
+                    ResponseResult.class);
+            onResultCallback(result, listener);
+        }, volleyError -> {
+            TLog.e(TAG, "error: " + volleyError.getMessage());
+        });
+        mQueue.add(request);
+    }
+
+    public void reportActive(String gameId) {
+        RequestParam param = new ReportActiveRequestParam(mUserID, gameId);
+        JsonObjectRequest request = createRequest(REPORT_ACTIVE, param, response -> {
+            ResponseResult result = new Gson().fromJson(response.toString(),
+                    ResponseResult.class);
+            onResultCallback(result, new IServerResponseListener() {
+                @Override
+                public void onFailed(String errorMsg) {
+                    TLog.e(TAG, "onFailed: " + errorMsg);
+                }
+
+                @Override
+                public void onSuccess(ResponseResult resp) {
+                    TLog.i(TAG, "onSuccess: " + resp);
+                }
+            });
+        }, volleyError -> {
+            TLog.e(TAG, "error: " + volleyError.getMessage());
+        });
+        mQueue.add(request);
+    }
+
+    private void onResultCallback(ResponseResult result, IServerResponseListener listener) {
+        if (result.code == REQUEST_SUCCESS) {
+            TLog.i(TAG, "Response success, result is " + result.toString());
+            if (listener != null) {
+                listener.onSuccess(result);
+            }
+        } else {
+            TLog.e(TAG, "Response error, reason is " + result.toString());
+            if (listener != null) {
+                listener.onFailed(result.msg);
+            }
         }
-        mQueue.add(new JsonObjectRequest(Request.Method.POST, url, request, response -> {
-            Log.d(TAG, "stopGame result:" + response);
-        }, null));
+    }
+
+    // 业务后台返回结果监听
+    public interface IServerResponseListener {
+
+        void onFailed(String msg);
+
+        void onSuccess(ResponseResult resp);
     }
 }

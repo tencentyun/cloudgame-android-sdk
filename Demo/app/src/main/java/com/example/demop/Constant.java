@@ -13,4 +13,6 @@ public class Constant {
     public static final long APP_ID = 123456789;
     // 日志标签
     public static String TAG = "TcgSample";
+    public static final String SOLT = "DLaB%$bfAc!@ds";
+    public static final String SERVER = "microcg.myqcloud.com";
 }
