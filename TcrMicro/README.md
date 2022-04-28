@@ -66,10 +66,10 @@
 
 [**apply_patch.sh**](Tools/apply_patch.sh)是用于生成补丁的脚本。
 
-**release.keystore**是生成补丁是需要的签名文件（需要和apk的签名文件一致）。
+[**release.keystore**](Tools/release.keystore)是生成补丁是需要的签名文件（需要和apk的签名文件一致）。
 
 [**tinker_config.xml**](Tools/tinker_config.xml)是生成补丁时的配置文件。
 
-**tinker-patch-cli-xxxx.jar**是生成补丁的工具。
+[**tinker-patch-cli-xxxx.jar**](Tools/tinker-patch-cli-1.9.14.18.jar)是生成补丁的工具。
 
 详细使用方法请参考Doc下的使用说明。
