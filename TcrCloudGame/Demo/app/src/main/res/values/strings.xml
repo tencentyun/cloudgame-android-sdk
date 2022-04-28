@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TcgSdk云游示例</string>
+    <string name="simple_sample">端游-简单示例</string>
+    <string name="simple_api">端游-API调用</string>
+    <string name="ui_sample">端游-虚拟按键</string>
+    <string name="mobile_sample">手游-示例</string>
+</resources>
