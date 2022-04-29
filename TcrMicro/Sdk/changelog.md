@@ -6,7 +6,7 @@
 
     **Bugfix & ChangeLog**
 
-    1. 新增sdk混淆配置，无需主动配置混淆文件。
+    1. 发布微端SDK，提供云试玩、静默下载、登录/支付穿透的能力。
 
 ## cloud
 
@@ -14,7 +14,7 @@
 
     **Bugfix & ChangeLog**
 
-    1. sdk发布到maven，提供和微端包通信的能力。
+    1. 发布云端SDK，提供登录/支付穿透的能力。
 
 ## tinker-support
 

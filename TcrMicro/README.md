@@ -73,3 +73,9 @@
 [**tinker-patch-cli-xxxx.jar**](Tools/tinker-patch-cli-1.9.14.18.jar)是生成补丁的工具。
 
 详细使用方法在参考[微端功能增强版接入文档](Doc/微端功能增强版接入文档.md#15-生成补丁包)1.5节【生成补丁包】内容。
+
+## 版本变更
+
+工程中的sdk已经发布到Maven Center，
+
+版本变更记录请参考[changelog](Sdk/changelog.md)。
