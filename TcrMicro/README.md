@@ -19,7 +19,8 @@
 │   ├── cloud_1.7.0.50_release_20220414_1121.aar
 │   └── micro_1.7.0.51_release_20220424_1446.aar
 └── Tools
-    ├── apply_patch.sh
+    ├── generate_patch.sh
+    ├── hotUpdate
     ├── release.keystore
     ├── tinker-patch-cli-1.9.14.18.jar
     └── tinker_config.xml
@@ -64,13 +65,15 @@
 
 其中
 
-[**apply_patch.sh**](Tools/apply_patch.sh)是用于生成补丁的脚本。
+[generate_patch.sh](Tools/generate_patch.sh)是用于生成补丁的脚本。
 
-[**release.keystore**](Tools/release.keystore)是生成补丁是需要的签名文件（需要和apk的签名文件一致）。
+[release.keystore](Tools/release.keystore)是生成补丁是需要的签名文件（需要和apk的签名文件一致）。
 
-[**tinker_config.xml**](Tools/tinker_config.xml)是生成补丁时的配置文件。
+[tinker_config.xml](Tools/tinker_config.xml)是生成补丁时的配置文件。
 
-[**tinker-patch-cli-xxxx.jar**](Tools/tinker-patch-cli-1.9.14.18.jar)是生成补丁的工具。
+[tinker-patch-cli-xxxx.jar](Tools/tinker-patch-cli-1.9.14.18.jar)是生成补丁的工具。
+
+[hotUpdate](Tools/hotUpdate)是存放生成补丁时需要的微端包和更新包。
 
 详细使用方法在参考[微端功能增强版接入文档](Doc/微端功能增强版接入文档.md#15-生成补丁包)1.5节【生成补丁包】内容。
 

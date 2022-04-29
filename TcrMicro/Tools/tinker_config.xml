@@ -120,7 +120,7 @@
     <!--sign, if you want to sign the apk, and if you want to use 7zip, you must fill in the following data-->
     <issue id="sign">
         <!--the signature file path, in window use \, in linux use /, and the default path is the running location-->
-        <path value="app/keystore/micro.keystore" />
+        <path value="release.keystore" />
         <!--storepass-->
         <storepass value="testres" />
         <!--keypass-->
