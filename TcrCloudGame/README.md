@@ -15,8 +15,8 @@
 ├── README.md
 ├── SDK
 │   ├── README.md
-│   ├── tcgsdk-1.1.7.67_20220310_1459_release.aar
-│   └── tcgui-gamepad-1.1.7.67_20220310_1459_release.aar
+│   ├── tcgsdk-1.5.12.68_20220506_1215_release.aar
+│   └── tcgui-gamepad-1.5.12.68_20220506_1215_release.aar
 └── TOOLS
     ├── README.md
     └── vktool-release.apk
