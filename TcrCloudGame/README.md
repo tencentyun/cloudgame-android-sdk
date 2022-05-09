@@ -4,7 +4,7 @@
 
 ```shell
 .
-├── Demo
+├── Demo.zip
 ├── Doc
 │   ├── APIDocs.md
 │   ├── 历史版本.md
@@ -23,9 +23,9 @@
 
 ```
 
-### [Demo](Demo)
+### [Demo.zip](Demo.zip)
 
-该文件夹下存放云游戏的示例代码，可以把代码导入Android Studio编译并体验云游戏。
+云游戏的示例代码和说明，可以把代码导入Android Studio编译并体验云游戏。
 
 ### [Doc](Doc)
 
