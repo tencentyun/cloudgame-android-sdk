@@ -19,7 +19,7 @@
         <!--whether sign the patch file default true-->
         <!--if not, you must do yourself. otherwise it can't check success during the patch loading-->
         <!--we will use the sign config with your build type-->
-        <useSign value="true" />
+        <useSign value="false" />
 
         <!--if you don't set sevenZip path, we just use 7za to try-->
         <sevenZipPath value="/usr/local/bin/7za" />
@@ -93,6 +93,7 @@
         <!--it support * or ? pattern.-->
         <!--Such as I want assets/meta.txt use the base.apk version whatever it is change ir not.-->
         <ignoreChange value="assets/sample_meta.txt" />
+        <ignoreChange value="assets/microSettings.xml" />
         <!--ignore any warning caused by add, delete or modify changes on resources specified by this pattern.-->
         <ignoreChangeWarning value="" />
         <!--default 100kb-->
@@ -120,7 +121,7 @@
     <!--sign, if you want to sign the apk, and if you want to use 7zip, you must fill in the following data-->
     <issue id="sign">
         <!--the signature file path, in window use \, in linux use /, and the default path is the running location-->
-        <path value="release.keystore" />
+        <path value="app/keystore/micro.keystore" />
         <!--storepass-->
         <storepass value="testres" />
         <!--keypass-->

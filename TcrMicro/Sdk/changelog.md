@@ -2,6 +2,13 @@
 
 ## micro
 
+### v1.8.0
+
+    **Bugfix & ChangeLog**
+
+    1. 新增微端配置文件。
+    2. 去除补丁包签名，简化接入步骤。
+
 ### v1.7.0.51
 
     **Bugfix & ChangeLog**
