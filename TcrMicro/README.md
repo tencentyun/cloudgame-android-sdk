@@ -16,12 +16,10 @@
 ├── README.md
 ├── Sdk
 │   ├── changelog.md
-│   ├── cloud_1.7.0.50_release_20220414_1121.aar
-│   └── micro_1.7.0.51_release_20220424_1446.aar
+│   ├── README.md
 └── Tools
     ├── generate_patch.sh
     ├── hotUpdate
-    ├── release.keystore
     ├── tinker-patch-cli-1.9.14.18.jar
     └── tinker_config.xml
 ```
@@ -49,7 +47,7 @@
 
 ### [Sdk](Sdk)
 
-该目录下主要存放了微端相关的sdk，包含微端sdk、云端sdk和对应的changelog。
+该目录下主要存放了微端相sdk说明，包含微端sdk、云端sdk和对应的changelog。
 
 微端sdk提供静默下载、云试玩和登录/支付穿透的能力。
 
@@ -67,8 +65,6 @@
 
 [generate_patch.sh](Tools/generate_patch.sh)是用于生成补丁的脚本。
 
-[release.keystore](Tools/release.keystore)是生成补丁是需要的签名文件（需要和apk的签名文件一致）。
-
 [tinker_config.xml](Tools/tinker_config.xml)是生成补丁时的配置文件。
 
 [tinker-patch-cli-xxxx.jar](Tools/tinker-patch-cli-1.9.14.18.jar)是生成补丁的工具。
@@ -79,6 +75,6 @@
 
 ## 版本变更
 
-工程中的sdk已经发布到Maven Center，
+工程中的sdk已经发布到Maven Center，引用方式请参考[README.md](Sdk/README.md)。
 
 版本变更记录请参考[changelog](Sdk/changelog.md)。
