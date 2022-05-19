@@ -2,6 +2,12 @@
 
 ## micro
 
+### v1.7.1.65
+
+    **Bugfix & ChangeLog**
+
+    1. 修复无法enableJetifier的问题。
+
 ### v1.7.0.51
 
     **Bugfix & ChangeLog**
