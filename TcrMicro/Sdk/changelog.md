@@ -2,6 +2,12 @@
 
 ## micro
 
+### v1.7.2.71
+
+    **Bugfix & ChangeLog**
+
+    1.新增云游戏启动参数，启动云游戏时可以附加参数给云端。
+
 ### v1.7.1.65
 
     **Bugfix & ChangeLog**
