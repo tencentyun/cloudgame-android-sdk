@@ -15,12 +15,13 @@
 ├── License_tcrmicro.txt
 ├── README.md
 ├── Sdk
-│   ├── changelog.md
 │   ├── README.md
+│   └── changelog.md
 └── Tools
     ├── generate_patch.sh
+    ├── check_old_config.sh
     ├── hotUpdate
-    ├── tinker-patch-cli-1.9.14.18.jar
+    ├── tinker-patch-cli.jar
     └── tinker_config.xml
 ```
 
@@ -65,13 +66,15 @@
 
 [generate_patch.sh](Tools/generate_patch.sh)是用于生成补丁的脚本。
 
+[check_old_config.sh](Tools/check_old_config.sh)是用于检查微端包配置是否正常的脚本。
+
 [tinker_config.xml](Tools/tinker_config.xml)是生成补丁时的配置文件。
 
-[tinker-patch-cli-xxxx.jar](Tools/tinker-patch-cli-1.9.14.18.jar)是生成补丁的工具。
+[tinker-patch-cli.jar](Tools/tinker-patch-cli.jar)是生成补丁的工具。
 
 [hotUpdate](Tools/hotUpdate)是存放生成补丁时需要的微端包和更新包。
 
-详细使用方法在参考[微端功能增强版接入文档](Doc/微端功能增强版接入文档.md#15-生成补丁包)1.5节【生成补丁包】内容。
+详细使用方法在参考[微端功能增强版接入文档](Doc/微端功能增强版接入文档.md#14-生成补丁包)1.5节【生成补丁包】内容。
 
 ## 版本变更
 

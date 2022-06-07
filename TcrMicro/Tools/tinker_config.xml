@@ -93,7 +93,6 @@
         <!--it support * or ? pattern.-->
         <!--Such as I want assets/meta.txt use the base.apk version whatever it is change ir not.-->
         <ignoreChange value="assets/sample_meta.txt" />
-        <ignoreChange value="assets/microSettings.xml" />
         <!--ignore any warning caused by add, delete or modify changes on resources specified by this pattern.-->
         <ignoreChangeWarning value="" />
         <!--default 100kb-->
@@ -115,6 +114,7 @@
         <!--will be thrown.-->
         <configField name="platform" value="all" />
         <configField name="NEW_TINKER_ID" value="1.1.0" />
+        <configField name="TINKER_ID" value="1.0.0" />
         <configField name="patchMessage" value="classes.dex" />
     </issue>
 

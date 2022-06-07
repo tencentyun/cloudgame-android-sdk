@@ -4,12 +4,12 @@
 
 1. 微端SDK
 
-    引入方式：implementation "com.tencent.tcr:micro:x.x.x"
+    引入方式：implementation "com.tencent.tcr:micro-sdk:x.x.x"
 
-    版本变更请参考[changelog](changelog.md#micro)。
+    版本变更请参考[changelog](changelog.md#micro-sdk)。
 
 2. 云端SDK
 
-    引入方式：implementation "com.tencent.tcr:cloud:x.x.x"
+    引入方式：implementation "com.tencent.tcr:micro-cloud-sdk:x.x.x"
 
-    版本变更请参考[changelog](changelog.md#cloud)。
+    版本变更请参考[changelog](changelog.md#micro-cloud-sdk)。
