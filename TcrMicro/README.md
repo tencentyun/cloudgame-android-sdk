@@ -72,7 +72,7 @@
 
 [tinker-patch-cli.jar](Tools/tinker-patch-cli.jar)是生成补丁的工具。
 
-[hotUpdate](Tools/hotUpdate)是存放生成补丁时需要的微端包和更新包。
+[hotUpdate](Tools/hotUpdate)是存放生成的补丁包、微端包和更新包。
 
 详细使用方法在参考[微端功能增强版接入文档](Doc/微端功能增强版接入文档.md#14-生成补丁包)1.5节【生成补丁包】内容。
 
