@@ -30,11 +30,11 @@
 
 该目录下有三个示例工程，分别是云端APP示例工程、微端APP示例工程和游戏APP示例工程。
 
-云端APP示例工程中演示了如何将游戏原始APP适配为云端APP，如何通过数据通道和微端APP进行通信，除此之外，该目录还提供了数据通道的[测试APP](Demo/云端APP示例工程/DataChannelTest.zip)，方便在本地对数据通道进行测试。
+* 游戏APP示例工程[AndroidUnity2018Empty.zip](Demo/游戏APP示例工程/AndroidUnity2018Empty.zip)是一个Demo游戏工程。
 
-微端APP示例工程提供了静默下载、云试玩和登录/支付穿透的功能。除此之外，该目录还提供了[微端体验.apk](Demo/微端APP示例工程/微端体验.apk)，可以直接下载安装来体验整个热更新的流程。
+* 云端APP示例工程[TcrMicroCloud.zip](Demo/云端APP示例工程/TcrMicroCloud.zip)演示了如何将游戏APP工程改造为云端APP工程，如何通过数据通道和微端APP进行通信。另外还提供了数据通道的测试APP[DataChannelTest.zip](Demo/云端APP示例工程/DataChannelTest.zip)，方便在本地对云端APP工程的数据通道功能进行测试。
 
-游戏APP示例工程是提供的demo游戏工程，方便客户了解云端APP在游戏APP的基础上修改哪些内容。
+* 微端APP示例工程[TcrMicroAppForUnity2018Empty.zip](Demo/微端APP示例工程/TcrMicroAppForUnity2018Empty.zip)演示了如何集成微端SDK，开发微端程序，使用云试玩、静默下载、热更新和登录/支付穿透的功能。另外也提供了[微端体验.apk](Demo/微端APP示例工程/微端体验.apk)，可以直接下载安装来体验微端。
 
 ### [Doc](Doc)
 
