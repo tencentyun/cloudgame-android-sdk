@@ -14,7 +14,6 @@
 │   └── 游戏APP示例工程
 │       └── AndroidUnity2018Empty.zip
 ├── Doc
-│   ├── 云端SDK的API文档.zip
 │   ├── 微端快速接入文档.md
 │   └── 微端功能增强版接入文档.md
 ├── License_tcrmicro.txt
@@ -54,7 +53,7 @@
 
 微端APP示例工程中已经集成了微端sdk，您直接可以在该工程的基础上进行二次开发即可实现微端的功能。
 
-云端sdk需要集成到游戏工程中，使用说明请参考[云端SDK的API文档](Doc/云端SDK的API文档.zip)。
+云端sdk需要集成到游戏工程中，使用说明请参考[云端SDK的API文档](https://tencentyun.github.io/cloudgame-android-sdk/microsdk/com/tencent/tcr/micro/cloudsdk/DataChannel.html)。
 
 ## 版本变更
 
