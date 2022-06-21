@@ -1,9 +1,20 @@
 ## 环境要求
 
 1. 建议使用 Android 5.0 （SDK API Level 21）及以上版本。
-
 2. Android Studio 3.0 及以上版本。
 3. App 要求 Android 5.0及以上设备。
+
+
+
+## 轻量版和全量版SDK区别
+
+SDK采用插件化设计，集成SDK的APP可以选择使用轻量版SDK(体积增量仅65KB)，运行时再从网络下载SDK插件(9MB)后进行动态加载。
+
+二者在使用上并无区别，区别在于轻量版SDK需要下载插件并动态加载后成为完整的SDK包。
+
+![image-20220621170506751](https://tva1.sinaimg.cn/large/e6c9d24egy1h3fz5abel1j21b40oagnx.jpg)
+
+
 
 ## 操作步骤
 

@@ -8,10 +8,11 @@
 ├── Doc
 │   ├── APIDocs.md
 │   ├── 历史版本.md
-│   ├── 手游接入文档.md
-│   ├── 端游接入文档.md
-│   ├── 轻量版SDK接入文档.md
-│   └── SDK接入指南.md
+│   ├── SDK接入指南.md
+│   └── demo接入指南
+│       ├── 端游接入文档.md
+│       ├── 端游接入文档.md
+│       └── 轻量版SDK接入文档.md
 ├── LICENSE
 ├── README.md
 ├── SDK

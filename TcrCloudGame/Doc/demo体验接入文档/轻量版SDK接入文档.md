@@ -1,5 +1,7 @@
 ## 接入步骤
 
+请参照[SDK接入指南](../SDK接入指南.md)修改后台server地址以及GameID
+
 1. 在应用模块中的'build.gradle'中加入:
 
 ```xml
