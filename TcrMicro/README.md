@@ -17,8 +17,8 @@
 │   └── 游戏APP示例工程
 │       └── AndroidUnity2018Empty.zip
 ├── Doc
-│   ├── 微端快速接入文档.md
-│   └── 微端功能增强版接入文档.md
+│   ├── 快速接入版.md
+│   └── 功能增强版.md
 ├── License_tcrmicro.txt
 ├── README.md
 └── Sdk
