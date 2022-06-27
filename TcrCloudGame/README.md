@@ -1,6 +1,8 @@
 # 腾讯云云游戏 Android
 
-## 工程介绍
+
+
+## 工程目录介绍
 
 ```shell
 .
@@ -8,72 +10,34 @@
 ├── Doc
 │   ├── APIDocs.md
 │   ├── 历史版本.md
-│   ├── SDK接入指南.md
-│   └── demo接入指南
-│       ├── 端游接入文档.md
-│       ├── 端游接入文档.md
-│       └── 轻量版SDK接入文档.md
+│   ├── Android SDK快速入门.md
 ├── LICENSE
-├── README.md
-├── SDK
-│   ├── README.md
-│   └── tcgui-gamepad-1.5.12.68_20220506_1215_release.aar
-└── TOOLS
-    ├── README.md
-    └── vktool-release.apk
-
+└── README.md
 ```
+
+该目录主要分为两个部分。
 
 ### [Demo.zip](Demo.zip)
 
 云游戏的示例代码和说明，可以把代码导入Android Studio编译并体验云游戏。
 
+Demo中包含了三个工程，分别是端游入门demo，手游入门demo以及轻量版SDK入门demo
+
 ### [Doc](Doc)
 
-该文件夹下主要存放[手游接入文档](Doc/demo体验接入文档/手游接入文档.md)、[端游接入文档](Doc/demo体验接入文档/端游接入文档.md)、[轻量版SDK接入文档](Doc/demo体验接入文档/轻量版SDK接入文档.md)以及[SDK接入指南](Doc/SDK接入指南.md)的使用文档。
+该文件夹下主要存放[快速入门文档](Doc/Android SDK快速入门.md)、[API文档](Doc/APIDocs)和[历史版本](Doc/历史版本)。
 
-### [SDK](SDK)
+### 快速入门文档
 
-该文件夹下主要存放云游戏相关的SDK，包含[虚拟按键SDK](SDK/tcgui-gamepad-1.1.7.67_20220310_1459_release.aar)。
+快速体验云游戏
 
-### [TOOLS](TOOLS)
+将工程目录下的Demo文件夹导入到Android Studio直接运行，您运行此Demo可以快速体验云游示例，如果有疑问请参考[SDK快速入门](Doc/Android SDK快速入门.md)。
 
-该文件夹下存放[虚拟按键配置文件生成工具](TOOLS/vktool-release.apk)。
+### API文档
 
-## 快速入门
+API文档中包含了SDK接口的接口分类和简介，同时您可以通过相关链接查询接口的详细调用方法。
 
-1、快速体验云游戏
-
-将工程目录下的Demo文件夹导入到Android Studio直接运行，您运行此Demo可以快速体验云游示例，如果有疑问请参考[SDK接入指南](Doc/SDK接入指南.md)。
-
-2、端游快速接入
-
-如果您需要在您的应用中集成云端游的功能，请参考[端游接入文档](Doc/demo体验接入文档/端游接入文档.md)。
-
-3、手游快速接入
-
-如果您需要在您的应用中集成云手游的功能，请参考[手游接入文档](Doc/demo体验接入文档/手游接入文档.md)。
-
-4、手游快速接入
-
-如果您需要在您的应用中集成轻量版云游SDK的功能，请参考[轻量版SDK接入文档](Doc/demo体验接入文档/轻量版SDK接入文档.md)。
-
-
-## 使用进阶
-
-1、自定义虚拟按键
-
-如果您需要为您的游戏添加对应的虚拟按键，您可以参考[自定义虚拟按键接入文档](Doc/自定义虚拟按键.md)。
-
-2、虚拟按键配置
-
-我们还提供了[自定义虚拟按键的配置工具](TOOLS/vktool-release.apk)，您可以使用该工具生成的按键布局配置供SDK使用。
-
-3、进阶API
-
-如果您需要了解更多API的相关内容，可以查阅[APIDocs](Doc/APIDocs.md)。
-
-## 版本变更
+### 历史版本
 
 我们会定期更新SDK的功能，您可以在本工程SDK目录下获取最新的版本。
 
