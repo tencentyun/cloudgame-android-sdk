@@ -25,7 +25,7 @@ Demo中包含了三个工程，分别是端游入门demo，手游入门demo以�
 
 ### [Doc](Doc)
 
-该文件夹下主要存放[快速入门文档](Doc/Android SDK快速入门.md)、[API文档](Doc/APIDocs)和[历史版本](Doc/历史版本)。
+该文件夹下主要存放[快速入门文档]("Doc/Android SDK快速入门.md")、[API文档](Doc/APIDocs)和[历史版本](Doc/历史版本)。
 
 ### 快速入门文档
 
