@@ -10,7 +10,7 @@
 ├── Doc
 │   ├── APIDocs.md
 │   ├── 历史版本.md
-│   ├── Android SDK快速入门.md
+│   ├── AndroidSDK快速入门.md
 ├── LICENSE
 └── README.md
 ```
@@ -25,13 +25,13 @@ Demo中包含了三个工程，分别是端游入门demo，手游入门demo以�
 
 ### [Doc](Doc)
 
-该文件夹下主要存放[快速入门文档]("Doc/Android SDK快速入门.md")、[API文档](Doc/APIDocs)和[历史版本](Doc/历史版本)。
+该文件夹下主要存放[快速入门文档](Doc/AndroidSDK快速入门.md)、[API文档](Doc/APIDocs)和[历史版本](Doc/历史版本)。
 
 ### 快速入门文档
 
 快速体验云游戏
 
-将工程目录下的Demo文件夹导入到Android Studio直接运行，您运行此Demo可以快速体验云游示例，如果有疑问请参考[SDK快速入门](Doc/Android SDK快速入门.md)。
+将工程目录下的Demo文件夹导入到Android Studio直接运行，您运行此Demo可以快速体验云游示例，如果有疑问请参考[SDK快速入门](Doc/AndroidSDK快速入门.md)。
 
 ### API文档
 
