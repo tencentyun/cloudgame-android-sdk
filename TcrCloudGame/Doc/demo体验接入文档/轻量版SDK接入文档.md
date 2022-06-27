@@ -5,7 +5,7 @@
 1. 在应用模块中的'build.gradle'中加入:
 
 ```xml
-implementation 'com.tencent.tcr:tcrsdk-lite:2.0.0-SNAPSHOT'
+implementation 'com.tencent.tcr:tcrsdk-lite:2.0.0'
 ```
 
 2. AndroidManifest 配置权限：
