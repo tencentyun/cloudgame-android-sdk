@@ -24,7 +24,7 @@ Bugfix：
 
     无
 
-v1.7.4.81(2022-06-22)
+v[1.7.4.81](https://github.com/tencentyun/cloudgame-android-sdk/tree/micro/1.7.4)(2022-06-22)
 
 该版本新增了数据上报字段，去除了悬浮球中的网速展示。
 
