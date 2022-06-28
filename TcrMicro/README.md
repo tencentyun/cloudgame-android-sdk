@@ -54,4 +54,4 @@
 
 云端SDK提供了登录/支付穿透的能力。游戏工程集成云端SDK，实现登录/支付请求穿透到微端。参见[云端SDK的接口文档](https://tencentyun.github.io/cloudgame-android-sdk/microsdk/com/tencent/tcr/micro/cloudsdk/DataChannel.html)。
 
-# 仓库版本记录
+# [仓库版本记录](changelog.md)
