@@ -37,13 +37,10 @@
 
 ### 云端应用交互接口
 
-| API                                                          | 描述                                   |
-| ------------------------------------------------------------ | -------------------------------------- |
-| [restartCloudApp](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#restartCloudApp()) | 重启云端应用进程                       |
-| [pasteText](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#pasteText(java.lang.String)) | 粘贴文本到云端应用的输入框             |
-| [checkAutoLogin](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#checkAutoLogin(com.tencent.tcr.sdk.api.AsyncCallback)) | 查询云端应用的当前窗口是否支持自动登录 |
-| [startAutoLogin](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#startAutoLogin(java.lang.String,java.lang.String,com.tencent.tcr.sdk.api.AsyncCallback)) | 进行自动登录                           |
-| [cancelAutoLogin](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#cancelAutoLogin()) | 取消自动登录                           |
+| API                                                          | 描述                       |
+| ------------------------------------------------------------ | -------------------------- |
+| [restartCloudApp](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#restartCloudApp()) | 重启云端应用进程           |
+| [pasteText](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#pasteText(java.lang.String)) | 粘贴文本到云端应用的输入框 |
 
 ### 多人云游接口
 
