@@ -19,11 +19,11 @@
 
 ![](p1.svg)
 
-## 3. 搭建业务后台 {#step3}
+## 3.  <span id="step3">搭建业务后台</span>
 
 您可以通过[这篇文档](https://cloud.tencent.com/document/product/1162/65429#upload)完成对业务后台的搭建。
 
-## 4. 搭建业务客户端程序 {#step4}
+## 4.  <span id="step4">搭建业务客户端程序</span>
 
 完成和了解上述步骤后，您会得到客户端访问业务后台的所需的GAME_ID和Server地址。客户端APP启动流程如下图所示。
 
