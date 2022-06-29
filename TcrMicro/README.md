@@ -21,9 +21,9 @@
 │   └── 功能增强版.md
 ├── License_tcrmicro.txt
 ├── README.md
+└── changelog.md
 └── Sdk
-    ├── README.md
-    └── changelog.md
+    └── README.md
 ```
 
 该目录主要分为三个部分。
