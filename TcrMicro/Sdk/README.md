@@ -6,4 +6,4 @@
 
 云端SDK：implementation "com.tencent.tcr:micro-cloud-sdk:x.x.x"
 
-版本变更请参考[微端SDK ChangeLog](changelog.md#micro-sdk)、[云端SDK ChangeLog](changelog.md#micro-cloud-sdk)。
+版本变更请参考[微端SDK ChangeLog](../%E5%8F%91%E5%B8%83%E8%AE%B0%E5%BD%95.md)、[云端SDK ChangeLog](../%E5%8F%91%E5%B8%83%E8%AE%B0%E5%BD%95.md)。
