@@ -6,7 +6,7 @@
 <img width="947" alt="企业微信截图_db93820c-91b0-4389-a2fd-6a0c967c4dee" src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-43a6-bc7a-7db9e6c3f2d3.png">
 
 
-# 仓库目录说明
+# 目录说明
 
 ``` shell
 .
@@ -26,11 +26,9 @@
 ├── README.md
 └── 发布记录.md
 └── Sdk
-    ├── changelog.md
     └── README.md
 ```
 
-该目录主要分为三个部分。
 
 ## [Demo](Demo)
 
@@ -58,4 +56,5 @@
 
 云端SDK提供了登录/支付穿透的能力。游戏工程集成云端SDK，实现登录/支付请求穿透到微端。参见[云端SDK的接口文档](https://tencentyun.github.io/cloudgame-android-sdk/microsdk/com/tencent/tcr/micro/cloudsdk/DataChannel.html)。
 
-# [仓库版本记录](发布记录.md)
+# [发布记录](发布记录.md)
+请跳转到最新版本阅读
