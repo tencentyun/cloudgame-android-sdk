@@ -3,6 +3,9 @@
 
 因为微端的体积小，所以很适合用来做游戏买量广告投放，快速获客。
 
+<img width="947" alt="企业微信截图_db93820c-91b0-4389-a2fd-6a0c967c4dee" src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-43a6-bc7a-7db9e6c3f2d3.png">
+
+
 # 仓库目录说明
 
 ``` shell
