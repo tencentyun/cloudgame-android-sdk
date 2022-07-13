@@ -3,7 +3,11 @@
 
 因为微端的体积小，所以很适合用来做游戏买量广告投放，快速获客。
 
-<img width="947" alt="企业微信截图_db93820c-91b0-4389-a2fd-6a0c967c4dee" src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-43a6-bc7a-7db9e6c3f2d3.png">
+<img width="947" alt="微端模式" src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-43a6-bc7a-7db9e6c3f2d3.png">
+
+
+# 发布记录
+请跳转到[最新版本](发布记录.md)  
 
 
 # 目录说明
@@ -30,9 +34,9 @@
 ```
 
 
-## [Demo](Demo)
+## Demo
 
-该目录下有三个示例工程，分别是云端APP示例工程、微端APP示例工程和游戏APP示例工程。
+[该目录](Demo)下有三个示例工程，分别是云端APP示例工程、微端APP示例工程和游戏APP示例工程。
 
 * 游戏APP示例工程[AndroidUnity2018Empty.zip](Demo/游戏APP示例工程/AndroidUnity2018Empty.zip)是一个Demo游戏工程。
 
@@ -40,21 +44,18 @@
 
 * 微端APP示例工程[TcrMicroAppForUnity2018Empty.zip](Demo/微端APP示例工程/TcrMicroAppForUnity2018Empty.zip)演示了如何集成微端SDK，开发微端程序，使用云试玩、静默下载、热更新和登录/支付穿透的功能。另外也提供了[微端体验.apk](Demo/微端APP示例工程/微端体验.apk)，可以直接下载安装来体验微端。
 
-## [Doc](Doc)
+## Doc
 
-该目录下有微端的两种接入方式的说明文档，分别是[快速接入版](Doc/快速接入版.md)和[功能增强版](Doc/功能增强版.md)。
+[该目录](Doc)下有微端的两种接入方式的说明文档，分别是[快速接入版](Doc/快速接入版.md)和[功能增强版](Doc/功能增强版.md)。
 
 前者是下载完整游戏包然后覆盖安装的方式实现微端包到完整包的转化，后者是下载补丁包然后热更新动态加载的方式实现转化。
 
 前者接入简单，不需要生成补丁包，可以快速完成接入，后者则需要进行相应的适配，生成补丁。
 
-## [Sdk](Sdk)
+## Sdk
 
-该目录下主要存放了微端的相关SDK及说明。
+[该目录](Sdk)下主要存放了微端的相关SDK及说明。
 
 微端SDK实现了云试玩、静默下载和提供登录/支付穿透的能力。微端APP示例工程中已经集成了微端SDK，您可以直接在该工程的基础上进行二次开发，实现微端的自定义功能。
 
 云端SDK提供了登录/支付穿透的能力。游戏工程集成云端SDK，实现登录/支付请求穿透到微端。参见[云端SDK的接口文档](https://tencentyun.github.io/cloudgame-android-sdk/microsdk/com/tencent/tcr/micro/cloudsdk/DataChannel.html)。
-
-# [发布记录](发布记录.md)
-请跳转到最新版本阅读
