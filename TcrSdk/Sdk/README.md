@@ -6,4 +6,4 @@
 
 轻量版SDK：implementation "com.tencent.tcr:tcrsdk-lite:x.x.x"
 
-版本变更请参考[发布记录](../发布记录.md)
+最新版本请参考[发布记录](../发布记录.md)
