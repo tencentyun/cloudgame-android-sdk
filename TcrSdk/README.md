@@ -25,27 +25,32 @@
 │   ├── SimpleLightDemo.zip
 │   ├── SimpleMoblieDemo.zip
 │   ├── SimplePCDemo.zip
+│   └── VKtoolDemo.zip
 ├── Doc
-│   ├── 入门指南.md
-│   ├── API文档.md
+│   ├── 云渲染SDK接入指南.md
+│   ├── 自定义虚拟按键接入指南.md
+│   └── API文档.md
 │── Sdk
-│   ├── README.md
+│   └── README.md
 ├── LICENSE
 ├── README.md
 └── 发布记录.md
 ```
 
+
 ## Demo
 
-[该目录](Demo)下有三个示例工程，分别是端游入门Demo、手游入门Demo 和 轻量版SDK入门Demo。
+[该目录](Demo)下有三个示例工程，分别是端游入门Demo、手游入门Demo 、 轻量版SDK入门Demo以及自定义虚拟按键Demo。
 
 端游入门Demo [SimplePCDemo.zip](Demo/SimplePCDemo.zip) 和 手游入门Demo [SimpleMoblieDemo.zip](Demo/SimpleMoblieDemo.zip) 演示了如何集成云渲染Android SDK，构建业务客户端程序。
+
+自定义虚拟按键Demo [VKtoolDemo.zip](Demo/VKtoolDemo.zip) 演示了如何集成自定义虚拟按键SDK，并在游戏中自定义编辑您所需要的按键功能。
 
 云渲染Android SDK采用插件化设计，对外提供 完整版SDK 和 轻量版SDK，两个版本的使用接口一致。如果您的App十分在意安装包体积大小，可以选择轻量版SDK，集成的体积增量仅65KB，运行时再从网络下载SDK插件（9MB）后进行动态加载。轻量版SDK入门Demo [SimpleLightDemo.zip](Demo/SimpleLightDemo.zip)演示了这一过程。
 
 ## Doc
 
-[该目录](Doc)下存放了一些接入说明文档，包括[入门指南](Doc/入门指南.md)、[API文档](Doc/API文档.md)。
+[该目录](Doc)下存放了一些接入说明文档，包括[云渲染SDK接入指南](Doc/云渲染SDK接入指南.md)、[自定义虚拟按键接入指南](Doc/自定义虚拟按键接入指南.md)和[API文档](Doc/API文档.md)。
 
 ## Sdk
 [该目录](Sdk)下主要存放了云渲染相关的SDK及说明。
