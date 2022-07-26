@@ -8,7 +8,7 @@
 <br><br>
 <img src="Doc/images/云渲染前后端交互.svg" width="700px">
 <br><br>
-创建业务后台程序可以参考这个[链接](https://cloud.tencent.com/document/product/1162/65429#upload)，创建客户端程序可以参考下面的[入门指南](Doc/入门指南.md)。在此之前您还需要先[申请](https://cloud.tencent.com/document/product/1162/46135)腾讯云渲染服务。
+创建业务后台程序可以参考这个[链接](https://cloud.tencent.com/document/product/1162/65429#upload)，创建客户端程序可以参考下面的[入门指南](Doc/云渲染SDK接入指南.md)。在此之前您还需要先[申请](https://cloud.tencent.com/document/product/1162/46135)腾讯云渲染服务。
 
 腾讯云渲染Android SDK管理了终端和云端的会话连接，数据通道、音视频轨道，可以上下行文本和音视频数据；提供和云端虚拟设备、应用交互的上层接口；进行串流画面的本地渲染，缩放旋转操作，本地触屏事件到云端操作的映射，视图-视频-云端坐标系的转换。让您可以快速开发出业务客户端程序。
 
@@ -25,27 +25,36 @@
 │   ├── SimpleLightDemo.zip
 │   ├── SimpleMoblieDemo.zip
 │   ├── SimplePCDemo.zip
+│   └── VKtoolDemo.zip
 ├── Doc
-│   ├── 入门指南.md
-│   ├── API文档.md
+│   ├── 云渲染SDK接入指南.md
+│   ├── 自定义虚拟按键接入指南.md
+│   └── API文档.md
 │── Sdk
-│   ├── README.md
+│   └── README.md
+│── Tools
+│   ├── vktool-release.apk
+│   └── README.md
 ├── LICENSE
 ├── README.md
 └── 发布记录.md
 ```
 
+
 ## Demo
 
-[该目录](Demo)下有三个示例工程，分别是端游入门Demo、手游入门Demo 和 轻量版SDK入门Demo。
+[该目录](Demo)下有四个示例工程，分别是PC应用入门Demo、手机应用入门Demo 、 轻量版SDK入门Demo以及自定义虚拟按键Demo。
 
-端游入门Demo [SimplePCDemo.zip](Demo/SimplePCDemo.zip) 和 手游入门Demo [SimpleMoblieDemo.zip](Demo/SimpleMoblieDemo.zip) 演示了如何集成云渲染Android SDK，构建业务客户端程序。
+PC应用入门Demo [SimplePCDemo.zip](Demo/SimplePCDemo.zip) 和 手机应用入门Demo [SimpleMoblieDemo.zip](Demo/SimpleMoblieDemo.zip) 演示了如何集成云渲染Android SDK，构建业务客户端程序。
 
 云渲染Android SDK采用插件化设计，对外提供 完整版SDK 和 轻量版SDK，两个版本的使用接口一致。如果您的App十分在意安装包体积大小，可以选择轻量版SDK，集成的体积增量仅65KB，运行时再从网络下载SDK插件（9MB）后进行动态加载。轻量版SDK入门Demo [SimpleLightDemo.zip](Demo/SimpleLightDemo.zip)演示了这一过程。
 
+自定义虚拟按键Demo [VKtoolDemo.zip](Demo/VKtoolDemo.zip) 演示了如何集成自定义虚拟按键SDK，并在应用中自定义编辑您所需要的按键功能。
+
+
 ## Doc
 
-[该目录](Doc)下存放了一些接入说明文档，包括[入门指南](Doc/入门指南.md)、[API文档](Doc/API文档.md)。
+[该目录](Doc)下存放了一些接入说明文档，包括[云渲染SDK接入指南](Doc/云渲染SDK接入指南.md)、[自定义虚拟按键接入指南](Doc/自定义虚拟按键接入指南.md)和[API文档](Doc/API文档.md)。
 
 ## Sdk
 [该目录](Sdk)下主要存放了云渲染相关的SDK及说明。
