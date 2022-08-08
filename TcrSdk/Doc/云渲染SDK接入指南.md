@@ -49,7 +49,7 @@ mRenderView = TcrSdk.getInstance().createTcrRenderView(PCGameActivity.this, mTcr
 mTcrSession.setRenderView(mRenderView);
 ```
 
-5. 初始化会话对象，异步回调成功后，可以获得clientSession，用于进一步请求业务后台，再调用云API，启动指定游戏实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。
+5. 初始化会话对象，异步回调成功后，可以获得clientSession，用于进一步请求业务后台，再调用云API，启动指定应用实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。 
 
 ```java
 private final AsyncCallback<String> mInitSessionCallback = new AsyncCallback<String>() {
@@ -57,15 +57,17 @@ private final AsyncCallback<String> mInitSessionCallback = new AsyncCallback<Str
     public void onSuccess(String clientSession) {
         Log.i(TAG, "init session success, clientSession:" + clientSession);
 
-        // 会话初始化成功后拿到clientSession， 请求后台启动游戏并获取ServerSession
-        CloudGameApi.getInstance().startGame(clientSession, response -> {
-            Log.i(TAG, "start game success: " + response);
+        // 会话初始化成功后拿到clientSession， 请求后台启动游戏或启动应用并获取ServerSession
+        // 如果您需要启动云应用请调用CloudRenderBiz.getInstance().startCAR
+        CloudRenderBiz.getInstance().startGame(clientSession, response -> {
+            Log.i(TAG, "start Cloud Application Render success: " + response);
+
             // 用从服务端获取到的server session启动会话
             GameStartResponse result = new Gson().fromJson(response.toString(), GameStartResponse.class);
             if (result.code == 0) {
                 mTcrSession.start(result.sessionDescribe.serverSession, mStartSessionCallback);
             }
-        }, error -> Log.e(TAG, "start game failed:" + error));
+        }, error -> Log.e(TAG, "Cloud Application Render:" + error));
     }
 
     @Override
@@ -75,7 +77,7 @@ private final AsyncCallback<String> mInitSessionCallback = new AsyncCallback<Str
 };
 ```
 
-请求业务后台的接口由业务自定义，在[Demo](../Demo)例子中，封装在CloudGameApi类里。
+请求业务后台的接口由业务自定义，在[Demo](../Demo)例子中，封装在CloudRenderBiz类里。
 
 6. 除了能在客户端上看到云端应用的画面，我们通常还需要能操作应用，即把客户端的操作同步给云端。SDK提供了KeyBoard、Mouse、GamePad等抽象对象，客户端可以调用这些对象的接口，实现与云端输入设备的交互。  
 同时，Android SDK还实现了默认的屏幕触摸处理器：MobileTouchHandler 和 PcTouchHandler。MobileTouchHandler针对云端为手机应用的场景，将本地屏幕触摸事件同步给云端；PcTouchHandler针对云端为PC应用的场景，将本地屏幕触摸事件转化为云端的鼠标移动、单击、长按、双击事件。您也可以自定义实现自己的屏幕触摸处理器。将屏幕触摸处理器设置给TcrRenderView即可使用。
