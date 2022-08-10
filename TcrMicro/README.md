@@ -3,12 +3,11 @@
 
 因为微端的体积小，所以很适合用来做游戏买量广告投放，快速获客。
 
-<img width="947" alt="微端模式" src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-43a6-bc7a-7db9e6c3f2d3.png">
-
+<img width="947" alt="微端模式" 
+src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-43a6-bc7a-7db9e6c3f2d3.png">
 
 # 发布记录
 请跳转到[最新版本](发布记录.md)  
-
 
 # 目录说明
 
@@ -24,15 +23,13 @@
 │   └── 游戏APP示例工程
 │       └── AndroidUnity2018Empty.zip
 ├── Doc
-│   ├── 快速接入版.md
-│   └── 功能增强版.md
+│   └── 微端接入指南.md
 ├── License_tcrmicro.txt
 ├── README.md
 └── 发布记录.md
 └── Sdk
     └── README.md
 ```
-
 
 ## Demo
 
@@ -46,11 +43,7 @@
 
 ## Doc
 
-[该目录](Doc)下有微端的两种接入方式的说明文档，分别是[快速接入版](Doc/快速接入版.md)和[功能增强版](Doc/功能增强版.md)。
-
-前者是下载完整游戏包然后覆盖安装的方式实现微端包到完整包的转化，后者是下载补丁包然后热更新动态加载的方式实现转化。
-
-前者接入简单，不需要生成补丁包，可以快速完成接入，后者则需要进行相应的适配，生成补丁。
+[该目录](Doc)下有[微端接入指南](Doc/微端接入指南.md)，介绍了如何接入并实现微端云试玩以及热更新的功能。
 
 ## Sdk
 
