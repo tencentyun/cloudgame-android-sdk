@@ -11,13 +11,13 @@
 1. 集成SDK。在应用模块的'build.gradle'中引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:2.0.2'
+implementation 'com.tencent.tcr:tcrsdk-full:2.0.3'
 ```
 
 如果选择集成轻量版SDK，则引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-lite:2.0.2' 
+implementation 'com.tencent.tcr:tcrsdk-lite:2.0.3' 
 ```
 
 2. AndroidManifest 配置网络权限：
