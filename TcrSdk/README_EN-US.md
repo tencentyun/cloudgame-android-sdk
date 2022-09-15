@@ -35,7 +35,7 @@ See the [latest version](Release Notes.md).
 │   ├── SimpleMoblieDemo.zip
 │   ├── SimplePCDemo.zip
 │   ├── VKtoolDemo.zip
-│   └── tiyanDemo.apk
+│   └── ExperienceDemo.apk
 ├── Doc
 │   ├── Real-Time Cloud Rendering SDK Integration Guide.md
 │   ├── Custom Virtual Key Integration Guide.md
@@ -61,7 +61,7 @@ The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide
 
 [VKtoolDemo.zip](Demo/VKtoolDemo.zip) demonstrates how to integrate the custom virtual key SDK and customize key features in your application as needed.
 
-[tiyanDemo.apk](Demo/tiyanDemo.apk) is a trial app installation package that can be used to perform cloud rendering applications by entering the experience code
+[ExperienceDemo.apk](Demo/ExperienceDemo.apk) is a trial app installation package that can be used to perform cloud rendering applications by entering the experience code
 
 
 ## Doc
