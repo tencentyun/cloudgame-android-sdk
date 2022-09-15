@@ -17,7 +17,7 @@ Cloud application rendering  relies on Tencent's rich edge computing nodes, flex
 <br><br>
 <img src="Doc/images/云渲染前后端交互.svg" width="700px">
 <br><br>
-You can create a business backend program and a client program as instructed in [Creating Backend Program](https://github.com/tencentyun/car-server-demo) and [Getting Started](Doc/Real-Time Cloud Rendering SDK Integration Guide.md) respectively. Before this, you need to [apply to](https://cloud.tencent.com/document/product/1162/46135) activate Real-Time Cloud Rendering first.
+You can create a business backend program and a client program as instructed in Creating Backend Program [CAR](https://github.com/tencentyun/car-server-demo)(or[GS](https://github.com/tencentyun/gs-server-demo)) and [Getting Started](Doc/Real-Time Cloud Rendering SDK Integration Guide.md) respectively. Before this, you need to [apply to](https://cloud.tencent.com/document/product/1162/46135) activate Real-Time Cloud Rendering first.
 
 The Real-Time Cloud Rendering SDK for Android manages session connections, data channels, and audio/video tracks of the client and cloud. It can upstream/downstream text, audio, and video data, provide upper-layer APIs for interaction with cloud virtual devices and applications, render, zoom, and rotate the streamed video image locally, map local touchscreen events to cloud operations, and convert between the view, video, and cloud coordinates, enabling you to quickly develop a business client program.
 
