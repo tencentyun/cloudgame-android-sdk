@@ -1,3 +1,5 @@
+- [English document](API Documentation.md)
+
 ## TCRSDK
 
 ## TcrSdk
@@ -34,6 +36,10 @@
 | [setStreamProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setStreamProfile(int,int,int,com.tencent.tcr.sdk.api.AsyncCallback)) | 设置串流视频的帧率和码率          |
 | [setVolume](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setVolume(float)) | 设置音量放大系数                  |
 | [enableMic](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#enableMic(boolean)) | 启用禁用麦克风，默认值false不开启 |
+| [enableLocalVideo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#enableLocalVideo(boolean)) | 启用禁用本地视频上行，默认值false不开启 |
+| [setLocalVideoBitrate](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoBitrate(int)) |设置视频上行最大码率，默认值1500kbps |
+| [setLocalVideoFps](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoFps(int)) | 设置视频上行最大帧率，默认值30 |
+
 
 ### 云端应用交互接口
 
@@ -64,9 +70,21 @@
 
 
 
-## [TcrSessionConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.html)
+## [TcrSessionConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/package-summary.html)
 
-云游会话配置类，获取配置和设置配置
+[云游会话配置类-设置配置](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html)
+
+
+| API                                                          | 描述         |
+| ------------------------------------------------------------ | ------------ |
+| [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#build()) | 构造出一个TcrSessionConfig |
+| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#connectTimeout(long)) | 设置连接超时时间 |
+| [enableAudioTrack​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#enableAudioTrack(boolean)) | 开启或关闭语音上行功能 |
+| [enableLocalVideo​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#enableLocalVideo(boolean,int,int,int,boolean)) | 开启或关闭本地视频上行 |
+| [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#idleThreshold(long)) | 设置空闲检测阈值 |
+| [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#lowFpsThreshold(int,int)) | 设置低帧率通知阈值 |
+| [setVideoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#setVideoFrameCallback(com.tencent.tcr.sdk.api.VideoFrameBufferCallback)) | 设置自定义视频数据回调 |
+| [setAudioSampleCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#setAudioSampleCallback(com.tencent.tcr.sdk.api.AudioSampleCallback)) | 设置WebRTC解码后的音频数据的消费者 |
 
 ## TcrSessionListener 
 
@@ -77,7 +95,22 @@
 | [onEvent](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSessionListener.html#onEvent(java.lang.String,java.lang.String)) | 会话事件通知 |
 | [onError](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSessionListener.html#onError(int,java.lang.String)) | 会话出错回调 |
 
+## AudioSampleCallback
 
+音频数据回调接口
+
+| API                                                          | 描述         |
+| ------------------------------------------------------------ | ------------ |
+| [onAudioData](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AudioSampleCallback.html#onAudioData(byte%5B%5D,int,int)) | 回调音频数据 |
+| [onAudioFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AudioSampleCallback.html#onAudioFormat(int,int,int)) | 首次回调时返回音频采样格式 |
+
+## VideoFrameBufferCallback
+自定义视频数据帧回调，回调解码前的视频裸数据字节流。设置回调拿到数据后自行解码并渲染画面
+
+| API                                                          | 描述         |
+| ------------------------------------------------------------ | ------------ |
+| [onVideoBufferCallback](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onVideoBufferCallback(java.nio.ByteBuffer,int,int,long)) | 视频帧数据回调 |
+| [onMediaCodecFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onMediaCodecFormat(java.lang.String,int,int)) | MediaFormat初始化参数 |
 
 ## Keyboard
 

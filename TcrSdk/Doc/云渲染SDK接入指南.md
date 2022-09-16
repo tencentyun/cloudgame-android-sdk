@@ -11,13 +11,13 @@
 1. 集成SDK。在应用模块的'build.gradle'中引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:2.0.3'
+implementation 'com.tencent.tcr:tcrsdk-full:2.1.0'
 ```
 
 如果选择集成轻量版SDK，则引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-lite:2.0.3' 
+implementation 'com.tencent.tcr:tcrsdk-lite:2.1.0' 
 ```
 
 2. AndroidManifest 配置网络权限：
@@ -60,7 +60,7 @@ private final AsyncCallback<String> mInitSessionCallback = new AsyncCallback<Str
         // 会话初始化成功后拿到clientSession， 请求后台启动游戏或启动应用并获取ServerSession
         // 如果您需要启动云应用请调用CloudRenderBiz.getInstance().startCAR
         CloudRenderBiz.getInstance().startGame(clientSession, response -> {
-            Log.i(TAG, "start Cloud Application Render success: " + response);
+            Log.i(TAG, "start Cloud Application Render response: " + response);
 
             // 用从服务端获取到的server session启动会话
             GameStartResponse result = new Gson().fromJson(response.toString(), GameStartResponse.class);
@@ -95,7 +95,7 @@ mRenderView.setOnTouchListener(pcTouchHandler);
 <br><p>
 **以上就是接入的核心步骤，具体代码可以参考[Demo](../Demo)。**
 
-# FAQ
+# FAQs
 1. **云渲染SDK支持的最低Android系统版本。**  
 Android 4.1（API 级别 16）。
 

@@ -1,3 +1,6 @@
+- [English document](README_EN-US.md)
+
+
 # 腾讯云渲染Android
 云渲染是指在云端渲染3D应用，利用串流技术将画面实时推送到终端显示，并且让用户可以通过终端与云端应用进行实时的交互操作。
 它可以解决终端算力不足，用户需提前安装配置复杂的软件，终端一次性采购成本高的问题。
@@ -32,7 +35,7 @@
 │   ├── SimpleMoblieDemo.zip
 │   ├── SimplePCDemo.zip
 │   ├── VKtoolDemo.zip
-│   └── tiyanDemo.apk
+│   └── ExperienceDemo.apk
 ├── Doc
 │   ├── 云渲染SDK接入指南.md
 │   ├── 自定义虚拟按键接入指南.md
@@ -58,7 +61,7 @@ PC应用入门Demo [SimplePCDemo.zip](Demo/SimplePCDemo.zip) 和 手机应用入
 
 自定义虚拟按键Demo [VKtoolDemo.zip](Demo/VKtoolDemo.zip) 演示了如何集成自定义虚拟按键SDK，并在应用中自定义编辑您所需要的按键功能。
 
-[tiyanDemo.apk](Demo/tiyanDemo.apk)是可以通过输入体验码来进行云渲染应用的试玩app安装包。
+[ExperienceDemo.apk](Demo/ExperienceDemo.apk)是可以通过输入体验码来进行云渲染应用的试玩app安装包。
 
 ## Doc
 
