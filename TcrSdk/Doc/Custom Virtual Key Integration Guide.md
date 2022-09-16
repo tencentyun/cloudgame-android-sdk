@@ -8,10 +8,6 @@ The custom virtual key is an SDK component enabling you to add virtual keys to y
 The custom virtual key SDK provides easy-to-use editing features. After integrating the SDK, you can dynamically generate custom virtual keys. Editing features include adding a key (such as mouse or controller button) and adjusting the key position and size.
 
 
-<br>
-<img src="images/自定义虚拟按键展示.png">
-<br>
-
 ## Feature Overview
 ### Supported keys
 

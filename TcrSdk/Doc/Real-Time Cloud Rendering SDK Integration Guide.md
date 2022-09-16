@@ -1,10 +1,6 @@
 # Prerequisites
 Make sure that you understand the business logic and frontend-backend interaction process of the Real-Time Cloud Rendering service, have activated the service, and have set up the business backend program (for more information, see [here](../README_EN-US.md)).
 
-# Main Processes of Calling the Real-Time Cloud Rendering SDK for Android
-<br>
-<img src="images/云渲染sdk调用流程.jpeg" height="500px">
-<br>
 
 # Steps for Integrating the Real-Time Cloud Rendering SDK
 
