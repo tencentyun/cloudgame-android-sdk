@@ -35,7 +35,7 @@
 │   ├── SimpleMoblieDemo.zip
 │   ├── SimplePCDemo.zip
 │   ├── VKtoolDemo.zip
-│   └── tiyanDemo.apk
+│   └── ExperienceDemo.apk
 ├── Doc
 │   ├── 云渲染SDK接入指南.md
 │   ├── 自定义虚拟按键接入指南.md
@@ -61,7 +61,7 @@ PC应用入门Demo [SimplePCDemo.zip](Demo/SimplePCDemo.zip) 和 手机应用入
 
 自定义虚拟按键Demo [VKtoolDemo.zip](Demo/VKtoolDemo.zip) 演示了如何集成自定义虚拟按键SDK，并在应用中自定义编辑您所需要的按键功能。
 
-[tiyanDemo.apk](Demo/tiyanDemo.apk)是可以通过输入体验码来进行云渲染应用的试玩app安装包。
+[ExperienceDemo.apk](Demo/ExperienceDemo.apk)是可以通过输入体验码来进行云渲染应用的试玩app安装包。
 
 ## Doc
 
