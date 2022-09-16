@@ -34,9 +34,9 @@ See the [latest version](Release Notes.md).
 │   ├── VKtoolDemo.zip
 │   └── ExperienceDemo.apk
 ├── Doc
-│   ├── Real-Time Cloud Rendering SDK Integration Guide.md
-│   ├── Custom Virtual Key Integration Guide.md
-│   └── API Documentation.md
+│   ├── Real-Time_Cloud_Rendering_SDK_Integration_Guide.md
+│   ├── Custom_Virtual_Key_Integration_Guide.md
+│   └── API_Documentation.md
 │── Sdk
 │   └── README.md
 │── Tools
@@ -44,7 +44,7 @@ See the [latest version](Release Notes.md).
 │   └── README.md
 ├── LICENSE
 ├── README_EN-US.md
-└── Release Notes.md
+└── Release_Notes.md
 ```
 
 
@@ -63,7 +63,7 @@ The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide
 
 ## Doc
 
-[This directory](Doc) stores some integration guides, including [Real-Time Cloud Rendering SDK Connection Guide](Doc/Real-Time Cloud Rendering SDK Integration Guide.md), [Custom Virtual Key Guide](Doc/Custom Virtual Key Integration Guide.md), and [API Documentation](Doc/API Documentation.md).
+[This directory](Doc) stores some integration guides, including [Real-Time Cloud Rendering SDK Connection Guide](Doc/Real-Time_Cloud_Rendering_SDK_Integration_Guide.md), [Custom Virtual Key Guide](Doc/Custom_Virtual_Key_Integration_Guide.md), and [API Documentation](Doc/API_Documentation.md).
 
 ## Sdk
 [This directory](Sdk) stores Real-Time Cloud Rendering SDKs and their descriptions.
