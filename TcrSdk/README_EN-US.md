@@ -14,14 +14,14 @@ Cloud Games streaming relies on Tencent's rich edge computing nodes, flexible GP
 Cloud application rendering  relies on Tencent's rich edge computing nodes, flexible GPU virtualization technology, and stable and low-latency audio and video streaming capabilities to help you cloud the application client, so that users do not need to download the application package, but only need to open the video The screen can operate and experience the application on the cloud. At the same time, App Cloud Rendering provides cloud API + full-end SDK to meet the needs of your users in various devices and business scenarios.
 
 
-You can create a business backend program and a client program as instructed in Creating Backend Program [CAR](https://github.com/tencentyun/car-server-demo)(or[GS](https://github.com/tencentyun/gs-server-demo)) and [Getting Started](Doc/Real-Time Cloud Rendering SDK Integration Guide.md) respectively. Before this, you need to [apply to](https://www.tencentcloud.com/document/product/1158/49612) activate Real-Time Cloud Rendering first.
+You can create a business backend program and a client program as instructed in Creating Backend Program [CAR](https://github.com/tencentyun/car-server-demo)(or[GS](https://github.com/tencentyun/gs-server-demo)) and [Getting Started](Doc/Real-Time_Cloud_Rendering_SDK_Integration_Guide.md) respectively. Before this, you need to [apply to](https://www.tencentcloud.com/document/product/1158/49612) activate Real-Time Cloud Rendering first.
 
 The Real-Time Cloud Rendering SDK for Android manages session connections, data channels, and audio/video tracks of the client and cloud. It can upstream/downstream text, audio, and video data, provide upper-layer APIs for interaction with cloud virtual devices and applications, render, zoom, and rotate the streamed video image locally, map local touchscreen events to cloud operations, and convert between the view, video, and cloud coordinates, enabling you to quickly develop a business client program.
 
 The repository directory in this document stores the materials of the Real-Time Cloud Rendering SDK for Android.
 
 # Historical Versions
-See the [latest version](Release Notes.md).
+See the [latest version](Release_Notes.md).
 
 # Directory Description
 
