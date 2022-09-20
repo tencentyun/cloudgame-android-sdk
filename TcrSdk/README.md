@@ -5,7 +5,7 @@
 云渲染是指在云端渲染3D应用，利用串流技术将画面实时推送到终端显示，并且让用户可以通过终端与云端应用进行实时的交互操作。
 它可以解决终端算力不足，用户需提前安装配置复杂的软件，终端一次性采购成本高的问题。
 <br><br>
-<img src="Doc/images/云渲染业务逻辑.png" width="700px">
+<img src="Doc/images/云渲染业务逻辑_CN.png" width="700px">
 <br><br>
 腾讯云渲染是前后端一体的PaaS平台产品，提供了各平台客户端SDK和后端API。您需要搭建自己的业务客户端程序和业务后台程序，才能运行看到云渲染的效果。
 
@@ -15,7 +15,7 @@
 
 应用云渲染依托腾讯丰富的边缘计算节点、灵活的GPU虚拟化技术、稳定低延时的音视频串流能力，帮助您将应用客户端云化，使得用户无需下载应用包体，仅需打开视频画面即可操作体验云上应用。同时，应用云渲染提供云API+全端SDK，满足您的用户在各类终端以及业务场景下的需要。
 <br><br>
-<img src="Doc/images/云渲染前后端交互.svg" width="700px">
+<img src="Doc/images/云渲染前后端交互逻辑_CN.png" width="700px">
 <br><br>
 创建业务后台程序可以参考这个[应用云渲染业务后台Demo](https://github.com/tencentyun/car-server-demo)([云游戏业务后台Demo](https://github.com/tencentyun/gs-server-demo))，创建客户端程序可以参考下面的[入门指南](Doc/云渲染SDK接入指南.md)。在此之前您还需要先[申请](https://cloud.tencent.com/document/product/1162/46135)腾讯云渲染服务。
 
