@@ -23,12 +23,15 @@ src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-4
 │   └── 游戏APP示例工程
 │       └── AndroidUnity2018Empty.zip
 ├── Doc
+│   ├── images
+│   │   ├── 微端整体流程.png
+│   │   └── 微端各模块关系.png
 │   └── 微端接入指南.md
 ├── License_tcrmicro.txt
 ├── README.md
+├── Sdk
+│   └── README.md
 └── 发布记录.md
-└── Sdk
-    └── README.md
 ```
 
 ## Demo
@@ -44,6 +47,8 @@ src="https://user-images.githubusercontent.com/8381597/177968325-8cfa9b4b-6bc2-4
 ## Doc
 
 [该目录](Doc)下有[微端接入指南](Doc/微端接入指南.md)，介绍了如何接入并实现微端云试玩以及热更新的功能。
+
+关于热更新的接入可以参考[热更新接入演示](https://cg-sdk-1258344699.cos.ap-nanjing.myqcloud.com/micro/docs/videos/%E5%BE%AE%E7%AB%AF%E7%83%AD%E6%9B%B4%E6%96%B0%E6%8E%A5%E5%85%A5%E6%BC%94%E7%A4%BA.mp4)。
 
 ## Sdk
 
