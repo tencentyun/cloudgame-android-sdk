@@ -7,6 +7,7 @@ Features
 - The interface javadoc is updated from Chinese to English
 - Mouse#setMouseConfig(MouseConfig) is modified to setCursorStyle(CursorStyle)
 - Mouse#onMoveTo and onDeltaMove interfaces change the parameter type from float to int
+
 Bug Fixes
 - Fix and optimize some known issues
 # [Version 2.1.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.1.0/TcrSdk) (2022-09-14)
