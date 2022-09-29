@@ -1,3 +1,5 @@
+- [英文文档](Real-Time_Cloud_Rendering_SDK_Integration_Guide.md)
+
 # 准备工作
 请先理解腾讯云渲染的业务逻辑和前后端交互流程，申请好腾讯云渲染服务和搭建好业务后台程序。（参考[链接](../README.md)）
 
