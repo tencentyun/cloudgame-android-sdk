@@ -1,6 +1,6 @@
 - [中文文档](发布记录.md)
 
-# [Version 2.1.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.1.1/TcrSdk) (2022-09-27)
+# [Version 2.2.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.2.0/TcrSdk) (2022-09-29)
 Features
 - TcrEvent adds remote desktop information event notification.
 - Added interface MouseInfoListener to call back remote mouse data
