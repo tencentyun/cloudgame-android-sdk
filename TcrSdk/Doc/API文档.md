@@ -1,4 +1,4 @@
-- [English document](API Documentation.md)
+- [English document](API_Documentation.md)
 
 ## TCRSDK
 
@@ -135,7 +135,8 @@
 | [onMoveTo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onMoveTo(float,float)) | 让云端鼠标移动到坐标点 |
 | [onKey](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onKey(com.tencent.tcr.sdk.api.config.MouseKey,boolean)) | 触发云端鼠标的点击事件 |
 | [onScroll](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onScroll(boolean)) | 让云端鼠标滚轮滚动     |
-| [setMouseConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setMouseConfig(com.tencent.tcr.sdk.api.MouseConfig)) | 设置鼠标参数           |
+| [setMouseConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setCursorStyle(com.tencent.tcr.sdk.api.config.CursorStyle)) | 设置鼠标样式       |
+|[setMouseInfoListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setMouseInfoListener(com.tencent.tcr.sdk.api.MouseInfoListener))|设置鼠标数据监听|
 
 
 

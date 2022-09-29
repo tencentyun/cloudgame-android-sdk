@@ -141,7 +141,8 @@ The cloud mouse interaction class, which directly manipulates the cloud mouse wi
 | [onMoveTo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onMoveTo(float,float)) | Moves the cloud cursor to the specified coordinates. |
 | [onKey](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onKey(com.tencent.tcr.sdk.api.config.MouseKey,boolean)) | Triggers a click event of the cloud mouse. |
 | [onScroll](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onScroll(boolean)) | Rotates the scroll wheel of the cloud mouse.     |
-| [setMouseConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setMouseConfig(com.tencent.tcr.sdk.api.MouseConfig)) | Sets the cursor parameters.           |
+| [setMouseConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setCursorStyle(com.tencent.tcr.sdk.api.config.CursorStyle)) | Set the cursor style.       |
+|[setMouseInfoListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setMouseInfoListener(com.tencent.tcr.sdk.api.MouseInfoListener))|Set up a listener to get information about the mouse.|   
 
 
 

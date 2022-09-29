@@ -1,3 +1,5 @@
+- [中文文档](云渲染SDK接入指南.md)
+
 # Prerequisites
 Make sure that you understand the business logic and frontend-backend interaction process of the Real-Time Cloud Rendering service, have activated the service, and have set up the business backend program (for more information, see [here](../README_EN-US.md)).
 
