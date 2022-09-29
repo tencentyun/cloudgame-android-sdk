@@ -1,10 +1,19 @@
 - [中文文档](发布记录.md)
 
-# [Version 2.1.0]() (2022-09-14)
+# [Version 2.1.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.1.1/TcrSdk) (2022-09-27)
+Features
+- TcrEvent adds remote desktop information event notification.
+- Added interface MouseInfoListener to call back remote mouse data
+- The interface javadoc is updated from Chinese to English
+- Mouse#setMouseConfig(MouseConfig) is modified to setCursorStyle(CursorStyle)
+- Mouse#onMoveTo and onDeltaMove interfaces change the parameter type from float to int
+Bug Fixes
+- Fix and optimize some known issues
+# [Version 2.1.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.1.0/TcrSdk) (2022-09-14)
 Features
 - Support dynamic opening and closing of local audio and video(mic and camera).
 - Support choose callback media stream raw data.
-# [Version 2.0.3]() (2022-08-18)
+# [Version 2.0.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.0.3/TcrSdk) (2022-08-18)
 Features
 - The video stream adopts hardware decoding by default. If hardware decoding fails, software decoding will fall back.
 
