@@ -29,7 +29,7 @@ Features
 - Simplified APIs. Deleted the redundant listener registration API and changed it to a message notification.
 - Abstracted and simplified the rendering view `TcrRenderView` and supported features such as view zoom as well as image zoom and rotation.
 - Changed the mouse mode setting to more flexible touch processing classes `PcTouchHandler` and `MobileTouchHandler` to make it easy for you to extend operation modes on your own.
-- Added support for local video upstreaming (resolution, frame rate, and front/rear camera switch).
+- Added support for dynamic opening of local video upstreaming (resolution, frame rate, and front/rear camera switch).
 
 # [Version 1.5.9](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/1.5.9/TcrCloudGame) (2022-01-25)
 Bug fixes
