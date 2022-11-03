@@ -4,7 +4,7 @@
 Make sure that you understand the business logic and frontend-backend interaction process of the Real-Time Cloud Rendering service, have activated the service, and have set up the business backend program (for more information, see [here](../README_EN-US.md)).
 
 
-# Steps for Integrating the Real-Time Cloud Rendering SDK
+# Steps for Integrating the Real-Time Cloud Rendering Android SDK
 
 1. Integrate the SDK. Import the following content into `build.gradle` of the application module:
 
