@@ -223,6 +223,7 @@ Rendering view APIs.
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#release()) | Releases the underlying resources of the current view.                |
 | [setCursorImage](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorImage(Bitmap,int)) | Sets the cursor image.                          |
 | [setCursorPos](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorPos(int,int)) | Sets the absolute position of the cursor on the mobile phone.        |
+| [enableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#enableSuperResolution(boolean)) | Enable video super-resolution capability.|
 
 ## 
 
@@ -234,3 +235,11 @@ The general async task callback class.
 | ------------------------------------------------------------ | ---------------------- |
 | [onSuccess](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AsyncCallback.html#onSuccess(T)) | The async execution succeeded. |
 | [onFailure](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AsyncCallback.html#onFailure(int,java.lang.String)) | An error occurred during the async execution.     |
+
+## VideoCapabilityUtil
+
+The util to query video resolution
+
+| API                                                          | 描述                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoCapabilityUtil.html#getRecommendedResolution(int,int)) | Returns the recommended resolution that take into account the capability of hardware decoders. |

@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 2.3.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.3.0/TcrSdk) (2022-11-14)
+Features
+- TcrRenderView newly added interface to enable and disable super-resolution capabilities
+- Add the minimum resolution query tool --VideoCapabilityUtil
 # [Version 2.2.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.2.0/TcrSdk) (2022-09-29)
 Features
 - TcrEvent adds remote desktop information event notification.

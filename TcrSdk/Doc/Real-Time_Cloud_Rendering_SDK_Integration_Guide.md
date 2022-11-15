@@ -9,13 +9,13 @@ Make sure that you understand the business logic and frontend-backend interactio
 1. Integrate the SDK. Import the following content into `build.gradle` of the application module:
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:2.1.0'
+implementation 'com.tencent.tcr:tcrsdk-full:2.3.0'
 ```
 
 To integrate the lightweight SDK, import the following content:
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-lite:2.1.0' 
+implementation 'com.tencent.tcr:tcrsdk-lite:2.3.0' 
 ```
 
 2. Configure the network permissions in `AndroidManifest`:

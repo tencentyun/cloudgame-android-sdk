@@ -217,7 +217,7 @@
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#release()) | 释放当前视图的底层资源                |
 | [setCursorImage](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorImage(Bitmap,int)) | 设置鼠标图片                          |
 | [setCursorPos](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorPos(int,int)) | 设置鼠标位置在手机上的绝对位置        |
-
+| [enableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#enableSuperResolution(boolean)) | 开启/关闭视频流超分辨率能力|
 ## 
 
 ## AsyncCallback<T>
@@ -228,3 +228,12 @@
 | ------------------------------------------------------------ | ---------------------- |
 | [onSuccess](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AsyncCallback.html#onSuccess(T)) | 异步执行成功的结果回调 |
 | [onFailure](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AsyncCallback.html#onFailure(int,java.lang.String)) | 异步执行出错的回调     |
+
+## VideoCapabilityUtil
+
+查询视频支持分辨率的工具类
+
+| API                                                          | 描述                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoCapabilityUtil.html#getRecommendedResolution(int,int)) | 返回推荐的视频分辨率 |
+
