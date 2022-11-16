@@ -238,7 +238,7 @@ The general async task callback class.
 
 ## VideoCapabilityUtil
 
-The util to query video resolution
+A tool class for querying video decoding capabilities
 
 | API                                                          | 描述                   |
 | ------------------------------------------------------------ | ---------------------- |
