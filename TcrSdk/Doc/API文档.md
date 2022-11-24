@@ -217,7 +217,7 @@
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#release()) | 释放当前视图的底层资源                |
 | [setCursorImage](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorImage(Bitmap,int)) | 设置鼠标图片                          |
 | [setCursorPos](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorPos(int,int)) | 设置鼠标位置在手机上的绝对位置        |
-| [enableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#enableSuperResolution(boolean)) | 开启/关闭视频流超分辨率能力|
+| [enableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#enableSuperResolution(boolean)) | [开启/关闭视频流超分辨率能力](API使用示例.md#TcrRenderView)|
 ## 
 
 ## AsyncCallback<T>
