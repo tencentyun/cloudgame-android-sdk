@@ -95,7 +95,9 @@ mRenderView.setOnTouchListener(pcTouchHandler);
 ```
 
 <br><p>
-**以上就是接入的核心步骤，具体代码可以参考[Demo](../Demo)。**
+**以上就是接入的核心步骤，具体代码可以参考[Demo](../Demo)。
+API使用方法参考[API文档](API文档.md)。
+更多功能场景的实现参考[场景功能](场景功能.md)。** 
 
 # FAQs
 1. **云渲染SDK支持的最低Android系统版本。**  
