@@ -1,5 +1,11 @@
 - [中文文档](发布记录.md)
 
+# [Version 2.4.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.4.0/TcrSdk) (2022-12-09)
+Features
+- TcrSession newly added method setRemoteDesktopResolution(int, int) for setting the resolution of the cloud desktop
+
+Bug Fixes
+- Fix and optimize some known issues
 # [Version 2.3.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.3.0/TcrSdk) (2022-11-14)
 Features
 - TcrRenderView newly added method(enableSuperResolution) to enable and disable super-resolution capabilities
