@@ -2,7 +2,7 @@
 
 # [Version 2.4.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.4.0/TcrSdk) (2022-12-09)
 Features
-- TcrSession newly added method setRemoteDesktopResolution(int, int) for setting the resolution of cloud desktop.
+- TcrSession newly added method setRemoteDesktopResolution(int, int) for setting the resolution of cloud desktop. 
 
 Bug Fixes
 - Fix and optimize some known issues.
