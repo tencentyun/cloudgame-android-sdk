@@ -34,7 +34,7 @@
 | [pauseStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#pauseStreaming()) | Pauses the audio/video transfer.                    |
 | [resumeStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#resumeStreaming()) | Resumes the audio/video transfer.                    |
 | [setStreamProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setStreamProfile(int,int,int,com.tencent.tcr.sdk.api.AsyncCallback)) | Sets the frame rate and bitrates of the streamed video.          |
-| [setRemoteDesktopResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteDesktopResolution(int,int)) | Set the resolution of Cloud Desktop.  |
+| [setRemoteDesktopResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteDesktopResolution(int,int)) | Sets the resolution of Cloud Desktop.  |
 | [setVolume](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setVolume(float)) | Sets the amplification factor of the volume level.                  |
 | [enableMic](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#enableMic(boolean)) | Enables/Disables the mic. Default value: `false`, which indicates to disable the mic. |
 | [enableLocalVideo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#enableLocalVideo(boolean)) | Enables/Disables the camera，Default value: `false`, which indicates to disable the camera. |
