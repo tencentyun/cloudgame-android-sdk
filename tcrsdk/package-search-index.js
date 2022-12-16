@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"com.tencent.tcr.sdk.api","h":"","u":""},{"l":"com.tencent.tcr.sdk.api.config","h":"","u":""},{"l":"com.tencent.tcr.sdk.api.constants","h":"","u":""},{"l":"com.tencent.tcr.sdk.api.datachannel","h":"","u":""},{"l":"com.tencent.tcr.sdk.api.multiplayer","h":"","u":""},{"l":"所有程序包","h":"","u":"allpackages-index.html"}]
