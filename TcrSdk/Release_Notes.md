@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 2.4.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.4.2/TcrSdk) (2022-12-19)
+Bug Fixes
+- Fix the compatibility issue with hot update plugin tinker.
+
 # [Version 2.4.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.4.1/TcrSdk) (2022-12-16)
 Bug Fixes
 - Fix and optimize some known issues.
