@@ -32,7 +32,7 @@
 .
 ├── Demo
 │   ├── SimpleLightDemo.zip
-│   ├── SimplePCDemo.zip
+│   ├── SimpleDemo.zip
 │   ├── VKtoolDemo.zip
 │   └── ExperienceDemo.apk
 ├── Doc
@@ -54,7 +54,7 @@
 
 [该目录](Demo)下有三个示例工程和一个用于体验的apk。三个示例工程分别是云游戏/云应用入门Demo、轻量版SDK入门Demo以及自定义虚拟按键Demo。
 
-云游戏/云应用入门Demo [SimplePCDemo.zip](Demo/SimplePCDemo.zip) 演示了如何集成云渲染Android SDK，构建业务客户端程序。
+云游戏/云应用入门Demo [SimpleDemo.zip](Demo/SimpleDemo.zip) 演示了如何集成云渲染Android SDK，构建业务客户端程序。
 
 云渲染Android SDK采用插件化设计，对外提供 完整版SDK 和 轻量版SDK，两个版本的使用接口一致。如果您的App十分在意安装包体积大小，可以选择轻量版SDK，集成的体积增量仅65KB，运行时再从网络下载SDK插件（9MB）后进行动态加载。轻量版SDK入门Demo [SimpleLightDemo.zip](Demo/SimpleLightDemo.zip)演示了这一过程。
 

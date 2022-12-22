@@ -32,7 +32,7 @@ See the [latest version](Release_Notes.md).
 .
 ├── Demo
 │   ├── SimpleLightDemo.zip
-│   ├── SimplePCDemo.zip
+│   ├── SimpleDemo.zip
 │   ├── VKtoolDemo.zip
 │   └── ExperienceDemo.apk
 ├── Doc
@@ -54,7 +54,7 @@ See the [latest version](Release_Notes.md).
 
 [This directory](Demo) has four demo projects: `SimplePCDemo`, `SimpleLightDemo`and `VKtoolDemo`.
 
-[SimplePCDemo.zip](Demo/SimplePCDemo.zip) demonstrate how to integrate the Real-Time Cloud Rendering SDK for Android to build a business client program.
+[SimpleDemo.zip](Demo/SimpleDemo.zip) demonstrate how to integrate the Real-Time Cloud Rendering SDK for Android to build a business client program.
 
 The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide complete and lightweight SDKs, which use the same APIs. If you want to control the size of your application installation package, you can choose the lightweight SDK. After integration, your package size is increased only by 65 KB, and the SDK plugin (9 MB in size) can be downloaded online and dynamically loaded when you run the SDK. [SimpleLightDemo.zip](Demo/SimpleLightDemo.zip) demonstrates the integration process.
 
