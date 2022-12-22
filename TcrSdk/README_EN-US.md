@@ -68,4 +68,4 @@ The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide
 [This directory](Doc) stores some integration guides, including [Real-Time Cloud Rendering SDK Connection Guide](Doc/Real-Time_Cloud_Rendering_SDK_Integration_Guide.md), [Custom Virtual Key Guide](Doc/Custom_Virtual_Key_Integration_Guide.md), and [API Documentation](Doc/API_Documentation.md).
 
 ## Sdk
-[This directory](Sdk) stores Real-Time Cloud Rendering SDKs and their descriptions.
+[This directory](Sdk) stores Real-Time Cloud Rendering SDKs and their descriptions. 
