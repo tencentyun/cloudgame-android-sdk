@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 2.5.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.0/TcrSdk) (2023-01-04)
+Features
+- Tcr-GamePad supports distinguishing left and right shift/ctrl/alt keys.
+
 # [Version 2.4.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.4.3/TcrSdk) (2022-12-22)
 Bug Fixes
 - Fix and optimize some known issues.
