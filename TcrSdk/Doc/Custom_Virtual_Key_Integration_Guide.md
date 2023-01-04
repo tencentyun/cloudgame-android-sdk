@@ -65,7 +65,7 @@ Note: Resources such as spliced UI images cannot be set dynamically.
 ```groovy
 dependencies {
 	 ......
-    implementation 'com.tencent.tcr:tcr-gamepad:2.0.4'
+    implementation 'com.tencent.tcr:tcr-gamepad:2.1.0'
 }
 ```
 
