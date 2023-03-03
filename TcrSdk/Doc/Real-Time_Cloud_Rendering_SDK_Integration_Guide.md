@@ -9,13 +9,13 @@ Make sure that you understand the business logic and frontend-backend interactio
 1. Integrate the SDK. Import the following content into `build.gradle` of the application module:
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:2.5.0'
+implementation 'com.tencent.tcr:tcrsdk-full:latest.release'
 ```
 
 To integrate the lightweight SDK, import the following content:
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-lite:2.5.0' 
+implementation 'com.tencent.tcr:tcrsdk-lite:latest.release' 
 ```
 
 2. Configure the network permissions in `AndroidManifest`:
@@ -38,60 +38,96 @@ To import the lightweight SDK, the application needs to download the SDK plugin 
 
 ```java
 // Create and initialize the session object.
-mTcrSession = TcrSdk.getInstance().createTcrSession(createSessionConfig());
-mTcrSession.init(mInitSessionCallback);
+TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder()
+        .setObserver(mSessionEventObserver)
+        .connectTimeout(25000)
+        .idleThreshold(30)
+        .build();
+mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);
 // Create and add the rendering view.
-mRenderView = TcrSdk.getInstance().createTcrRenderView(PCGameActivity.this, mTcrSession, TcrRenderViewType.SURFACE);
-((FrameLayout) PCGameActivity.this.findViewById(R.id.main)).addView(mRenderView);
+mRenderView = TcrSdk.getInstance().createTcrRenderView(MainActivity.this, mTcrSession, TcrRenderViewType.SURFACE);
+((FrameLayout) MainActivity.this.findViewById(R.id.main)).addView(mRenderView);
 // Set the rendering view for the session.
 mTcrSession.setRenderView(mRenderView);
 ```
 
-5. Initialize the session object. After the async callback succeeds, you can get `clientSession` to further request the business backend and call the TencentCloud API to start the specified application instance and return `serverSession`. The client can call the `start()` API of the session object to pass in the `serverSession` parameter so as to start a session and initiate a connection from the SDK to the cloud. After the async callback of `start()` succeeds, the client program will display the image of the cloud application. If you use CAR, call `startCAR` to start the cloud application in the demo.
+5. After the session object is created, the object will be automatically initialized. After the initialization is successful, the event will be notified through the mSessionEventObserver object passed in step 4. The event that the Session initialization is completed is TcrSession.Event.EVENT_INITED, and you can get `clientSession` in event data to further request the business backend and call the TencentCloud API to start the specified application instance and return `serverSession`. The client can call the `start()` API of the session object to pass in the `serverSession` parameter so as to start a session and initiate a connection from the SDK to the cloud. After the async callback of `start()` succeeds, the client program will display the image of the cloud application. 
 
 ```java
-private final AsyncCallback<String> mInitSessionCallback = new AsyncCallback<String>() {
-    @Override
-    public void onSuccess(String clientSession) {
-        Log.i(TAG, "init session success, clientSession:" + clientSession);
-
-        // `clientSession` will be returned after the session initialization succeeds. Then, request the backend to start the game or application and get `ServerSession`.
-        // To start a cloud application, call `CloudRenderBiz.getInstance().startCAR`.
-        CloudRenderBiz.getInstance().startGame(clientSession, response -> {
-            Log.i(TAG, "start Cloud Application Render reponse: " + response);
-
-            // Use the server session obtained from the server to start a session.
-            GameStartResponse result = new Gson().fromJson(response.toString(), GameStartResponse.class);
-            if (result.code == 0) {
-                mTcrSession.start(result.sessionDescribe.serverSession, mStartSessionCallback);
+private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
+        @Override
+        public void onEvent(String eventType, Object eventData) {
+            switch (eventType) {
+                case TcrSession.Event.EVENT_INITED:
+                    // Get the client session from the callback data and request ServerSession
+                    String clientSession = (String) eventData;
+                    requestServerSession(clientSession);
+                    break;
+                case TcrSession.Event.EVENT_CONNECTED:
+                    // Set the operation mode after the connection is successful
+                    // The interaction with the cloud needs to start calling the interface after this event callback
+                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));
+                    break;
+                default:
             }
-        }, error -> Log.e(TAG, "Cloud Application Render:" + error));
-    }
+        }
+   };    
 
-    @Override
-    public void onFailure(int code, String msg) {
-        Log.e(TAG, "onFailure code:" + code + " msg:" + msg);
-    }
-};
 ```
+
+Request a ServerSession and start the game:
+
+```java
+CloudRenderBiz.getInstance().startGame(clientSession, response -> {
+            Log.i(TAG, "Request ServerSession success, response=" + response.toString());
+            // Start a session using the server session obtained from the server
+            StartGameResponse result = new Gson().fromJson(response.toString(), StartGameResponse.class);
+            if (result.code == 0) {
+                boolean res = mTcrSession.start(result.sessionDescribe.serverSession);
+                if (!res) {
+                    Log.e(TAG, "start session failed");
+                    showToast("Connection failed, please check the log", Toast.LENGTH_SHORT);
+                }
+                showToast("Connection success", Toast.LENGTH_SHORT);
+            } else {
+                String showMessage = "";
+                switch (result.code) {
+                    case 10000:
+                        showMessage = "sign verification error";
+                        break;
+                    case 10001:
+                        showMessage = "missing required parameter";
+                        break;
+                    case 10200:
+                        showMessage = "Failed to create session";
+                        break;
+                    case 10202:
+                        showMessage = "Try lock concurrency failed, no resources";
+                        break;
+                    default:
+                }
+                showToast(showMessage + result.msg, Toast.LENGTH_LONG);
+            }
+        }, error -> Log.i(TAG, "Request ServerSession success, response=" + error.toString()));
+```
+
 
 The API for requesting the business backend is customized by yourself. In the [demo](../Demo), it is encapsulated in the `CloudRenderBiz` class.
 
 6. In addition to displaying the cloud application image on the client, operations also need to be performed on the application, that is, client operations need to be synced to the cloud application. The SDK provides abstract objects such as `KeyBoard`, `Mouse`, and `GamePad`, whose APIs can be called by the client to interact with cloud input devices.  
-In addition, the SDK for Android implements the default screen touch handlers: `MobileTouchHandler` and ` PcTouchHandler`. The former is used to sync the local screen touch events to a cloud mobile app. The latter is used to convert local screen touch events to cloud cursor movement events as well as mouse click, long-press, and double-click events for cloud PC applications. You can also customize and implement your own screen touch handler and assign it to `TcrRenderView`.
+In addition, the SDK for Android implements the default screen touch handlers: `MobileTouchListener ` and ` PcTouchListener `. The former is used to sync the local screen touch events to a cloud mobile app. The latter is used to convert local screen touch events to cloud cursor movement events as well as mouse click, long-press, and double-click events for cloud PC applications. You can also customize and implement your own screen touch handler and assign it to `TcrRenderView`.
 
 ```java
 // A mobile app
-MobileTouchHandler mobileTouchHandler = new MobileTouchHandler();
-mRenderView.setOnTouchListener(mobileTouchHandler);
+renderView.setOnTouchListener(new MobileTouchListener());
 
 // A PC application
-PcTouchHandler pcTouchHandler = new PcTouchHandler();
-mRenderView.setOnTouchListener(pcTouchHandler);
+renderView.setOnTouchListener(new PcTouchListener(session));
 ```
 
 <br><p>
-**Above are the core steps of integration. For the specific code, see [Demo](../Demo).**
+**Above are the core steps of integration. For the specific code, see [Demo](../Demo).
+API usage reference[API_Documentation](API_Documentation.md). For more functional scenarios, please refer to [Scene Function](场景功能.md)**
 
 # FAQs
 1. **Which is the earliest Android version supported by the Real-Time Cloud Rendering SDK?**  

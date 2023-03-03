@@ -6,203 +6,193 @@
 
 ### Basic SDK APIs
 
-| API | Description |
+| API                                                          | Description                  |
 | ------------------------------------------------------------ | --------------------- |
-| [setLogger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSdk.html#setLogger(ILogger,LogLevel)) | Sets the log callback level of the SDK. |
-| [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSdk.html#init(Context,java.lang.String,com.tencent.tcr.sdk.api.AsyncCallback)) | Initializes the SDK.             |
-| [createTcrSession](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrSession(com.tencent.tcr.sdk.api.config.TcrSessionConfig)) | Creates a TcrSession object.       |
-| [createTcrRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrRenderView(Context,com.tencent.tcr.sdk.api.TcrSession,com.tencent.tcr.sdk.api.TcrRenderViewType)) | Creates a TcrRenderView object.   |
-
+| [setLogger]() | Set the log callback object and level |
+| [init]() | Initialize the SDK             |
+| [createTcrSession]() | Create a session object       |
+| [createTcrRenderView]() | Create a rendering view   |
 
 
 ## TcrSession
 
-### Lifecycle APIs 
+### Lifecycle APIs
 
-| API | Description |
+| API                                                          | Description                                                       |
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
-| [setListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setListener(com.tencent.tcr.sdk.api.TcrSessionListener)) | Sets the session listener.                                             |
-| [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#start(java.lang.String,com.tencent.tcr.sdk.api.AsyncCallback)) | Starts a session, gets the `serverSession` returned from the cloud, and initiates a connection from the SDK to the cloud. |
-| [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#init(com.tencent.tcr.sdk.api.AsyncCallback)) | Initializes the session to create a local `ClientSession`.                          |
-| [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#release()) | Terminates the session to close the connection between the local device and the cloud and release the resources.                   |
-| [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView(com.tencent.tcr.sdk.api.TcrRenderView)) | Sets the rendering view of the session. The SDK will render the cloud image to the view.          |
+| [start]() | Starts the session. This method should only be called once |
+| [release]() | Release the session                  |
+| [setRenderView]() | Set the rendering view for this session, and thus the SDK will render the streaming content to the view         |
 
 ### Audio/Video APIs
 
-| API | Description |
+| API                                                          | Description                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| [pauseStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#pauseStreaming()) | Pauses the audio/video transfer.                    |
-| [resumeStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#resumeStreaming()) | Resumes the audio/video transfer.                    |
-| [setStreamProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setStreamProfile(int,int,int,com.tencent.tcr.sdk.api.AsyncCallback)) | Sets the frame rate and bitrates of the streamed video.          |
-| [setRemoteDesktopResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteDesktopResolution(int,int)) | Sets the resolution of Cloud Desktop.  |
-| [setVolume](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setVolume(float)) | Sets the amplification factor of the volume level.                  |
-| [enableMic](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#enableMic(boolean)) | Enables/Disables the mic. Default value: `false`, which indicates to disable the mic. |
-| [enableLocalVideo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#enableLocalVideo(boolean)) | Enables/Disables the camera，Default value: `false`, which indicates to disable the camera. |
-| [setLocalVideoBitrate](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoBitrate(int)) |Sets LocalVideo upstream bitrate. Default value:1500kbps|
-| [setLocalVideoFps](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoFps(int)) | Sets LocalVideo upstream fps. Default value:30 |
+| [pauseStreaming]() | Pause the media stream                   |
+| [resumeStreaming]() | Resume the media stream                    |
+| [setRemoteVideoProfile]() | Set the remote video profile          |
+| [setRemoteAudioProfile]() | Set the remote audio profile                 |
+| [toggleLocalAudio]() | Enable or disable the local audio track that is captured from the mic |
+| [toggleLocalVideo]() | Enable or disable the local video track that is captured from the camera |
+| [setLocalVideoProfile]() | Set the local video profile   |
+| [setLocalAudioProfile]() | Set the local audio profile   |
+
 
 ### Cloud application interaction APIs
 
-| API | Description |
+| API                                                          | Description                       |
 | ------------------------------------------------------------ | -------------------------- |
-| [restartCloudApp](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#restartCloudApp()) | Restarts the cloud application process.           |
-| [pasteText](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#pasteText(java.lang.String)) | Copies the text to the input box in the cloud application. |
+| [restartCloudApp]() | Restart the cloud application process           |
+| [pasteText]() | Copy the text to the input box in the cloud application |
+| [setRemoteDesktopResolution]() | Set the resolution of Cloud Desktop  |
 
 ### Multiplayer interactive cloud game APIs
 
-| API | Description |
+| API                                                          | Description               |
 | ------------------------------------------------------------ | ------------------ |
-| [getMultiUserManager](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#getMultiUserManager()) | Gets the multiplayer interactive cloud game manager. |
+| [changeSeat]() | Switch the role and seat of a user (`userID`) to `targetRole` and `targetPlayerIndex` respectively. |
+| [requestChangeSeat]() | Apply to the room owner to switch the role and seat of a player (`userID`) to `targetRole` and `targetPlayerIndex` respectively |
+| [setMicMute]() | Change the mic status of someone  |
+| [setRemoteAudioProfile]() | Set the gain of the volume level of another user|
+| [syncRoomInfo]() | Refresh the information of all seats |
 
 ### Key APIs
 
-| API | Description |
+| API                                                          | Description                     |
 | ------------------------------------------------------------ | ------------------------ |
-| [getKeyBoard](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#getKeyBoard()) | Gets the object interacting with the cloud keyboard. |
-| [getMouse](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#getMouse()) | Gets the object interacting with the cloud mouse. |
-| [getGamePad](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#getGamePad()) | Gets the object interacting with the cloud controller. |
+| [getKeyBoard]() | Return the interface to interact with the cloud keyboard in this session |
+| [getMouse]() | Return the interface to interact with the cloud Mouse in this session |
+| [getGamePad]() | Return the interface to interact with the cloud Mouse in this session |
 
 ### Data channel APIs
 
-| API | Description |
+| API                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [createDataChannel](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSession.html#createDataChannel(int,com.tencent.tcr.sdk.api.datachannel.DataChannelListener)) | Creates a data channel. |
+| [createCustomDataChannel]() | Creates a custom data channel |
 
-
-
-## [TcrSessionConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.html)
-
-
-## [TcrSessionConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/package-summary.html)
-The cloud game session configuration class containing configuration of getting and setting different objects.
-
-[云游会话配置类-设置配置](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html)
-
-
-| API                                                          | 描述         |
+### TcrSession.Observer
+| API                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#build()) | Build a SessionConfig |
-| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#connectTimeout(long)) | Sets connect Timeout |
-| [enableAudioTrack​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#enableAudioTrack(boolean)) | Enable/Disable the local mic |
-| [enableLocalVideo​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#enableLocalVideo(boolean,int,int,int,boolean)) | Enable/Disable the local camera |
-| [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#idleThreshold(long)) | Sets idle time threshold |
-| [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#lowFpsThreshold(int,int)) | Sets the low fps threshold |
-| [setVideoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#setVideoFrameCallback(com.tencent.tcr.sdk.api.VideoFrameBufferCallback)) | Sets video frame callback |
-| [setAudioSampleCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html#setAudioSampleCallback(com.tencent.tcr.sdk.api.AudioSampleCallback)) | Sets Audio data consumer |
+| [onEvent]() | This will be called when some event happened in the session |
 
-## TcrSessionListener 
-
-The session listener.
-
-| API | Description |
+### TcrSession.Event
+| event                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [onEvent](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSessionListener.html#onEvent(java.lang.String,java.lang.String)) | A session event occurred. |
-| [onError](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrSessionListener.html#onError(int,java.lang.String)) | A session error occurred. |
+| [EVENT_INITED]() | The session has been initialized|
+| [EVENT_CONNECTED]() | The session is connected |
+| [EVENT_RECONNECTING]() | The session is reconnecting |
+| [EVENT_CLOSED]() | The session is closed |
+| [EVENT_IDLE]() | The user was idle(the user didn't perform operations related to button events such as keyboard, controller, and mouse events) |
+| [EVENT_LOW_FPS]() | The frame rate remains low for a while |
+| [EVENT_GAME_START_COMPLETE]() | The status of the game process on the server has been changed |
+| [EVENT_ARCHIVE_LOAD_STATUS]() | The status of the archive loading in the server |
+| [EVENT_ARCHIVE_SAVE_STATUS]() | The status of the archive saving in the server |
+| [EVENT_CLIENT_INPUT_STATUS_CHANGED]() | The input status of the server has changed |
+| [EVENT_SCREEN_CONFIG_CHANGE]() | The configuration of the cloud screen configuration has been changed |
+| [EVENT_STATS]() | The performance data is updated |
+| [EVENT_REMOTE_DESKTOP_INFO]() | The remote desktop information is updated |
+| [EVENT_CURSOR_STATE_CHANGE]() | The showing status of cloud cursor is changed |
+| [EVENT_MULTI_USER_SEAT_INFO]() | The multi user seat info is updated |
+| [EVENT_ROLE_APPLY]() | Some user request to change seat |
+| [EVENT_CURSOR_IMAGE_INFO]() | The remote cursor image information is updated |
+
+
+
+## [TcrSessionConfig]()
+The cloud game session configuration class containing configuration of getting and setting different objects.  
+
+[TcrSession config builer]()
+
+
+| API                                                          | Description         |
+| ------------------------------------------------------------ | ------------ |
+| [build]() | Construct a `TcrSessionConfig` |
+| [setObserver​]() |  set the observer of the TcrSession|
+| [connectTimeout​]() | Set the connection timeout period |
+| [enableLocalAudio​]() | Whether to enable audio upstreaming for the session |
+| [enableLocalVideo​]() | Enable/Disable local video upstreaming |
+| [idleThreshold​​]() | set the idleness detection threshold |
+| [lowFpsThreshold​]() | Set the threshold for a low frame rate notification |
+| [setVideoFrameCallback​]() | Set custom video data callback |
+| [setAudioSampleCallback​]() | et the consumer for WebRTC decoded audio data. If not set, the decoded audio data will be played directly |
+
 
 ## AudioSampleCallback
 
 Audio sample data Callback Interface
 
-| API                                                          | 描述         |
+| API                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [onAudioData](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AudioSampleCallback.html#onAudioData(byte%5B%5D,int,int)) | call back audio data |
-| [onAudioFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AudioSampleCallback.html#onAudioFormat(int,int,int)) | call back audio sample data format |
+| [onAudioData]() | Called when a piece of audio data is ready |
+| [onAudioFormat]() | Called when the audio sample format has changed. You may need these output parameters to build or update your `AudioFormat` |
 
 ## VideoFrameBufferCallback
-
 Customize the video data frame callback to call back the raw video data byte stream before decoding. Set the callback to decode and render the screen by yourself after getting the data
 
-| API                                                          | 描述         |
+| API                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [onVideoBufferCallback](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onVideoBufferCallback(java.nio.ByteBuffer,int,int,long)) | 视频帧数据回调 |
-| [onMediaCodecFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onMediaCodecFormat(java.lang.String,int,int)) | MediaFormat初始化参数 |
-
-
+| [onVideoBufferCallback]() | Called when a piece of video raw data is ready |
+| [onMediaCodecFormat]() | Called when the video format has changed. You may need these output parameters to build or update your `link MediaFormat`. |
 
 ## Keyboard
 
 The cloud keyboard interaction class.
 
-| API | Description |
+| API                                                          | Description                     |
 | ------------------------------------------------------------ | ------------------------ |
-| [onKey](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Keyboard.html#onKey(int,boolean)) | Triggers a key event of the cloud keyboard.     |
-| [checkCapsLock](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Keyboard.html#checkCapsLock(com.tencent.tcr.sdk.api.AsyncCallback)) | Queries the letter case of the cloud keyboard. |
-| [resetCapsLock](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Keyboard.html#resetCapsLock()) | Resets the letter case of the cloud keyboard. |
-| [reset](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Keyboard.html#reset()) | Resets the key status of the cloud keyboard.   |
+| [onKeyboard]() | Trigger a key event of the cloud keyboard     |
+| [checkKeyboardCapsLock]() | Query the letter case of the cloud keyboard |
+| [resetKeyboardCapsLock]() | Reset the letter case of the cloud keyboard to lowercase |
+| [resetKeyboard]() | Reset the key status of the cloud keyboard   |
 
 
 
 ## Mouse
 
-The cloud mouse interaction class, which directly manipulates the cloud mouse without changing the mouse status of the local `TcrRenderView`.
+The cloud mouse interaction class, which directly manipulates the cloud mouse without changing the mouse status of the local TcrRenderView.
 
-| API | Description |
+| API                                                          | Description                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [onDeltaMove](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onDeltaMove(float,float)) | Moves the cloud cursor by the specified delta. |
-| [onMoveTo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onMoveTo(float,float)) | Moves the cloud cursor to the specified coordinates. |
-| [onKey](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onKey(com.tencent.tcr.sdk.api.config.MouseKey,boolean)) | Triggers a click event of the cloud mouse. |
-| [onScroll](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#onScroll(boolean)) | Rotates the scroll wheel of the cloud mouse.     |
-| [setMouseConfig](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setCursorStyle(com.tencent.tcr.sdk.api.config.CursorStyle)) | Set the cursor style.       |
-|[setMouseInfoListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/Mouse.html#setMouseInfoListener(com.tencent.tcr.sdk.api.MouseInfoListener))|Set up a listener to get information about the mouse.|   
-
+| [onMouseDeltaMove]() | Let the cloud mouse move relative to the distance |
+| [onMouseMoveTo]() | Let the cloud mouse move to the coordinate point |
+| [onMouseKey]() | Trigger a click event of the cloud mouse |
+| [onMouseScroll]() | Rotate the scroll wheel of the cloud mouse     |
+| [setMouseCursorStyle]() | Set the cursor style       |
 
 
 ## Gamepad
 
 The cloud controller interaction class.
 
-| API | Description |
+| API                                                          | Description                         |
 | ------------------------------------------------------------ | ---------------------------- |
-| [connect](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/GamePad.html#connect()) | Connects the cloud controller.         |
-| [disconnect](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/GamePad.html#disconnect()) | Disconnects the cloud controller.         |
-| [onAxis](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/GamePad.html#onAxis(com.tencent.tcr.sdk.api.config.GamePadKey,int,int)) | Triggers a stick event of the cloud controller.         |
-| [onKey](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/GamePad.html#onKey(int,boolean)) | Triggers a button event of the cloud controller.         |
-| [onTrigger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/GamePad.html#onTrigger(com.tencent.tcr.sdk.api.config.GamePadKey,int,boolean)) | Triggers an L2 or R2 trigger event of the cloud controller. |
+| [connectGamepad]() | Connect the virtual gamepad to the server. The Gamepad can work only after connection         |
+| [disconnectGamepad]() | Disconnect the virtual gamepad from the server         |
+| [onGamepadStick]() | Send a gamepad stick event         |
+| [onGamepadKey]() | Send a gamepad button event         |
+| [onGamepadTrigger]() | Send a gamepad trigger event |
+
+                                    
 
 
-
-## MultiUserManager
-
-Multiplayer interactive cloud game APIs.
-
-| API | Description |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [applyChangeSeat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/MultiUserManager.html#applyChangeSeat(java.lang.String,com.tencent.tcr.sdk.api.multiplayer.MultiUserManager.Role,int,com.tencent.tcr.sdk.api.AsyncCallback)) | Applies to switch the role and seat of a player.                                     |
-| [changeSeat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/MultiUserManager.html#changeSeat(java.lang.String,com.tencent.tcr.sdk.api.multiplayer.MultiUserManager.Role,int,com.tencent.tcr.sdk.api.AsyncCallback)) | Switches the role and seat of a user (`userID`) to `targetRole` and `targetPlayerIndex` respectively. |
-| [setMicMute](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/MultiUserManager.html#setMicMute(java.lang.String,boolean,com.tencent.tcr.sdk.api.AsyncCallback)) | Mutes the local mic.                                               |
-| [setVolume](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/MultiUserManager.html#setVolume(java.lang.String,float)) | Sets the gain of the volume level of another user.                                       |
-| [syncRoomInfo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/MultiUserManager.html#syncRoomInfo()) | Refreshes the information of all seats.                                             |
-| [setMultiUserListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/MultiUserManager.html#setMultiUserListener(com.tencent.tcr.sdk.api.multiplayer.SeatsListener)) | Registers a multiplayer interactive cloud game listener.                                           |
-
-## SeatsListener
-
-The multiplayer interactive cloud game listener.
-
-| API | Description |
-| ------------------------------------------------------------ | -------------------------------------------- |
-| [onRoleApplied](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/SeatsListener.html#onRoleApplied(java.lang.String,com.tencent.tcr.sdk.api.multiplayer.MultiUserManager.Role,int)) | When a user applies for a seat change, the room owner will receive this callback.      |
-| [onSeatChanged](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/multiplayer/SeatsListener.html#onSeatChanged(java.lang.String,java.util.List,java.util.List,int,int)) | When the seat information changes, all users will receive this callback. |
-
-
-
-## DataChannel
+## CustomDataChannel
 
 Data channel APIs.
 
-| API | Description |
+| API                                                          | Description                 |
 | ------------------------------------------------------------ | -------------------- |
-| [send](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/datachannel/DataChannel.html#send(java.nio.ByteBuffer)) | Sends the data through the data channel. |
-| [close](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/datachannel/DataChannel.html#close()) | Closes the data channel.         |
+| [send]() | Send data to the cloud Application |
+| [close]() | Close this data channel         |
 
-## DataChannelListener
+## CustomDataChannel.Observer
 
-The data channel listener.
+The data channel observer.
 
-| API | Description |
+| API                                                          | Description                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [onCreateSuccess](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/datachannel/DataChannelListener.html#onCreateSuccess(int)) | The data channel was created successfully. |
-| [onError](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/datachannel/DataChannelListener.html#onError(int,com.tencent.tcr.sdk.api.datachannel.DataChannelListener.State,java.lang.String)) | An error occurred.         |
-| [onMessage](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/datachannel/DataChannelListener.html#onMessage(int,java.nio.ByteBuffer)) | A cloud message was received.           |
+| [onConnected]() | This method is called when the listened CustomDataChannelis connected successfully |
+| [onError]() | This method is called whenever some error is happened in the listened CustomDataChannel.         |
+| [onMessage]() | This method is called whenever the listened CustomDataChannel receives cloud message.          |
 
 
 
@@ -210,37 +200,37 @@ The data channel listener.
 
 Rendering view APIs.
 
-| API | Description |
+| API                                                          | Description                                  |
 | ------------------------------------------------------------ | ------------------------------------- |
-| [setOnTouchListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setOnTouchListener(View.OnTouchListener)) | Sets the listener for view click events.              |
-| [handleMotion](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#handleMotion(MotionEvent)) | Passes in a touch event.                          |
-| [setVideoScaleType](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setVideoScaleType(com.tencent.tcr.sdk.api.ScaleType)) | Sets the video scaling mode.                      |
-| [setVideoRotation](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setVideoRotation(com.tencent.tcr.sdk.api.VideoRotation)) | Sets the image rotation angle.                      |
-| [enablePinch](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#enablePinch(boolean)) | Sets whether to enable two-finger gestures (such as zoom-in and drag) on the video layer.  |
-| [setPinchOffset](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setPinchOffset(Rect)) | Sets the margins between the sides of the area within which `videoView` can be dragged and the sides of the parent view. |
-| [setOnPinchListener](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setOnPinchListener(com.tencent.tcr.sdk.api.PinchListener)) | Sets the listener for the callback event triggered while zooming the video layer.        |
-| [resetView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#resetView()) | Resets the view position and size to the initial status.        |
-| [showDebugView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#showDebugView(boolean)) | Displays the debugging view.                          |
-| [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#release()) | Releases the underlying resources of the current view.                |
-| [setCursorImage](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorImage(Bitmap,int)) | Sets the cursor image.                          |
-| [setCursorPos](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#setCursorPos(int,int)) | Sets the absolute position of the cursor on the mobile phone.        |
-| [enableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/TcrRenderView.html#enableSuperResolution(boolean)) | [Enable video super-resolution capability](API使用示例.md#TcrRenderView)|
-
+| [setOnTouchListener]() | Set the listener for the touch events of the view              |
+| [handleMotion]() | Pass in the touch event                         |
+| [setVideoScaleType]() | Set the video scaling mode                      |
+| [setVideoRotation]() | Set the image rotation angle                      |
+| [enablePinch]() | Set whether to allow two-finger pinch zoom on the game video image  |
+| [setPinchOffset]()) | Set the borders for dragging the zoomed image |
+| [setOnPinchListener]() | The two-finger pinch zoom listener, which listens for the two-finger pinch zoom parameter of the view        |
+| [resetView]() | Reset the zoomed and dragged view        |
+| [showDebugView]() | Enable the debugging mode to display the debugging information                          |
+| [release]() | Release the underlying resources of this view                |
+| [setCursorImage]() | Set the cursor image                          |
+| [setCursorVisibility]() | Set the visibility of the current cursor                          |
+| [setCursorPos]() | Set the absolute position of the cursor on the mobile phone        |
+| [enableSuperResolution]() | [Enable video super-resolution capability](API使用示例.md#TcrRenderView)|
 ## 
 
 ## AsyncCallback<T>
 
 The general async task callback class.
 
-| API | Description |
+| API                                                          | Description                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [onSuccess](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AsyncCallback.html#onSuccess(T)) | The async execution succeeded. |
-| [onFailure](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/AsyncCallback.html#onFailure(int,java.lang.String)) | An error occurred during the async execution.     |
+| [onSuccess]() | This is called when the async task is executed successfully |
+| [onFailure]() | This is called when the async task is executed failed     |
 
 ## VideoCapabilityUtil
 
 A tool class for querying video decoding capabilities
 
-| API                                                          | 描述                   |
+| API                                                          | Description                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/VideoCapabilityUtil.html#getRecommendedResolution(int,int)) | Returns the recommended resolution that take into account the capability of hardware decoders. |
+| [getRecommendedResolution]() | Returns the recommended resolution that take into account the capability of hardware decoders |
