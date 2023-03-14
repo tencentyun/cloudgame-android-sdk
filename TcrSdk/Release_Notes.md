@@ -1,5 +1,8 @@
 - [中文文档](发布记录.md)
 
+# [Version 2.5.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.3/TcrSdk) (2023-03-14)
+Bug Fixes
+- Fix and optimize some known issues.
 # [Version 2.5.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.2/TcrSdk) (2023-02-28)
 Features
 - TcrSessionConfig newly added method enableLowLegacyRendering(boolean) for reduce local rendering delay.  
