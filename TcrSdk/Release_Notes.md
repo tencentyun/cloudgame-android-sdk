@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 2.5.5](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.5/TcrSdk) (2023-03-30)
+Bug Fixes
+- Fix the problem that the lite version of sdk fails after the app dependency is turned on and mixed
+- Fix and optimize some known issues
+
 # [Version 2.5.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.4/TcrSdk) (2023-03-29)
 Bug Fixes
 - Fixed the bug that when using H265, calling the setRemoteDesktopResolution(int, int) interface on the terminal may cause hardware decoding to fall back to software decoding.
