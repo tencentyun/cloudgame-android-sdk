@@ -78,23 +78,23 @@
 ### TcrSession.Event
 | 定义                                                          | 描述         |
 | ------------------------------------------------------------ | ------------ |
-| [EVENT_INITED]() | 初始化成功|
-| [EVENT_CONNECTED]() | 连接成功 |
-| [EVENT_RECONNECTING]() | 重连中 |
-| [EVENT_CLOSED]() | 会话关闭 |
-| [EVENT_IDLE]() | 用户无操作 |
-| [EVENT_LOW_FPS]() | 帧率低状态 |
-| [EVENT_GAME_START_COMPLETE]() | 远端游戏状态变化 |
-| [EVENT_ARCHIVE_LOAD_STATUS]() | 存档加载状态变化 |
-| [EVENT_ARCHIVE_SAVE_STATUS]() | 存档保存状态变化 |
-| [EVENT_CLIENT_INPUT_STATUS_CHANGED]() | 远端是否允许输入 |
-| [EVENT_SCREEN_CONFIG_CHANGE]() | 云端分辨率或横竖屏状态改变 |
-| [EVENT_STATS]() | 性能数据通知 |
-| [EVENT_REMOTE_DESKTOP_INFO]() | 远端桌面信息 |
-| [EVENT_CURSOR_STATE_CHANGE]() | 鼠标显示状态变换 |
-| [EVENT_MULTI_USER_SEAT_INFO]() | 多人云游房间信息刷新 |
-| [EVENT_ROLE_APPLY]() | 角色切换申请信息 |
-| [EVENT_CURSOR_IMAGE_INFO]() | 鼠标图片信息 |
+| [STATE_INITED]() | 初始化成功|
+| [STATE_CONNECTED]() | 连接成功 |
+| [STATE_RECONNECTING]() | 重连中 |
+| [STATE_CLOSED]() | 会话关闭 |
+| [CLIENT_IDLE]() | 用户无操作 |
+| [CLIENT_LOW_FPS]() | 帧率低状态 |
+| [GAME_START_COMPLETE]() | 远端游戏状态变化 |
+| [ARCHIVE_LOAD_STATUS]() | 存档加载状态变化 |
+| [ARCHIVE_SAVE_STATUS]() | 存档保存状态变化 |
+| [INPUT_STATUS_CHANGED]() | 远端是否允许输入 |
+| [SCREEN_CONFIG_CHANGE]() | 云端分辨率或横竖屏状态改变 |
+| [CLIENT_STATS]() | 性能数据通知 |
+| [REMOTE_DESKTOP_INFO]() | 远端桌面信息 |
+| [CURSOR_STATE_CHANGE]() | 鼠标显示状态变换 |
+| [MULTI_USER_SEAT_INFO]() | 多人云游房间信息刷新 |
+| [MULTI_USER_ROLE_APPLY]() | 角色切换申请信息 |
+| [CURSOR_IMAGE_INFO]() | 鼠标图片信息 |
 
 
 
@@ -106,14 +106,14 @@
 | API                                                          | 描述         |
 | ------------------------------------------------------------ | ------------ |
 | [build]() | 构造出一个TcrSessionConfig |
-| [setObserver​]() | 设置事件通知监听|
+| [observer​]() | 设置事件通知监听|
 | [connectTimeout​]() | 设置连接超时时间 |
-| [enableLocalAudio​]() | 开启或关闭语音上行功能 |
-| [enableLocalVideo​]() | 开启或关闭本地视频上行 |
 | [idleThreshold​​]() | 设置空闲检测阈值 |
 | [lowFpsThreshold​]() | 设置低帧率通知阈值 |
-| [setVideoFrameCallback​]() | 设置自定义视频数据回调 |
-| [setAudioSampleCallback​]() | 设置WebRTC解码后的音频数据的消费者 |
+| [videoFrameCallback​]() | 设置自定义视频数据回调 |
+| [audioSampleCallback​]() | 设置WebRTC解码后的音频数据的消费者 |
+| [enableLowLegacyRendering​]() | 开启低延时渲染 |
+
 
 
 ## AudioSampleCallback

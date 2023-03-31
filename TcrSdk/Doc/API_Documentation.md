@@ -78,23 +78,23 @@
 ### TcrSession.Event
 | event                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [EVENT_INITED]() | The session has been initialized|
-| [EVENT_CONNECTED]() | The session is connected |
-| [EVENT_RECONNECTING]() | The session is reconnecting |
-| [EVENT_CLOSED]() | The session is closed |
-| [EVENT_IDLE]() | The user was idle(the user didn't perform operations related to button events such as keyboard, controller, and mouse events) |
-| [EVENT_LOW_FPS]() | The frame rate remains low for a while |
-| [EVENT_GAME_START_COMPLETE]() | The status of the game process on the server has been changed |
-| [EVENT_ARCHIVE_LOAD_STATUS]() | The status of the archive loading in the server |
-| [EVENT_ARCHIVE_SAVE_STATUS]() | The status of the archive saving in the server |
-| [EVENT_CLIENT_INPUT_STATUS_CHANGED]() | The input status of the server has changed |
-| [EVENT_SCREEN_CONFIG_CHANGE]() | The configuration of the cloud screen configuration has been changed |
-| [EVENT_STATS]() | The performance data is updated |
-| [EVENT_REMOTE_DESKTOP_INFO]() | The remote desktop information is updated |
-| [EVENT_CURSOR_STATE_CHANGE]() | The showing status of cloud cursor is changed |
-| [EVENT_MULTI_USER_SEAT_INFO]() | The multi user seat info is updated |
-| [EVENT_ROLE_APPLY]() | Some user request to change seat |
-| [EVENT_CURSOR_IMAGE_INFO]() | The remote cursor image information is updated |
+| [STATE_INITED]() | The session has been initialized|
+| [STATE_CONNECTED]() | The session is connected |
+| [STATE_RECONNECTING]() | The session is reconnecting |
+| [STATE_CLOSED]() | The session is closed |
+| [CLIENT_IDLE]() | The user was idle(the user didn't perform operations related to button events such as keyboard, controller, and mouse events) |
+| [CLIENT_LOW_FPS]() | The frame rate remains low for a while |
+| [GAME_START_COMPLETE]() | The status of the game process on the server has been changed |
+| [ARCHIVE_LOAD_STATUS]() | The status of the archive loading in the server |
+| [ARCHIVE_SAVE_STATUS]() | The status of the archive saving in the server |
+| [INPUT_STATUS_CHANGED]() | The input status of the server has changed |
+| [SCREEN_CONFIG_CHANGE]() | The configuration of the cloud screen configuration has been changed |
+| [CLIENT_STATS]() | The performance data is updated |
+| [REMOTE_DESKTOP_INFO]() | The remote desktop information is updated |
+| [CURSOR_STATE_CHANGE]() | The showing status of cloud cursor is changed |
+| [MULTI_USER_SEAT_INFO]() | The multi user seat info is updated |
+| [MULTI_USER_ROLE_APPLY]() | Some user request to change seat |
+| [CURSOR_IMAGE_INFO]() | The remote cursor image information is updated |
 
 
 
@@ -109,13 +109,11 @@ The cloud game session configuration class containing configuration of getting a
 | [build]() | Construct a `TcrSessionConfig` |
 | [setObserver​]() |  set the observer of the TcrSession|
 | [connectTimeout​]() | Set the connection timeout period |
-| [enableLocalAudio​]() | Whether to enable audio upstreaming for the session |
-| [enableLocalVideo​]() | Enable/Disable local video upstreaming |
 | [idleThreshold​​]() | set the idleness detection threshold |
 | [lowFpsThreshold​]() | Set the threshold for a low frame rate notification |
-| [setVideoFrameCallback​]() | Set custom video data callback |
-| [setAudioSampleCallback​]() | et the consumer for WebRTC decoded audio data. If not set, the decoded audio data will be played directly |
-
+| [videoFrameCallback​]() | Set custom video data callback |
+| [audioSampleCallback​]() | Set the consumer for WebRTC decoded audio data. If not set, the decoded audio data will be played directly |
+| [enableLowLegacyRendering​]() | enable low legacy rendering |
 
 ## AudioSampleCallback
 

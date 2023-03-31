@@ -56,14 +56,14 @@ mTcrSession.setRenderView(mRenderView);
 ```java
 private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
         @Override
-        public void onEvent(String eventType, Object eventData) {
-            switch (eventType) {
-                case TcrSession.Event.EVENT_INITED:
+        public void onEvent(TcrSession.Event event, Object eventData) {
+            switch (event) {
+                case STATE_INITED:
                     // Get the client session from the callback data and request ServerSession
                     String clientSession = (String) eventData;
                     requestServerSession(clientSession);
                     break;
-                case TcrSession.Event.EVENT_CONNECTED:
+                case STATE_CONNECTED:
                     // Set the operation mode after the connection is successful
                     // The interaction with the cloud needs to start calling the interface after this event callback
                     runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));

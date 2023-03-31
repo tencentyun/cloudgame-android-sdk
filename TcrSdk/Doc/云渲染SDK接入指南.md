@@ -61,14 +61,14 @@ mTcrSession.setRenderView(mRenderView);
 ```java
 private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
         @Override
-        public void onEvent(String eventType, Object eventData) {
-            switch (eventType) {
-                case TcrSession.Event.EVENT_INITED:
+        public void onEvent(TcrSession.Event event, Object eventData) {
+            switch (event) {
+                case STATE_INITED:
                     // 回调数据中拿到client session并请求ServerSession
                     String clientSession = (String) eventData;
                     requestServerSession(clientSession);
                     break;
-                case TcrSession.Event.EVENT_CONNECTED:
+                case STATE_CONNECTED:
                     // 连接成功后设置操作模式
                     // 与云端的交互需在此事件回调后开始调用接口
                     runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));
@@ -123,7 +123,7 @@ CloudRenderBiz.getInstance().startGame(clientSession, response -> {
 
 ```java
 // 手机应用
-renderView.setOnTouchListener(new MobileTouchListener());
+renderView.setOnTouchListener(new MobileTouchListener(session));
 
 // PC应用
 renderView.setOnTouchListener(new PcTouchListener(session));

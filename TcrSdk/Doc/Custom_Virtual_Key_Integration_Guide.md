@@ -65,21 +65,21 @@ Note: Resources such as spliced UI images cannot be set dynamically.
 ```groovy
 dependencies {
 	 ......
-    implementation 'com.tencent.tcr:tcr-gamepad:2.1.0'
+    implementation 'com.tencent.tcr:tcr-gamepad:2.2.0'
 }
 ```
 
 3. Initialize the virtual key view and read the configuration file during initialization.
 
 ``` java
-mGamePadManager = new GamepadManager(this);
+mGamePadManager = new GamepadManager(this,Tcrsession);
 mCustomGamePadCfg = readConfigFile("lol_5v5.cfg");  // You can implement the reading method on your own.
 ```
 
 4. Initialize virtual keys.
 
 ```java
-mKeyboardView = new KeyboardView(this);
+mKeyboardView = new KeyboardView(this,Tcrsession);
 
 ```
 5. Add the custom editing listener.
