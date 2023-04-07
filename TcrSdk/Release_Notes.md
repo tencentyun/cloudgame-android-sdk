@@ -1,5 +1,14 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.0.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.0.0/TcrSdk) (2023-04-07)
+Features
+- Simplified APIs. Deleted the redundant listener registration API and changed it to a message notification.
+- Reorganize the interface package group, refine the api class and improve the interface document
+- Put the enumeration class into the used interface to simplify the use process
+- Remove redundant interface methods
+Bug Fixes
+- Fix and optimize some known issues.
+
 # [Version 2.5.5](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.5/TcrSdk) (2023-03-30)
 Bug Fixes
 - Fix the problem that the lite version of sdk fails after the app dependency is turned on and mixed
