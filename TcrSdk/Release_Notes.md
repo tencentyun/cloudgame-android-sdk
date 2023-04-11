@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.1.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.1.0/TcrSdk) (2023-04-11)
+Features
+- Support physical peripherals (mouse, keyboard and joystick) connection input
+- Refactored mouse wheel scrolling interface(Mouse#onMouseScroll)
+
 # [Version 3.0.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.0.0/TcrSdk) (2023-04-07)
 Features
 - Simplified APIs. Deleted the redundant listener registration API and changed it to a message notification.
