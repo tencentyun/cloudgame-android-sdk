@@ -247,3 +247,13 @@ A tool class for querying video decoding capabilities
 | API                                                          | Description                   |
 | ------------------------------------------------------------ | ---------------------- |
 | [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/VideoCapabilityUtil.html#getRecommendedResolution-int-int-) | Returns the recommended resolution that take into account the capability of hardware decoders |
+
+## InputDeviceEventHandler
+
+The input event processing tool class of the input device
+
+| API                                                          | Description                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [handleKeyEvent](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/InputDeviceEventHandler.html#handleKeyEvent-KeyEvent-) | Handle general key events|
+| [handleGenericMotionEvent](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/InputDeviceEventHandler.html#handleGenericMotionEvent-MotionEvent-) | Handle generic motion event|
+| [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/InputDeviceEventHandler.html#release--) | Release the underlying resources.|

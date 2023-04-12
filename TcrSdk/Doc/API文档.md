@@ -250,3 +250,12 @@
 | ------------------------------------------------------------ | ---------------------- |
 | [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/VideoCapabilityUtil.html#getRecommendedResolution-int-int-) | 返回推荐的视频分辨率 |
 
+## InputDeviceEventHandler
+
+外设输入事件处理器
+
+| API                                                          | 描述                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [handleKeyEvent](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/InputDeviceEventHandler.html#handleKeyEvent-KeyEvent-) | 处理按键事件|
+| [handleGenericMotionEvent](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/InputDeviceEventHandler.html#handleGenericMotionEvent-MotionEvent-) | 处理move类事件，包括鼠标移动、手柄移动等等。|
+| [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/utils/InputDeviceEventHandler.html#release--) | 释放资源 |
