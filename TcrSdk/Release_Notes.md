@@ -11,6 +11,10 @@
 
 - Fixed some bugs.
 
+# [Version 2.5.6](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.6/TcrSdk) (2023-04-19)
+Bug Fixes
+- Fix the problem of crashing on some models
+
 # [Version 2.5.5](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/2.5.5/TcrSdk) (2023-03-30)
 Bug Fixes
 - Fix the problem that the lite version of sdk fails after the app dependency is turned on and mixed
