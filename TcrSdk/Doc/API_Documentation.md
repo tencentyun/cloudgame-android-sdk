@@ -206,6 +206,8 @@ Rendering view APIs.
 | [setDisplayDebugView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setDisplayDebugView-boolean-) | Enable the debugging mode to display the debugging information                          |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/view/TcrRenderView.html#release--) | Release the underlying resources of this view                |
 | [setEnableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableSuperResolution-boolean-) | [Enable video super-resolution capability](API使用示例.md#TcrRenderView)|
+| [setEnableInputDeviceHandle](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableInputDeviceHandle-boolean-) | Set whether to enable TcrRenderView to process the peripheral input events|
+| [getKeyCodeMapping](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/view/TcrRenderView.html#getKeyCodeMapping--) | Returns a mapping table, based on which TcrRenderView maps local peripheral input events to cloud input events|
 
 ## PcTouchListener
 

@@ -1,5 +1,11 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.2.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.2.0/TcrSdk) (2023-04-21)
+**Features** 
+
+- TcrRenderView added the function of automatically processing peripheral input events
+- TcrRenderView new interface setEnableInputDeviceHandle&getKeyCodeMapping 
+
 # [Version 3.0.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.0.0/TcrSdk) (2023-04-07)
 
 **Features**
