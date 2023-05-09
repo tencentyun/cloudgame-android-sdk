@@ -1,5 +1,15 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.3.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.3.0/TcrSdk) (2023-05-08)
+**Features** 
+
+- TcrRenderView added Observer Call back the first frame rendering event
+
+**Bug Fixes**
+
+- Fixed some bugs.
+
+
 # [Version 3.2.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.2.0/TcrSdk) (2023-04-21)
 **Features** 
 
