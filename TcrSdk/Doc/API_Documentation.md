@@ -170,6 +170,13 @@ The cloud controller interaction class.
 | [onGamepadTrigger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.4.0/com/tencent/tcr/sdk/api/Gamepad.html#onGamepadTrigger-com.tencent.tcr.sdk.api.Gamepad.KeyType-int-boolean-) | Send a gamepad trigger event |
 
                                     
+## TouchScreen
+
+The cloud touch screen interaction class.
+
+| API                                                          | 描述                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [touch](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.4.0/com/tencent/tcr/sdk/api/TouchScreen.html#touch-float-float-int-int-int-int-long-) | Trigger the touch event of the cloud touch screen.         |
 
 
 ## CustomDataChannel

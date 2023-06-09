@@ -1,5 +1,11 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.4.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.4.0/TcrSdk) (2023-06-09)
+**Features** 
+
+- TcrSession adds 'getTouchScreen' method to get TouchScreen object
+- Added TouchScreen interface for interacting with the cloud touch screen
+
 # [Version 3.3.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.3.3/TcrSdk) (2023-06-07)
 **Bug Fixes**
 

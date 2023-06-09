@@ -170,7 +170,15 @@
 | [onGamepadKey](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.4.0/com/tencent/tcr/sdk/api/Gamepad.html#onGamepadKey-int-boolean-) | 触发云端手柄按键事件         |
 | [onGamepadTrigger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.4.0/com/tencent/tcr/sdk/api/Gamepad.html#onGamepadTrigger-com.tencent.tcr.sdk.api.Gamepad.KeyType-int-boolean-) | 触发云端手柄的L2R2触发键事件 |
 
-                                    
+
+## TouchScreen
+
+云端触摸屏交互类
+
+| API                                                          | 描述                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [touch](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.4.0/com/tencent/tcr/sdk/api/TouchScreen.html#touch-float-float-int-int-int-int-long-) | 触发云端触摸屏的触摸事件。         |
+
 
 
 ## CustomDataChannel
