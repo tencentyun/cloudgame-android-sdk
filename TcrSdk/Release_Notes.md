@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.4.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.4.1/TcrSdk) (2023-06-19)
+**Bug Fixes**
+
+- Fixed some bugs.
+
 # [Version 3.4.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.4.0/TcrSdk) (2023-06-09)
 **Features** 
 
