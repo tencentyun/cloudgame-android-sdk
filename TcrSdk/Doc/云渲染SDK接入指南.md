@@ -140,3 +140,9 @@ Android 4.1（API 级别 16）。
 
 2. **完整版SDK 和 轻量版SDK，该如何选择。**  
 轻量版SDK需要客户端程序先从网络上下载插件文件，在初始化SDK时传入给SDK进行动态加载。除此之外，二者在使用接口上并无区别。如果您对APP包体积大小有严格要求，可以选择集成轻量版SDK；否则，推荐使用完整版SDK。
+
+3. **存储权限 如何去除sdk中的存储权限说明。**
+```
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+            tools:node="remove"/>
+```
