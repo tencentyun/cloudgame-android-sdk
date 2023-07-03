@@ -15,7 +15,7 @@ implementation 'com.tencent.tcr:tcrsdk-full:3.5.0'
 To integrate the lightweight SDK, import the following content:
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:3.5.0' 
+implementation 'com.tencent.tcr:tcrsdk-lite:3.5.0' 
 ```
 
 2. Configure the network permissions in `AndroidManifest`:

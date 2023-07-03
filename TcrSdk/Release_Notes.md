@@ -1,5 +1,16 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.5.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.5.0/TcrSdk) (2023-07-03)
+**Features**
+
+- Optimize idle detection.
+- Audio and video sender maintains resolution under weak network conditions.
+- Optimize the connection establishment time, saving about 56% in SDP creation and parsing time.
+
+
+**Bug Fixes**
+- Fixed creating a profile per codec when negotiating available codecs. The fixed behavior is to only create the preferred codecs and the rest only when needed.
+- Fixed some known bugs.
 # [Version 3.4.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.4.1/TcrSdk) (2023-06-19)
 **Bug Fixes**
 

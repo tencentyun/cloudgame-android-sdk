@@ -19,7 +19,7 @@ implementation 'com.tencent.tcr:tcrsdk-full:3.5.0'
 如果选择集成轻量版SDK，则引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:3.5.0' 
+implementation 'com.tencent.tcr:tcrsdk-lite:3.5.0' 
 ```
 
 2. AndroidManifest 配置网络权限：
