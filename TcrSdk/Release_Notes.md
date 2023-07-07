@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.5.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.5.1/TcrSdk) (2023-07-07)
+**Bug Fixes**
+
+- Fix the issue that creating objects by calling TcrSdk.createTcrSession() in non-UI threads fails.
+
 # [Version 3.5.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.5.0/TcrSdk) (2023-07-03)
 **Features**
 
