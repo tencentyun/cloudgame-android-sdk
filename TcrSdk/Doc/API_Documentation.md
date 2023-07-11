@@ -52,7 +52,6 @@
 | [changeSeat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#changeSeat-java.lang.String-com.tencent.tcr.sdk.api.data.MultiUser.Role-int-com.tencent.tcr.sdk.api.AsyncCallback-) | Switch the role and seat of a user (`userID`) to `targetRole` and `targetPlayerIndex` respectively. |
 | [requestChangeSeat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#requestChangeSeat-java.lang.String-com.tencent.tcr.sdk.api.data.MultiUser.Role-int-com.tencent.tcr.sdk.api.AsyncCallback-) | Apply to the room owner to switch the role and seat of a player (`userID`) to `targetRole` and `targetPlayerIndex` respectively |
 | [setMicMute](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#setMicMute-java.lang.String-int-com.tencent.tcr.sdk.api.AsyncCallback-) | Change the mic status of someone  |
-| [setRemoteAudioProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteAudioPlayProfile-java.lang.String-java.lang.String-float-) | Set the gain of the volume level of another user|
 | [syncRoomInfo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#syncRoomInfo--) | Refresh the information of all seats |
 
 ### Key APIs

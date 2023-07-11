@@ -52,7 +52,6 @@
 | [changeSeat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#changeSeat-java.lang.String-com.tencent.tcr.sdk.api.data.MultiUser.Role-int-com.tencent.tcr.sdk.api.AsyncCallback-) | 改变某个用户的坐席 |
 | [requestChangeSeat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#requestChangeSeat-java.lang.String-com.tencent.tcr.sdk.api.data.MultiUser.Role-int-com.tencent.tcr.sdk.api.AsyncCallback-) | 申请切换席位 |
 | [setMicMute](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#setMicMute-java.lang.String-int-com.tencent.tcr.sdk.api.AsyncCallback-) | 改变某个用户的麦克风状态 |
-| [setRemoteAudioProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteAudioPlayProfile-java.lang.String-java.lang.String-float-) | 调整某个用户的音量 |
 | [syncRoomInfo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.6.0/com/tencent/tcr/sdk/api/TcrSession.html#syncRoomInfo--) | 刷新房间信息 |
 
 ### 按键接口

@@ -1,5 +1,11 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.6.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.6.0/TcrSdk) (2023-07-11)
+**Features**
+
+- Optimize lite package size 
+- Delete interface TcrSession#setRemoteAudioPlayProfile(String, String, float)
+
 # [Version 3.5.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.5.1/TcrSdk) (2023-07-07)
 **Bug Fixes**
 
