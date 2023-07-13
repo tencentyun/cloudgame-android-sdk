@@ -137,7 +137,8 @@ Android 4.1 (API level 16).
 To use the lightweight SDK, the client program needs to download the plugin file over the network and pass it in to the SDK during SDK initialization for dynamic loading. However, the two SDKs share the same APIs. If you have strict requirements for the application package size, you can choose the lightweight SDK; otherwise, we recommend you use the complete SDK.
 
 3. **Storage Permission How to remove the storage permission description in the sdk.**
+When your application fails to apply for storage permission or the read permission always returns false, you can use the code below to replace the storage permission declared in the sdk.
 ```
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-            tools:node="remove"/>
+            tools:node="replace"/>
 ```
