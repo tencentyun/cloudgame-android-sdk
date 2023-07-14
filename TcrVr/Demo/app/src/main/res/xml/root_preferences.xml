@@ -1,0 +1,29 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/pref_key_connect_data_zh">
+        <EditTextPreference
+                app:key="@string/pref_key_experienceCode"
+                app:title="@string/pref_key_experience_code_zh"
+                app:defaultValue="0CXLOG1D"
+                app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+                app:key="@string/pref_key_userId"
+                app:title="@string/pref_key_userId_zh"
+                app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/pref_key_startup_zh">
+        <SwitchPreferenceCompat
+                app:key="@string/pref_key_enable_fovPlus"
+                app:title="超视角渲染"
+                app:summaryOn="@string/enable_fov_plus_note"
+                app:summaryOff="@string/enable_fov_plus_note"/>
+<!--        <SwitchPreferenceCompat-->
+<!--                app:key="@string/pref_key_enable_FFR"-->
+<!--                app:title="固定注视点渲染"-->
+<!--                app:summaryOn="@string/enable_FFR_note"-->
+<!--                app:summaryOff="@string/enable_FFR_note"/>-->
+    </PreferenceCategory>
+
+</PreferenceScreen>
