@@ -135,13 +135,12 @@ Android 4.1（API 级别 16）。
 轻量版SDK需要客户端程序先从网络上下载插件文件，在初始化SDK时传入给SDK进行动态加载。除此之外，二者在使用接口上并无区别。如果您对APP包体积大小有严格要求，可以选择集成轻量版SDK；否则，推荐使用完整版SDK。
 
 3. **sdk储存权限 申明**  
-在Android API19以下的版本中，需要申明存储权限才能存储sdk日志。因此，为了保证SDK运行日志的正常写入，SDK中申明了存储权限。
-  SDK中申明了以下代码：
+  SDK为了收集异常日志用于排查问题，向手机路径 /sdcard/Android/data/应用包名/files写入了tcrlogs日志文件。而在android api19以下，向应用目录写入文件需要申明储存权限，所以在SDK中申明了以下代码：
   ```
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />  
   ```
     
-当你接入SDK且需要在业务app中使用储存权限时，可以使用replace来替换sdk中储存权限的申明：
+When you access the SDK and need to write content in the external directory, you need to remove the maxSdkVersion statement in the sdk, you can replace the storage permission statement in the sdk with the following code:
   ```
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="replace"/>
   ```

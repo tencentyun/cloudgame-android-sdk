@@ -137,8 +137,7 @@ Android 4.1 (API level 16).
 To use the lightweight SDK, the client program needs to download the plugin file over the network and pass it in to the SDK during SDK initialization for dynamic loading. However, the two SDKs share the same APIs. If you have strict requirements for the application package size, you can choose the lightweight SDK; otherwise, we recommend you use the complete SDK.
 
 3. **sdk storage permission statement**  
-In versions below Android API19, storage permissions need to be declared to store sdk logs. Therefore, in order to ensure the normal writing of the SDK running log, the storage permission is declared in the SDK.
-  The following codes are declared in the SDK:
+In order to collect exception logs for troubleshooting, the SDK writes the tcrlogs log file to the phone path /sdcard/Android/data/application package name/files. However, below android api19, writing files to the application directory needs to declare the storage permission, so the following code is declared in the SDK:
   ```
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />  
   ```
