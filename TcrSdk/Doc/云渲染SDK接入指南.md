@@ -22,14 +22,7 @@ implementation 'com.tencent.tcr:tcrsdk-full:3.6.1'
 implementation 'com.tencent.tcr:tcrsdk-lite:3.6.1' 
 ```
 
-2. AndroidManifest 配置网络权限：
-
-```java
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.INTERNET" />
-```
-
-3. 初始化SDK
+2. 初始化SDK
 
 ```java
 // 初始化SDK
@@ -38,7 +31,7 @@ TcrSdk.getInstance().init(this, null, mInitSdkCallback);
 
 如果引用的是轻量版SDK，则需要应用先下载SDK插件，再调用init()函数时通过第二个参数传入插件文件的路径。下载SDK插件的URL可以通过 TcrSdk.getPluginUrl() 获取。
 
-4. 初始化SDK，异步回调成功后，可以创建和初始化会话对象、渲染视图。
+3. 初始化SDK，异步回调成功后，可以创建和初始化会话对象、渲染视图。
 
 ```java
 // 创建和初始化会话对象
@@ -55,7 +48,7 @@ mRenderView = TcrSdk.getInstance().createTcrRenderView(MainActivity.this, mTcrSe
 mTcrSession.setRenderView(mRenderView);
 ```
 
-5. 创建会话对象后会自动初始化对象，初始化成功后会通过步骤4传入的mSessionEventObserver对象向外通知事件。其中Session初始化完成的事件为TcrSession.Event.EVENT_INITED，在通知的事件中获得clientSession，用于进一步请求业务后台，再调用云API，启动指定应用实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。 
+4. 创建会话对象后会自动初始化对象，初始化成功后会通过步骤4传入的mSessionEventObserver对象向外通知事件。其中Session初始化完成的事件为TcrSession.Event.EVENT_INITED，在通知的事件中获得clientSession，用于进一步请求业务后台，再调用云API，启动指定应用实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。 
 事件通知:
 
 ```java
@@ -118,7 +111,7 @@ CloudRenderBiz.getInstance().startGame(clientSession, response -> {
 
 请求业务后台的接口由业务自定义，在[Demo](../Demo)例子中，封装在CloudRenderBiz类里。
 
-6. 除了能在客户端上看到云端应用的画面，我们通常还需要能操作应用，即把客户端的操作同步给云端。SDK提供了KeyBoard、Mouse、GamePad等抽象对象，客户端可以调用这些对象的接口，实现与云端输入设备的交互。  
+5. 除了能在客户端上看到云端应用的画面，我们通常还需要能操作应用，即把客户端的操作同步给云端。SDK提供了KeyBoard、Mouse、GamePad等抽象对象，客户端可以调用这些对象的接口，实现与云端输入设备的交互。  
 同时，Android SDK还实现了默认的屏幕触摸处理器：MobileTouchListener 和 PcTouchListener。MobileTouchListener针对云端为手机应用的场景，将本地屏幕触摸事件同步给云端；PcTouchListener针对云端为PC应用的场景，将本地屏幕触摸事件转化为云端的鼠标移动、单击、长按、双击事件。您也可以自定义实现自己的屏幕触摸处理器。将屏幕触摸处理器设置给TcrRenderView即可使用。
 
 ```java
@@ -141,9 +134,14 @@ Android 4.1（API 级别 16）。
 2. **完整版SDK 和 轻量版SDK，该如何选择。**  
 轻量版SDK需要客户端程序先从网络上下载插件文件，在初始化SDK时传入给SDK进行动态加载。除此之外，二者在使用接口上并无区别。如果您对APP包体积大小有严格要求，可以选择集成轻量版SDK；否则，推荐使用完整版SDK。
 
-3. **存储权限 如何去除sdk中的存储权限说明。**
-当你的app出现无法申请存储权限的时候或者获取读取权限总是返回false的情况下，可以通过下方的代码替换掉sdk中申明的存储权限。
-```
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-            tools:node="replace"/>
-```
+3. **sdk储存权限 申明**  
+在Android API19以下的版本中，需要申明存储权限才能存储sdk日志。因此，为了保证SDK运行日志的正常写入，SDK中申明了存储权限。
+  SDK中申明了以下代码：
+  ```
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />  
+  ```
+    
+当你接入SDK且需要在业务app中使用储存权限时，可以使用replace来替换sdk中储存权限的申明：
+  ```
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="replace"/>
+  ```
