@@ -7,7 +7,7 @@ android {
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
     namespace 'com.tencent.demo'
-    compileSdk 32
+    compileSdk 30
 
     signingConfigs {
         release {
@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId "com.tencent.demo"
-        minSdk 24
-        targetSdk 26
+        minSdk 30
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
@@ -68,9 +68,7 @@ android {
 
 dependencies {
     implementation 'androidx.preference:preference:1.1.1'
-    implementation 'com.google.android.material:material:1.4.0'
     picoImplementation "com.tencent.tcr:vr-sdk-pico:0.2.1"
     oculusImplementation "com.tencent.tcr:vr-sdk-oculus:0.2.1"
     implementation 'pub.devrel:easypermissions:3.0.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
 }

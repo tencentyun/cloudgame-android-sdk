@@ -23,7 +23,6 @@
             android:allowBackup="true"
             android:fullBackupContent="@xml/backup_rules"
             tools:targetApi="31"
-            android:dataExtractionRules="@xml/data_extraction_rules"
             android:label="${app_name}"
             android:icon="@drawable/xr_launcher"
             android:roundIcon="@drawable/xr_launcher"
