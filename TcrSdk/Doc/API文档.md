@@ -23,6 +23,7 @@
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | 启动会话，拿到云端返回的serverSession后发起SDK到云端的连接 |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | 销毁会话，断开本地和云端的连接，释放资源                   |
 | [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | 设置会话的渲染视图，SDK会将云端画面渲染到此视图上          |
+| [setDisableCloudInput](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#setDisableCloudInput-boolean-) | 关闭云端输入法          |
 
 ### 音视频相关接口
 
@@ -93,6 +94,9 @@
 | [MULTI_USER_SEAT_INFO](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#MULTI_USER_SEAT_INFO) | 多人云游房间信息刷新 |
 | [MULTI_USER_ROLE_APPLY](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#MULTI_USER_ROLE_APPLY) | 角色切换申请信息 |
 | [CURSOR_IMAGE_INFO](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#CURSOR_IMAGE_INFO) | 鼠标图片信息 |
+| [VIDEO_STREAM_CONFIG_CHANGED](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#VIDEO_STREAM_CONFIG_CHANGED) | 视频流分辨率变化 |
+| [INPUT_STATE_CHANGE](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#INPUT_STATE_CHANGE) | 输入框点击状态变化 |
+
 
 
 
