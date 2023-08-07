@@ -1,5 +1,14 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.7.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.7.0/TcrSdk) (2023-08-07)
+**Bug Fixes**
+- Fixed the issue where calling the connectGamepad() interface failed in the STATE_CONNECTED event.
+
+**Features**
+- Added the VIDEO_STREAM_CONFIG_CHANGED message for video stream resolution changes.
+- Added the INPUT_STATE_CHANGE message for remote input box click status.
+- Added the setDisableCloudInput() interface for disabling cloud input method.
+
 # [Version 3.6.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.6.1/TcrSdk) (2023-07-13)
 **Bug Fixes**
 
