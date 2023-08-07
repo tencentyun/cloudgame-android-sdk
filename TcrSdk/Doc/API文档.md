@@ -23,7 +23,6 @@
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | 启动会话，拿到云端返回的serverSession后发起SDK到云端的连接 |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | 销毁会话，断开本地和云端的连接，释放资源                   |
 | [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | 设置会话的渲染视图，SDK会将云端画面渲染到此视图上          |
-| [setDisableCloudInput](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#setDisableCloudInput-boolean-) | 关闭云端输入法          |
 
 ### 音视频相关接口
 
@@ -45,6 +44,7 @@
 | [restartCloudApp](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#restartCloudApp--) | 重启云端应用进程           |
 | [pasteText](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#pasteText-java.lang.String-) | 粘贴文本到云端应用的输入框 |
 | [setRemoteDesktopResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteDesktopResolution-int-int-) | 设置云端桌面的分辨率   |
+| [setDisableCloudInput](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.7.0/com/tencent/tcr/sdk/api/TcrSession.html#setDisableCloudInput-boolean-) | 关闭云端输入法          |
 
 ### 多人云游接口
 
