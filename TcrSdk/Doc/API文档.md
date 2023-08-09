@@ -23,6 +23,8 @@
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | 启动会话，拿到云端返回的serverSession后发起SDK到云端的连接 |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | 销毁会话，断开本地和云端的连接，释放资源                   |
 | [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | 设置会话的渲染视图，SDK会将云端画面渲染到此视图上          |
+| [setVideoSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#setVideoSink-com.tencent.tcr.sdk.api.VideoSink-) | 设置会话的视频流回调接口   |
+| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#getEGLContext--) | 获取OpenGL EGLContext   |
 
 ### 音视频相关接口
 
@@ -134,6 +136,12 @@
 | ------------------------------------------------------------ | ------------ |
 | [onVideoBufferCallback](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onVideoBufferCallback-java.nio.ByteBuffer-int-int-long-) | 视频帧数据回调 |
 | [onMediaCodecFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onMediaCodecFormat-java.lang.String-int-int-) | MediaFormat初始化参数 |
+
+## VideoSink
+自定义视频数据帧回调，回调解码后的视频帧。
+| API                                                          | 描述         |
+| ------------------------------------------------------------ | ------------ |
+| [onFrame](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/VideoSink.html#onFrame-com.tencent.tcr.sdk.api.VideoFrame-) | 视频帧数据回调 |
 
 ## Keyboard
 

@@ -23,6 +23,8 @@
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | Starts the session. This method should only be called once |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | Release the session                  |
 | [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | Set the rendering view for this session, and thus the SDK will render the streaming content to the view         |
+| [setVideoSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#setVideoSink-com.tencent.tcr.sdk.api.VideoSink-) | Sets a video sink for this session.   |
+| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/TcrSession.html#getEGLContext--) | Get the OpenGL EGLContext used in the session for generating VideoFrame   |
 
 ### Audio/Video APIs
 
@@ -130,6 +132,11 @@ Customize the video data frame callback to call back the raw video data byte str
 | [onVideoBufferCallback](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onVideoBufferCallback-java.nio.ByteBuffer-int-int-long-) | Called when a piece of video raw data is ready |
 | [onMediaCodecFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/VideoFrameBufferCallback.html#onMediaCodecFormat-java.lang.String-int-int-) | Called when the video format has changed. You may need these output parameters to build or update your `link MediaFormat`. |
 
+## VideoSink
+This interface represents a video sink.
+| API                                                          | 描述         |
+| ------------------------------------------------------------ | ------------ |
+| [onFrame](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.8.0/com/tencent/tcr/sdk/api/VideoSink.html#onVideoFrame-com.tencent.tcr.sdk.api.VideoFrame-) | Called when a video frame is received. |
 ## Keyboard
 
 The cloud keyboard interaction class.
