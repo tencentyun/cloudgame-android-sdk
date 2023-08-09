@@ -1,9 +1,18 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.8.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.8.1/TcrSdk) (2023-08-09)
+**Bug Fixes**
+- Fixing the issue of failed creation of custom data channels.
+
 # [Version 3.8.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.8.0/TcrSdk) (2023-08-09)
 **Features**
 - TcrSession new interface setVideoSink && getEGLContext
 - Add video stream callback interface VideoSink after decoding
+
+# [Version 3.7.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.7.1/TcrSdk) (2023-08-09)
+**Bug Fixes**
+- Fixing the issue of failed creation of custom data channels.
+
 # [Version 3.7.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.7.0/TcrSdk) (2023-08-07)
 **Bug Fixes**
 - Fixed the issue where calling the connectGamepad() interface failed in the STATE_CONNECTED event.
