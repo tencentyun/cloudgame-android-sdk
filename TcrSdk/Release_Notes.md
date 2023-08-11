@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.8.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.8.2/TcrSdk) (2023-08-11)
+**Bug Fixes**
+- Fix crash issue when TcrSession stopped.
+
 # [Version 3.8.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.8.1/TcrSdk) (2023-08-09)
 **Bug Fixes**
 - Fixing the issue of failed creation of custom data channels.
