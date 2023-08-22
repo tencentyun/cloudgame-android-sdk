@@ -228,6 +228,7 @@
 | [setEnableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableSuperResolution-boolean-) | [开启/关闭视频流超分辨率能力](API使用示例.md#TcrRenderView)|
 | [setEnableInputDeviceHandle](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableInputDeviceHandle-boolean-) | 开启/关闭处理外设输入能力|
 | [getKeyCodeMapping](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#getKeyCodeMapping--) | 获取android与windows按键码映射表|
+| [setEnableFrameCallback](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableFrameCallback-float-) | 开启关闭渲染视频帧回调|
 
 ## PcZoomHandler
 

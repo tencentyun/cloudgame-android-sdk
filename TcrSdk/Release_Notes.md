@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.9.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.9.0/TcrSdk) (2023-08-22)
+**Features**
+- TcrRenderView adds interface setEnableFrameCallback(float) to enable and disable the rendering video frame callback
+- TcrRenderView.Observer added callback OnFrame(Bitmap)
+
 # [Version 3.8.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.8.2/TcrSdk) (2023-08-11)
 **Bug Fixes**
 - Fix crash issue when TcrSession stopped.

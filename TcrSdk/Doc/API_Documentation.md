@@ -221,7 +221,7 @@ Rendering view APIs.
 | [setEnableSuperResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableSuperResolution-boolean-) | [Enable video super-resolution capability](API使用示例.md#TcrRenderView)|
 | [setEnableInputDeviceHandle](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableInputDeviceHandle-boolean-) | Set whether to enable TcrRenderView to process the peripheral input events|
 | [getKeyCodeMapping](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#getKeyCodeMapping--) | Returns a mapping table, based on which TcrRenderView maps local peripheral input events to cloud input events|
-
+| [setEnableFrameCallback](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.9.0/com/tencent/tcr/sdk/api/view/TcrRenderView.html#setEnableFrameCallback-float-) | Turn on and off the rendering video frame callback|
 ## PcTouchListener
 
 This class handles touch event logic
