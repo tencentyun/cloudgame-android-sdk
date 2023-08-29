@@ -12,6 +12,7 @@
 | [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSdk.html#init-Context-java.lang.String-com.tencent.tcr.sdk.api.AsyncCallback-) | Initialize the SDK             |
 | [createTcrSession](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrSession-com.tencent.tcr.sdk.api.TcrSessionConfig-) | Create a session object       |
 | [createTcrRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrRenderView-Context-com.tencent.tcr.sdk.api.TcrSession-com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType-) | Create a rendering view   |
+| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSdk.html#getEGLContext--) | Get the OpenGL EGLContext   |
 
 
 ## TcrSession
@@ -23,8 +24,6 @@
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | Starts the session. This method should only be called once |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | Release the session                  |
 | [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | Set the rendering view for this session, and thus the SDK will render the streaming content to the view         |
-| [setVideoSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setVideoSink-com.tencent.tcr.sdk.api.VideoSink-) | Sets a video sink for this session.   |
-| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#getEGLContext--) | Get the OpenGL EGLContext used in the session for generating VideoFrame   |
 
 ### Audio/Video APIs
 
@@ -37,7 +36,9 @@
 | [setEnableLocalAudio](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalAudio-boolean-) | Enable or disable the local audio track that is captured from the mic |
 | [setEnableLocalVideo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalVideo-boolean-) | Enable or disable the local video track that is captured from the camera |
 | [setLocalVideoProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoProfile-int-int-int-int-int-boolean-) | Set the local video profile   |
-
+| [setVideoSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setVideoSink-com.tencent.tcr.sdk.api.VideoSink-) | Sets a video sink for this session.   |
+| [setAudioSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setAudioSink-com.tencent.tcr.sdk.api.AudioSink-) | Sets a audio sink for this session.   |
+| [setEnableAudioPlaying](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableAudioPlaying-boolean-) | Control session audio playback switch   |
 
 ### Cloud application interaction APIs
 
@@ -112,17 +113,16 @@ The cloud game session configuration class containing configuration of getting a
 | [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold) | set the idleness detection threshold |
 | [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#lowFpsThresholdCount) | Set the threshold for a low frame rate notification |
 | [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback) | Set custom video data callback |
-| [audioSampleCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#audioSampleCallback) | Set the consumer for WebRTC decoded audio data. If not set, the decoded audio data will be played directly |
 | [enableLowLegacyRendering​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#enableLowLegacyRendering) | enable low legacy rendering |
 
-## AudioSampleCallback
+## AudioSink
 
 Audio sample data Callback Interface
 
 | API                                                          | Description         |
 | ------------------------------------------------------------ | ------------ |
-| [onAudioData](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/AudioSampleCallback.html#onAudioData-byte:A-int-int-) | Called when a piece of audio data is ready |
-| [onAudioFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/AudioSampleCallback.html#onAudioFormat-int-int-int-) | Called when the audio sample format has changed. You may need these output parameters to build or update your `AudioFormat` |
+| [onAudioData](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/AudioSink.html#onAudioData-byte:A-int-int-) | Called when a piece of audio data is ready |
+| [onAudioFormat](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.10.0/com/tencent/tcr/sdk/api/AudioSink.html#onAudioFormat-int-int-int-) | Called when the audio sample format has changed. You may need these output parameters to build or update your `AudioFormat` |
 
 ## VideoFrameBufferCallback
 Customize the video data frame callback to call back the raw video data byte stream before decoding. Set the callback to decode and render the screen by yourself after getting the data

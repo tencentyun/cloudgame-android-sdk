@@ -1,5 +1,13 @@
 - [中文文档](发布记录.md)
-
+# [Version 3.10.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.10.0/TcrSdk) (2023-08-29)
+**Features**
+- Added SetAudioSink for TcrSession to return audio data
+- Added setEnableAudioPlaying interface to TcrSession to control whether to play audio
+- TcrSdk adds getEGLContext interface to return glContext
+- TcrSessionConfig delete AudioSampleCallback, AudioSampleCallback interface renamed to AudioSink
+**Bug Fixes**
+- Fixed the problem of black screen after reconnection
+- Fix the problem that long press and short press listeners cannot coexist
 # [Version 3.9.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.9.0/TcrSdk) (2023-08-22)
 **Features**
 - TcrRenderView adds interface setEnableFrameCallback(float) to enable and disable the rendering video frame callback
