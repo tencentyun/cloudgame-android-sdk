@@ -5,6 +5,7 @@
 - Added setEnableAudioPlaying interface to TcrSession to control whether to play audio
 - TcrSdk adds getEGLContext interface to return glContext
 - TcrSessionConfig delete AudioSampleCallback, AudioSampleCallback interface renamed to AudioSink
+  
 **Bug Fixes**
 - Fixed the problem of black screen after reconnection
 - Fix the problem that long press and short press listeners cannot coexist
