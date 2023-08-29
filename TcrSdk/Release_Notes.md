@@ -1,4 +1,8 @@
 - [中文文档](发布记录.md)
+# [Version 3.10.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.10.1/TcrSdk) (2023-08-29)
+**Bug Fixes**
+- Fix the crash problem when exiting
+
 # [Version 3.10.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.10.0/TcrSdk) (2023-08-29)
 **Features**
 - Added SetAudioSink for TcrSession to return audio data
