@@ -1,4 +1,9 @@
 - [中文文档](发布记录.md)
+# [Version 3.11.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.11.0/TcrSdk) (2023-09-12)
+**Features**
+- TcrSession#Event#STATE_CLOSED event data return value changed to int type
+- TcrCode adds SessionStop to define session exit event code
+
 # [Version 3.10.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.10.1/TcrSdk) (2023-08-29)
 **Bug Fixes**
 - Fix the crash problem when exiting
