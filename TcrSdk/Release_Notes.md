@@ -1,4 +1,10 @@
 - [中文文档](发布记录.md)
+
+# [Version 3.11.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.11.2/TcrSdk) (2023-09-13)
+**Bug Fixes**
+- Fixed memory leak problem
+- Fixed status error when SDK is initialized repeatedly
+
 # [Version 3.11.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.11.1/TcrSdk) (2023-09-13)
 **Features**
 - TcrSession#Event#STATE_CLOSED event data return value changed to int type
