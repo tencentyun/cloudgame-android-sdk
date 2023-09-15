@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.12.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.12.0/TcrSdk) (2023-09-15)
+**Features**
+- TcrSession#Event#Added GAME_PROCESS_STOPPED event to notify the end of the game process
+
 # [Version 3.11.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.11.2/TcrSdk) (2023-09-13)
 **Bug Fixes**
 - Fixed memory leak problem
