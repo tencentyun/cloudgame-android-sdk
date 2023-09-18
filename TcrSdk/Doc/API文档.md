@@ -107,15 +107,16 @@
 [云游会话配置类-设置配置](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html)
 
 
-| API                                                          | 描述         |
-| ------------------------------------------------------------ | ------------ |
-| [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#build--) | 构造出一个TcrSessionConfig |
-| [observer​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#observer) | 设置事件通知监听|
-| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#connectTimeout) | 设置连接超时时间 |
-| [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold) | 设置空闲检测阈值 |
-| [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#lowFpsThresholdCount) | 设置低帧率通知阈值 |
-| [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback) | 设置自定义视频数据回调 |
-| [enableLowLegacyRendering​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#enableLowLegacyRendering) | 开启低延时渲染 |
+| API                                                                                                                                                                  | 描述                    |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#build--)                              | 构造出一个TcrSessionConfig |
+| [observer​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#observer)                                 | 设置事件通知监听              |
+| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#connectTimeout)                     | 设置连接超时时间              |
+| [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold)                      | 设置空闲检测阈值              |
+| [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#lowFpsThresholdCount)              | 设置低帧率通知阈值             |
+| [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback)       | 设置自定义视频数据回调           |
+| [enableLowLegacyRendering​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#enableLowLegacyRendering) | 开启低延时渲染               |
+| [preferredCodec​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#preferredCodec)                     | 设置首选编解码器              |
 
 
 

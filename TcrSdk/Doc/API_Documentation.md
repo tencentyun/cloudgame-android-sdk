@@ -105,15 +105,16 @@ The cloud game session configuration class containing configuration of getting a
 [TcrSession config builer]()
 
 
-| API                                                          | Description         |
-| ------------------------------------------------------------ | ------------ |
-| [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#build--) | Construct a `TcrSessionConfig` |
-| [observer​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#observer) |  set the observer of the TcrSession|
-| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#connectTimeout) | Set the connection timeout period |
-| [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold) | set the idleness detection threshold |
+| API                                                          | Description                                         |
+| ------------------------------------------------------------ |-----------------------------------------------------|
+| [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#build--) | Construct a `TcrSessionConfig`                      |
+| [observer​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#observer) | Set the observer of the TcrSession                  |
+| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#connectTimeout) | Set the connection timeout period                   |
+| [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold) | Set the idleness detection threshold                |
 | [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#lowFpsThresholdCount) | Set the threshold for a low frame rate notification |
-| [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback) | Set custom video data callback |
-| [enableLowLegacyRendering​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#enableLowLegacyRendering) | enable low legacy rendering |
+| [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback) | Set custom video data callback                      |
+| [enableLowLegacyRendering​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#enableLowLegacyRendering) | Enable low legacy rendering                         |
+| [preferredCodec​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.13.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#preferredCodec)                     | Set perferred codec                                 |
 
 ## AudioSink
 
