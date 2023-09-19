@@ -3,7 +3,7 @@
 ## 一、SDK
 相关SDK已发布到mavenCentral()，推荐通过Maven方式引用。
 
-- implementation "com.tencent.tcr:tcr-vr-base:1.0.3"
+- implementation "com.tencent.tcr:tcr-vr-base:1.3.0"
 
 最新版本请参考[发布记录](../发布记录.md)
 
@@ -18,7 +18,7 @@
 - 客户端需要先获取瞳距、FOV等信息, 之后构建```TcrXrSdk.Builder```作为参数调用```TcrXrSdk.init()```进行初始化
 - 初始完成后客户端能够通过```TcrXrObserver.onEvent(STATE_INITED)```事件获得ClientSession
 - 客户端通过ClientSession请求业务后台获取ServerSession后能够调用```TcrXrSdk.start()```发起连接
-- 连接建立完成后客户端能够持续收到```TcrXrObserver.onEvent(ON_FRAME)```事件获得视频帧```VideoFrame```
+- 连接建立完成后客户端能够持续收到```TcrXrObserver.onEvent(ON_FRAME)```事件获得视频帧```VideoFrame```, 客户端获得视频帧之后能够拿到渲染所需的纹理、位姿等数据
 - 客户端需要监听```TcrXrObserver.onEvent(REQUEST_VR_INFO)```事件, 在收到事件后查询XR事件并调用```TcrXrSdk.sendVrInfo()```将数据发送到云端
 
 
@@ -74,6 +74,6 @@
 | [getPose](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#getPose--) | 返回生成这一帧画面的位姿 |
 | [getHeight](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#getHeight--) | 返回视频帧图像的高 |
 | [getWidth](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#getWidth--) | 返回视频帧图像的宽 |
-| [getTextureId](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#getTextureId--) | 返回该视频帧的OpenGL纹理ID |
+| [updateTexture](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#updateTexture--) | 更新视频帧纹理并返回该纹理ID |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#release--) | 引用计数减1 |
 | [retain](https://tencentyun.github.io/cloudgame-android-sdk/tcrvr/1.3.0/com/tencent/tcr/xr/api/VideoFrame.html#retain--) | 引用计数加1 |
