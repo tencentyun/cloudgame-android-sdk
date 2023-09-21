@@ -6,13 +6,14 @@
 
 ### Basic SDK APIs
 
-| API                                                          | Description                  |
-| ------------------------------------------------------------ | --------------------- |
-| [setLogger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#setLogger-com.tencent.tcr.sdk.api.TcrLogger-) | Set the log callback object and level |
-| [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#init-Context-java.lang.String-com.tencent.tcr.sdk.api.AsyncCallback-) | Initialize the SDK             |
-| [createTcrSession](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrSession-com.tencent.tcr.sdk.api.TcrSessionConfig-) | Create a session object       |
-| [createTcrRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrRenderView-Context-com.tencent.tcr.sdk.api.TcrSession-com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType-) | Create a rendering view   |
-| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#getEGLContext--) | Get the OpenGL EGLContext   |
+| API                                                                                                                                                                                                                                                      | Description                           |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
+| [setLogger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#setLogger-com.tencent.tcr.sdk.api.TcrLogger-)                                                                                           | Set the log callback object and level |
+| [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#init-Context-java.lang.String-com.tencent.tcr.sdk.api.AsyncCallback-)                                                                        | Initialize the SDK                    |
+| [createTcrSession](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrSession-com.tencent.tcr.sdk.api.TcrSessionConfig-)                                                                      | Create a session object               |
+| [createTcrRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrRenderView-Context-com.tencent.tcr.sdk.api.TcrSession-com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType-) | Create a rendering view               |
+| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#getEGLContext--)                                                                                                                    | Get the OpenGL EGLContext             |
+| [setEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#setEGLContext--)                                                                                                                    | Set the OpenGL EGLContext             |
 
 
 ## TcrSession
