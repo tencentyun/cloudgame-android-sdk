@@ -7,12 +7,13 @@
 ### SDK 基础接口
 
 | API                                                          | 描述                  |
-| ------------------------------------------------------------ | --------------------- |
-| [setLogger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#setLogger-com.tencent.tcr.sdk.api.TcrLogger-) | 设置SDK的日志回调级别 |
-| [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#init-Context-java.lang.String-com.tencent.tcr.sdk.api.AsyncCallback-) | 初始化SDK             |
-| [createTcrSession](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrSession-com.tencent.tcr.sdk.api.TcrSessionConfig-) | 创建Tcr会话对象       |
-| [createTcrRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrRenderView-Context-com.tencent.tcr.sdk.api.TcrSession-com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType-) | 创建Tcr渲染视图对象   |
-| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#getEGLContext--) | 获取OpenGL EGLContext   |
+| ------------------------------------------------------------ |---------------------|
+| [setLogger](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#setLogger-com.tencent.tcr.sdk.api.TcrLogger-) | 设置SDK的日志回调级别        |
+| [init](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#init-Context-java.lang.String-com.tencent.tcr.sdk.api.AsyncCallback-) | 初始化SDK              |
+| [createTcrSession](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrSession-com.tencent.tcr.sdk.api.TcrSessionConfig-) | 创建Tcr会话对象           |
+| [createTcrRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#createTcrRenderView-Context-com.tencent.tcr.sdk.api.TcrSession-com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType-) | 创建Tcr渲染视图对象         |
+| [getEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#getEGLContext--) | 获取OpenGL EGLContext |
+| [setEGLContext](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.14.0/com/tencent/tcr/sdk/api/TcrSdk.html#setEGLContext--)                                                                                                                    | 设置OpenGL EGLContext |
 
 ## TcrSession
 
