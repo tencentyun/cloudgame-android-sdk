@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.14.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.14.1/TcrSdk) (2023-09-26)
+**Bug Fixes**
+- Fixed the problem of audio related statistics being 0 
+- Fixed the problem that the lite package cannot use audioSink 
+
 # [Version 3.14.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.14.0/TcrSdk) (2023-09-21)
 **Features**
 - Added the setEGLContext interface to TcrSdk, which supports setting a custom EGLContext. If this interface is not called, TcrSdk will create a default EGLContext internally.
