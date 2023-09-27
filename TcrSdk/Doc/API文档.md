@@ -274,3 +274,12 @@
 | API                                                          | 描述                   |
 | ------------------------------------------------------------ | ---------------------- |
 | [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/utils/VideoCapabilityUtil.html#getRecommendedResolution-int-int-) | 返回推荐的视频分辨率 |
+
+## CustomAudioBufferUtil
+用于自定义采集音频，获取每个ByteBuffer的大小。
+
+| API                                                          | 描述                     |
+| ------------------------------------------------------------ |------------------------|
+| [getCustomAudioCaptureDataBufferSize](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/utils/CustomAudioBufferUtil.html#getCustomAudioCaptureDataBufferSize-int-boolean-) | 返回自定义采集音频ByteBuffer的大小 |
+
+

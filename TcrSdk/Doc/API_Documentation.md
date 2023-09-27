@@ -266,3 +266,10 @@ A tool class for querying video decoding capabilities
 | API                                                          | Description                   |
 | ------------------------------------------------------------ | ---------------------- |
 | [getRecommendedResolution](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/utils/VideoCapabilityUtil.html#getRecommendedResolution-int-int-) | Returns the recommended resolution that take into account the capability of hardware decoders |
+
+## CustomAudioBufferUtil
+A utility class for obtaining the size of the ByteBuffer for custom audio capture.
+
+| API                                                          | 描述                     |
+| ------------------------------------------------------------ |------------------------|
+| [getCustomAudioCaptureDataBufferSize](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/utils/CustomAudioBufferUtil.html#getCustomAudioCaptureDataBufferSize-int-boolean-) | Return the size of the ByteBuffer for custom captured audio. |
