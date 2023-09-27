@@ -28,18 +28,19 @@
 
 ### Audio/Video APIs
 
-| API                                                          | Description                              |
-| ------------------------------------------------------------ | --------------------------------- |
-| [pauseStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#pauseStreaming--) | Pause the media stream                   |
-| [resumeStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#resumeStreaming--) | Resume the media stream                    |
-| [setRemoteVideoProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteVideoProfile-int-int-int-com.tencent.tcr.sdk.api.AsyncCallback-) | Set the remote video profile          |
-| [setRemoteAudioPlayProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteAudioPlayProfile-float-) | Set the remote audio profile                 |
-| [setEnableLocalAudio](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalAudio-boolean-) | Enable or disable the local audio track that is captured from the mic |
+| API                                                          | Description                                                              |
+| ------------------------------------------------------------ |--------------------------------------------------------------------------|
+| [pauseStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#pauseStreaming--) | Pause the media stream                                                   |
+| [resumeStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#resumeStreaming--) | Resume the media stream                                                  |
+| [setRemoteVideoProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteVideoProfile-int-int-int-com.tencent.tcr.sdk.api.AsyncCallback-) | Set the remote video profile                                             |
+| [setRemoteAudioPlayProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteAudioPlayProfile-float-) | Set the remote audio profile                                             |
+| [setEnableLocalAudio](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalAudio-boolean-) | Enable or disable the local audio track that is captured from the mic    |
 | [setEnableLocalVideo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalVideo-boolean-) | Enable or disable the local video track that is captured from the camera |
-| [setLocalVideoProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoProfile-int-int-int-int-int-boolean-) | Set the local video profile   |
-| [setVideoSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setVideoSink-com.tencent.tcr.sdk.api.VideoSink-) | Sets a video sink for this session.   |
-| [setAudioSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setAudioSink-com.tencent.tcr.sdk.api.AudioSink-) | Sets a audio sink for this session.   |
-| [setEnableAudioPlaying](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableAudioPlaying-boolean-) | Control session audio playback switch   |
+| [setLocalVideoProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setLocalVideoProfile-int-int-int-int-int-boolean-) | Set the local video profile                                              |
+| [setVideoSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setVideoSink-com.tencent.tcr.sdk.api.VideoSink-) | Sets a video sink for this session.                                      |
+| [setAudioSink](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setAudioSink-com.tencent.tcr.sdk.api.AudioSink-) | Sets a audio sink for this session.                                      |
+| [setEnableAudioPlaying](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableAudioPlaying-boolean-) | Control session audio playback switch                                    |
+| [sendCustomAudioData](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSession.html#sendCustomAudioData-java.nio.ByteBuffer-long-) | Send custom captured audio data.                                                      |
 
 ### Cloud application interaction APIs
 
@@ -116,6 +117,7 @@ The cloud game session configuration class containing configuration of getting a
 | [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback) | Set custom video data callback                      |
 | [enableLowLegacyRendering​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#enableLowLegacyRendering) | Enable low legacy rendering                         |
 | [preferredCodec​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#preferredCodec)                     | Set perferred codec                                 |
+| [enableCustomAudioCapture​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.15.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#enableCustomAudioCapture-boolean-int-boolean-)                     | Enable custom audio capture                         |
 
 ## AudioSink
 

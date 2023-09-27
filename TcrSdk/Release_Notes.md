@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.15.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.15.0/TcrSdk) (2023-09-27)
+**Features**
+- Support custom audio capture. It can be enabled through TcrSessionConfig. After enabling the custom audio capture function, custom audio data can be sent through TcrSession#sendCustomAudioData.
+
 # [Version 3.14.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.14.1/TcrSdk) (2023-09-26)
 **Bug Fixes**
 - Fixed the problem of audio related statistics being 0 
