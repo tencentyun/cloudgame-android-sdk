@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.16.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.0/TcrSdk) (2023-10-12)
+**Features**
+- Optimize the reconnection module, theoretically reducing the reconnection time by about 60%.
+- Optimize the logic of obtaining performance data, and remove invalid logs.
+
 # [Version 3.15.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.15.0/TcrSdk) (2023-09-27)
 **Features**
 - Support custom audio capture. It can be enabled through TcrSessionConfig. After enabling the custom audio capture function, custom audio data can be sent through TcrSession#sendCustomAudioData.
