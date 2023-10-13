@@ -2,7 +2,7 @@
 
 # [Version 3.16.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.0/TcrSdk) (2023-10-12)
 **Features**
-- Optimize the reconnection module, theoretically reducing the reconnection time by about 60%.
+- Optimize the reconnection process, reducing the reconnection time.
 - Optimize the logic of obtaining performance data, and remove invalid logs.
 
 # [Version 3.15.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.15.0/TcrSdk) (2023-09-27)
