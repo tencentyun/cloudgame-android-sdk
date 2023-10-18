@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.16.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.1/TcrSdk) (2023-10-18)
+**Bug Fixes**
+- Fixed crash issues during partial system initialization.
+
 # [Version 3.16.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.0/TcrSdk) (2023-10-12)
 **Features**
 - Optimize the reconnection process, reducing the reconnection time.
