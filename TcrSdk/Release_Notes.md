@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.16.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.4/TcrSdk) (2023-11-8)
+**Bug Fixes**
+- Fix crash problem on android 4.4
+
 # [Version 3.16.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.3/TcrSdk) (2023-10-24)
 **Bug Fixes**
 - Fix the problem that the full package cannot be put on Google Play
