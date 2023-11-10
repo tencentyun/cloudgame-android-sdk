@@ -31,7 +31,6 @@
 | ------------------------------------------------------------ |------------------------|
 | [pauseStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.16.0/com/tencent/tcr/sdk/api/TcrSession.html#pauseStreaming--) | 暂停音视频传输                |
 | [resumeStreaming](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.16.0/com/tencent/tcr/sdk/api/TcrSession.html#resumeStreaming--) | 恢复音视频传输                |
-| [setRemoteVideoProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.16.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteVideoProfile-int-int-int-com.tencent.tcr.sdk.api.AsyncCallback-) | 设置串流视频的帧率和码率           |
 | [setRemoteAudioPlayProfile](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.16.0/com/tencent/tcr/sdk/api/TcrSession.html#setRemoteAudioPlayProfile-float-) | 设置音量放大系数               |
 | [setEnableLocalAudio](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.16.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalAudio-boolean-) | 启用禁用麦克风，默认值false不开启    |
 | [setEnableLocalVideo](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.16.0/com/tencent/tcr/sdk/api/TcrSession.html#setEnableLocalVideo-boolean-) | 启用禁用本地视频上行，默认值false不开启 |
