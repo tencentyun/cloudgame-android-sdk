@@ -1,5 +1,19 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.17.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.17.0/TcrSdk) (2023-11-17)
+**Features**
+- Added TcrSession#getRequestId() interface.
+- Optimized the timing of audio and video uplink configuration. Now, enabling audio and video uplink, setting uplink parameters for video, and setting playback volume will take effect before the connection is established.
+- Added fallback mechanism for TcrSessionConfig#preferredCodec interface to avoid connection failures on some devices due to blacklist.
+- Added TcrSessionConfig#preferredCodecList interface to indicate preferred codecs, where the order of the elements in the list represents priority, such as index 0 being the highest priority preferred codec. If the set codecs cannot be selected for various reasons, other available codecs will be chosen.
+- Added performance field to StatsInfo.
+
+**Bug Fixes**
+- Fixed some known issues.
+
+**Deprecated**
+- The TcrSession#setRemoteVideoProfile interface has been marked as deprecated and may be removed in future versions. We no longer recommend calling this interface. If you have relevant requirements, please configure them in the Cloud Rendering console.
+
 # [Version 3.16.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.4/TcrSdk) (2023-11-8)
 **Bug Fixes**
 - Fix crash problem on android 4.4
