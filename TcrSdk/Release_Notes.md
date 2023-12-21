@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.17.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.17.3/TcrSdk) (2023-12-21)
+**Bug Fixes**
+- Remove the "keeppackagenames" declaration from the obfuscation configuration.
+
+
 # [Version 3.17.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.17.0/TcrSdk) (2023-11-17)
 **Features**
 - Added TcrSession#getRequestId() interface.
