@@ -131,17 +131,7 @@ API usage reference[API_Documentation](API_Documentation.md). For more functiona
 
 # FAQs
 1. **Which is the earliest Android version supported by the Real-Time Cloud Rendering SDK?**  
-Android 4.1 (API level 16).
+Android 4.4 (API level 19).
 
 2. **How do I choose between the complete and lightweight SDKs?**  
 To use the lightweight SDK, the client program needs to download the plugin file over the network and pass it in to the SDK during SDK initialization for dynamic loading. However, the two SDKs share the same APIs. If you have strict requirements for the application package size, you can choose the lightweight SDK; otherwise, we recommend you use the complete SDK.
-
-3. **sdk storage permission statement**  
-In order to collect exception logs for troubleshooting, the SDK writes the tcrlogs log file to the phone path /sdcard/Android/data/application package name/files. However, below android api19, writing files to the application directory needs to declare the storage permission, so the following code is declared in the SDK:
-  ```
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />  
-  ```
-When you access the SDK and need to use the storage permission in the business app, you can use replace to replace the declaration of the storage permission in the SDK:
-  ```
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="replace"/>
-  ```

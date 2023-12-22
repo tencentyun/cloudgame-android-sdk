@@ -1,5 +1,13 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.18.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.18.0/TcrSdk) (2023-12-22)
+**Features**
+- Delete TcrSession.setRenderView interface
+- New interface LoginHelper supports automatic login function
+
+**Bug Fixes**
+- Fixed some known issues.
+
 # [Version 3.17.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.17.3/TcrSdk) (2023-12-21)
 **Bug Fixes**
 - Remove the "keeppackagenames" declaration from the obfuscation configuration.

@@ -129,24 +129,9 @@ API使用方法参考[API文档](API文档.md)。
 
 # FAQs
 1. **云渲染SDK支持的最低Android系统版本。**  
-Android 4.1（API 级别 16）。
+Android 4.4（API 级别 19）。
 
 2. **完整版SDK 和 轻量版SDK，该如何选择。**  
 轻量版SDK需要客户端程序先从网络上下载插件文件，在初始化SDK时传入给SDK进行动态加载。除此之外，二者在使用接口上并无区别。如果您对APP包体积大小有严格要求，可以选择集成轻量版SDK；否则，推荐使用完整版SDK。
 
-3. **关于储存权限的申明**  
-  为了排查问题，SDK会向应用程序的外部存储的私有目录（/storage/emulated/0/Android/data/包名/files）写入日志文件。读写这个目录在Andorid 4.4及以上的系统，并不需要显示声明存储权限。但为了兼容4.4以下的系统，在SDK的AndroidManifest.xml里显示声明了
-  ```
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />  
-  ```
-  这也是Android官方建议的最佳实践。
-
-  如果你的应用程序访问了外部存储的公共目录，需要针对Andorid 4.4及以上的系统声明存储权限，则在集成SDK后需要移除上述“android:maxSdkVersion”的声明或者进行声明替换。
-  ```
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:remove="android:maxSdkVersion" />
-  ```
-  或者
-  ```
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="replace"/>
-  ```
 

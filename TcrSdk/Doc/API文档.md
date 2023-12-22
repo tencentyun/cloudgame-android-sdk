@@ -23,7 +23,6 @@
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | 启动会话，拿到云端返回的serverSession后发起SDK到云端的连接 |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | 销毁会话，断开本地和云端的连接，释放资源                   |
-| [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | 设置会话的渲染视图，SDK会将云端画面渲染到此视图上          |
 
 ### 音视频相关接口
 
@@ -112,7 +111,6 @@
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
 | [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#build--)                              | 构造出一个TcrSessionConfig |
 | [observer​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#observer)                                 | 设置事件通知监听              |
-| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#connectTimeout)                     | 设置连接超时时间              |
 | [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold)                      | 设置空闲检测阈值              |
 | [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#lowFpsThresholdCount)              | 设置低帧率通知阈值             |
 | [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback)       | 设置自定义视频数据回调           |

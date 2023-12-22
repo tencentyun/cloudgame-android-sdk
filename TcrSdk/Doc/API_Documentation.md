@@ -24,7 +24,6 @@
 | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | [start](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSession.html#start-java.lang.String-) | Starts the session. This method should only be called once |
 | [release](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSession.html#release--) | Release the session                  |
-| [setRenderView](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSession.html#setRenderView-com.tencent.tcr.sdk.api.view.TcrRenderView-) | Set the rendering view for this session, and thus the SDK will render the streaming content to the view         |
 
 ### Audio/Video APIs
 
@@ -110,7 +109,6 @@ The cloud game session configuration class containing configuration of getting a
 | ------------------------------------------------------------ |-----------------------------------------------------|
 | [build](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html#build--) | Construct a `TcrSessionConfig`                      |
 | [observer​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#observer) | Set the observer of the TcrSession                  |
-| [connectTimeout​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#connectTimeout) | Set the connection timeout period                   |
 | [idleThreshold​​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#idleThreshold) | Set the idleness detection threshold                |
 | [lowFpsThreshold​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#lowFpsThresholdCount) | Set the threshold for a low frame rate notification |
 | [videoFrameCallback​](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.18.0/com/tencent/tcr/sdk/api/TcrSessionConfig.html#videoFrameBufferCallback) | Set custom video data callback                      |
