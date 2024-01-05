@@ -40,7 +40,6 @@ To import the lightweight SDK, the application needs to download the SDK plugin 
 // Create and initialize the session object.
 TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder()
         .setObserver(mSessionEventObserver)
-        .connectTimeout(25000)
         .idleThreshold(30)
         .build();
 mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);
@@ -48,7 +47,6 @@ mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);
 mRenderView = TcrSdk.getInstance().createTcrRenderView(MainActivity.this, mTcrSession, TcrRenderViewType.SURFACE);
 ((FrameLayout) MainActivity.this.findViewById(R.id.main)).addView(mRenderView);
 // Set the rendering view for the session.
-mTcrSession.setRenderView(mRenderView);
 ```
 
 5. After the session object is created, the object will be automatically initialized. After the initialization is successful, the event will be notified through the mSessionEventObserver object passed in step 4. The event that the Session initialization is completed is TcrSession.Event.EVENT_INITED, and you can get `clientSession` in event data to further request the business backend and call the TencentCloud API to start the specified application instance and return `serverSession`. The client can call the `start()` API of the session object to pass in the `serverSession` parameter so as to start a session and initiate a connection from the SDK to the cloud. After the async callback of `start()` succeeds, the client program will display the image of the cloud application. 

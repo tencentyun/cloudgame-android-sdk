@@ -37,15 +37,12 @@ TcrSdk.getInstance().init(this, null, mInitSdkCallback);
 // 创建和初始化会话对象
 TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder()
         .setObserver(mSessionEventObserver)
-        .connectTimeout(25000)
         .idleThreshold(30)
         .build();
 mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);
 // 创建和添加渲染视图
 mRenderView = TcrSdk.getInstance().createTcrRenderView(MainActivity.this, mTcrSession, TcrRenderViewType.SURFACE);
 ((FrameLayout) MainActivity.this.findViewById(R.id.render_view_parent)).addView(mRenderView);
-// 为会话设置渲染视图
-mTcrSession.setRenderView(mRenderView);
 ```
 
 4. 创建会话对象后会自动初始化对象，初始化成功后会通过步骤4传入的mSessionEventObserver对象向外通知事件。其中Session初始化完成的事件为TcrSession.Event.EVENT_INITED，在通知的事件中获得clientSession，用于进一步请求业务后台，再调用云API，启动指定应用实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。 
