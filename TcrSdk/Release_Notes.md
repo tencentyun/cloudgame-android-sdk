@@ -27,6 +27,10 @@
 **Deprecated**
 - The TcrSession#setRemoteVideoProfile interface has been marked as deprecated and may be removed in future versions. We no longer recommend calling this interface. If you have relevant requirements, please configure them in the Cloud Rendering console.
 
+# [Version 3.16.6](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.6/TcrSdk) (2024-01-9)
+**Bug Fixes**
+- Fixed crash issue when calling the method of MediaCodecList during startup.
+
 # [Version 3.16.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.4/TcrSdk) (2023-11-8)
 **Bug Fixes**
 - Fix crash problem on android 4.4
