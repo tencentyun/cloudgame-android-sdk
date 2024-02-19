@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.18.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.18.1/TcrSdk) (2024-2-19)
+**Bug Fixes**
+- Fixed the issue of native memory leak on certain device models. 
+
 # [Version 3.18.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.18.0/TcrSdk) (2023-12-22)
 **Features**
 - Delete TcrSession.setRenderView interface
