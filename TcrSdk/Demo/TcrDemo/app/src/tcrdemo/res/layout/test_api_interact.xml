@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="androidx.databinding.ObservableBoolean" />
+        <variable name="viewModel" type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+        <variable name="handlers" type="com.tencent.tcrdemo.gameplay.TestApiHandler"/>
+
+    </data>
+
+    <ScrollView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:splitMotionEvents="true"
+            android:orientation="vertical">
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <TextView
+                    android:gravity="center_horizontal"
+                    android:text="应用交互测试"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="复制文本接口测试"
+                android:id="@+id/paste_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"/>
+            <LinearLayout
+                    android:id="@+id/paste_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardview_dark_background"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+                <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:hint="需复制的文本"
+                        android:text="@={viewModel.pasteText}" />
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="复制"
+                        android:onClick="@{handlers::onClickPasteText}" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="修改分辨率接口测试"
+                android:id="@+id/set_res_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/set_res_layout"
+                android:background="@color/cardview_dark_background"
+                android:visibility="gone"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.videoWidth}"
+                        android:inputType="number"
+                        android:hint="width"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.videoHeight}"
+                        android:inputType="number"
+                        android:hint="height"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{handlers::setRemoteDesktopResolution}"
+                    android:text="设置分辨率" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据通道测试"
+                android:id="@+id/data_channel_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/data_channel_layout"
+            android:visibility="gone"
+            android:background="@color/cardview_dark_background"
+            android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.dataChannelPort}"
+                        android:inputType="number"
+                        android:hint="data port"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::createDataChannel}"
+                        android:text="创建数据通道" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.dataChannelMsg}"
+                        android:inputType="number"
+                        android:hint="msg"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::dataChannelSend}"
+                        android:text="发送数据" />
+            </LinearLayout>
+
+        </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自动登录测试"
+                android:id="@+id/auto_login_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"/>
+            <LinearLayout
+                android:id="@+id/auto_login_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_dark_background"
+                android:visibility="gone"
+                android:orientation="vertical">
+            <EditText
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/teal_700"
+                    android:text="@={viewModel.account}"
+                    android:hint="输入账号"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            <EditText
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/teal_700"
+                    android:text="@={viewModel.password}"
+                    android:hint="输入密码"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{handlers::startAutoLogin}"
+                    android:text="开始自动登录" />
+            </LinearLayout>
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{handlers::onClickRestartCloudApp}"
+                android:elevation="3dp"
+                android:clipToOutline="true"
+                android:text="重启云端程序" />
+        </LinearLayout>
+    </ScrollView>
+</layout>
+
+
+

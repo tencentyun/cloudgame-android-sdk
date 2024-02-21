@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.tencent.tcrdemo'
+    compileSdk 34
+
+    defaultConfig {
+        multiDexEnabled true
+        applicationId "com.tencent.tcrdemo"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    flavorDimensions += "demoType"
+    productFlavors {
+        full {
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+            buildConfigField 'boolean', 'useLightSdk', "false"
+            resValue "string", "app_name", "TcrDemo-Full"
+        }
+        lite {
+            applicationIdSuffix ".lite"
+            versionNameSuffix "-lite"
+            buildConfigField 'boolean', 'useLightSdk', "true"
+            resValue "string", "app_name", "TcrDemo-lite"
+        }
+        scences {
+            applicationIdSuffix ".advance"
+            resValue "string", "app_name", "场景demo"
+            buildConfigField 'boolean', 'useLightSdk', "false"
+        }
+        simple {
+            applicationIdSuffix ".simple"
+            resValue "string", "app_name", "simpledemo"
+            buildConfigField 'boolean', 'useLightSdk', "false"
+        }
+    }
+
+    sourceSets {
+        full {
+            java.srcDirs = ['src/tcrdemo/java']
+            res.srcDirs = [
+                    'src/tcrdemo/res'
+            ]
+            manifest.srcFile 'src/tcrdemo/AndroidManifest.xml'
+        }
+        lite {
+            java.srcDirs = ['src/tcrdemo/java']
+            res.srcDirs = [
+                    'src/tcrdemo/res'
+            ]
+            manifest.srcFile 'src/tcrdemo/AndroidManifest.xml'
+        }
+        scences {
+            java.srcDirs = ['src/scenes/java']
+            res.srcDirs = [
+                    'src/scenes/res'
+            ]
+            manifest.srcFile 'src/scenes/AndroidManifest.xml'
+        }
+        simple {
+            java.srcDirs = ['src/simple/java']
+            res.srcDirs = [
+                    'src/simple/res'
+            ]
+            manifest.srcFile 'src/simple/AndroidManifest.xml'
+        }
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    fullImplementation "com.tencent.tcr:tcrsdk-full:3.18.0"
+    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.18.0"
+    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.18.0"
+    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.18.0"
+    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.tencent.tcr:tcr-gamepad:2.2.0'
+}

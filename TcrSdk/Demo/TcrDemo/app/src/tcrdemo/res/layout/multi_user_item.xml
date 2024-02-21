@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:visibility="gone">
+
+    <data>
+
+        <variable
+                name="multiUser"
+                type="com.tencent.tcrdemo.bean.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        >
+
+        <CheckBox
+                android:id="@+id/mute"
+                android:textColor="@color/text_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="静音"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/seat_index"
+            android:layout_marginLeft="5dp"
+            android:text="@{String.valueOf(multiUser.seatIndex)}"
+            android:textColor="@color/text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/mute"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/user_id"
+            android:text="@{multiUser.userID}"
+            android:textColor="@color/text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/seat_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

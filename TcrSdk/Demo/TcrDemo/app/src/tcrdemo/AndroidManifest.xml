@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--    语音上行时需要麦克风权限，视频上行时需要摄像头权限-->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <application
+        android:name=".TcrDemoApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        tools:replace="android:icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TcrDemo"
+        tools:targetApi="34" >
+        <activity
+            android:name=".gameplay.ExperiencePageActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.OverlapSystemBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".gameplay.GamePlayActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.OverlapSystemBar"
+            android:configChanges="orientation|screenSize">
+        </activity>
+        <activity
+            android:name=".gameplay.InputActivity"
+            android:theme="@style/TransparentTheme"
+            android:launchMode="singleInstance" />
+    </application>
+
+</manifest>

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TcrDemo</string>
+    <string name="key_set_userid">key_set_userid</string>
+    <string name="key_set_host_userid">key_set_host_userid</string>
+    <string name="debug_mode">调试模式</string>
+    <string name="key_experience_name">key_expire_name</string>
+    <string name="key_experience_code">key_experience_code</string>
+    <string name="key_index_of_debug_opt">key_index_of_debug_opt</string>
+    <string name="key_index_of_test_env_opt">key_index_of_test_env_opt</string>
+    <string name="key_index_of_role_opt">key_index_of_role_opt</string>
+    <string-array name="render_view_pos_array">
+        <item>0</item>
+        <item>90</item>
+        <item>180</item>
+        <item>270</item>
+    </string-array>
+    <string-array name="cursor_style_array">
+        <item>normal</item>
+        <item>huge</item>
+    </string-array>
+    <string-array name="scale_type_array">
+        <item>fit</item>
+        <item>fill</item>
+        <item>crop</item>
+    </string-array>
+    <string-array name="click_type_array">
+        <item>left</item>
+        <item>middle</item>
+        <item>right</item>
+    </string-array>
+    <string name="spinner_prompt">选择一个选项</string>
+
+</resources>

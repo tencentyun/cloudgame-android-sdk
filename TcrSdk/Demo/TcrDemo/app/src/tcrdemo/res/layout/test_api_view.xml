@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="androidx.databinding.ObservableBoolean" />
+        <variable name="viewModel" type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+        <variable name="handlers" type="com.tencent.tcrdemo.gameplay.TestApiHandler"/>
+
+    </data>
+
+    <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:splitMotionEvents="true"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:gravity="center_horizontal"
+                    android:text="视图变换功能测试"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <CheckBox
+                        style="@style/textview"
+                        android:text="性能视图"
+                        android:textSize="10sp"
+                        android:checked="@={viewModel.enableDebugView}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <CheckBox
+                        style="@style/textview"
+                        android:textSize="10sp"
+                        android:text="开关超分"
+                        android:checked="@={viewModel.enableSR}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+                <CheckBox
+                        android:id="@+id/cursor_visibility"
+                        style="@style/textview"
+                        android:textSize="10sp"
+                        android:text="光标可见"
+                        android:checked="@={viewModel.cursorViewVisibility}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="视图角度"
+                        style="@style/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:layout_marginStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:textColorHint="@android:color/black"
+                        android:text="旋转角度"
+                        android:prompt="@string/spinner_prompt"
+                        android:selectedItemPosition="@={viewModel.renderViewRotation}"
+                        android:entries="@array/render_view_pos_array"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="缩放类型"
+                        style="@style/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:layout_marginStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:textColorHint="@android:color/black"
+                        android:text="缩放类型"
+                        android:prompt="@string/spinner_prompt"
+                        android:selectedItemPosition="@={viewModel.renderViewScaleType}"
+                        android:entries="@array/scale_type_array"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="鼠标样式"
+                        style="@style/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="鼠标样式"
+                        android:background="@color/white"
+                        android:textColorHint="@android:color/black"
+                        android:prompt="@string/spinner_prompt"
+                        android:selectedItemPosition="@={viewModel.cursorStyle}"
+                        android:entries="@array/cursor_style_array"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/set_view_pinch_layout_button"
+                    android:onClick="@{handlers::onClickExpandLayoutShow}"
+                    android:text="拖动缩放测试" />
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                    android:id="@+id/set_view_pinch_layout"
+                    android:visibility="gone"
+                        android:orientation="vertical">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <EditText
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/teal_700"
+                                android:text="@={viewModel.pinchLeft}"
+                                android:inputType="number"
+                                android:hint="L"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <EditText
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/teal_700"
+                                android:text="@={viewModel.pinchTop}"
+                                android:inputType="number"
+                                android:hint="T"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        <EditText
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/teal_700"
+                                android:text="@={viewModel.pinchRight}"
+                                android:inputType="number"
+                                android:hint="R"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        <EditText
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/teal_700"
+                                android:text="@={viewModel.pinchBottom}"
+                                android:inputType="number"
+                                android:hint="B"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="@{handlers::onClickSetPinchOffset}"
+                            android:text="设置拖动边界" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <CheckBox
+                        style="@style/textview"
+                        android:textSize="10sp"
+                        android:text="缩放数据"
+                        android:checked="@={viewModel.enablePinchDataView}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                    <CheckBox
+                        style="@style/textview"
+                        android:textSize="10sp"
+                        android:text="双指缩放"
+                        android:checked="@={viewModel.enablePinch}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        tools:ignore="SmallSp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="@{handlers::onClickResetView}"
+                        android:text="重置View" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</layout>

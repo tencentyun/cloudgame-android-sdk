@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.databinding.ObservableBoolean" />
+
+        <variable name="viewModel" type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+        <variable name="handlers" type="com.tencent.tcrdemo.gameplay.TestApiHandler"/>
+
+    </data>
+
+    <ScrollView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:splitMotionEvents="true"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center_horizontal"
+                android:text="基础测试"
+                style="@style/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RadioGroup
+                android:layout_weight="1"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:onCheckedChanged="@{handlers::switchTouchMode}">
+
+                <RadioButton
+                    style="@style/textview"
+                    android:checked="true"
+                    android:id="@+id/radio_btn_pc_input"
+                    android:text="PCInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    style="@style/textview"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/radio_btn_mobile_input"
+                    android:text="MobileInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+
+            <Button
+                android:text="端游输入测试"
+                android:id="@+id/pc_input_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pc_input_layout"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <CheckBox
+                            android:id="@+id/virtual_keyboard"
+                            style="@style/textview"
+                            android:text="虚拟键盘"
+                            android:textSize="10sp"
+                            android:checked="@={viewModel.virtualKeyboard}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <CheckBox
+                            android:id="@+id/edit_custom_pad_switch"
+                            style="@style/textview"
+                            android:text="自定义虚拟按键"
+                            android:textSize="10sp"
+                            android:checked="@={viewModel.virtualGamePad}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <CheckBox
+                            style="@style/textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:checked="@={viewModel.pcRelativeMove}"
+                            android:text="鼠标相对移动" />
+
+                    <CheckBox
+                            style="@style/textview"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:checked="@={viewModel.connectGamePad}"
+                            android:text="手柄连接" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="点击触发按键"
+                        style="@style/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:background="@color/white"
+                        android:textColorHint="@android:color/black"
+                        android:prompt="@string/spinner_prompt"
+                        android:selectedItemPosition="@={viewModel.mouseClickType}"
+                        android:entries="@array/click_type_array"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <Button
+                            android:id="@+id/mouseLeft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="鼠标左键" />
+
+                    <Button
+                            android:id="@+id/mouseRight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="鼠标右键" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                    android:gravity="center_horizontal"
+                    android:text="鼠标灵敏度调整"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <SeekBar
+                    android:id="@+id/mouse_sensitivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="10"
+                    android:onProgressChanged="@{handlers::onMouseMoveSensitivityChanged}" />
+
+
+        </LinearLayout>
+
+            <Button
+                android:text="手游输入测试"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"
+                android:id="@+id/mobile_input_layout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mobile_input_layout"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <CheckBox
+                    style="@style/textview"
+                    android:layout_marginEnd="0dp"
+                    android:text="禁用云端本地输入法"
+                    android:textSize="10sp"
+                    android:checked="@={viewModel.enableLocalIme}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{handlers::onClickExit}"
+                android:text="退出游戏" />
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>

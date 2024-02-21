@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_main_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/login_dialog_container"
+            android:layout_marginTop="60dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/login_dialog_background2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="550:432"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tcloud_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/tab_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+                <RadioButton
+                    android:id="@+id/easy"
+                    android:layout_width="94dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/setting_dialog_tab_button"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="快速体验"
+                    android:textColor="@drawable/setting_dialog_button_text_color"
+                    android:textSize="13.33sp" />
+
+                <RadioButton
+                    android:id="@+id/advanced"
+                    android:layout_width="94dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/setting_dialog_tab_button"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="高级模式"
+                    android:textColor="@drawable/setting_dialog_button_text_color"
+                    android:textSize="13.33sp" />
+
+            </RadioGroup>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#33000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tab_radio_group">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/experience_code_layout"
+                    android:longClickable="true"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:background="#33000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/experience_code_label"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="13.33dp"
+                        android:text="体验码"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0.67dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="81dp"
+                        android:background="#CEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/experience_code"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="101.33dp"
+                        android:background="@null"
+                        android:hint="请输入体验码"
+                        android:inputType="text"
+                        android:textColorHint="#7FCEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/test_env_layout"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#33000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/experience_code_layout">
+
+                    <TextView
+                        android:id="@+id/env_label"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="13.33dp"
+                        android:text="测试环境"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0.67dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="81dp"
+                        android:background="#CEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/test_env_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="101.33dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/is_not_test_env"
+                            android:layout_width="75dp"
+                            android:layout_height="24dp"
+                            android:button="@drawable/setting_dialog_radio_button"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="否"
+                            android:textColor="@drawable/setting_dialog_button_text_color"
+                            android:textSize="13.33sp" />
+
+                        <RadioButton
+                            android:id="@+id/is_test_env"
+                            android:layout_width="75dp"
+                            android:layout_height="24dp"
+                            android:button="@drawable/setting_dialog_radio_button"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:text="是"
+                            android:textColor="@drawable/setting_dialog_button_text_color"
+                            android:textSize="13.33sp" />
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/user_id_layout"
+                    android:longClickable="true"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:background="#33000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/test_env_layout">
+
+                    <TextView
+                        android:id="@+id/user_id_label"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="13.33dp"
+                        android:text="用户ID"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0.67dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="81dp"
+                        android:background="#CEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/user_id"
+                        android:maxLines="1"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="101.33dp"
+                        android:background="@null"
+                        android:hint="默认随机生成"
+                        android:inputType="text"
+                        android:textColorHint="#7FCEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/host_user_id_layout"
+                    android:longClickable="true"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:background="#33000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_id_layout">
+
+                    <TextView
+                        android:id="@+id/host_user_id_label"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="13.33dp"
+                        android:text="房主ID"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0.67dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="81dp"
+                        android:background="#CEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/host_user_id"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="101.33dp"
+                        android:background="@null"
+                        android:hint="房主的用户ID"
+                        android:inputType="text"
+                        android:textColorHint="#7FCEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/role_layout"
+                    android:layout_width="300dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#33000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/host_user_id_layout">
+
+                    <TextView
+                        android:id="@+id/role_label"
+                        style="@style/setting_dialog_text_style"
+                        android:layout_marginStart="13.33dp"
+                        android:text="角色"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="0.67dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="81dp"
+                        android:background="#CEDBED"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/role_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="101.33dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/role_player"
+                            android:layout_width="75dp"
+                            android:layout_height="24dp"
+                            android:button="@drawable/setting_dialog_radio_button"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="玩家"
+                            android:textColor="@drawable/setting_dialog_button_text_color"
+                            android:textSize="13.33sp" />
+
+                        <RadioButton
+                            android:id="@+id/role_viewer"
+                            android:layout_width="75dp"
+                            android:layout_height="24dp"
+                            android:button="@drawable/setting_dialog_radio_button"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:text="观众"
+                            android:textColor="@drawable/setting_dialog_button_text_color"
+                            android:textSize="13.33sp" />
+                    </RadioGroup>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/advance_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="test_env_layout,role_layout,user_id_layout,host_user_id_layout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="25dp"
+                android:background="#006EFF"
+                android:text="启动"
+                android:textColor="#ffffff"
+                android:textSize="13.33sp"
+                android:layout_marginBottom="60dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/group" />
+
+            <TextView
+                android:id="@+id/err_msg_view"
+                app:layout_constraintTop_toBottomOf="@id/start"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:autoSizeTextType="uniform"
+                android:textColor="@color/login_text_error_msg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,38 @@
+<resources>
+
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application theme. --><style name="AppTheme" parent="Base.AppTheme" />
+
+    <style name="AppTheme.OverlapSystemBar" parent="Base.AppTheme" />
+
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="setting_dialog_text_style" >
+        <item name="android:textColor">#CEDBED</item>
+        <item name="android:textSize">13.33sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+    <style name="textview">
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:background">@color/text_background</item>
+    </style>
+
+
+    <style name="TransparentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

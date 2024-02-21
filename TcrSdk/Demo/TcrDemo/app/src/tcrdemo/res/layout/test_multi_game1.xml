@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:visibility="gone">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="androidx.databinding.ObservableBoolean" />
+        <variable name="viewModel" type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+        <variable name="handlers" type="com.tencent.tcrdemo.gameplay.TestApiHandler"/>
+        <variable name="playerAdapter" type="com.tencent.tcrdemo.adapter.MultiPlayerAdapter"/>
+        <variable name="viewerAdapter" type="com.tencent.tcrdemo.adapter.MultiPlayerAdapter"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:splitMotionEvents="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center_horizontal"
+                android:text="互动云游"
+                style="@style/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{handlers::onClickSyncRoomInfo}"
+                android:text="同步全部用户信息"/>
+            <Button
+                android:layout_marginTop="10dp"
+                android:text="房主操作"
+                android:id="@+id/multiply_host_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/multiply_host_layout"
+                android:orientation="vertical">
+                <EditText
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/teal_700"
+                    android:text="@={viewModel.multiPlayerUserId}"
+                    android:hint="输入要操作的userID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/teal_700"
+                    android:text="@={viewModel.multiPlayerSeatIndex}"
+                    android:inputType="number"
+                    android:hint="输入要操作的席位"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{handlers::onClickChangeToPlayer}"
+                    android:text="切换为玩家"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{handlers::onClickChangeToViewer}"
+                    android:text="切换为观察者"/>
+            </LinearLayout>
+
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:text="房客操作"
+                android:id="@+id/multiply_guest_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/multiply_guest_layout"
+                    android:orientation="vertical">
+                    <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.multiPlayerUserId}"
+                        android:hint="输入要操作的userID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <EditText
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.multiPlayerSeatIndex}"
+                        android:inputType="number"
+                        android:hint="输入要操作的席位"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{handlers::onClickApplyToPlayer}"
+                    android:text="申请为玩家"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{handlers::onClickApplyToViewer}"
+                    android:text="申请为观察者"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="房间列表"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="Player"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <ListView
+                    app:adapter="@{playerAdapter}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:text="Viewer"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <ListView
+                    app:adapter="@{viewerAdapter}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</layout>

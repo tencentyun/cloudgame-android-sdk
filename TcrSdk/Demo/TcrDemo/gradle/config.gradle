@@ -1,0 +1,19 @@
+apply from: 'gradle/utils.gradle'
+
+ext {
+    // =========== 构建参数 ===========
+    // 构建时间
+    buildTime = project.findProperty('buildTime') ?: new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
+    // 组件版本,也是发布Maven的版本。默认SNAPSHOT
+    buildVersion = project.findProperty('buildVersion') ?: "3.0.0"
+    // 流水线构建编号
+    buildNumber = project.findProperty('buildNumber') ?: "1"
+    // 默认VERBOSE级别,
+    debugLevel = project.findProperty('debugLevel') ?: 2 // VERBOSE
+
+    println "ext:"
+    println "buildTime=" + buildTime
+    println "buildVersion=" + buildVersion
+    println "buildNum=" + buildNumber
+    println "debugLevel=" + debugLevel
+}

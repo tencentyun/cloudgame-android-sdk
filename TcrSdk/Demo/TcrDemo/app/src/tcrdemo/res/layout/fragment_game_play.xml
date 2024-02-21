@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.databinding.ObservableBoolean" />
+
+        <variable
+            name="viewModel"
+            type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+
+        <variable
+            name="handlers"
+            type="com.tencent.tcrdemo.gameplay.TestApiHandler" />
+
+        <variable
+            name="playerAdapter"
+            type="com.tencent.tcrdemo.adapter.MultiPlayerAdapter" />
+
+        <variable
+            name="viewerAdapter"
+            type="com.tencent.tcrdemo.adapter.MultiPlayerAdapter" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/render_view_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="right">
+
+            <TextView
+                android:id="@+id/stats_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="left">
+
+            <TextView
+                android:id="@+id/pinch_pivot_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/pinch_scale_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="right">
+
+            <LinearLayout
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:background="@drawable/debug"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+                <CheckBox
+                    android:id="@+id/debug_switch"
+                    android:textColor="#f1f1f1"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager"
+                android:visibility="@{debugSwitch.checked ? View.VISIBLE : View.GONE, default = gone}"
+                android:layout_width="180dp"
+                android:layout_height="match_parent">
+
+                <include
+                    layout="@layout/test_api_input"
+                    bind:handlers="@{handlers}"
+                    bind:viewModel="@{viewModel}" />
+                <include
+                    layout="@layout/test_api_interact"
+                    bind:handlers="@{handlers}"
+                    bind:viewModel="@{viewModel}" />
+
+                <include
+                    layout="@layout/test_api_media"
+                    bind:handlers="@{handlers}"
+                    bind:viewModel="@{viewModel}" />
+
+                <include
+                    layout="@layout/test_api_view"
+                    bind:handlers="@{handlers}"
+                    bind:viewModel="@{viewModel}" />
+
+                <include
+                    layout="@layout/test_multi_game1"
+                    bind:handlers="@{handlers}"
+                    bind:viewModel="@{viewModel}"
+                    bind:viewerAdapter="@{viewerAdapter}"
+                    bind:playerAdapter="@{playerAdapter}"/>
+
+
+            </androidx.viewpager.widget.ViewPager>
+        </LinearLayout>
+    </FrameLayout>
+
+</layout>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="androidx.databinding.ObservableBoolean" />
+        <variable name="viewModel" type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+        <variable name="handlers" type="com.tencent.tcrdemo.gameplay.TestApiHandler"/>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:splitMotionEvents="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                    android:gravity="center_horizontal"
+                    android:text="音视频功能测试"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            <Button
+                android:text="视频下行参数设置"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/media_down_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/media_down_layout"
+                android:visibility="gone"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <Button
+                        android:id="@+id/pause"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::onClickPause}"
+                        android:text="停止推流" />
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::onClickResume}"
+                        android:text="恢复推流" />
+            </LinearLayout>
+                <TextView
+                    android:gravity="center_horizontal"
+                    android:text="音频下行音量调节"
+                    android:layout_marginTop="10dp"
+                    style="@style/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <SeekBar
+                    android:id="@+id/remote_audio_volume_seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="10"
+                    android:onProgressChanged="@{handlers::onRemoteVolumeChanged}" />
+            </LinearLayout>
+
+            <Button
+                    android:text="音视频上行测试"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                android:id="@+id/media_up_layout_button"
+                android:onClick="@{handlers::onClickExpandLayoutShow}" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/media_up_layout"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioGroup
+                    android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onCheckedChanged="@{handlers::enableLocalVideo}">
+
+                    <RadioButton
+                            style="@style/textview"
+                            android:id="@+id/radio_btn_enable_local_video"
+                            android:text="开启视频上行"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <RadioButton
+                            style="@style/textview"
+                            android:checked="true"
+                            android:id="@+id/radio_btn_disable_local_video"
+                            android:text="关闭视频上行"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RadioGroup>
+            <RadioGroup
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{handlers::enableLocalAudio}">
+
+                <RadioButton
+                    style="@style/textview"
+                    android:id="@+id/radio_btn_enable_local_audio"
+                    android:text="开启麦克上行"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    style="@style/textview"
+                    android:checked="true"
+                    android:id="@+id/radio_btn_disable_local_audio"
+                    android:text="关闭麦克上行"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_marginTop="10dp"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/teal_700"
+                        android:text="@={viewModel.localVideoBitrate}"
+                        android:inputType="number"
+                        android:hint="输入上行最大码率，单位kbps"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::setLocalVideoBitrate}"
+                        android:text="设置上行码率" />
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</layout>
