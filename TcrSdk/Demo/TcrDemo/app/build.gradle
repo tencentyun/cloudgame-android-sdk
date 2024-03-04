@@ -91,10 +91,10 @@ android {
 }
 
 dependencies {
-    fullImplementation "com.tencent.tcr:tcrsdk-full:3.18.2"
-    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.18.2"
-    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.18.2"
-    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.18.2"
+    fullImplementation "com.tencent.tcr:tcrsdk-full:3.18.3"
+    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.18.3"
+    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.18.3"
+    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.18.3"
     implementation "androidx.appcompat:appcompat:1.4.1"
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'com.tencent.tcr:tcr-gamepad:2.2.0'

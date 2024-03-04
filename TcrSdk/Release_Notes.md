@@ -1,6 +1,6 @@
 - [中文文档](发布记录.md)
 
-# [Version 3.18.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.18.2/TcrSdk) (2024-2-21)
+# [Version 3.18.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.18.3/TcrSdk) (2024-3-4)
 **Bug Fixes**
 - Fix the issue that cannot experience in the demo.
 
