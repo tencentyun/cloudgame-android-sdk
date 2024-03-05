@@ -60,7 +60,7 @@ The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide
 
 [VKtoolDemo.zip](Demo/VKtoolDemo.zip) demonstrates how to integrate the custom virtual key SDK and customize key features in your application as needed.
 
-[ExperienceDemo.apk](Demo/ExperienceDemo.apk) is a trial app installation package that can be used to experience cloud rendering applications by entering the experience code. You can generate an application experience code in the Tencent Cloud console.
+[TCRExperienceDemo.apk](Demo/TCRExperience.apk) is a trial app installation package that can be used to experience cloud rendering applications by entering the experience code. You can generate an application experience code in the Tencent Cloud console.
 <img src="Doc/images/云渲染体验码_CN.jpg" width="700px">
 
 ## Doc
