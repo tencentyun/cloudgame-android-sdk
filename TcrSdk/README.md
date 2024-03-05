@@ -60,7 +60,7 @@
 
 自定义虚拟按键Demo [VKtoolDemo.zip](Demo/VKtoolDemo.zip) 演示了如何集成自定义虚拟按键SDK，并在应用中自定义编辑您所需要的按键功能。
 
-[TCRExperienceDemo.apk.apk](Demo/TCRExperience.apk)是云应用体验App的安装包。您可以在腾讯云控制台生成云端应用的体验码，然后输入到这个App里体验云端应用。
+[TCRExperienceDemo.apk](Demo/TCRExperience.apk)是云应用体验App的安装包。您可以在腾讯云控制台生成云端应用的体验码，然后输入到这个App里体验云端应用。
 <img src="Doc/images/云渲染体验码_CN.jpg" width="700px">
 
 ## Doc
