@@ -355,7 +355,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
         }
         TcrSessionConfig.Builder builder = TcrSessionConfig.builder()
                 .observer(mSessionEventObserver)
-                .idleThreshold(60000)
+                .idleThreshold(30000)
                 .lowFpsThreshold(31, 5)
                 .enableLowLegacyRendering(true);
         if (mEnableCustomAudioCapture) {
@@ -510,10 +510,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
                     }
                 });
                 mGamePadManager = new GamepadManager(context, mSession);
-                mGamePadManager.setGamePadTouchDelegate((v, event) -> {
-                    mRenderView.handleMotion(event);
-                    return true;
-                });
                 mKeyboardView = new KeyboardView(context, mSession);
                 // 把云游视图添加到View树上
                 addChildView();

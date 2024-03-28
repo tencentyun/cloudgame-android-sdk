@@ -37,7 +37,7 @@ TcrSdk.getInstance().init(this, null, mInitSdkCallback);
 // 创建和初始化会话对象
 TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder()
         .setObserver(mSessionEventObserver)
-        .idleThreshold(30)
+        .idleThreshold(30000)
         .build();
 mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);
 // 创建和添加渲染视图

@@ -159,7 +159,7 @@ public class CustomRenderActivity extends Activity {
                 // 为TcrSession创建配置参数对象。参考https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/com/tencent/tcr/sdk/api/config/TcrSessionConfig.Builder.html
                 TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder()
                         .observer(mSessionEventObserver)
-                        .idleThreshold(30)
+                        .idleThreshold(30000)
                         .build();
                 // 创建会话对象
                 mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);

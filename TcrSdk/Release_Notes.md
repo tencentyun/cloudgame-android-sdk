@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.19.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.19.1/TcrSdk) (2024-3-28)
+**Bug Fixes**
+- Fixed the problem that the trigger button of the external controller does not lift up
+
 # [Version 3.19.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.19.0/TcrSdk) (2024-3-26)
 **Features**
 - TcrEvent adds `open_url` event
