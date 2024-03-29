@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/pref_key_connect_data_zh">
+        <EditTextPreference
+                app:key="@string/pref_key_experienceCode"
+                app:title="@string/pref_key_experience_code_zh"
+                app:defaultValue="XTUVHS7D"
+                app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/pref_key_startup_zh">
+        <SeekBarPreference
+                app:key="@string/pref_key_resolution"
+                app:defaultValue="4864"
+                app:min="2000"
+                android:max="6000"
+                />
+        <SeekBarPreference
+                app:key="@string/pref_key_sr_option"
+                app:defaultValue="10"
+                app:min="10"
+                android:max="20"
+                />
+        <SwitchPreferenceCompat
+                app:key="@string/pref_key_enable_ffr"
+                app:title="固定注视点渲染"
+                app:defaultValue="true"
+                app:summaryOn="@string/enable_fov_ffr_note"
+                app:summaryOff="@string/enable_fov_ffr_note"/>
+        <SwitchPreferenceCompat
+                app:key="@string/pref_key_enable_fovPlus"
+                app:title="超视角渲染"
+                app:summaryOn="@string/enable_fov_plus_note"
+                app:summaryOff="@string/enable_fov_plus_note"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

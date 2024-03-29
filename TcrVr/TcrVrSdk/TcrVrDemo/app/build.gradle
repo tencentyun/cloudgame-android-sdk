@@ -1,0 +1,74 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    configurations.configureEach {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+    namespace 'com.tencent.demo'
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.tencent.demo"
+        minSdk 24
+        targetSdk 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "platform"
+    productFlavors {
+        pico {
+            dimension "platform"
+            applicationIdSuffix ".pico"
+            versionNameSuffix "-pico"
+            manifestPlaceholders = [app_name: "腾讯云XR-Pico"]
+        }
+        oculus {
+            dimension "platform"
+            applicationIdSuffix ".oculus"
+            versionNameSuffix "-oculus"
+            manifestPlaceholders = [app_name: "腾讯云XR-Oculus"]
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/libopenxr_loader.so'
+        pickFirst 'lib/armeabi-v7a/libopenxr_loader.so'
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    def dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss")
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def productFlavor = variant.productFlavors[0].name
+            def date = dateFormat.format(new Date())
+            outputFileName = "腾讯云XR-${productFlavor}-${date}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+
+    oculusImplementation "com.tencent.tcr:vr-sdk-oculus:1.0.10"
+    picoImplementation "com.tencent.tcr:vr-sdk-pico:1.0.10"
+}

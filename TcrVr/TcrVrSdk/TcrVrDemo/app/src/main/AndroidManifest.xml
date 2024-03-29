@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.tencent.demo">
+
+    <!-- Tell the system this app requires OpenGL ES 3.2. -->
+    <uses-feature
+            android:glEsVersion="0x00030002"
+            android:required="true" /> <!-- Tell the system this app works in either 3dof or 6dof mode -->
+    <uses-feature
+            android:name="android.hardware.vr.headtracking"
+            android:required="false"
+            android:version="1" /> <!-- If building externally with the OpenXR AAR, this would be merged in automatically. -->
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="org.khronos.openxr.permission.OPENXR" />
+    <uses-permission android:name="org.khronos.openxr.permission.OPENXR_SYSTEM" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+            android:name="com.tencent.tcr.TcrDemoApplication"
+            android:allowBackup="true"
+            android:fullBackupContent="@xml/backup_rules"
+            tools:targetApi="31"
+            android:dataExtractionRules="@xml/data_extraction_rules"
+            android:label="${app_name}"
+            android:icon="@drawable/xr_launcher"
+            android:roundIcon="@drawable/xr_launcher"
+            android:supportsRtl="true"
+            >
+
+        <activity
+                android:name="com.tencent.tcr.demo.MainActivity"
+                android:excludeFromRecents="false"
+                android:launchMode="singleTask"
+                android:resizeableActivity="false"
+                android:screenOrientation="landscape"
+                tools:ignore="NonResizeableActivity"
+                android:theme="@style/AppTheme.OverlapSystemBar"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name="com.tencent.tcr.demo.XrActivity"
+                android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard|navigation|uiMode|density"
+                android:excludeFromRecents="false"
+                android:launchMode="singleTask"
+                android:screenOrientation="landscape"
+                tools:ignore="NonResizeableActivity"
+                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+                >
+            <meta-data android:name="pvr.app.type" android:value="vr" />
+            <meta-data android:name="com.samsung.android.vr.application.mode" android:value="vr_only"/>
+            <meta-data android:name="android.app.lib_name" android:value="tcr_xr" />
+            <intent-filter>
+                <category android:name="com.oculus.intent.category.VR" />
+                <category android:name="org.khronos.openxr.intent.category.IMMERSIVE_HMD" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,9 @@
+.DS_Store
+*.iml
+build/
+/.gradle/
+/.codecc/
+/local.properties
+/bin
+.cxx
+.externalNativeBuild

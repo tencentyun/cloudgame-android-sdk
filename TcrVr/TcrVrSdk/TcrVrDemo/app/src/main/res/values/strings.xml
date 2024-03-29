@@ -1,0 +1,19 @@
+<resources>
+    <string name="btn_text">启动程序</string>
+    <string name="edit_text_hint">请输入体验码</string>
+    <string name="enable_FFR">开启注视点渲染</string>
+    <string name="enable_fov_plus">开启超视角渲染</string>
+    <string name="enable_fov_plus_note">牺牲一部分带宽以改善黑边问题</string>
+    <string name="enable_fov_ffr_note">压缩边缘像素以减少带宽消耗</string>
+    <string name="pref_key_userId">pref_key_userId</string>
+    <string name="pref_key_enable_fovPlus">pref_key_enable_fovPlus</string>
+    <string name="pref_key_enable_ffr">pref_key_enable_ffr</string>
+    <string name="pref_key_sr_option">pref_key_sr_option</string>
+    <string name="pref_key_resolution">pref_key_resolution</string>
+    <string name="pref_key_experience_code_zh">体验码</string>
+    <string name="pref_key_startup_zh">启动设置</string>
+    <string name="pref_key_connect_data_zh">连接信息</string>
+    <string name="pref_key_userId_zh">用户名</string>
+    <string name="pref_key_resolution_zh">云端画面分辨率</string>
+    <string name="pref_key_experienceCode">experienceCode</string>
+</resources>
