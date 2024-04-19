@@ -89,6 +89,10 @@
 **Features**
 - TcrSession#Event#Added GAME_PROCESS_STOPPED event to notify the end of the game process
 
+# [Version 3.11.3](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.11.2/TcrSdk) (2024-04-19)
+**Bug Fixes**
+- Fix the problem of contact residue when using MobileTouch
+
 # [Version 3.11.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.11.2/TcrSdk) (2023-09-13)
 **Bug Fixes**
 - Fixed memory leak problem
