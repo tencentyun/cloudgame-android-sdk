@@ -1,8 +1,23 @@
-# 一、接入流程
+# 一、腾讯云渲染VR
+
+腾讯云应用云渲染是一套整合了应用管理、并发资源管理与调度、音视频串流等能力的 PaaS 产品。
+它允许您将VR应用程序运行在云端并发实例上，并通过音视频串流技术，让用户使用App通过视频流的方式访问云上VR应用。
+
+# 二、目录说明
+
+App为了访问云端实例，需要接入云渲染SDK，该项目中包含的三个目录对应三种不同的SDK:
+
+- [TcrVrBaseSdk](TcrVrBaseSdk): 连接云端VR实例的基础SDK，客户端可以使用它来获取云端的VR视频画面并进行渲染。同时，客户端可以通过该SDK向云端实例发送VR头显的位姿、瞳距以及手柄按键事件等消息。
+在该目录中的[Demo](TcrVrBaseSdk/NativeDemo.zip)中，使用了[OpenXR](https://www.khronos.org/openxr) API来获取头显和手柄的相关事件，并通过相应API完成渲染。
+为了理解该Demo的工作原理，您需要了解OpenXR的工作机制，并且知道如何使用OpenXR API以及OpenGLES进行渲染。需要注意的是，对于该SDK来说，OpenXR并非必需，您可以使用任何VR Runtime和头显、手柄进行交互。
+
+- [TcrVrSdk](TcrVrSdk): 该目录中的TcrVrDemo是[云官网VR体验Demo](https://cloud.tencent.com/document/product/1547/101062)的源码。该SDK将OpenXR Loader库进行了封装，用于获取头盔、手柄事件，并自行完成了渲染。客户端只需要关注SDK中提供的XrBaseActivity以及如何与他进行交互。相比TcrVrBaseSdk，接入方需要关注的接口更少，您也不需要理解OpenXR的工作机制和如何使用图形API进行渲染。
+
+- [TcrVrUnity](TcrVrUnity): 该目录是Unity Plugin的接入说明，如果您希望直接在Unity工程中接入VR云渲染，你需要使用该插件进行接入。
+
+# 三、接入流程
 
 ## 云渲染技术说明
-
-云渲染服务指您的应用客户端（包括UE、Unity 等VR或非VR应用）运行在云端机器上，用户通过视频流的方式访问云上应用。
 
 在阅读快速入门前希望您已经了解云渲染的 [基本技术概念](https://cloud.tencent.com/document/product/1547/75988)
 
@@ -94,4 +109,8 @@
 
 ## 二、云渲染VR SDK接入
 
-参考 [SDK接入流程](SDK/README.md)。
+如果您已经体验过了[云官网](https://cloud.tencent.com/document/product/1547/101062)中的VR体验Demo，整体效果符合预期，您可以考虑接入[TcrVrSdk](TcrVrSdk)。
+
+如果您希望实现更多的自定义内容，或者您有自己的VR Runtime(需要自行和头盔、手柄进行交互)，您可以考虑接入[TcrVrBaseSdk](TcrVrBaseSdk)。
+
+如果您希望在Unity工程中接入云渲染，可以考虑接入[TcrVrBaseSdk](TcrVrUnity)。
