@@ -124,6 +124,9 @@ renderView.setOnTouchListener(new PcTouchListener(session));
 API使用方法参考[API文档](API文档.md)。
 更多功能场景的实现参考[场景功能](场景功能.md)。** 
 
+# 隐私政策
+参见[链接](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Doc/privacy.md)
+
 # FAQs
 1. **云渲染SDK支持的最低Android系统版本。**  
 Android 4.4（API 级别 19）。

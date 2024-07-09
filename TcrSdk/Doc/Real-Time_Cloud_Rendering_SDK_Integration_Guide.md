@@ -127,6 +127,9 @@ renderView.setOnTouchListener(new PcTouchListener(session));
 **Above are the core steps of integration. For the specific code, see [Demo](../Demo).
 API usage reference[API_Documentation](API_Documentation.md). For more functional scenarios, please refer to [Scene Function](场景功能.md)**
 
+# Privacy
+[privacy doc](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Doc/privacy.md)
+
 # FAQs
 1. **Which is the earliest Android version supported by the Real-Time Cloud Rendering SDK?**  
 Android 4.4 (API level 19).
