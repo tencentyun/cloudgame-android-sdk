@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.19.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.19.2/TcrSdk) (2024-7-22)
+**Bug Fixes**
+- Fixed the problem with the left and right joystick buttons of the controller
+
 # [Version 3.19.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.19.1/TcrSdk) (2024-3-28)
 **Bug Fixes**
 - Fixed the problem that the trigger button of the external controller does not lift up
