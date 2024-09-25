@@ -5,7 +5,16 @@ plugins {
 android {
     namespace 'com.tencent.tcrdemo'
     compileSdk 34
-
+    signingConfigs {
+        release {
+            storeFile file('../keystore/local.keystore')
+            keyAlias 'tcgsdk'
+            keyPassword 'tcgsdk'
+            storePassword 'tcgsdk'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
     defaultConfig {
         multiDexEnabled true
         applicationId "com.tencent.tcrdemo"
@@ -79,6 +88,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -91,10 +101,10 @@ android {
 }
 
 dependencies {
-    fullImplementation "com.tencent.tcr:tcrsdk-full:3.19.2"
-    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.19.2"
-    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.19.2"
-    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.19.2"
+    fullImplementation "com.tencent.tcr:tcrsdk-full:3.20.0"
+    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.20.0"
+    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.20.0"
+    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.20.0"
     implementation "androidx.appcompat:appcompat:1.4.1"
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'com.tencent.tcr:tcr-gamepad:2.2.4'

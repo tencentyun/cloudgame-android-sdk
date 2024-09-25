@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.20.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.20.0/TcrSdk) (2024-09-25)
+**Features**
+- Fixed and optimized some known issues
+
 # [Version 3.19.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.19.2/TcrSdk) (2024-7-22)
 **Bug Fixes**
 - Fixed the problem with the left and right joystick buttons of the controller
