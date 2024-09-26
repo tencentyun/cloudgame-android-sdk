@@ -72,5 +72,5 @@ The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide
 
 ## Package Size
 
-Full integration: APK package size increase is approximately 9.6MB (for arm64-v8a, armeabi-v7a, and armeabi architectures).    
+Full integration: APK package size increase is approximately 4MB   
 Lightweight plugin integration: APK package size increase is 0.1MB.
