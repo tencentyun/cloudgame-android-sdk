@@ -23,7 +23,7 @@
 
             <TextView
                     android:gravity="center_horizontal"
-                    android:text="应用交互测试"
+                    android:text="@string/app_interaction_test"
                     style="@style/textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="复制文本接口测试"
+                android:text="@string/copy_text_interface_test"
                 android:id="@+id/paste_layout_button"
                 android:onClick="@{handlers::onClickExpandLayoutShow}"/>
             <LinearLayout
@@ -50,20 +50,20 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="16sp"
-                        android:hint="需复制的文本"
+                        android:hint="@string/text_to_copy"
                         android:text="@={viewModel.pasteText}" />
 
                 <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="复制"
+                        android:text="@string/copy"
                         android:onClick="@{handlers::onClickPasteText}" />
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="修改分辨率接口测试"
+                android:text="@string/modify_resolution_interface_test"
                 android:id="@+id/set_res_layout_button"
                 android:onClick="@{handlers::onClickExpandLayoutShow}"/>
             <LinearLayout
@@ -105,13 +105,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{handlers::setRemoteDesktopResolution}"
-                    android:text="设置分辨率" />
+                    android:text="@string/set_resolution" />
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="数据通道测试"
+                android:text="@string/data_channel_test"
                 android:id="@+id/data_channel_layout_button"
                 android:onClick="@{handlers::onClickExpandLayoutShow}"/>
 
@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="@{handlers::createDataChannel}"
-                        android:text="创建数据通道" />
+                        android:text="@string/create_data_channel" />
             </LinearLayout>
 
             <LinearLayout
@@ -166,14 +166,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="@{handlers::dataChannelSend}"
-                        android:text="发送数据" />
+                        android:text="@string/send_data" />
             </LinearLayout>
 
         </LinearLayout>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="自动登录测试"
+                android:text="@string/auto_login_test"
                 android:id="@+id/auto_login_layout_button"
                 android:onClick="@{handlers::onClickExpandLayoutShow}"/>
             <LinearLayout
@@ -187,21 +187,21 @@
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/teal_700"
                     android:text="@={viewModel.account}"
-                    android:hint="输入账号"
+                    android:hint="@string/input_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             <EditText
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/teal_700"
                     android:text="@={viewModel.password}"
-                    android:hint="输入密码"
+                    android:hint="@string/input_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{handlers::startAutoLogin}"
-                    android:text="开始自动登录" />
+                    android:text="@string/start_auto_login" />
             </LinearLayout>
             <Button
                 android:layout_marginTop="5dp"
@@ -210,7 +210,7 @@
                 android:onClick="@{handlers::onClickRestartCloudApp}"
                 android:elevation="3dp"
                 android:clipToOutline="true"
-                android:text="重启云端程序" />
+                android:text="@string/restart_cloud_program" />
         </LinearLayout>
     </ScrollView>
 </layout>

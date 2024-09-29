@@ -1,13 +1,14 @@
 <resources>
-    <string name="app_name">TcrDemo</string>
-    <string name="key_set_userid">key_set_userid</string>
-    <string name="key_set_host_userid">key_set_host_userid</string>
-    <string name="debug_mode">调试模式</string>
-    <string name="key_experience_name">key_expire_name</string>
-    <string name="key_experience_code">key_experience_code</string>
-    <string name="key_index_of_debug_opt">key_index_of_debug_opt</string>
-    <string name="key_index_of_test_env_opt">key_index_of_test_env_opt</string>
-    <string name="key_index_of_role_opt">key_index_of_role_opt</string>
+    <string name="app_name" translatable="false">TcrDemo</string>
+    <string name="key_set_userid" translatable="false">key_set_userid</string>
+    <string name="key_set_host_userid" translatable="false">key_set_host_userid</string>
+    <string name="debug_mode" translatable="false">调试模式</string>
+    <string name="key_experience_name" translatable="false">key_expire_name</string>
+    <string name="key_experience_code" translatable="false">key_experience_code</string>
+    <string name="key_index_of_debug_opt" translatable="false">key_index_of_debug_opt</string>
+    <string name="key_index_of_test_env_opt" translatable="false">key_index_of_test_env_opt</string>
+    <string name="key_index_of_intl_env_opt" translatable="false">key_index_of_intl_env_opt</string>
+    <string name="key_index_of_role_opt" translatable="false">key_index_of_role_opt</string>
     <string-array name="render_view_pos_array">
         <item>0</item>
         <item>90</item>
@@ -29,5 +30,95 @@
         <item>right</item>
     </string-array>
     <string name="spinner_prompt">选择一个选项</string>
+
+    <string name="quick_experience">快速体验</string>
+    <string name="advanced_mode">高级模式</string>
+
+    <string name="experience_code">体验码</string>
+    <string name="input_experience_code">输入体验码</string>
+    <string name="test_env">测试环境</string>
+    <string name="user_id">用户id</string>
+    <string name="default_random">默认随机生成</string>
+    <string name="host_user_id">房主id</string>
+    <string name="role">角色</string>
+    <string name="player">玩家</string>
+    <string name="viewer">观众</string>
+    <string name="start">启动</string>
+    <string name="intl_env">国际站</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="send">发送</string>
+    <string name="mute">静音</string>
+
+    <string name="basic_test">基础测试</string>
+    <string name="pc_input_test">端游输入测试</string>
+    <string name="virtual_keyboard">虚拟键盘</string>
+    <string name="custom_virtual_keys">自定义虚拟按键</string>
+    <string name="mouse_relative_movement">鼠标相对移动</string>
+    <string name="controller_connection">手柄连接</string>
+    <string name="click_trigger_key">点击触发按键</string>
+    <string name="mouse_left_button">鼠标左键</string>
+    <string name="mouse_right_button">鼠标右键</string>
+    <string name="mouse_sensitivity_adjustment">鼠标灵敏度调整</string>
+    <string name="mobile_input_test">手游输入测试</string>
+    <string name="disable_cloud_local_input_method">禁用云端本地输入法</string>
+    <string name="exit_game">退出游戏</string>
+
+    <string name="app_interaction_test">应用交互测试</string>
+    <string name="copy_text_interface_test">复制文本接口测试</string>
+    <string name="text_to_copy">需复制的文本</string>
+    <string name="copy">复制</string>
+    <string name="modify_resolution_interface_test">修改分辨率接口测试</string>
+    <string name="set_resolution">设置分辨率</string>
+    <string name="data_channel_test">数据通道测试</string>
+    <string name="create_data_channel">创建数据通道</string>
+    <string name="send_data">发送数据</string>
+    <string name="auto_login_test">自动登录测试</string>
+    <string name="input_account">输入账号</string>
+    <string name="input_password">输入密码</string>
+    <string name="start_auto_login">开始自动登录</string>
+    <string name="restart_cloud_program">重启云端程序</string>
+
+    <string name="media_function_test">媒体功能测试</string>
+    <string name="media_downlink_parameter_setting">媒体下行参数设置</string>
+    <string name="stop_streaming">停止推流</string>
+    <string name="resume_streaming">恢复推流</string>
+    <string name="playback_volume_adjustment">播放音量调节</string>
+    <string name="media_uplink_test">媒体上行测试</string>
+    <string name="start_video_uplink">开启视频上行</string>
+    <string name="stop_video_uplink">关闭视频上行</string>
+    <string name="start_microphone_uplink">开启麦克上行</string>
+    <string name="stop_microphone_uplink">关闭麦克上行</string>
+    <string name="input_uplink_max_bitrate">输入上行最大码率，单位kbps</string>
+    <string name="set_uplink_bitrate">设置上行码率</string>
+
+    <string name="view_transformation_function_test">视图变换功能测试</string>
+    <string name="performance_view">性能视图</string>
+    <string name="toggle_super_resolution">开关超分</string>
+    <string name="cursor_visible">光标可见</string>
+    <string name="view_angle">视图角度</string>
+    <string name="rotation_angle">旋转角度</string>
+    <string name="scaling_type">缩放类型</string>
+    <string name="mouse_style">鼠标样式</string>
+    <string name="drag_zoom_test">拖动缩放测试</string>
+    <string name="set_drag_boundary">设置拖动边界</string>
+    <string name="zoom_data">缩放数据</string>
+    <string name="pinch_zoom">双指缩放</string>
+    <string name="reset_view">重置View</string>
+
+    <string name="interactive_cloud_tour">互动云游</string>
+    <string name="sync_all_user_info">同步全部用户信息</string>
+    <string name="host_operation">房主操作</string>
+    <string name="input_user_id_to_operate">输入要操作的userID</string>
+    <string name="input_seat_to_operate">输入要操作的席位</string>
+    <string name="switch_to_player">切换为玩家</string>
+    <string name="switch_to_viewer">切换为观察者</string>
+    <string name="audience_operation">观众操作</string>
+    <string name="input_user_id_to_operate_audience">输入要操作的userID</string>
+    <string name="input_seat_to_operate_audience">输入要操作的席位</string>
+    <string name="apply_to_be_player">申请为玩家</string>
+    <string name="apply_to_be_viewer">申请为观察者</string>
+    <string name="room_list">房间列表</string>
+
 
 </resources>

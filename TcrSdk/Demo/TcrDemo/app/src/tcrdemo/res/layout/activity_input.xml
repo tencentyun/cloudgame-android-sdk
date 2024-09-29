@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"/>
         <Button
                 android:onClick="send"
-                android:text="发送"
+                android:text="@string/send"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"/>
     </LinearLayout>

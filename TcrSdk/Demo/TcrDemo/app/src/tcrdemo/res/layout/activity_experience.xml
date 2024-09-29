@@ -50,7 +50,7 @@
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
-                    android:text="快速体验"
+                    android:text="@string/quick_experience"
                     android:textColor="@drawable/setting_dialog_button_text_color"
                     android:textSize="13.33sp" />
 
@@ -61,7 +61,7 @@
                     android:background="@drawable/setting_dialog_tab_button"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="高级模式"
+                    android:text="@string/advanced_mode"
                     android:textColor="@drawable/setting_dialog_button_text_color"
                     android:textSize="13.33sp" />
 
@@ -92,7 +92,7 @@
                         android:id="@+id/experience_code_label"
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="13.33dp"
-                        android:text="体验码"
+                        android:text="@string/experience_code"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -111,14 +111,13 @@
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="101.33dp"
                         android:background="@null"
-                        android:hint="请输入体验码"
+                        android:hint="@string/input_experience_code"
                         android:inputType="text"
                         android:textColorHint="#7FCEDBED"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,7 +134,7 @@
                         android:id="@+id/env_label"
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="13.33dp"
-                        android:text="测试环境"
+                        android:text="@string/test_env"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -166,7 +165,7 @@
                             android:button="@drawable/setting_dialog_radio_button"
                             android:checked="true"
                             android:gravity="center"
-                            android:text="否"
+                            android:text="@string/no"
                             android:textColor="@drawable/setting_dialog_button_text_color"
                             android:textSize="13.33sp" />
 
@@ -177,9 +176,72 @@
                             android:button="@drawable/setting_dialog_radio_button"
                             android:checked="false"
                             android:gravity="center"
-                            android:text="是"
+                            android:text="@string/yes"
                             android:textColor="@drawable/setting_dialog_button_text_color"
                             android:textSize="13.33sp" />
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/intl_env_layout"
+                        android:layout_width="300dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="2dp"
+                        android:background="#33000000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/test_env_layout">
+
+                    <TextView
+                            android:id="@+id/intl_env_label"
+                            style="@style/setting_dialog_text_style"
+                            android:layout_marginStart="13.33dp"
+                            android:text="@string/intl_env"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                            android:layout_width="0.67dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="81dp"
+                            android:background="#CEDBED"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                            android:id="@+id/intl_env_radio_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="101.33dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                                android:id="@+id/is_not_intl_env"
+                                android:layout_width="75dp"
+                                android:layout_height="24dp"
+                                android:button="@drawable/setting_dialog_radio_button"
+                                android:checked="true"
+                                android:gravity="center"
+                                android:text="@string/no"
+                                android:textColor="@drawable/setting_dialog_button_text_color"
+                                android:textSize="13.33sp" />
+
+                        <RadioButton
+                                android:id="@+id/is_intl_env"
+                                android:layout_width="75dp"
+                                android:layout_height="24dp"
+                                android:button="@drawable/setting_dialog_radio_button"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:text="@string/yes"
+                                android:textColor="@drawable/setting_dialog_button_text_color"
+                                android:textSize="13.33sp" />
                     </RadioGroup>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -192,13 +254,13 @@
                     android:background="#33000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/test_env_layout">
+                    app:layout_constraintTop_toBottomOf="@id/intl_env_layout">
 
                     <TextView
                         android:id="@+id/user_id_label"
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="13.33dp"
-                        android:text="用户ID"
+                        android:text="@string/user_id"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -218,7 +280,7 @@
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="101.33dp"
                         android:background="@null"
-                        android:hint="默认随机生成"
+                        android:hint="@string/default_random"
                         android:inputType="text"
                         android:textColorHint="#7FCEDBED"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -240,7 +302,7 @@
                         android:id="@+id/host_user_id_label"
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="13.33dp"
-                        android:text="房主ID"
+                        android:text="@string/host_user_id"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -259,7 +321,7 @@
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="101.33dp"
                         android:background="@null"
-                        android:hint="房主的用户ID"
+                        android:hint="@string/host_user_id"
                         android:inputType="text"
                         android:textColorHint="#7FCEDBED"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -281,7 +343,7 @@
                         android:id="@+id/role_label"
                         style="@style/setting_dialog_text_style"
                         android:layout_marginStart="13.33dp"
-                        android:text="角色"
+                        android:text="@string/role"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -312,7 +374,7 @@
                             android:button="@drawable/setting_dialog_radio_button"
                             android:checked="true"
                             android:gravity="center"
-                            android:text="玩家"
+                            android:text="@string/player"
                             android:textColor="@drawable/setting_dialog_button_text_color"
                             android:textSize="13.33sp" />
 
@@ -323,7 +385,7 @@
                             android:button="@drawable/setting_dialog_radio_button"
                             android:checked="false"
                             android:gravity="center"
-                            android:text="观众"
+                            android:text="@string/viewer"
                             android:textColor="@drawable/setting_dialog_button_text_color"
                             android:textSize="13.33sp" />
                     </RadioGroup>
@@ -334,7 +396,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    app:constraint_referenced_ids="test_env_layout,role_layout,user_id_layout,host_user_id_layout" />
+                    app:constraint_referenced_ids="test_env_layout,role_layout,user_id_layout,host_user_id_layout,intl_env_layout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -344,7 +406,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="25dp"
                 android:background="#006EFF"
-                android:text="启动"
+                android:text="@string/start"
                 android:textColor="#ffffff"
                 android:textSize="13.33sp"
                 android:layout_marginBottom="60dp"

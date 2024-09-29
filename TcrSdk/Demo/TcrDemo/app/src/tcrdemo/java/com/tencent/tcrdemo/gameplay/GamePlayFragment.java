@@ -99,8 +99,13 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     private KeyboardView mKeyboardView;
     private final DecimalFormat mDf = new DecimalFormat("#.##");
     private final Handler mUIThreadHandler = new Handler(this);
+    // 测试环境
+    private boolean mIsTestEnv;
+    private boolean mIsIntlEnv;
     // 多人互动云游场景:房主id
     private String mHostUserId;
+    // 多人互动云游场景:角色
+    private String mRole;
     // 本机userId
     private String mHandlerUserId;
     // 在腾讯云官网生成的体验码
@@ -285,6 +290,15 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     }
     public void setHostUserId (String hostUserId) {
         mHostUserId = hostUserId;
+    }
+    public void setTestEnv(boolean isTestEnv) {
+        mIsTestEnv = isTestEnv;
+    }
+    public void  setIntlEnv(boolean isIntlEnv) {
+        mIsIntlEnv = isIntlEnv;
+    }
+    public void setRole(boolean isPlayer){
+        mRole = isPlayer ? "Player" : "Viewer";
     }
     public void setExperienceCode(String experienceCode){
         mExperienceCode = experienceCode;
@@ -495,7 +509,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
                         TcrSdk.getInstance().createTcrRenderView(context, mSession, TcrRenderViewType.SURFACE);
                 mRenderView.post(() -> {
                     Toast.makeText(context, "开始请求云API", Toast.LENGTH_SHORT).show();
-                    TcrTestEnv.getInstance().startSession(context, mExperienceCode, clientSession, response -> {
+                    TcrTestEnv.getInstance().startSession(context, mExperienceCode, clientSession,null,null,null,mIsTestEnv,mIsIntlEnv, response -> {
                         boolean res = mSession.start(response);
                         if (!res) {
                             Log.e(sApiTAG, "TcrSession#start() fail.");

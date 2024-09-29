@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="spinner_prompt">choose one item</string>
+
+    <string name="quick_experience">quick</string>
+    <string name="advanced_mode">advance</string>
+
+    <string name="experience_code">experience code</string>
+    <string name="input_experience_code">input experience code</string>
+    <string name="test_env">test env</string>
+    <string name="user_id">user id</string>
+    <string name="default_random">default random</string>
+    <string name="host_user_id">host user id</string>
+    <string name="role">role</string>
+    <string name="player">player</string>
+    <string name="viewer">viewer</string>
+    <string name="start">start</string>
+    <string name="intl_env">intl env</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="send">send</string>
+    <string name="mute">mute</string>
+
+    <string name="basic_test">Basic Test</string>
+    <string name="pc_input_test">PC Input Test</string>
+    <string name="virtual_keyboard">Virtual Keyboard</string>
+    <string name="custom_virtual_keys">Virtual joystick</string>
+    <string name="mouse_relative_movement">Mouse Relative Movement</string>
+    <string name="controller_connection">Controller Connection</string>
+    <string name="click_trigger_key">Click Trigger Key</string>
+    <string name="mouse_left_button">Mouse Left</string>
+    <string name="mouse_right_button">Mouse Right</string>
+    <string name="mouse_sensitivity_adjustment">Mouse Sensitivity Adjustment</string>
+    <string name="mobile_input_test">Mobile Input Test</string>
+    <string name="disable_cloud_local_input_method">Disable Cloud Local Input Method</string>
+    <string name="exit_game">Exit Game</string>
+
+    <string name="app_interaction_test">Application Interaction Test</string>
+    <string name="copy_text_interface_test">Copy Text Interface Test</string>
+    <string name="text_to_copy">Text to Copy</string>
+    <string name="copy">Copy</string>
+    <string name="modify_resolution_interface_test">Modify Resolution Interface Test</string>
+    <string name="set_resolution">Set Resolution</string>
+    <string name="data_channel_test">Data Channel Test</string>
+    <string name="create_data_channel">Create Data Channel</string>
+    <string name="send_data">Send Data</string>
+    <string name="auto_login_test">Auto Login Test</string>
+    <string name="input_account">Input Account</string>
+    <string name="input_password">Input Password</string>
+    <string name="start_auto_login">Start Auto Login</string>
+    <string name="restart_cloud_program">Restart Cloud Program</string>
+
+    <string name="media_function_test">Media Function Test</string>
+    <string name="media_downlink_parameter_setting">Media Downlink Parameter Setting</string>
+    <string name="stop_streaming">Stop Streaming</string>
+    <string name="resume_streaming">Resume Streaming</string>
+    <string name="playback_volume_adjustment">Playback Volume Adjustment</string>
+    <string name="media_uplink_test">Media Uplink Test</string>
+    <string name="start_video_uplink">Start Video Uplink</string>
+    <string name="stop_video_uplink">Stop Video Uplink</string>
+    <string name="start_microphone_uplink">Start Microphone Uplink</string>
+    <string name="stop_microphone_uplink">Stop Microphone Uplink</string>
+    <string name="input_uplink_max_bitrate">Input Uplink Max Bitrate, Unit kbps</string>
+    <string name="set_uplink_bitrate">Set Uplink Bitrate</string>
+
+    <string name="view_transformation_function_test">View Transformation Function Test</string>
+    <string name="performance_view">Performance View</string>
+    <string name="toggle_super_resolution">Toggle Super Resolution</string>
+    <string name="cursor_visible">Cursor Visible</string>
+    <string name="view_angle">View Angle</string>
+    <string name="rotation_angle">Rotation Angle</string>
+    <string name="scaling_type">Scaling Type</string>
+    <string name="mouse_style">Mouse Style</string>
+    <string name="drag_zoom_test">Drag Zoom Test</string>
+    <string name="set_drag_boundary">Set Drag Boundary</string>
+    <string name="zoom_data">Zoom Data</string>
+    <string name="pinch_zoom">Pinch Zoom</string>
+    <string name="reset_view">Reset View</string>
+
+    <string name="interactive_cloud_tour">Interactive Cloud Tour</string>
+    <string name="sync_all_user_info">Sync All User Information</string>
+    <string name="host_operation">Host Operation</string>
+    <string name="input_user_id_to_operate">Input User ID to Operate</string>
+    <string name="input_seat_to_operate">Input Seat to Operate</string>
+    <string name="switch_to_player">Switch to Player</string>
+    <string name="switch_to_viewer">Switch to Viewer</string>
+    <string name="audience_operation">Audience Operation</string>
+    <string name="input_user_id_to_operate_audience">Input User ID to Operate</string>
+    <string name="input_seat_to_operate_audience">Input Seat to Operate</string>
+    <string name="apply_to_be_player">Apply to be Player</string>
+    <string name="apply_to_be_viewer">Apply to be Viewer</string>
+    <string name="room_list">Room List</string>
+
+</resources>

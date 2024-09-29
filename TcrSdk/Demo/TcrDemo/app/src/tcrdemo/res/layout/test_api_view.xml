@@ -23,7 +23,7 @@
 
             <TextView
                     android:gravity="center_horizontal"
-                    android:text="视图变换功能测试"
+                    android:text="@string/view_transformation_function_test"
                     style="@style/textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -34,7 +34,7 @@
 
                 <CheckBox
                         style="@style/textview"
-                        android:text="性能视图"
+                        android:text="@string/performance_view"
                         android:textSize="10sp"
                         android:checked="@={viewModel.enableDebugView}"
                         android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 <CheckBox
                         style="@style/textview"
                         android:textSize="10sp"
-                        android:text="开关超分"
+                        android:text="@string/toggle_super_resolution"
                         android:checked="@={viewModel.enableSR}"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
@@ -54,7 +54,7 @@
                         android:id="@+id/cursor_visibility"
                         style="@style/textview"
                         android:textSize="10sp"
-                        android:text="光标可见"
+                        android:text="@string/cursor_visible"
                         android:checked="@={viewModel.cursorViewVisibility}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -69,7 +69,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:text="视图角度"
+                        android:text="@string/view_angle"
                         style="@style/textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:textColorHint="@android:color/black"
-                        android:text="旋转角度"
+                        android:text="@string/rotation_angle"
                         android:prompt="@string/spinner_prompt"
                         android:selectedItemPosition="@={viewModel.renderViewRotation}"
                         android:entries="@array/render_view_pos_array"/>
@@ -92,7 +92,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:text="缩放类型"
+                        android:text="@string/scaling_type"
                         style="@style/textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:textColorHint="@android:color/black"
-                        android:text="缩放类型"
+                        android:text="@string/scaling_type"
                         android:prompt="@string/spinner_prompt"
                         android:selectedItemPosition="@={viewModel.renderViewScaleType}"
                         android:entries="@array/scale_type_array"/>
@@ -114,7 +114,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:text="鼠标样式"
+                        android:text="@string/mouse_style"
                         style="@style/textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -122,7 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="鼠标样式"
+                        android:text="@string/mouse_style"
                         android:background="@color/white"
                         android:textColorHint="@android:color/black"
                         android:prompt="@string/spinner_prompt"
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/set_view_pinch_layout_button"
                     android:onClick="@{handlers::onClickExpandLayoutShow}"
-                    android:text="拖动缩放测试" />
+                    android:text="@string/drag_zoom_test" />
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:onClick="@{handlers::onClickSetPinchOffset}"
-                            android:text="设置拖动边界" />
+                            android:text="@string/set_drag_boundary" />
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
@@ -202,14 +202,14 @@
                     <CheckBox
                         style="@style/textview"
                         android:textSize="10sp"
-                        android:text="缩放数据"
+                        android:text="@string/zoom_data"
                         android:checked="@={viewModel.enablePinchDataView}"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />
                     <CheckBox
                         style="@style/textview"
                         android:textSize="10sp"
-                        android:text="双指缩放"
+                        android:text="@string/pinch_zoom"
                         android:checked="@={viewModel.enablePinch}"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="@{handlers::onClickResetView}"
-                        android:text="重置View" />
+                        android:text="@string/reset_view" />
 
             </LinearLayout>
 

@@ -24,7 +24,7 @@
             android:orientation="vertical">
             <TextView
                 android:gravity="center_horizontal"
-                android:text="基础测试"
+                android:text="@string/basic_test"
                 style="@style/textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -54,7 +54,7 @@
             </RadioGroup>
 
             <Button
-                android:text="端游输入测试"
+                android:text="@string/pc_input_test"
                 android:id="@+id/pc_input_layout_button"
                 android:onClick="@{handlers::onClickExpandLayoutShow}"
 
@@ -80,7 +80,7 @@
                     <CheckBox
                             android:id="@+id/virtual_keyboard"
                             style="@style/textview"
-                            android:text="虚拟键盘"
+                            android:text="@string/virtual_keyboard"
                             android:textSize="10sp"
                             android:checked="@={viewModel.virtualKeyboard}"
                             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                     <CheckBox
                             android:id="@+id/edit_custom_pad_switch"
                             style="@style/textview"
-                            android:text="自定义虚拟按键"
+                            android:text="@string/custom_virtual_keys"
                             android:textSize="10sp"
                             android:checked="@={viewModel.virtualGamePad}"
                             android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
                             android:checked="@={viewModel.pcRelativeMove}"
-                            android:text="鼠标相对移动" />
+                            android:text="@string/mouse_relative_movement" />
 
                     <CheckBox
                             style="@style/textview"
@@ -115,7 +115,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:checked="@={viewModel.connectGamePad}"
-                            android:text="手柄连接" />
+                            android:text="@string/controller_connection" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,7 +124,7 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:text="点击触发按键"
+                        android:text="@string/click_trigger_key"
                         style="@style/textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -148,13 +148,13 @@
                             android:id="@+id/mouseLeft"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="鼠标左键" />
+                            android:text="@string/mouse_left_button" />
 
                     <Button
                             android:id="@+id/mouseRight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="鼠标右键" />
+                            android:text="@string/mouse_right_button" />
 
                 </LinearLayout>
 
@@ -162,7 +162,7 @@
 
             <TextView
                     android:gravity="center_horizontal"
-                    android:text="鼠标灵敏度调整"
+                    android:text="@string/mouse_sensitivity_adjustment"
                     style="@style/textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -178,7 +178,7 @@
         </LinearLayout>
 
             <Button
-                android:text="手游输入测试"
+                android:text="@string/mobile_input_test"
                 android:onClick="@{handlers::onClickExpandLayoutShow}"
                 android:id="@+id/mobile_input_layout_button"
                 android:layout_width="match_parent"
@@ -197,7 +197,7 @@
                 <CheckBox
                     style="@style/textview"
                     android:layout_marginEnd="0dp"
-                    android:text="禁用云端本地输入法"
+                    android:text="@string/disable_cloud_local_input_method"
                     android:textSize="10sp"
                     android:checked="@={viewModel.enableLocalIme}"
                     android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{handlers::onClickExit}"
-                android:text="退出游戏" />
+                android:text="@string/exit_game" />
         </LinearLayout>
 
 

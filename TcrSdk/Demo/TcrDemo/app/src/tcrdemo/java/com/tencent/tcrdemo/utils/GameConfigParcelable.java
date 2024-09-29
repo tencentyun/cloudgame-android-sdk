@@ -22,6 +22,7 @@ public class GameConfigParcelable implements Parcelable {
     };
     public String experienceCode;        //必选，体验码
     public boolean isTestEnv;
+    public boolean isIntlEnv;
     public boolean isEnablePlayer;
     public String userId;
     public String hostUserId;
@@ -30,9 +31,10 @@ public class GameConfigParcelable implements Parcelable {
      * 创建一个GameConfigParcelable
      */
     public GameConfigParcelable(String experienceCode,
-                                boolean isTest, String userID, String hostUserId, boolean isPlayer) {
+                                boolean isTest, String userID, String hostUserId, boolean isPlayer,boolean isIntlEnv) {
         this.experienceCode = experienceCode;
         isTestEnv = isTest;
+        this.isIntlEnv = isIntlEnv;
         userId = userID;
         this.hostUserId = hostUserId;
         isEnablePlayer = isPlayer;
@@ -41,6 +43,7 @@ public class GameConfigParcelable implements Parcelable {
     protected GameConfigParcelable(Parcel in) {
         experienceCode = in.readString();
         isTestEnv = in.readInt() == 1;
+        isIntlEnv = in.readInt() == 1;
         userId = in.readString();
         hostUserId = in.readString();
         isEnablePlayer = in.readInt() == 1;
@@ -50,6 +53,7 @@ public class GameConfigParcelable implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(experienceCode);
         dest.writeInt(isTestEnv ? 1 : 0);
+        dest.writeInt(isIntlEnv ? 1 : 0);
         dest.writeString(userId);
         dest.writeString(hostUserId);
         dest.writeInt(isEnablePlayer ? 1 : 0);

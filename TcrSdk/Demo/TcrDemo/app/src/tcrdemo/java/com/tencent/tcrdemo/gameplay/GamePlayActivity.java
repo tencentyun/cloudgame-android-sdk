@@ -38,6 +38,8 @@ public class GamePlayActivity extends AppCompatActivity {
             gamePlayFragment.setUserId(parcelable.userId);
         }
         gamePlayFragment.setHostUserId(parcelable.hostUserId);
+        gamePlayFragment.setTestEnv(parcelable.isTestEnv);
+        gamePlayFragment.setRole(parcelable.isEnablePlayer);
         gamePlayFragment.setExperienceCode(parcelable.experienceCode);
     }
 

@@ -19,6 +19,7 @@ import com.tencent.tcrdemo.R;
 public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnCheckedChangeListener {
 
     private final RadioGroup mTestEnvRadioGroup;
+    private final RadioGroup mIntlEnvRadioGroup;
     private final RadioGroup mMultiUserRoleRadioGroup;
     private final Group mAdvanceGroup;
 
@@ -48,6 +49,7 @@ public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnC
         mAdvanceGroup = parent.findViewById(R.id.advance_layout);
         mAdvanceGroup.setVisibility(View.GONE);
         mTestEnvRadioGroup = parent.findViewById(R.id.test_env_radio_group);
+        mIntlEnvRadioGroup = parent.findViewById(R.id.intl_env_radio_group);
         mMultiUserRoleRadioGroup = parent.findViewById(R.id.role_radio_group);
         RadioGroup mTabRadioGroup = parent.findViewById(R.id.tab_radio_group);
         mTabRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -79,6 +81,10 @@ public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnC
         return mTestEnvRadioGroup.getCheckedRadioButtonId() == R.id.is_test_env;
     }
 
+    public boolean isIntlEnv() {
+        return mIntlEnvRadioGroup.getCheckedRadioButtonId() == R.id.is_intl_env;
+    }
+
 
     public boolean isRolePlayer() {
         return mMultiUserRoleRadioGroup.getCheckedRadioButtonId() == R.id.role_player;
@@ -103,6 +109,15 @@ public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnC
 
     public void setTestEnvIndex(int index) {
         mTestEnvRadioGroup.check(index == 0 ? R.id.is_not_test_env : R.id.is_test_env);
+    }
+
+    public int getIntlEnvIndex() {
+        return mIntlEnvRadioGroup.getCheckedRadioButtonId() == R.id.is_not_test_env
+                ? 0 : 1;
+    }
+
+    public void setIntlEnvIndex(int index) {
+        mIntlEnvRadioGroup.check(index == 0 ? R.id.is_not_test_env : R.id.is_test_env);
     }
 
     private float dp2px(Context context, float dp) {

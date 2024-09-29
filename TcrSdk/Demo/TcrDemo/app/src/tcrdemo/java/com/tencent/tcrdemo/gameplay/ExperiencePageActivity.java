@@ -41,7 +41,7 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
         Intent intent = new Intent(ExperiencePageActivity.this, GamePlayActivity.class);
         Parcelable gameParcelable = new GameConfigParcelable(experienceCode,
                 mExperiencePageView.isTestEnv(), userId, hostUserId,
-                mExperiencePageView.isRolePlayer());
+                mExperiencePageView.isRolePlayer(), mExperiencePageView.isIntlEnv());
         intent.putExtra(GameConfigParcelable.GAME_CONFIG_KEY, gameParcelable);
         startActivityForResult(intent, 1);
     }
@@ -58,6 +58,7 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
             editor.putString(getResources().getString(R.string.key_set_host_userid), hostUserId);
         }
         editor.putInt(getResources().getString(R.string.key_index_of_test_env_opt), mExperiencePageView.getTestEnvIndex());
+        editor.putInt(getResources().getString(R.string.key_index_of_intl_env_opt), mExperiencePageView.getIntlEnvIndex());
         editor.putInt(getResources().getString(R.string.key_index_of_role_opt), mExperiencePageView.isRolePlayer() ? 1 : 0);
         editor.apply();
     }
@@ -69,6 +70,7 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
         String hostUserId = mPrefs.getString(getResources().getString(R.string.key_set_host_userid), "");
         mExperiencePageView.setExperienceCode(experienceCode);
         mExperiencePageView.setTestEnvIndex(mPrefs.getInt(getResources().getString(R.string.key_index_of_test_env_opt), 0));
+        mExperiencePageView.setIntlEnvIndex(mPrefs.getInt(getResources().getString(R.string.key_index_of_intl_env_opt), 0));
         mExperiencePageView.setUserID(userID);
         mExperiencePageView.setHostUserId(hostUserId);
         mExperiencePageView
