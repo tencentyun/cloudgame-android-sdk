@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -27,7 +26,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.gson.Gson;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.api.CustomDataChannel;
@@ -59,10 +57,10 @@ import com.tencent.tcrdemo.bean.HitInput;
 import com.tencent.tcrdemo.bean.User;
 import com.tencent.tcrdemo.databinding.FragmentGamePlayBinding;
 import com.tencent.tcrdemo.utils.CustomAudioCapturer;
+import com.tencent.tcrdemo.utils.DeviceUtils;
 import com.tencent.tcrdemo.utils.TcrSdkWrapper;
 import com.tencent.tcrgamepad.GamepadManager;
 import com.tencent.tcrgui.keyboard.KeyboardView;
-
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
@@ -77,12 +75,18 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     private static final String sApiTAG = "ApiTest";
     private static final int MOBILE_GAME = 1;
     private static final int PC_GAME = 2;
-    private FragmentGamePlayBinding mViewDataBinding;
-    private GamePlayViewModel mViewModel;
-    // 会话
-    private volatile TcrSession mSession;
-    // 从SDK创建的渲染视图
-    private TcrRenderView mRenderView;
+    /**
+     * 初始化会话成功
+     **/
+    private static final int MSG_INIT_SESSION_SUCCESS = 0x001;
+    /**
+     * 启动会话成功
+     **/
+    private static final int MSG_START_SESSION_SUCCESS = 0x002;
+    /**
+     * 多人云游-席位更新
+     **/
+    private static final int MSG_SEAT_CHANGED = 0x003;
     // 测试入口
     private final TestApiHandler mTestApiHandler = new TestApiHandler();
     // 云游类型，PC or Android or unknown
@@ -90,6 +94,14 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
             BR.multiUser);
     private final MultiPlayerAdapter<User> mMultiPlayPlayerAdapter = new MultiPlayerAdapter<>(R.layout.multi_user_item,
             BR.multiUser);
+    private final DecimalFormat mDf = new DecimalFormat("#.##");
+    private final Handler mUIThreadHandler = new Handler(this);
+    private FragmentGamePlayBinding mViewDataBinding;
+    private GamePlayViewModel mViewModel;
+    // 会话
+    private volatile TcrSession mSession;
+    // 从SDK创建的渲染视图
+    private TcrRenderView mRenderView;
     private PcTouchListener mPcTouchListener;
     // 虚拟手柄视图
     private GamepadManager mGamePadManager;
@@ -97,8 +109,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     private RelativeLayout mKeyboardParent;
     // 虚拟键盘视图
     private KeyboardView mKeyboardView;
-    private final DecimalFormat mDf = new DecimalFormat("#.##");
-    private final Handler mUIThreadHandler = new Handler(this);
     // 测试环境
     private boolean mIsTestEnv;
     private boolean mIsIntlEnv;
@@ -121,23 +131,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     private boolean mVideoStreamConfigChanged = false;
     // 本地输入法Activity的启动器
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
-    // 自定义采集麦克风数据
-    private CustomAudioCapturer mCustomAudioCapturer;
-    // 是否开启自定义采集麦克风数据
-    private boolean mEnableCustomAudioCapture;
-    /**
-     * 初始化会话成功
-     **/
-    private static final int MSG_INIT_SESSION_SUCCESS = 0x001;
-    /**
-     * 启动会话成功
-     **/
-    private static final int MSG_START_SESSION_SUCCESS = 0x002;
-    /**
-     * 多人云游-席位更新
-     **/
-    private static final int MSG_SEAT_CHANGED = 0x003;
-
     /**
      * session事件回调处理
      */
@@ -281,30 +274,41 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
             }
         }
     };
+    // 自定义采集麦克风数据
+    private CustomAudioCapturer mCustomAudioCapturer;
+    // 是否开启自定义采集麦克风数据
+    private boolean mEnableCustomAudioCapture;
 
     public GamePlayFragment() {
         mTestApiHandler.setFragment(this);
     }
+
+    public static GamePlayFragment newInstance() {
+        return new GamePlayFragment();
+    }
+
     public void setUserId(String userId) {
         mHandlerUserId = userId;
     }
-    public void setHostUserId (String hostUserId) {
+
+    public void setHostUserId(String hostUserId) {
         mHostUserId = hostUserId;
     }
+
     public void setTestEnv(boolean isTestEnv) {
         mIsTestEnv = isTestEnv;
     }
-    public void  setIntlEnv(boolean isIntlEnv) {
+
+    public void setIntlEnv(boolean isIntlEnv) {
         mIsIntlEnv = isIntlEnv;
     }
-    public void setRole(boolean isPlayer){
+
+    public void setRole(boolean isPlayer) {
         mRole = isPlayer ? "Player" : "Viewer";
     }
-    public void setExperienceCode(String experienceCode){
+
+    public void setExperienceCode(String experienceCode) {
         mExperienceCode = experienceCode;
-    }
-    public static GamePlayFragment newInstance() {
-        return new GamePlayFragment();
     }
 
     public void setViewModel(GamePlayViewModel viewModel) {
@@ -357,7 +361,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
             }
         };
         // 初始化SDK
-        TcrSdkWrapper.getInstance().init(getContext(),initCallback);
+        TcrSdkWrapper.getInstance().init(getContext(), initCallback);
         setLogger();
     }
 
@@ -371,6 +375,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
                 .observer(mSessionEventObserver)
                 .idleThreshold(30000)
                 .lowFpsThreshold(31, 5)
+                .remoteDesktopResolution(DeviceUtils.getScreenSize(this.getActivity()).first,
+                        DeviceUtils.getScreenSize(this.getActivity()).second)
                 .enableLowLegacyRendering(true);
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
@@ -426,7 +432,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+            @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
         mViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_game_play, container, false);
         mViewDataBinding.setViewerAdapter(mMultiPlayViewerAdapter);
@@ -509,15 +515,17 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
                         TcrSdk.getInstance().createTcrRenderView(context, mSession, TcrRenderViewType.SURFACE);
                 mRenderView.post(() -> {
                     Toast.makeText(context, "开始请求云API", Toast.LENGTH_SHORT).show();
-                    TcrTestEnv.getInstance().startSession(context, mExperienceCode, clientSession,null,null,null,mIsTestEnv,mIsIntlEnv, response -> {
-                        boolean res = mSession.start(response);
-                        if (!res) {
-                            Log.e(sApiTAG, "TcrSession#start() fail.");
-                        }
-                    }, error -> {
-                        showToast(getContext(), error.getLocalizedMessage(), Toast.LENGTH_LONG);
-                        Log.w(TAG, error);
-                    });
+                    TcrTestEnv.getInstance()
+                            .startSession(context, mExperienceCode, clientSession, null, null, null, mIsTestEnv,
+                                    mIsIntlEnv, response -> {
+                                        boolean res = mSession.start(response);
+                                        if (!res) {
+                                            Log.e(sApiTAG, "TcrSession#start() fail.");
+                                        }
+                                    }, error -> {
+                                        showToast(getContext(), error.getLocalizedMessage(), Toast.LENGTH_LONG);
+                                        Log.w(TAG, error);
+                                    });
 
                     if (VERSION.SDK_INT >= VERSION_CODES.O) {
                         mRenderView.requestPointerCapture();
@@ -667,7 +675,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
      */
     private void setTouchHandler(TcrRenderView renderView) {
         Log.d(TAG, "setTouchHandler() mGameType=");
-        switch (PC_GAME) {
+        switch (MOBILE_GAME) {
             case MOBILE_GAME:
                 renderView.setOnTouchListener(new MobileTouchListener(mSession));
                 break;

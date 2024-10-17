@@ -7,8 +7,13 @@
 
         <import type="androidx.databinding.ObservableBoolean" />
 
-        <variable name="viewModel" type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
-        <variable name="handlers" type="com.tencent.tcrdemo.gameplay.TestApiHandler"/>
+        <variable
+                name="viewModel"
+                type="com.tencent.tcrdemo.gameplay.GamePlayViewModel" />
+
+        <variable
+                name="handlers"
+                type="com.tencent.tcrdemo.gameplay.TestApiHandler" />
 
     </data>
 
@@ -19,197 +24,206 @@
             android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:gravity="center_horizontal"
-                android:text="@string/basic_test"
-                style="@style/textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <RadioGroup
-                android:layout_weight="1"
-                android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:onCheckedChanged="@{handlers::switchTouchMode}">
+                android:orientation="vertical">
 
-                <RadioButton
+            <TextView
+                    android:gravity="center_horizontal"
+                    android:text="@string/basic_test"
                     style="@style/textview"
-                    android:checked="true"
-                    android:id="@+id/radio_btn_pc_input"
-                    android:text="PCInput"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+            <RadioGroup
+                    android:layout_weight="1"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:onCheckedChanged="@{handlers::switchTouchMode}">
+
                 <RadioButton
-                    style="@style/textview"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/radio_btn_mobile_input"
-                    android:text="MobileInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                        style="@style/textview"
+                        android:id="@+id/radio_btn_pc_input"
+                        android:text="PCInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <RadioButton
+                        style="@style/textview"
+                        android:checked="true"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/radio_btn_mobile_input"
+                        android:text="MobileInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
             </RadioGroup>
 
             <Button
-                android:text="@string/pc_input_test"
-                android:id="@+id/pc_input_layout_button"
-                android:onClick="@{handlers::onClickExpandLayoutShow}"
+                    android:text="@string/pc_input_test"
+                    android:id="@+id/pc_input_layout_button"
+                    android:onClick="@{handlers::onClickExpandLayoutShow}"
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/pc_input_layout"
-                android:visibility="gone"
-                android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/pc_input_layout"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                    <CheckBox
-                            android:id="@+id/virtual_keyboard"
-                            style="@style/textview"
-                            android:text="@string/virtual_keyboard"
-                            android:textSize="10sp"
-                            android:checked="@={viewModel.virtualKeyboard}"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <CheckBox
-                            android:id="@+id/edit_custom_pad_switch"
-                            style="@style/textview"
-                            android:text="@string/custom_virtual_keys"
-                            android:textSize="10sp"
-                            android:checked="@={viewModel.virtualGamePad}"
+                        <CheckBox
+                                android:id="@+id/virtual_keyboard"
+                                style="@style/textview"
+                                android:text="@string/virtual_keyboard"
+                                android:textSize="10sp"
+                                android:checked="@={viewModel.virtualKeyboard}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <CheckBox
+                                android:id="@+id/edit_custom_pad_switch"
+                                style="@style/textview"
+                                android:text="@string/custom_virtual_keys"
+                                android:textSize="10sp"
+                                android:checked="@={viewModel.virtualGamePad}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <CheckBox
+                                style="@style/textview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:checked="@={viewModel.pcRelativeMove}"
+                                android:text="@string/mouse_relative_movement" />
+
+                        <CheckBox
+                                style="@style/textview"
+                                android:textSize="10sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:checked="@={viewModel.connectGamePad}"
+                                android:text="@string/controller_connection" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:text="@string/click_trigger_key"
+                                style="@style/textview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:background="@color/white"
+                                android:textColorHint="@android:color/black"
+                                android:prompt="@string/spinner_prompt"
+                                android:selectedItemPosition="@={viewModel.mouseClickType}"
+                                android:entries="@array/click_type_array" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent" />
+                            android:layout_height="wrap_content">
+
+                        <Button
+                                android:id="@+id/mouseLeft"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mouse_left_button" />
+
+                        <Button
+                                android:id="@+id/mouseRight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mouse_right_button" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
+                <TextView
+                        android:gravity="center_horizontal"
+                        android:text="@string/mouse_sensitivity_adjustment"
+                        style="@style/textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <SeekBar
+                        android:id="@+id/mouse_sensitivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:progress="10"
+                        android:onProgressChanged="@{handlers::onMouseMoveSensitivityChanged}" />
+
+
+            </LinearLayout>
+
+            <Button
+                    android:text="@string/mobile_input_test"
+                    android:onClick="@{handlers::onClickExpandLayoutShow}"
+                    android:id="@+id/mobile_input_layout_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mobile_input_layout"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                     <CheckBox
                             style="@style/textview"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="0dp"
+                            android:text="@string/disable_cloud_local_input_method"
                             android:textSize="10sp"
-                            android:checked="@={viewModel.pcRelativeMove}"
-                            android:text="@string/mouse_relative_movement" />
-
-                    <CheckBox
-                            style="@style/textview"
-                            android:textSize="10sp"
+                            android:checked="@={viewModel.enableLocalIme}"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:checked="@={viewModel.connectGamePad}"
-                            android:text="@string/controller_connection" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:text="@string/click_trigger_key"
-                        style="@style/textview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:background="@color/white"
-                        android:textColorHint="@android:color/black"
-                        android:prompt="@string/spinner_prompt"
-                        android:selectedItemPosition="@={viewModel.mouseClickType}"
-                        android:entries="@array/click_type_array"/>
-                </LinearLayout>
-
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    <Button
-                            android:id="@+id/mouseLeft"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mouse_left_button" />
-
-                    <Button
-                            android:id="@+id/mouseRight"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mouse_right_button" />
-
+                            android:layout_height="wrap_content" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                    android:gravity="center_horizontal"
-                    android:text="@string/mouse_sensitivity_adjustment"
-                    style="@style/textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            <SeekBar
-                    android:id="@+id/mouse_sensitivity"
+            <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:progress="10"
-                    android:onProgressChanged="@{handlers::onMouseMoveSensitivityChanged}" />
-
-
-        </LinearLayout>
-
-            <Button
-                android:text="@string/mobile_input_test"
-                android:onClick="@{handlers::onClickExpandLayoutShow}"
-                android:id="@+id/mobile_input_layout_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/mobile_input_layout"
-            android:visibility="gone"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <CheckBox
-                    style="@style/textview"
-                    android:layout_marginEnd="0dp"
-                    android:text="@string/disable_cloud_local_input_method"
-                    android:textSize="10sp"
-                    android:checked="@={viewModel.enableLocalIme}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </LinearLayout>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{handlers::onClickExit}"
-                android:text="@string/exit_game" />
+                    android:onClick="@{handlers::onClickExit}"
+                    android:text="@string/exit_game" />
         </LinearLayout>
 
 
