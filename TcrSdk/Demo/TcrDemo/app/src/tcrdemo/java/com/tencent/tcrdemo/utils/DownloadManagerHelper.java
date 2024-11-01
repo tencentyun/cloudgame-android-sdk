@@ -8,9 +8,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
 import android.util.Log;
-
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -20,10 +21,10 @@ import java.util.Map;
  * 下载sdk插件的工具类，下载完成后广播出下载状态
  */
 public class DownloadManagerHelper {
-    private static final String TAG = "DownloadManagerHelper";
-    private DownloadManager mDownloadManager;
-    private WeakReference<Context> mContextRef;
 
+    private static final String TAG = "DownloadManagerHelper";
+    private final HashMap<Long, WeakReference<Listener>> mListeners = new HashMap<>();
+    private DownloadManager mDownloadManager;
     //广播监听下载的各个状态
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -53,11 +54,9 @@ public class DownloadManagerHelper {
             }
         }
     };
+    private WeakReference<Context> mContextRef;
 
-    private DownloadManagerHelper() { }
-
-    private static class Holder {
-        private static final DownloadManagerHelper sINSTANCE = new DownloadManagerHelper();
+    private DownloadManagerHelper() {
     }
 
     public static DownloadManagerHelper getInstance() {
@@ -67,38 +66,23 @@ public class DownloadManagerHelper {
     public void setContext(Context context) {
         mContextRef = new WeakReference<>(context.getApplicationContext());
 
-        mContextRef.get().registerReceiver(mReceiver,
-                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        if (VERSION.SDK_INT > VERSION_CODES.TIRAMISU) {
+            mContextRef.get().registerReceiver(mReceiver,
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), Context.RECEIVER_EXPORTED);
+        } else {
+            mContextRef.get().registerReceiver(mReceiver,
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        }
     }
-
-    public interface Listener {
-        /**
-         * 下载状态回调
-         * @param status
-         * {@link DownloadManager#STATUS_PENDING}
-         * {@link DownloadManager#STATUS_RUNNING}
-         * {@link DownloadManager#STATUS_PAUSED}
-         * {@link DownloadManager#STATUS_SUCCESSFUL}
-         * {@link DownloadManager#STATUS_FAILED}
-         *
-         */
-        void onStatusChange(int status);
-
-        /**
-         * 下载失败, 压根没开始下载
-         */
-        void onFailed(String msg);
-    }
-
-    private final HashMap<Long, WeakReference<Listener>> mListeners = new HashMap<>();
 
     /**
      * 开始下载
-     * @param title         需要在标题栏显示的标题, 如果填空，那么标题栏不显示下载任务
-     * @param description   标题栏任务描述
-     * @param url           需要下载的url
-     * @param destination   下载目标路径
-     * @param listener      下载状态回调
+     *
+     * @param title 需要在标题栏显示的标题, 如果填空，那么标题栏不显示下载任务
+     * @param description 标题栏任务描述
+     * @param url 需要下载的url
+     * @param destination 下载目标路径
+     * @param listener 下载状态回调
      */
     public void download(String title, String description, String url, File destination, Listener listener) {
         if (TextUtils.isEmpty(url)) {
@@ -151,6 +135,30 @@ public class DownloadManagerHelper {
         }
         context.unregisterReceiver(mReceiver);
         mContextRef = null;
+    }
+
+    public interface Listener {
+
+        /**
+         * 下载状态回调
+         *
+         * @param status {@link DownloadManager#STATUS_PENDING}
+         *         {@link DownloadManager#STATUS_RUNNING}
+         *         {@link DownloadManager#STATUS_PAUSED}
+         *         {@link DownloadManager#STATUS_SUCCESSFUL}
+         *         {@link DownloadManager#STATUS_FAILED}
+         */
+        void onStatusChange(int status);
+
+        /**
+         * 下载失败, 压根没开始下载
+         */
+        void onFailed(String msg);
+    }
+
+    private static class Holder {
+
+        private static final DownloadManagerHelper sINSTANCE = new DownloadManagerHelper();
     }
 
 }
