@@ -54,6 +54,10 @@
 **Deprecated**
 - The TcrSession#setRemoteVideoProfile interface has been marked as deprecated and may be removed in future versions. We no longer recommend calling this interface. If you have relevant requirements, please configure them in the Cloud Rendering console.
 
+# [Version 3.16.8](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.8/TcrSdk) (2024-11-4)
+**Bug Fixes**
+- Fix the problem of contact residue when using MobileTouch
+
 # [Version 3.16.7](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.7/TcrSdk) (2024-9-9)
 **Bug Fixes**
 - Fix occasional null pointer issue
