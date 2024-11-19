@@ -1,6 +1,6 @@
 - [中文文档](发布记录.md)
 
-# [Version 3.21.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.21.0/TcrSdk) (2024-11-14)
+# [Version 3.21.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.21.1/TcrSdk) (2024-11-19)
 **Features**
 - Added support for switching between front and rear cameras.
 - Implemented server-side camera status message delivery.
