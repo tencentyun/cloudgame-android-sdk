@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.21.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.21.2/TcrSdk) (2024-11-26)
+**Bug Fixes**
+- Fix the problem of H265 encoding exception
+
 # [Version 3.21.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.21.1/TcrSdk) (2024-11-19)
 **Features**
 - Added support for switching between front and rear cameras.
