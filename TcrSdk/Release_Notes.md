@@ -1,5 +1,12 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.22.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.22.0/TcrSdk) (2024-11-29)
+**Features**
+- Added new sensor data transfer interface MotionSensor
+
+**Bug Fixes**
+- Fixed and optimized some known issues
+
 # [Version 3.21.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.21.2/TcrSdk) (2024-11-26)
 **Bug Fixes**
 - Fix the problem of H265 encoding exception
