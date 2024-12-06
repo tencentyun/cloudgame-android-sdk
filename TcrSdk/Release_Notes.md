@@ -1,5 +1,12 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.23.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.0/TcrSdk) (2024-12-6)
+**Features**
+- Support for simulating sensor events
+
+**Bug Fixes**
+- Fixed an issue where dragging occurred when moving the mouse relatively
+
 # [Version 3.22.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.22.0/TcrSdk) (2024-11-29)
 **Features**
 - Added new sensor data transfer interface MotionSensor

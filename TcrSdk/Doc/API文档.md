@@ -64,6 +64,7 @@
 | [getKeyBoard](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.html#getKeyboard--) | 获取与云端键盘交互的对象 |
 | [getMouse](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.html#getMouse--) | 获取与云端鼠标交互的对象 |
 | [getGamePad](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.html#getGamepad--) | 获取与云端手柄交互的对象 |
+| [getMotionSensor](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.html#getMotionSensor--) | 获取与云端传感器交互的对象 |
 
 ### 数据通道接口
 
