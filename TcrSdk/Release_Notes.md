@@ -1,5 +1,12 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.23.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.1/TcrSdk) (2024-12-10)
+**Docs**
+- Fix TouchScreen interface annotation
+
+**Bug Fixes**
+- Fixed an issue where mouse clicks would be triggered after mouse movement
+
 # [Version 3.23.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.0/TcrSdk) (2024-12-6)
 **Features**
 - Support for simulating sensor events
