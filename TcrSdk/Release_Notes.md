@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.23.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.2/TcrSdk) (2024-12-19)
+**Bug Fixes**
+- Fixed a crash on startup on certain models  
+
 # [Version 3.23.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.1/TcrSdk) (2024-12-10)
 **Docs**
 - Fix TouchScreen interface annotation
@@ -83,6 +87,10 @@
 
 **Deprecated**
 - The TcrSession#setRemoteVideoProfile interface has been marked as deprecated and may be removed in future versions. We no longer recommend calling this interface. If you have relevant requirements, please configure them in the Cloud Rendering console.
+
+# [Version 3.16.9](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.9/TcrSdk) (2024-12-19)
+**Bug Fixes**
+- Fixed a crash on startup on certain models  
 
 # [Version 3.16.8](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.16.8/TcrSdk) (2024-11-4)
 **Bug Fixes**
