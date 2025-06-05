@@ -207,6 +207,24 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::onClickMenu}"
+                        android:text="Menu" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::onClickHome}"
+                        android:text="Home" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{handlers::onClickBack}"
+                        android:text="Back" />
+
                     <CheckBox
                             style="@style/textview"
                             android:layout_marginEnd="0dp"

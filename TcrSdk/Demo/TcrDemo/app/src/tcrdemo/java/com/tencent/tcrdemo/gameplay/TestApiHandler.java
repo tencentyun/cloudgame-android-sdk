@@ -356,6 +356,42 @@ public class TestApiHandler {
     }
 
     /**
+     * 返回键KeyCode
+     */
+    static final int KEY_BACK = 158;
+
+    /**
+     * 菜单键KeyCode
+     */
+    static final int KEY_MENU = 139;
+
+    /**
+     * Home键KeyCode
+     */
+    static final int KEY_HOME = 172;
+
+    public void onClickMenu(View view) {
+        if (mSession != null) {
+            mSession.getKeyboard().onKeyboard(KEY_MENU, true);
+            mSession.getKeyboard().onKeyboard(KEY_MENU, false);
+        }
+    }
+
+    public void onClickHome(View view) {
+        if (mSession != null) {
+            mSession.getKeyboard().onKeyboard(KEY_HOME, true);
+            mSession.getKeyboard().onKeyboard(KEY_HOME, false);
+        }
+    }
+
+    public void onClickBack(View view) {
+        if (mSession != null) {
+            mSession.getKeyboard().onKeyboard(KEY_BACK, true);
+            mSession.getKeyboard().onKeyboard(KEY_BACK, false);
+        }
+    }
+
+    /**
      * 点击重启云端App
      */
     public void onClickRestartCloudApp(View view) {
