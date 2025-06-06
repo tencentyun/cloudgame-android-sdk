@@ -96,6 +96,8 @@
 | [MULTI_USER_SEAT_INFO](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#MULTI_USER_SEAT_INFO) | The multi user seat info is updated |
 | [MULTI_USER_ROLE_APPLY](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#MULTI_USER_ROLE_APPLY) | Some user request to change seat |
 | [CURSOR_IMAGE_INFO](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#CURSOR_IMAGE_INFO) | The remote cursor image information is updated |
+| [CAMERA_STATUS_CHANGED](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.4/com/tencent/tcr/sdk/api/TcrSession.Event.html#CAMERA_STATUS_CHANGED) | The remote device camera status |
+| [MIC_STATUS_CHANGED](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.4/com/tencent/tcr/sdk/api/TcrSession.Event.html#MIC_STATUS_CHANGED) | The remote device mic status |
 
 
 

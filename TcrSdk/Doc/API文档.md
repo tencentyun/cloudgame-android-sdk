@@ -99,7 +99,8 @@
 | [CURSOR_IMAGE_INFO](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#CURSOR_IMAGE_INFO) | 鼠标图片信息 |
 | [VIDEO_STREAM_CONFIG_CHANGED](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#VIDEO_STREAM_CONFIG_CHANGED) | 视频流分辨率变化 |
 | [INPUT_STATE_CHANGE](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.0/com/tencent/tcr/sdk/api/TcrSession.Event.html#INPUT_STATE_CHANGE) | 输入框点击状态变化 |
-
+| [CAMERA_STATUS_CHANGED](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.4/com/tencent/tcr/sdk/api/TcrSession.Event.html#CAMERA_STATUS_CHANGED) | 云端摄像头状态变化 |
+| [MIC_STATUS_CHANGED](https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/3.23.4/com/tencent/tcr/sdk/api/TcrSession.Event.html#MIC_STATUS_CHANGED) | 云端麦克风状态变化 |
 
 
 

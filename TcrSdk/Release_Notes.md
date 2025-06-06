@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.23.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.4/TcrSdk) (2025-6-6)
+**Features**
+- Add remote camera and microphone status.
+
 # [Version 3.23.2](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.2/TcrSdk) (2024-12-19)
 **Bug Fixes**
 - Fixed a crash on startup on certain models  
