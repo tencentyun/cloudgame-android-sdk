@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tencent.tcrdemo.R;
@@ -14,6 +15,8 @@ import com.tencent.tcrdemo.ViewModelHolder;
 import com.tencent.tcrdemo.utils.ActivityUtils;
 import com.tencent.tcrdemo.utils.DownloadManagerHelper;
 import com.tencent.tcrdemo.utils.GameConfigParcelable;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 
 public class GamePlayActivity extends AppCompatActivity {

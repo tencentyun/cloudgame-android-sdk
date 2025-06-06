@@ -1,5 +1,6 @@
 package com.tencent.tcrdemo.gameplay;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +56,7 @@ import com.tencent.tcrdemo.R;
 import com.tencent.tcrdemo.adapter.MultiPlayerAdapter;
 import com.tencent.tcrdemo.adapter.SimplePagerAdapter;
 import com.tencent.tcrdemo.bean.HitInput;
+import com.tencent.tcrdemo.bean.Camera;
 import com.tencent.tcrdemo.bean.User;
 import com.tencent.tcrdemo.databinding.FragmentGamePlayBinding;
 import com.tencent.tcrdemo.utils.CustomAudioCapturer;
@@ -69,7 +72,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class GamePlayFragment extends Fragment implements Handler.Callback {
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class GamePlayFragment extends Fragment implements Handler.Callback, EasyPermissions.PermissionCallbacks {
 
     private static final String TAG = "GamePlayFragment";
     private static final String sApiTAG = "ApiTest";
@@ -131,6 +136,17 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
     private boolean mVideoStreamConfigChanged = false;
     // 本地输入法Activity的启动器
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
+
+    void openCamera() {
+        Log.i(sApiTAG, "openCamera()");
+        if (mSession == null) {
+            Log.e(sApiTAG, "openCamera() mSession==null");
+            return;
+        }
+        mSession.setEnableLocalVideo(true);
+        mSession.setLocalVideoProfile(480, 640, 30, 200, 1000, true);
+    }
+
     /**
      * session事件回调处理
      */
@@ -197,6 +213,22 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
                     mVideoStreamConfig = (VideoStreamConfig) eventData;
                     mVideoStreamConfigChanged = true;
                     updateRotation();
+                    break;
+                case CAMERA_STATUS_CHANGED:
+                    Camera camera = new Gson().fromJson((String) eventData, Camera.class);
+                    boolean open = TextUtils.equals(camera.status, "open_front") || TextUtils.equals(camera.status, "open_back");
+                    if (open) {
+                        if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
+                            openCamera();
+                        } else {
+                            EasyPermissions.requestPermissions(
+                                    GamePlayFragment.this,
+                                    "需要摄像头权限才能开启摄像头",
+                                    0,
+                                    Manifest.permission.CAMERA
+                            );
+                        }
+                    }
                     break;
                 case INPUT_STATE_CHANGE:
                     // 输入状态改变的回调，可以监听此回调做一些业务操作
@@ -268,6 +300,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
 //                    Log.i(sApiTAG, "cursor image info: bitmap=" + cursorImageInfo.cursorBitmap + " hotspotx="
 //                            + cursorImageInfo.hotSpotX + " hotspoty=" + cursorImageInfo.hotSpotY);
                     break;
+
                 default:
                     // do nothing
                     break;
@@ -315,6 +348,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
         mViewModel = viewModel;
         mTestApiHandler.setViewModel(mViewModel);
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -709,6 +743,28 @@ public class GamePlayFragment extends Fragment implements Handler.Callback {
                 break;
             default:
                 Log.e(TAG, "UNKNOWN DeviceMode!!");
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        Log.e(TAG, "onPermissionsGranted requestCode:" + requestCode + " perms:" + perms);
+        if (requestCode == 0 && perms.contains(Manifest.permission.CAMERA)) {
+            openCamera();
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        Log.e(TAG, "onPermissionsDenied requestCode:" + requestCode + " perms:" + perms);
+        if (requestCode == 0 && perms.contains(Manifest.permission.CAMERA)) {
+            Toast.makeText(getContext(), "摄像头权限被拒绝，无法打开摄像头", Toast.LENGTH_SHORT).show();
         }
     }
 
