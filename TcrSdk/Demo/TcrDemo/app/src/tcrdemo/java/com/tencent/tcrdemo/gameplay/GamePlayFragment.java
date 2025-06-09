@@ -136,15 +136,16 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     private boolean mVideoStreamConfigChanged = false;
     // 本地输入法Activity的启动器
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
-
-    void openCamera() {
+    // Camera.status
+    private String mCameraStatus;
+    void openCamera(boolean front) {
         Log.i(sApiTAG, "openCamera()");
         if (mSession == null) {
             Log.e(sApiTAG, "openCamera() mSession==null");
             return;
         }
         mSession.setEnableLocalVideo(true);
-        mSession.setLocalVideoProfile(480, 640, 30, 200, 1000, true);
+        mSession.setLocalVideoProfile(480, 640, 30, 200, 1000, front);
     }
 
     /**
@@ -216,11 +217,13 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     break;
                 case CAMERA_STATUS_CHANGED:
                     Camera camera = new Gson().fromJson((String) eventData, Camera.class);
-                    boolean open = TextUtils.equals(camera.status, "open_front") || TextUtils.equals(camera.status, "open_back");
-                    if (open) {
+                    boolean openFront = TextUtils.equals(camera.status, "open_front");
+                    boolean openBack = TextUtils.equals(camera.status, "open_back");
+                    if (openFront || openBack) {
                         if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
-                            openCamera();
+                            openCamera(openFront);
                         } else {
+                            mCameraStatus = camera.status;
                             EasyPermissions.requestPermissions(
                                     GamePlayFragment.this,
                                     "需要摄像头权限才能开启摄像头",
@@ -756,7 +759,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         Log.e(TAG, "onPermissionsGranted requestCode:" + requestCode + " perms:" + perms);
         if (requestCode == 0 && perms.contains(Manifest.permission.CAMERA)) {
-            openCamera();
+            openCamera(TextUtils.equals(mCameraStatus, "open_front"));
         }
     }
 
