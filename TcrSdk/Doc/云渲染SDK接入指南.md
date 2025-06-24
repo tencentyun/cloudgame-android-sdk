@@ -13,13 +13,13 @@
 1. 集成SDK。在应用模块的'build.gradle'中引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-full:3.24.0'
+implementation 'com.tencent.tcr:tcrsdk-full:3.0.0-SNAPSHOT'
 ```
 
 如果选择集成轻量版SDK，则引用
 
 ```java
-implementation 'com.tencent.tcr:tcrsdk-lite:3.24.0' 
+implementation 'com.tencent.tcr:tcrsdk-lite:3.0.0-SNAPSHOT' 
 ```
 
 2. 初始化SDK
