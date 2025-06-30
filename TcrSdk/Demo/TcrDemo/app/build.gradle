@@ -101,10 +101,10 @@ android {
 }
 
 dependencies {
-    fullImplementation "com.tencent.tcr:tcrsdk-full:3.23.4"
-    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.23.4"
-    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.23.4"
-    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.23.4"
+    fullImplementation "com.tencent.tcr:tcrsdk-full:3.24.1"
+    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.24.1"
+    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.24.1"
+    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.24.1"
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation "androidx.appcompat:appcompat:1.4.1"
     implementation 'com.google.android.material:material:1.10.0'

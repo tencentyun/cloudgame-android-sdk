@@ -258,42 +258,62 @@ public class MainActivity extends Activity {
 
 
     /**
-     * 旋转屏幕方向, 以便本地的屏幕方向和云端保持一致<br>
+     * 旋转屏幕方向以及画面方向, 以便本地的屏幕方向和云端保持一致<br>
      * 注意: 请确保Manifest中的Activity有android:configChanges="orientation|screenSize"配置, 避免Activity因旋转而被销毁.<br>
      **/
-    @SuppressLint("SourceLockedOrientationActivity")
-    private void updateOrientation() {
-        Log.i(TAG, "updateOrientation:" + mScreenConfig.orientation);
-        if (mScreenConfig.orientation.equals("portrait")) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        } else if (mScreenConfig.orientation.equals("landscape")) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-    }
-
-    /**
-     * 根据云端屏幕配置旋转视频画面
-     */
     private void updateRotation() {
         if (!mScreenConfigChanged || !mVideoStreamConfigChanged) {
             Log.w(TAG, "updateRotation failed,mScreenConfigChanged=" + mScreenConfigChanged
                     + "  mVideoStreamConfigChanged=" + mScreenConfigChanged);
             return;
         }
+        Activity activity = getActivity();
+        if (activity == null) {
+            Log.w(TAG, "updateOrientation() activity=null");
+            return;
+        }
+
+        Log.w(TAG, "mVideoStreamConfig=" + mVideoStreamConfig);
+        Log.w(TAG, "mScreenConfig.degree=" + mScreenConfig.degree);
+
+
+        // 1. 根据云端Activity的方向（degree）和视频流的宽高，调整本地屏幕方向(使得本地屏幕方向和云端Activity方向保持一致)
+        // 视频流	云端Activity		客户端处理
+        // 横屏	      竖屏		    设置竖屏
+        // 竖屏        竖屏           设置竖屏
+        // 竖屏        横屏           设置横屏
+        // 横屏        横屏           设置横屏
+        boolean isLandscape = mScreenConfig.degree.equals("90_degree") || mScreenConfig.degree.equals("270_degree");
+        boolean isPortrait = mScreenConfig.degree.equals("0_degree") || mScreenConfig.degree.equals("180_degree");
         if (mVideoStreamConfig.width > mVideoStreamConfig.height) {
-            if (mScreenConfig.orientation.equals("portrait")) {
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
+            if (isLandscape) {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             } else {
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             }
         } else {
-            if (mScreenConfig.orientation.equals("landscape")) {
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_270);
+            if (isPortrait) {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             } else {
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             }
         }
+
+        // 2. 根据云端屏幕方向，调整本地画面方向(云端画面为逆时针旋转, 本地视图setVideoRotation设置的是顺时针旋转)
+        if (mScreenConfig.degree.equals("0_degree")) {
+            mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
+        }
+        if (mScreenConfig.degree.equals("90_degree")) {
+            mRenderView.setVideoRotation(VideoRotation.ROTATION_270);
+        }
+        if (mScreenConfig.degree.equals("180_degree")) {
+            mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
+        }
+        if (mScreenConfig.degree.equals("270_degree")) {
+            mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
+        }
     }
+
 
     /**
      * 为不同的云端实例设置处理器

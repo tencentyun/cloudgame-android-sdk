@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.24.1(https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.24.0/TcrSdk) (2025-6-24)
+**Features**
+- Change cloud phone screen switching from portrait/landscape toggle to rotation angle-based switching.
+
 # [Version 3.23.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.23.4/TcrSdk) (2025-6-6)
 **Features**
 - Add remote camera and microphone status.
