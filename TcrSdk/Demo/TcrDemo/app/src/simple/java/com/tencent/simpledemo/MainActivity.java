@@ -267,7 +267,7 @@ public class MainActivity extends Activity {
                     + "  mVideoStreamConfigChanged=" + mScreenConfigChanged);
             return;
         }
-        Activity activity = getActivity();
+        Activity activity = this;
         if (activity == null) {
             Log.w(TAG, "updateOrientation() activity=null");
             return;
@@ -372,7 +372,7 @@ public class MainActivity extends Activity {
                     break;
                 case SCREEN_CONFIG_CHANGE:
                     mScreenConfig = (ScreenConfig) eventData;
-                    updateOrientation();
+                    updateRotation();
                     mScreenConfigChanged = true;
                     updateRotation();
                     break;

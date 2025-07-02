@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.tencent.tcr.sdk.demo.cloudphone.ui.LoginActivity">
+
+    <FrameLayout
+            android:id="@+id/render_view_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="end">
+
+        <TextView
+                android:id="@+id/stats_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/joinGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实例加入群控" />
+
+        <Button
+                android:id="@+id/leaveGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实例退出群控" />
+
+        <Button
+                android:id="@+id/transMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发消息" />
+
+        <Button
+                android:id="@+id/toggleInputMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="切换输入法" />
+    </LinearLayout>
+</FrameLayout>
