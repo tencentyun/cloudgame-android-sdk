@@ -391,6 +391,15 @@ public class TestApiHandler {
         }
     }
 
+    public void onClickStartProxy(View view) {
+        ProxyService.startProxy(view.getContext());
+    }
+
+    public void onClickStopProxy(View view) {
+        ProxyService.stopProxy(view.getContext());
+    }
+
+
     /**
      * 点击重启云端App
      */

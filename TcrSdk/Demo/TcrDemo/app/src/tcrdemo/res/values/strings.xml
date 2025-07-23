@@ -93,6 +93,7 @@
     <string name="set_uplink_bitrate">设置上行码率</string>
 
     <string name="view_transformation_function_test">视图变换功能测试</string>
+    <string name="proxy_test">代理功能测试</string>
     <string name="performance_view">性能视图</string>
     <string name="toggle_super_resolution">开关超分</string>
     <string name="cursor_visible">光标可见</string>
@@ -120,5 +121,7 @@
     <string name="apply_to_be_viewer">申请为观察者</string>
     <string name="room_list">房间列表</string>
 
+    <string name="start_proxy">开启代理</string>
+    <string name="stop_proxy">停止代理</string>
 
 </resources>

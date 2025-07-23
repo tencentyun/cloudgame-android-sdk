@@ -65,6 +65,7 @@
     <string name="set_uplink_bitrate">Set Uplink Bitrate</string>
 
     <string name="view_transformation_function_test">View Transformation Function Test</string>
+    <string name="proxy_test">Proxy Test</string>
     <string name="performance_view">Performance View</string>
     <string name="toggle_super_resolution">Toggle Super Resolution</string>
     <string name="cursor_visible">Cursor Visible</string>
@@ -91,5 +92,8 @@
     <string name="apply_to_be_player">Apply to be Player</string>
     <string name="apply_to_be_viewer">Apply to be Viewer</string>
     <string name="room_list">Room List</string>
+
+    <string name="start_proxy">Start Proxy</string>
+    <string name="stop_proxy">Stop Proxy</string>
 
 </resources>

@@ -101,13 +101,14 @@ android {
 }
 
 dependencies {
-    fullImplementation "com.tencent.tcr:tcrsdk-full:3.24.1"
-    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.24.1"
-    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.24.1"
-    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.24.1"
+    fullImplementation "com.tencent.tcr:tcrsdk-full:3.25.0"
+    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.25.0"
+    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.25.0"
+    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.25.0"
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation "androidx.appcompat:appcompat:1.4.1"
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'com.tencent.tcr:tcr-gamepad:2.2.4'
+    implementation 'com.tencent.tcr:proxy:1.1.4'
     implementation 'pub.devrel:easypermissions:3.0.0'
 }

@@ -6,8 +6,12 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--    需要获取到前台服务权限，用于显示通知栏-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:name=".TcrDemoApplication"
@@ -42,6 +46,10 @@
             android:name=".gameplay.InputActivity"
             android:theme="@style/TransparentTheme"
             android:launchMode="singleInstance" />
+
+        <service
+            android:name=".gameplay.ProxyService"
+            android:exported="false" />
     </application>
 
 </manifest>

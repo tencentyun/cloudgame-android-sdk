@@ -302,7 +302,9 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
 //                    Log.i(sApiTAG, "cursor image info: bitmap=" + cursorImageInfo.cursorBitmap + " hotspotx="
 //                            + cursorImageInfo.hotSpotX + " hotspoty=" + cursorImageInfo.hotSpotY);
                     break;
-
+                case PROXY_RELAY_AVAILABLE:
+                    // 代理中继服务器可用，可以通过此回调获取到代理服务器信息
+                    ProxyService.initProxy(getContext(), (String) eventData);
                 default:
                     // do nothing
                     break;
