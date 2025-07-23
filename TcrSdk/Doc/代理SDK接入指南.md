@@ -37,10 +37,8 @@
    implementation 'com.tencent.tcr:proxy:1.1.4'
    ```
 
-2. **引入 ProxyService**
-
+2. **引入 [ProxyService](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Demo/TcrDemo/app/src/tcrdemo/java/com/tencent/tcrdemo/gameplay/ProxyService.java) **
    将 `ProxyService.java` 添加到你的工程中（或参考文档实现类似逻辑）。
-
 ---
 
 ## 权限与Manifest配置
