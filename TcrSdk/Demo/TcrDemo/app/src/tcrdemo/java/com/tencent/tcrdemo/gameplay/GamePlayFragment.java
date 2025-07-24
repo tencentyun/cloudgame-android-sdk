@@ -138,14 +138,26 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
     // Camera.status
     private String mCameraStatus;
-    void openCamera(boolean front) {
-        Log.i(sApiTAG, "openCamera()");
+    void openCamera(String status) {
+        Log.i(sApiTAG, "openCamera() status=" + status);
         if (mSession == null) {
             Log.e(sApiTAG, "openCamera() mSession==null");
             return;
         }
-        mSession.setEnableLocalVideo(true);
-        mSession.setLocalVideoProfile(480, 640, 30, 200, 1000, front);
+        switch (status) {
+            case "open_front":
+                mSession.setEnableLocalVideo(true);
+                mSession.setLocalVideoProfile(540, 960, 30, 512, 1024, true);
+                break;
+            case "open_back":
+                mSession.setEnableLocalVideo(true);
+                mSession.setLocalVideoProfile(1080, 1920, 30, 1024, 2048, false);
+                break;
+            case "close":
+                mSession.setEnableLocalVideo(false);
+                break;
+            default:
+        }
     }
 
     /**
@@ -216,20 +228,25 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     break;
                 case CAMERA_STATUS_CHANGED:
                     Camera camera = new Gson().fromJson((String) eventData, Camera.class);
-                    boolean openFront = TextUtils.equals(camera.status, "open_front");
-                    boolean openBack = TextUtils.equals(camera.status, "open_back");
-                    if (openFront || openBack) {
-                        if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
-                            openCamera(openFront);
-                        } else {
-                            mCameraStatus = camera.status;
-                            EasyPermissions.requestPermissions(
-                                    GamePlayFragment.this,
-                                    "需要摄像头权限才能开启摄像头",
-                                    0,
-                                    Manifest.permission.CAMERA
-                            );
-                        }
+                    switch (camera.status) {
+                        case "open_front":
+                        case "open_back":
+                            if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
+                                openCamera(camera.status);
+                            } else {
+                                mCameraStatus = camera.status;
+                                EasyPermissions.requestPermissions(
+                                        GamePlayFragment.this,
+                                        "需要摄像头权限才能开启摄像头",
+                                        0,
+                                        Manifest.permission.CAMERA
+                                );
+                            }
+                            break;
+                        case "close":
+                            openCamera(camera.status);
+                            break;
+                        default:
                     }
                     break;
                 case INPUT_STATE_CHANGE:
@@ -770,7 +787,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
         Log.e(TAG, "onPermissionsGranted requestCode:" + requestCode + " perms:" + perms);
         if (requestCode == 0 && perms.contains(Manifest.permission.CAMERA)) {
-            openCamera(TextUtils.equals(mCameraStatus, "open_front"));
+            openCamera(mCameraStatus);
         }
     }
 
