@@ -6,6 +6,9 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <!--    需要获取到前台服务权限，用于显示通知栏-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -49,7 +52,9 @@
 
         <service
             android:name=".gameplay.ProxyService"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="dataSync"
+            />
     </application>
 
 </manifest>
