@@ -34,7 +34,7 @@
    在你的 `build.gradle` 中添加：
 
    ```groovy
-   implementation 'com.tencent.tcr:proxy:1.1.4'
+   implementation 'com.tencent.tcr:proxy:1.1.5'
    ```
 
 2. **引入 [ProxyService](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Demo/TcrDemo/app/src/tcrdemo/java/com/tencent/tcrdemo/gameplay/ProxyService.java) **
