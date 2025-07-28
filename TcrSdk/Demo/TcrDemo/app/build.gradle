@@ -101,8 +101,8 @@ android {
 }
 
 dependencies {
-    fullImplementation "com.tencent.tcr:tcrsdk-full:3.26.1"
-    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.26.1"
+    fullImplementation "com.tencent.tcr:tcrsdk-full:3.26.3"
+    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.26.3"
     scencesImplementation "com.tencent.tcr:tcrsdk-full:3.25.0"
     simpleImplementation "com.tencent.tcr:tcrsdk-full:3.25.0"
     implementation 'com.tencent.bugly:crashreport:latest.release'

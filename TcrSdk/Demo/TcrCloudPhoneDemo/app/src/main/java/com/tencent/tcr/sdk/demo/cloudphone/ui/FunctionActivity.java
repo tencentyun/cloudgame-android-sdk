@@ -214,33 +214,11 @@ public class FunctionActivity extends AppCompatActivity {
         TcrSdk.TcrConfig config = new TcrSdk.TcrConfig();
         config.type = SdkType.CloudPhone;
         config.ctx = this;
-        config.logger = new TcrLogger() {
-            @Override
-            public void v(String tag, String msg) {
-                Log.v(tag, msg);
-            }
-
-            @Override
-            public void d(String tag, String msg) {
-                Log.d(tag, msg);
-            }
-
-            @Override
-            public void i(String tag, String msg) {
-                Log.i(tag, msg);
-            }
-
-            @Override
-            public void e(String tag, String msg) {
-                Log.e(tag, msg);
-            }
-
-            @Override
-            public void w(String tag, String msg) {
-                Log.w(tag, msg);
-            }
-        };
-        config.callback = new AsyncCallback<Void>() {
+        // 用于接收 SDK 日志的对象，App 需要将收到的 SDK 日志存储到文件和上报，以便分析定位 SDK 运行时的问题。
+        // 如果App没有显示设置 logger，SDK 会将日志打印到系统 logcat 以及写入日志文件（/storage/emulated/0/Android/data/app package name/files/tcrlogs 目录下）。
+        // 注意，当你反馈 SDK 问题时，你需要提供相应的 SDK 日志。
+        // config.logger = ...
+        config.callback = new AsyncCallback<>() {
             @Override
             public void onSuccess(Void result) {
                 runOnUiThread(() -> {
@@ -253,14 +231,11 @@ public class FunctionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String errorMsg = "init TcrSdk failed:" + code + " msg:" + msg;
-                        Toast.makeText(FunctionActivity.this, "初始化TcrSdk失败: " + code + ", " + errorMsg,
-                                Toast.LENGTH_LONG).show();
-                        finish();
-                    }
+                runOnUiThread(() -> {
+                    String errorMsg = "init TcrSdk failed:" + code + " msg:" + msg;
+                    Toast.makeText(FunctionActivity.this, "初始化TcrSdk失败: " + code + ", " + errorMsg,
+                            Toast.LENGTH_LONG).show();
+                    finish();
                 });
             }
         };

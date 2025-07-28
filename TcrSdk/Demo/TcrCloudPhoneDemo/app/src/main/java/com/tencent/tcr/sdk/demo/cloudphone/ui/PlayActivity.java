@@ -47,7 +47,7 @@ public class PlayActivity extends Activity {
         public void onEvent(TcrSession.Event event, Object eventData) {
             switch (event) {
                 case STATE_INITED:// 本地会话对象初始化完成
-                    // 开始连接指定的云手机。
+                    // 可以开始连接指定的云手机。
                     boolean ret = mTcrSession.access(mGroupInstanceIds, mIsGroupControl);
                     if (!ret) {
                         showToast("连接云手机失败，请重试", Toast.LENGTH_SHORT);
