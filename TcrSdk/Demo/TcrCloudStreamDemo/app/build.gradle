@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.tencent.tcrdemo'
+    compileSdk 34
+    signingConfigs {
+        release {
+            storeFile file('../keystore/local.keystore')
+            keyAlias 'tcgsdk'
+            keyPassword 'tcgsdk'
+            storePassword 'tcgsdk'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    defaultConfig {
+        multiDexEnabled true
+        applicationId "com.tencent.tcrdemo"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation "com.tencent.tcr:tcrsdk-full:3.27.0"
+    
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+}
