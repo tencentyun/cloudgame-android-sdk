@@ -27,33 +27,65 @@
     </LinearLayout>
 
     <LinearLayout
-            android:layout_marginTop="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <Button
+            <Button
                 android:id="@+id/joinGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="实例加入群控" />
 
-        <Button
+            <Button
                 android:id="@+id/leaveGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="实例退出群控" />
 
-        <Button
+            <Button
                 android:id="@+id/transMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="发消息" />
 
-        <Button
+            <Button
                 android:id="@+id/toggleInputMethod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="切换输入法" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回" />
+
+            <Button
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主页" />
+
+            <Button
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="菜单" />
+        </LinearLayout>
     </LinearLayout>
+
+
 </FrameLayout>

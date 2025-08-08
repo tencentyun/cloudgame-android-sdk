@@ -25,6 +25,14 @@ public class PlayActivity extends Activity {
 
     private static final String TAG = "PlayActivity";
 
+    // 返回键KeyCode
+    private static final int KEY_BACK = 158;
+
+    // 菜单键KeyCode
+    private static final int KEY_MENU = 139;
+
+    // Home键KeyCode
+    private static final int KEY_HOME = 172;
     private final DecimalFormat mDf = new DecimalFormat("#.##");
     boolean mIsGroupControl;//是否是群控云手机
     private ArrayList<String> mGroupInstanceIds;//云手机的实例ID列表。如果是非群控（单机模式），则只取第一个实例ID。
@@ -113,6 +121,9 @@ public class PlayActivity extends Activity {
         }
         findViewById(R.id.transMessage).setOnClickListener(v -> transMsg());
         findViewById(R.id.toggleInputMethod).setOnClickListener(v -> switchIME());
+        findViewById(R.id.back).setOnClickListener(v -> onBackKeyPressed());
+        findViewById(R.id.menu).setOnClickListener(v -> onMenuKeyPressed());
+        findViewById(R.id.home).setOnClickListener(v -> onHomeKeyPressed());
 
         // 创建Tcr会话对象
         initTcrSession();
@@ -239,5 +250,35 @@ public class PlayActivity extends Activity {
         TcrSdk.getInstance().getAndroidInstance().switchIME(imeType);
         Toast.makeText(PlayActivity.this, "输入法已切换为" + imeType, Toast.LENGTH_SHORT).show();
         isLocalIME = !isLocalIME; // 切换状态
+    }
+
+    // 按下home键
+    private void onHomeKeyPressed() {
+        if (mTcrSession == null) {
+            Log.e(TAG, "mTcrSession = null");
+            return;
+        }
+        mTcrSession.getKeyboard().onKeyboard(KEY_HOME, true);
+        mTcrSession.getKeyboard().onKeyboard(KEY_HOME, false);
+    }
+
+    // 按下back键
+    private void onBackKeyPressed() {
+        if (mTcrSession == null) {
+            Log.e(TAG, "mTcrSession = null");
+            return;
+        }
+        mTcrSession.getKeyboard().onKeyboard(KEY_BACK, true);
+        mTcrSession.getKeyboard().onKeyboard(KEY_BACK, false);
+    }
+
+    // 按下menu键
+    private void onMenuKeyPressed() {
+        if (mTcrSession == null) {
+            Log.e(TAG, "mTcrSession = null");
+            return;
+        }
+        mTcrSession.getKeyboard().onKeyboard(KEY_MENU, true);
+        mTcrSession.getKeyboard().onKeyboard(KEY_MENU, false);
     }
 }

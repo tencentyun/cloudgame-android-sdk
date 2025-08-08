@@ -1,5 +1,10 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.27.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.27.0/TcrSdk) (2025-8-8)
+**Features**
+- Supports PCMA audio decoding
+- Supports cloud phone APK distribution and related interfaces
+
 # [Version 3.25.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.25.0/TcrSdk) (2025-7-23)
 **Features**
 - Pass proxy relay information through the PROXY_RELAY_AVAILABLE event.
