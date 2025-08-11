@@ -9,7 +9,7 @@
 **Features**
 - Pass proxy relay information through the PROXY_RELAY_AVAILABLE event.
 
-# [Version 3.24.1(https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.24.0/TcrSdk) (2025-6-24)
+# [Version 3.24.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.24.0/TcrSdk) (2025-6-24)
 **Features**
 - Change cloud phone screen switching from portrait/landscape toggle to rotation angle-based switching.
 
