@@ -21,7 +21,7 @@ Android 4.4及以上系统版本。
 
 <td rowspan="1" colSpan="1" >通过 Maven 集成</td>
 
-<td rowspan="1" colSpan="1" >[接口说明]()</td>
+<td rowspan="1" colSpan="1" >[接口说明](接口说明.md)</td>
 
 <td rowspan="1" colSpan="1" >[Release notes](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/%E5%8F%91%E5%B8%83%E8%AE%B0%E5%BD%95.md)</td>
 </tr>
