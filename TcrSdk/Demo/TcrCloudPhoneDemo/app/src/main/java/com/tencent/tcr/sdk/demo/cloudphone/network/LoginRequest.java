@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /*
- * 请求示例数据：{"Password" : "cloud_rendering_123456","RequestId" : "ece5c983-6f0d-4f94-8633-495de9153b27","UserId" : "handley"}
+ * 请求示例数据：{"Password" : "","RequestId" : "ece5c983-6f0d-4f94-8633-495de9153b27","UserId" : "handley"}
  *
  * 响应示例数据（业务失败）：{"Error":{"Code":"AuthenticationFailed","Message":"Authentication failed."},"RequestId":""}
  * 响应示例数据（业务成功）：{"Response":{"RequestId":"ece5c983-6f0d-4f94-8633-495de9153b27","UserType":"Admin"}}
