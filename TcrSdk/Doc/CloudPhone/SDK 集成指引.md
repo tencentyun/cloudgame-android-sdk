@@ -7,13 +7,13 @@ Android 4.4及以上系统版本。
 ## 快速接入
 | SDK          | 下载地址         | SDK 说明文档              | 版本发布日志                                            |
 |--------------|------------------|------------------------ |------------------------------------------------------|
-| Android SDK  | 通过 Maven 集成  | [接口说明](接口说明.md)     | [Release notes](https://github.com/.../发布记录.md)    |
+| Android SDK  | 通过 Maven 集成  | [接口说明](接口说明.md)     | [Release notes](../../发布记录.md)    |
 
 ### SDK集成
 
 在应用模块的'build.gradle'中引用
 ``` bash
-implementation 'com.tencent.tcr:tcrsdk-full:3.26.1'
+implementation 'com.tencent.tcr:tcrsdk-full:3.27.0'
 ```
 
 ### SDK使用
