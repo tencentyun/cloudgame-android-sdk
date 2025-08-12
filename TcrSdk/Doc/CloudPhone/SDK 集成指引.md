@@ -5,28 +5,9 @@ Android 4.4及以上系统版本。
 
 
 ## 快速接入
-<table>
-<tr>
-<td rowspan="1" colSpan="1" >SDK</td>
-
-<td rowspan="1" colSpan="1" >下载地址</td>
-
-<td rowspan="1" colSpan="1" >SDK 说明文档</td>
-
-<td rowspan="1" colSpan="1" >版本发布日志</td>
-</tr>
-
-<tr>
-<td rowspan="1" colSpan="1" >Android SDK</td>
-
-<td rowspan="1" colSpan="1" >通过 Maven 集成</td>
-
-<td rowspan="1" colSpan="1" >[接口说明](接口说明.md)</td>
-
-<td rowspan="1" colSpan="1" >[Release notes](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/%E5%8F%91%E5%B8%83%E8%AE%B0%E5%BD%95.md)</td>
-</tr>
-</table>
-
+| SDK          | 下载地址         | SDK 说明文档              | 版本发布日志                                            |
+|--------------|------------------|------------------------ |------------------------------------------------------|
+| Android SDK  | 通过 Maven 集成  | [接口说明](接口说明.md)     | [Release notes](https://github.com/.../发布记录.md)    |
 
 ### SDK集成
 
