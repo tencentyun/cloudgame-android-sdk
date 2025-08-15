@@ -1,0 +1,26 @@
+
+ext {
+    buildTime = project.findProperty('buildTime') ?: new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
+    buildVersion = project.findProperty('buildVersion') ?: "3.0.0-SNAPSHOT"
+    buildNumber = project.findProperty('buildNumber') ?: "1"
+    debugLevel = project.findProperty('debugLevel') ?: 2 // VERBOSE
+    pluginName = project.findProperty('pluginName') ?: ""
+    pluginHash = project.findProperty('pluginHash') ?: ""
+    armeabiV7aHash = project.findProperty('armeabiV7aHash') ?: ""
+    armeabiHash = project.findProperty('armeabiHash') ?: ""
+    arm64Hash = project.findProperty('arm64Hash') ?: ""
+    dexHash = project.findProperty('dexHash') ?: ""
+    gitRevision = 'git rev-parse --short HEAD'.execute(null, project.rootDir).text.trim()
+    println "ext:"
+    println "buildTime=" + buildTime
+    println "buildVersion=" + buildVersion
+    println "buildNum=" + buildNumber
+    println "debugLevel=" + debugLevel
+    println "pluginName=" + pluginName
+    println "pluginHash=" + pluginHash
+    println "gitRevision=" + gitRevision
+    println "armeabiV7aHash=" + armeabiV7aHash
+    println "armeabiHash=" + armeabiHash
+    println "arm64Hash=" + arm64Hash
+    println "dexHash=" + dexHash
+}

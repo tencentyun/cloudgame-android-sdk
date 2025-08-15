@@ -211,17 +211,14 @@ public class MainActivity extends Activity {
      */
     private void requestServerSession(String clientSession) {
         Log.i(TAG, "init session success:" + clientSession);
-
-        if (USE_TCR_TEST_ENV) {
-            if (TextUtils.isEmpty(EXPERIENCE_CODE)) {
-                throw new NullPointerException("请在控制台创建体验码，并填写到EXPERIENCE_CODE中!!");
-            }
-            TcrTestEnv.getInstance().startSession(this, EXPERIENCE_CODE, clientSession, serverSession -> {
+        if (!TextUtils.isEmpty(CloudRenderBiz.EXPERIENCE_CODE)) {
+            TcrTestEnv.getInstance()
+                    .startSession(this, CloudRenderBiz.EXPERIENCE_CODE, clientSession, serverSession -> {
                 mTcrSession.start(serverSession);
             }, error -> {
                 showToast("startSession failed, error=" + error, Toast.LENGTH_SHORT);
             });
-        } else {
+        } else if (!TextUtils.isEmpty(CloudRenderBiz.SERVER_URL)) {
             CloudRenderBiz.getInstance().startGame(clientSession, response -> {
                 Log.i(TAG, "Request ServerSession success, response=" + response.toString());
                 // 用从服务端获取到的server session启动会话
@@ -253,6 +250,8 @@ public class MainActivity extends Activity {
                     showToast(showMessage + result.msg, Toast.LENGTH_LONG);
                 }
             }, error -> Log.i(TAG, "Request ServerSession success, response=" + error.toString()));
+        } else {
+            throw new RuntimeException("请在CloudRenderBiz类中填写体验码或者业务后台地址");
         }
     }
 
@@ -360,7 +359,7 @@ public class MainActivity extends Activity {
                 case STATE_CONNECTED:
                     // 连接成功后设置操作模式
                     // 与云端的交互需在此事件回调后开始调用接口
-                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));
+                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, MOBILE_GAME));
                     createCustomDataChannel();
                     break;
                 case STATE_RECONNECTING:

@@ -4,10 +4,10 @@ plugins {
 
 android {
     namespace 'com.tencent.tcrdemo'
-    compileSdk 34
+    compileSdk 35
     signingConfigs {
         release {
-            storeFile file('../keystore/local.keystore')
+            storeFile file('../../../../../keystore/local.keystore')
             keyAlias 'tcgsdk'
             keyPassword 'tcgsdk'
             storePassword 'tcgsdk'
@@ -19,7 +19,7 @@ android {
         multiDexEnabled true
         applicationId "com.tencent.tcrdemo"
         minSdk 21
-        targetSdk 34
+        targetSdk 35
         versionCode 1
         versionName "1.0"
     }
@@ -92,8 +92,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     dataBinding {
         enabled = true
@@ -101,14 +101,25 @@ android {
 }
 
 dependencies {
-    fullImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
-    liteImplementation "com.tencent.tcr:tcrsdk-lite:3.27.0"
-    scencesImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
-    simpleImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
+    if (gradle.ext.use_local_module_TcrSdkFull) {
+        fullImplementation project(':TcrSdkFull')
+        scencesImplementation project(':TcrSdkFull')
+        simpleImplementation project(':TcrSdkFull')
+    } else {
+        fullImplementation 'com.tencent.tcr:tcrsdk-full:3.0.0-SNAPSHOT'
+        scencesImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
+        simpleImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
+    }
+    if (gradle.ext.use_local_module_TcrSdk) {
+        liteImplementation project(':TcrSdk')
+    } else {
+        liteImplementation 'com.tencent.tcr:tcrsdk-lite:3.27.0'
+    }
+
     implementation 'com.tencent.bugly:crashreport:latest.release'
-    implementation "androidx.appcompat:appcompat:1.4.1"
-    implementation 'com.google.android.material:material:1.10.0'
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'com.tencent.tcr:tcr-gamepad:2.2.4'
-    implementation 'com.tencent.tcr:proxy:1.1.5'
+    implementation 'com.tencent.tcr:proxy:1.1.6'
     implementation 'pub.devrel:easypermissions:3.0.0'
 }
