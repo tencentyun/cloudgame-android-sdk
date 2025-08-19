@@ -101,25 +101,25 @@ android {
 }
 
 dependencies {
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+
     if (gradle.ext.use_local_module_TcrSdkFull) {
         fullImplementation project(':TcrSdkFull')
         scencesImplementation project(':TcrSdkFull')
         simpleImplementation project(':TcrSdkFull')
     } else {
-        fullImplementation 'com.tencent.tcr:tcrsdk-full:3.0.0-SNAPSHOT'
-        scencesImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
-        simpleImplementation "com.tencent.tcr:tcrsdk-full:3.27.0"
+        fullImplementation "com.tencent.tcr:tcrsdk-full:$rootProject.tcrsdkVersion"
+        scencesImplementation "com.tencent.tcr:tcrsdk-full:$rootProject.tcrsdkVersion"
+        simpleImplementation "com.tencent.tcr:tcrsdk-full:$rootProject.tcrsdkVersion"
     }
-    if (gradle.ext.use_local_module_TcrSdk) {
+    if (gradle.ext.use_local_module_TcrSdkLight) {
         liteImplementation project(':TcrSdk')
     } else {
-        liteImplementation 'com.tencent.tcr:tcrsdk-lite:3.27.0'
+        liteImplementation "com.tencent.tcr:tcrsdk-lite:$rootProject.tcrsdkVersion"
     }
-
-    implementation 'com.tencent.bugly:crashreport:latest.release'
-    implementation "androidx.appcompat:appcompat:1.7.1"
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.tencent.tcr:tcr-gamepad:2.2.4'
-    implementation 'com.tencent.tcr:proxy:1.1.6'
-    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation "com.tencent.tcr:tcr-gamepad:$rootProject.TcrGuiVersion"
+    implementation "com.tencent.tcr:proxy:$rootProject.TcrProxyVersion"
 }

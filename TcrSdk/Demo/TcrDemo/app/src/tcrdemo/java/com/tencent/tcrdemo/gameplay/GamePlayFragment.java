@@ -17,7 +17,6 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -65,6 +64,11 @@ import com.tencent.tcrdemo.utils.DeviceUtils;
 import com.tencent.tcrdemo.utils.TcrSdkWrapper;
 import com.tencent.tcrgamepad.GamepadManager;
 import com.tencent.tcrgui.keyboard.KeyboardView;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
@@ -138,40 +142,19 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     // 本地输入法Activity的启动器
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
     private CameraStatus mCameraStatus;
-
-    private void openCamera(CameraStatus cameraStatus) {
-        Log.i(sApiTAG, "openCamera() status=" + cameraStatus.status + ", width=" + cameraStatus.width + ", height=" + cameraStatus.height);
-        if (mSession == null) {
-            Log.e(sApiTAG, "openCamera() mSession==null");
-            return;
-        }
-        switch (cameraStatus.status) {
-            case "open_front":
-                mSession.setEnableLocalVideo(true);
-                mSession.setLocalVideoProfile(cameraStatus.width, cameraStatus.height, 25, 512, 1024, true);
-                break;
-            case "open_back":
-                mSession.setEnableLocalVideo(true);
-                mSession.setLocalVideoProfile(cameraStatus.width, cameraStatus.height, 25, 512, 2048, false);
-                break;
-            case "close":
-                mSession.setEnableLocalVideo(false);
-                break;
-            default:
-        }
-    }
-
+    // 自定义采集麦克风数据
+    private CustomAudioCapturer mCustomAudioCapturer;
+    // 是否开启自定义采集麦克风数据
+    private boolean mEnableCustomAudioCapture;
+    // 自定义视频采集器对象
+    private VideoCapturer mCustomVideoCapturer = null;
     /**
      * session事件回调处理
      */
     private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
         @Override
         public void onEvent(TcrSession.Event event, Object eventData) {
-            if (TcrSession.Event.CLIENT_STATS != event && TcrSession.Event.REMOTE_DESKTOP_INFO != event
-                    && TcrSession.Event.CURSOR_IMAGE_INFO != event) {
-                // 不打印回调次数频繁的事件
-                Log.i(sApiTAG, "event:" + event + " msg:" + eventData);
-            }
+            //Log.v(sApiTAG, "event:" + event + " msg:" + eventData);
 
             switch (event) {
                 case STATE_INITED:
@@ -228,31 +211,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     updateRotation();
                     break;
                 case CAMERA_STATUS_CHANGED:
-                    CameraStatus cameraStatus = new Gson().fromJson((String) eventData, CameraStatus.class);
-                    if (cameraStatus == null) {
-                        Log.e(TAG, "CAMERA_STATUS_CHANGED eventData: " + eventData);
-                        break;
-                    }
-                    switch (cameraStatus.status) {
-                        case "open_front":
-                        case "open_back":
-                            if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
-                                openCamera(cameraStatus);
-                            } else {
-                                mCameraStatus = cameraStatus;
-                                EasyPermissions.requestPermissions(
-                                        GamePlayFragment.this,
-                                        "需要摄像头权限才能开启摄像头",
-                                        0,
-                                        Manifest.permission.CAMERA
-                                );
-                            }
-                            break;
-                        case "close":
-                            openCamera(cameraStatus);
-                            break;
-                        default:
-                    }
+                    onCameraStatusChanged(eventData);
                     break;
                 case INPUT_STATE_CHANGE:
                     // 输入状态改变的回调，可以监听此回调做一些业务操作
@@ -280,9 +239,9 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                             @Override
                             public void run() {
                                 mViewDataBinding.statsValue.setText(
-                                        "   fps: " + statsInfo.fps + "   bitrate: "
-                                                + mDf.format(statsInfo.bitrate / 1024.0 / 1024.0)
-                                                + "Mb/s   rtt: " + statsInfo.rtt + "ms");
+                                        "   fps: " + statsInfo.fps + "   bitrate: " + mDf.format(
+                                                statsInfo.bitrate / 1024.0 / 1024.0) + "Mb/s   rtt: " + statsInfo.rtt
+                                                + "ms");
                             }
                         });
                     }
@@ -297,9 +256,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     // 有以下几种情况会回调该事件: 有人加入/退出房间，有人切换了角色/席位，个人调用了syncRoomInfo刷新房间信息接口
                     MultiUserSeatInfo multiUserSeatInfo = (MultiUserSeatInfo) eventData;
                     showToast(getContext(),
-                            "seat changed player:" + Arrays.toString(multiUserSeatInfo.players.toArray())
-                                    + "\n viewer:" + Arrays.toString(multiUserSeatInfo.viewers.toArray()),
-                            Toast.LENGTH_SHORT);
+                            "seat changed player:" + Arrays.toString(multiUserSeatInfo.players.toArray()) + "\n viewer:"
+                                    + Arrays.toString(multiUserSeatInfo.viewers.toArray()), Toast.LENGTH_SHORT);
                     Bundle bundle = new Bundle();
                     bundle.putString("userId", multiUserSeatInfo.userID);
                     bundle.putParcelableArrayList("players",
@@ -311,9 +269,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 case MULTI_USER_ROLE_APPLY:
                     // 多人互动云游场景下:房主收到房间内其他玩家的申请切换角色/坐席的请求，弹出确认框进行操作
                     RoleApplyInfo roleApplyInfo = (RoleApplyInfo) eventData;
-                    String myMsg =
-                            String.format(Locale.ENGLISH, "onRoleApplied userID:%s to:%s index:%s",
-                                    roleApplyInfo.userID, roleApplyInfo.role, roleApplyInfo.seatIndex);
+                    String myMsg = String.format(Locale.ENGLISH, "onRoleApplied userID:%s to:%s index:%s",
+                            roleApplyInfo.userID, roleApplyInfo.role, roleApplyInfo.seatIndex);
                     Log.i(sApiTAG, myMsg);
                     showToast(getContext(), myMsg, Toast.LENGTH_SHORT);
                     mUIThreadHandler.post(() -> showNormalDialog(roleApplyInfo));
@@ -333,17 +290,73 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
             }
         }
     };
-    // 自定义采集麦克风数据
-    private CustomAudioCapturer mCustomAudioCapturer;
-    // 是否开启自定义采集麦克风数据
-    private boolean mEnableCustomAudioCapture;
-
     public GamePlayFragment() {
         mTestApiHandler.setFragment(this);
     }
 
     public static GamePlayFragment newInstance() {
         return new GamePlayFragment();
+    }
+
+    private void openCamera(CameraStatus cameraStatus) {
+        Log.i(sApiTAG, "openCamera() status=" + cameraStatus.status + ", width=" + cameraStatus.width + ", height="
+                + cameraStatus.height);
+        if (mSession == null) {
+            Log.e(sApiTAG, "openCamera() mSession==null");
+            return;
+        }
+        switch (cameraStatus.status) {
+            case "open_front":
+                mSession.setEnableLocalVideo(true);
+                mSession.setLocalVideoProfile(cameraStatus.width, cameraStatus.height, 25, 512, 1024, true);
+                break;
+            case "open_back":
+                mSession.setEnableLocalVideo(true);
+                mSession.setLocalVideoProfile(cameraStatus.width, cameraStatus.height, 25, 512, 2048, false);
+                break;
+            case "close":
+                mSession.setEnableLocalVideo(false);
+                break;
+            default:
+        }
+    }
+
+    private void onCameraStatusChanged(Object eventData) {
+        CameraStatus cameraStatus = new Gson().fromJson((String) eventData, CameraStatus.class);
+        if (cameraStatus == null) {
+            Log.e(TAG, "CAMERA_STATUS_CHANGED eventData: " + eventData);
+            return;
+        }
+        // 如果自定义视频采集器存在，则上行自定义视频源，否则上行摄像头视频。
+        if (mCustomVideoCapturer != null) {
+            switch (cameraStatus.status) {
+                case "open_front":
+                case "open_back":
+                    mSession.setEnableLocalVideo(true);
+                    break;
+                case "close":
+                    mSession.setEnableLocalVideo(false);
+                    break;
+                default:
+            }
+        } else {
+            switch (cameraStatus.status) {
+                case "open_front":
+                case "open_back":
+                    if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
+                        openCamera(cameraStatus);
+                    } else {
+                        mCameraStatus = cameraStatus;
+                        EasyPermissions.requestPermissions(GamePlayFragment.this, "需要摄像头权限才能开启摄像头", 0,
+                                Manifest.permission.CAMERA);
+                    }
+                    break;
+                case "close":
+                    openCamera(cameraStatus);
+                    break;
+                default:
+            }
+        }
     }
 
     public void setUserId(String userId) {
@@ -375,13 +388,11 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         mTestApiHandler.setViewModel(mViewModel);
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
-        mInputActivityLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
+        mInputActivityLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     // 收到输入Activity输入的内容，通过session复制接口将内容复制过去
                     if (mSession == null) {
@@ -416,9 +427,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 Log.e(sApiTAG, "TcrSdk#init failed:" + code + " msg:" + msg);
                 Context context = getContext();
                 if (context != null) {
-                    showToast(getContext(),
-                            "初始化失败: code=" + code + " msg:" + msg,
-                            Toast.LENGTH_LONG);
+                    showToast(getContext(), "初始化失败: code=" + code + " msg:" + msg, Toast.LENGTH_LONG);
                 }
             }
         };
@@ -428,40 +437,43 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     }
 
     protected TcrSessionConfig createSessionConfig() {
-        VideoCapturer videoCapture = null;
-        // 演示自定义采集视频上行。打开以下注释后，openCamera() 的上行视频会被替换为自定义采集视频。注意这里只是为了演示功能，实际使用时请不要在主线程进行拷贝文件操作。
-//        try {
-//            String filePath = "/storage/emulated/0/Android/data/com.tencent.tcrdemo.full/files/VideoCapture.y4m";
-//            File y4mFile = new File(filePath);
-//            if (!y4mFile.exists()) {
-//                InputStream inputStream = getContext().getAssets().open("VideoCapture.y4m");
-//                OutputStream outputStream = new FileOutputStream(y4mFile);
-//                byte[] buffer = new byte[1024];
-//                int length;
-//                while ((length = inputStream.read(buffer)) > 0) {
-//                    outputStream.write(buffer, 0, length);
-//                }
-//                inputStream.close();
-//                outputStream.close();
-//            }
-//            videoCapture = new MyFileVideoCapturer(filePath);
-//        } catch (IOException e) {
-//            Log.e(TAG, "videoCapture=null, e=" + e.getMessage());
-//        }
+        // createCustomVideoCapturer(); // 打开这行注释，演示自定义视频上行，见 onCameraStatusChanged()。
         Pair<Integer, Integer> screenSize = DeviceUtils.getScreenSize(requireActivity());
-        TcrSessionConfig.Builder builder = TcrSessionConfig.builder()
-                .observer(mSessionEventObserver)
-                .enableCustomVideoCapture(videoCapture)
-                .idleThreshold(30000)
-                .lowFpsThreshold(31, 5)
-                .remoteDesktopResolution(screenSize.first, screenSize.second)
-                .enableLowLegacyRendering(true);
+        TcrSessionConfig.Builder builder = TcrSessionConfig.builder().observer(mSessionEventObserver)
+                .enableCustomVideoCapture(mCustomVideoCapturer).idleThreshold(30000).lowFpsThreshold(31, 5)
+                .remoteDesktopResolution(screenSize.first, screenSize.second).enableLowLegacyRendering(true);
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
             builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(),
                     mCustomAudioCapturer.getChannelNum() == 2);
         }
         return builder.build();
+    }
+
+    private void createCustomVideoCapturer() {
+        final boolean isTexture = false; // 演示的自定义视频帧是否是 opengl 纹理帧，如否则为内存 yuv 帧。
+        try {
+            String fileName = isTexture ? "VideoCapture.mp4" : "VideoCapture.y4m";
+            String filePath =
+                    isTexture ? "/storage/emulated/0/Android/data/com.tencent.tcrdemo.full/files/VideoCapture.mp4"
+                            : "/storage/emulated/0/Android/data/com.tencent.tcrdemo.full/files/VideoCapture.y4m";
+            File y4mFile = new File(filePath);
+            if (!y4mFile.exists()) {
+                // 注意这里只是为了演示功能，实际使用时请不要在主线程进行拷贝文件操作。
+                InputStream inputStream = getContext().getAssets().open(fileName);
+                OutputStream outputStream = new FileOutputStream(y4mFile);
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+                inputStream.close();
+                outputStream.close();
+            }
+            mCustomVideoCapturer = isTexture ? new TextureVideoCapturer(filePath) : new YuvVideoCapturer(filePath);
+        } catch (IOException e) {
+            Log.e(TAG, "videoCapture=null, e=" + e.getMessage());
+        }
     }
 
     @Override
@@ -552,13 +564,11 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
 
         // 添加虚拟键盘视图，初始化但不可见
         mKeyboardParent = new RelativeLayout(getContext());
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         parent.addView(mKeyboardParent, lp);
 
-        RelativeLayout.LayoutParams kbLp = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
+        RelativeLayout.LayoutParams kbLp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         kbLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mKeyboardView.setLayoutParams(kbLp);
@@ -589,8 +599,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     break;
                 }
 
-                mRenderView =
-                        TcrSdk.getInstance().createTcrRenderView(context, mSession, TcrRenderViewType.SURFACE);
+                mRenderView = TcrSdk.getInstance().createTcrRenderView(context, mSession, TcrRenderViewType.SURFACE);
                 mRenderView.post(() -> {
                     Toast.makeText(context, "开始请求云API", Toast.LENGTH_SHORT).show();
                     TcrTestEnv.getInstance()
@@ -624,9 +633,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 setTouchHandler(mRenderView, MOBILE_GAME);
 
                 // 开始我们的测试
-                mTestApiHandler.set(mSession, mRenderView, mPcTouchListener, mGamePadManager,
-                        mKeyboardParent, mViewDataBinding.pinchPivotValue,
-                        mViewDataBinding.pinchScaleValue, mCustomAudioCapturer);
+                mTestApiHandler.set(mSession, mRenderView, mPcTouchListener, mGamePadManager, mKeyboardParent,
+                        mViewDataBinding.pinchPivotValue, mViewDataBinding.pinchScaleValue, mCustomAudioCapturer);
                 if (mHostUserId != null) {
                     mMultiPlayPlayerAdapter.setSession(mSession, mHostUserId, mHandlerUserId);
                     mMultiPlayViewerAdapter.setSession(mSession, mHostUserId, mHandlerUserId);
@@ -717,7 +725,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         Log.w(TAG, "mVideoStreamConfig=" + mVideoStreamConfig);
         Log.w(TAG, "mScreenConfig.degree=" + mScreenConfig.degree);
 
-
         // 1. 根据云端Activity的方向（degree）和视频流的宽高，调整本地屏幕方向(使得本地屏幕方向和云端Activity方向保持一致)
         // 视频流	云端Activity		客户端处理
         // 横屏	      竖屏		    设置竖屏
@@ -765,12 +772,12 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         Log.d(TAG, "setTouchHandler() mGameType=" + type);
         switch (type) {
             case MOBILE_GAME:
-                renderView.setOnTouchListener((OnTouchListener) new MobileTouchListener(mSession));
+                renderView.setOnTouchListener(new MobileTouchListener(mSession));
                 break;
             case PC_GAME:
                 mPcTouchListener = new PcTouchListener(mSession);
                 mPcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
-                renderView.setOnTouchListener((OnTouchListener) mPcTouchListener);
+                renderView.setOnTouchListener(mPcTouchListener);
                 mPcTouchListener.getZoomHandler().setZoomListener(new PcZoomHandler.ZoomListener() {
                     @Override
                     public void onPivot(float x, float y) {
@@ -801,7 +808,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
@@ -832,38 +840,30 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         AlertDialog.Builder normalDialog = new AlertDialog.Builder(requireActivity());
         normalDialog.setTitle("访客申请切换席位");
         normalDialog.setMessage(userID + "申请切换席位 role=" + role + "  seatIndex=" + seatIndex);
-        normalDialog.setPositiveButton("同意",
-                (dialog, which) -> {
-                    //...To-do
-                    mSession.changeSeat(userID, role, seatIndex,
-                            new AsyncCallback<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    String msg = String.format(
-                                            "MultiUserManager#changeSeat %s to:%s index:%s success", userID,
-                                            role, seatIndex);
-                                    Log.i(sApiTAG, msg);
-                                    showToast(getContext(), msg,
-                                            Toast.LENGTH_SHORT);
-                                }
+        normalDialog.setPositiveButton("同意", (dialog, which) -> {
+            //...To-do
+            mSession.changeSeat(userID, role, seatIndex, new AsyncCallback<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    String msg = String.format("MultiUserManager#changeSeat %s to:%s index:%s success", userID, role,
+                            seatIndex);
+                    Log.i(sApiTAG, msg);
+                    showToast(getContext(), msg, Toast.LENGTH_SHORT);
+                }
 
-                                @Override
-                                public void onFailure(int i, String s) {
-                                    String myMsg =
-                                            String.format(Locale.ENGLISH,
-                                                    "MultiUserManager#changeSeat %s to:%s index:%s failed:%d msg:%s",
-                                                    userID,
-                                                    role, seatIndex, i, s);
-                                    Log.e(sApiTAG, myMsg);
-                                    showToast(getContext(), myMsg,
-                                            Toast.LENGTH_SHORT);
-                                }
-                            });
-                });
-        normalDialog.setNegativeButton("关闭",
-                (dialog, which) -> {
-                    // do nothing
-                });
+                @Override
+                public void onFailure(int i, String s) {
+                    String myMsg = String.format(Locale.ENGLISH,
+                            "MultiUserManager#changeSeat %s to:%s index:%s failed:%d msg:%s", userID, role, seatIndex,
+                            i, s);
+                    Log.e(sApiTAG, myMsg);
+                    showToast(getContext(), myMsg, Toast.LENGTH_SHORT);
+                }
+            });
+        });
+        normalDialog.setNegativeButton("关闭", (dialog, which) -> {
+            // do nothing
+        });
         // 显示
         normalDialog.show();
     }

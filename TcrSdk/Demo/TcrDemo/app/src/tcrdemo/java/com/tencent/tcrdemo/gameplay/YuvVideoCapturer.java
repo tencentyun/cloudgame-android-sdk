@@ -12,6 +12,7 @@ package com.tencent.tcrdemo.gameplay;
 
 import android.content.Context;
 import android.os.SystemClock;
+import android.util.Log;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -27,7 +28,10 @@ import org.twebrtc.SurfaceTextureHelper;
 import org.twebrtc.VideoCapturer;
 import org.twebrtc.VideoFrame;
 
-public class MyFileVideoCapturer implements VideoCapturer {
+/**
+ * 演示自定义视频采集器：解码本地的 y4m 文件，将获取的内存 yuv帧数据回调给 TcrSdk。以实现自定义上行视频功能。
+ */
+public class YuvVideoCapturer implements VideoCapturer {
 
     private interface VideoReader {
 
@@ -151,19 +155,15 @@ public class MyFileVideoCapturer implements VideoCapturer {
         }
     }
 
-    private final static String TAG = "MyFileVideoCapturer";
+    private final static String TAG = "YuvVideoCapturer";
     private final VideoReader videoReader;
     private CapturerObserver capturerObserver;
-    private final Timer timer = new Timer();
+    private Timer timer;
+    private TimerTask tickTask;
+    private volatile boolean isDisposed;
+    private volatile boolean isCapturing;
 
-    private final TimerTask tickTask = new TimerTask() {
-        @Override
-        public void run() {
-            tick();
-        }
-    };
-
-    public MyFileVideoCapturer(String inputFile) throws IOException {
+    public YuvVideoCapturer(String inputFile) throws IOException {
         try {
             videoReader = new VideoReaderY4M(inputFile);
         } catch (IOException e) {
@@ -179,33 +179,89 @@ public class MyFileVideoCapturer implements VideoCapturer {
     }
 
     @Override
-    public void initialize(SurfaceTextureHelper surfaceTextureHelper, Context applicationContext,
+    public void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context,
             CapturerObserver capturerObserver) {
+        checkNotDisposed();
+        Log.i(TAG, "initialize()");
         this.capturerObserver = capturerObserver;
     }
 
     @Override
-    public void startCapture(int width, int height, int framerate) {
-        timer.schedule(tickTask, 0, 1000 / framerate);
+    public void startCapture(int width, int height, int fps) {
+        checkNotDisposed();
+        if (isCapturing) {
+            return;
+        }
+        isCapturing = true;
+        Log.i(TAG, "startCapture() " + width + "x" + height + "@" + fps);
+
+        capturerObserver.onCapturerStarted(true); // 必须调用
+
+        tickTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (!isCapturing) {
+                    return;
+                }
+                tick();
+            }
+        };
+        timer = new Timer();
+        timer.schedule(tickTask, 0, 1000 / fps);
     }
 
     @Override
-    public void stopCapture() throws InterruptedException {
-        timer.cancel();
+    public void stopCapture() {
+        checkNotDisposed();
+        if (!isCapturing) {
+            return;
+        }
+        Log.i(TAG, "stopCapture()");
+
+        if (tickTask != null) {
+            tickTask.cancel();
+            tickTask = null;
+        }
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+
+        capturerObserver.onCapturerStopped(); // 对称调用
+        isCapturing = false;
     }
 
     @Override
     public void changeCaptureFormat(int width, int height, int framerate) {
-        // Empty on purpose
+        Log.w(TAG, "changeCaptureFormat() not supported");
     }
 
     @Override
     public void dispose() {
-        videoReader.close();
+        if (isDisposed) {
+            return;
+        }
+        Log.i(TAG, "dispose()");
+        try {
+            if (isCapturing) {
+                stopCapture();
+            }
+            videoReader.close();
+        } catch (Exception e) {
+            Log.e(TAG, "dispose() e=" + e.getMessage());
+        } finally {
+            isDisposed = true;
+        }
     }
 
     @Override
     public boolean isScreencast() {
         return false;
+    }
+
+    private void checkNotDisposed() {
+        if (isDisposed) {
+            throw new RuntimeException("disposed");
+        }
     }
 }

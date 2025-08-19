@@ -55,8 +55,8 @@ if (gradle.ext.use_local_module_TcrSdkFull) {
     include ':TcrSdkFull'
     project(':TcrSdkFull').projectDir = new File('../../../../cloud_gaming_master/TcrSdkProject/TcrSdkFull')
 }
-gradle.ext.use_local_module_TcrSdk = readLocalProperties('local.properties', 'use_local_module_TcrSdk')
-if (gradle.ext.use_local_module_TcrSdk) {
+gradle.ext.use_local_module_TcrSdkLight = readLocalProperties('local.properties', 'use_local_module_TcrSdkLight')
+if (gradle.ext.use_local_module_TcrSdkLight) {
     include ':TcrSdk'
     project(':TcrSdk').projectDir = new File('../../../../cloud_gaming_master/TcrSdkProject/TcrSdk')
 }
