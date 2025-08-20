@@ -40,6 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="密码"
+            android:text="cloud_rendering_123456"
             android:inputType="textPassword"
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="32dp"

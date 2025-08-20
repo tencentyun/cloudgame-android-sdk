@@ -1,5 +1,17 @@
 
 ext {
+    // =========== 依赖库版本号 ===========
+    annotationVersion = "1.9.1"
+    gsonVersion = "2.11.0"
+    volleyVersion = "1.2.1"
+    afcVersion = "1.0.1"
+    TcrGuiVersion = "2.2.4"
+    twebrtcVersion = "0.1.16"
+    tpmonetVersion = "0.0.5"
+    TcrProxyVersion = "1.1.6"
+    tcrsdkVersion = "3.30.1"
+
+    // =========== 构建参数 ===========
     buildTime = project.findProperty('buildTime') ?: new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
     buildVersion = project.findProperty('buildVersion') ?: "3.0.0-SNAPSHOT"
     buildNumber = project.findProperty('buildNumber') ?: "1"
@@ -11,6 +23,8 @@ ext {
     arm64Hash = project.findProperty('arm64Hash') ?: ""
     dexHash = project.findProperty('dexHash') ?: ""
     gitRevision = 'git rev-parse --short HEAD'.execute(null, project.rootDir).text.trim()
+
+    // =========== 调试打印 ===========
     println "ext:"
     println "buildTime=" + buildTime
     println "buildVersion=" + buildVersion

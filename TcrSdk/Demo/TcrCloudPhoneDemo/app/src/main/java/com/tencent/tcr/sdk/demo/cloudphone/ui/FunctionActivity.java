@@ -150,7 +150,7 @@ public class FunctionActivity extends AppCompatActivity {
 
     // 请求云手机实例的访问信息AceessInfo和鉴权Token
     private void requestAccessToken() {
-        AsyncCallback<ExpServerResponse<CreateAndroidInstancesAccessTokenResponse>> createAndroidInstancesAccessTokenCallback = new AsyncCallback<ExpServerResponse<CreateAndroidInstancesAccessTokenResponse>>() {
+        AsyncCallback<ExpServerResponse<CreateAndroidInstancesAccessTokenResponse>> createAndroidInstancesAccessTokenCallback = new AsyncCallback<>() {
             @Override
             public void onSuccess(ExpServerResponse<CreateAndroidInstancesAccessTokenResponse> expServerResponse) {
                 if (expServerResponse.Error != null) {
@@ -174,7 +174,7 @@ public class FunctionActivity extends AppCompatActivity {
                 finish();
             }
         };
-        AsyncCallback<ExpServerResponse<DescribeAndroidInstancesResponse>> describeAndroidInstancesCallback = new AsyncCallback<ExpServerResponse<DescribeAndroidInstancesResponse>>() {
+        AsyncCallback<ExpServerResponse<DescribeAndroidInstancesResponse>> describeAndroidInstancesCallback = new AsyncCallback<>() {
             @Override
             public void onSuccess(ExpServerResponse<DescribeAndroidInstancesResponse> expServerResponse) {
                 if (expServerResponse.Error != null) {
@@ -257,7 +257,7 @@ public class FunctionActivity extends AppCompatActivity {
         params.put("screenshot_width", 1080);
         params.put("screenshot_height", 1920);
 
-        getAndroidInstance().getInstanceImage(params, new AsyncCallback<Bitmap>() {
+        getAndroidInstance().getInstanceImage(params, new AsyncCallback<>() {
             @Override
             public void onSuccess(Bitmap bitmap) {
                 // 显示截图结果

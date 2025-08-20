@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (validateInput(username, password)) {
                 // 执行登录请求
-                AsyncCallback<ExpServerResponse<LoginResponse>> callback = new AsyncCallback<ExpServerResponse<LoginResponse>>() {
+                AsyncCallback<ExpServerResponse<LoginResponse>> callback = new AsyncCallback<>() {
                     @Override
                     public void onSuccess(ExpServerResponse<LoginResponse> expServerResponse) {
                         if (expServerResponse.Error != null) {

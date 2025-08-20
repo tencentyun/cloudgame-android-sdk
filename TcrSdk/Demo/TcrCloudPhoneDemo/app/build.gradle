@@ -32,6 +32,6 @@ dependencies {
     if (gradle.ext.use_local_module_TcrSdkFull) {
         implementation project(':TcrSdkFull')
     } else {
-        implementation 'com.tencent.tcr:tcrsdk-full:3.27.0'
+        implementation "com.tencent.tcr:tcrsdk-full:$rootProject.tcrsdkVersion"
     }
 }
