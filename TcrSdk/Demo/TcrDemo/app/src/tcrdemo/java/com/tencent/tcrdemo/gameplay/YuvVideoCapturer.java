@@ -23,7 +23,6 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import org.twebrtc.CapturerObserver;
 import org.twebrtc.JavaI420Buffer;
-import org.twebrtc.Logging;
 import org.twebrtc.SurfaceTextureHelper;
 import org.twebrtc.VideoCapturer;
 import org.twebrtc.VideoFrame;
@@ -93,7 +92,7 @@ public class YuvVideoCapturer implements VideoCapturer {
                         break;
                 }
             }
-            Logging.d(TAG, "Color space: " + colorSpace);
+            Log.d(TAG, "Color space: " + colorSpace);
             if (!colorSpace.equals("420") && !colorSpace.equals("420mpeg2")) {
                 throw new IllegalArgumentException(
                         "Does not support any other color space than I420 or I420mpeg2");
@@ -103,7 +102,7 @@ public class YuvVideoCapturer implements VideoCapturer {
             }
             frameWidth = w;
             frameHeight = h;
-            Logging.d(TAG, "frame dim: (" + w + ", " + h + ")");
+            Log.d(TAG, "frame dim: (" + w + ", " + h + ")");
         }
 
         @Override
@@ -150,7 +149,7 @@ public class YuvVideoCapturer implements VideoCapturer {
                 // Closing a file also closes the channel.
                 mediaFile.close();
             } catch (IOException e) {
-                Logging.e(TAG, "Problem closing file", e);
+                Log.e(TAG, "Problem closing file", e);
             }
         }
     }
@@ -167,7 +166,7 @@ public class YuvVideoCapturer implements VideoCapturer {
         try {
             videoReader = new VideoReaderY4M(inputFile);
         } catch (IOException e) {
-            Logging.d(TAG, "Could not open video file: " + inputFile);
+            Log.d(TAG, "Could not open video file: " + inputFile);
             throw e;
         }
     }
