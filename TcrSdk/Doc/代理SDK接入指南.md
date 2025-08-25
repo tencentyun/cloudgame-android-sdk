@@ -56,7 +56,8 @@
    ```xml
    <service  
     android:name=".gameplay.ProxyService"  
-    android:exported="false" />
+    android:exported="false"
+    android:process=":proxy_process"/>
    ```
 
 ---
