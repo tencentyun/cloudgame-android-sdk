@@ -52,6 +52,7 @@
 
         <service
             android:name=".gameplay.ProxyService"
+            android:process=":proxy_process"
             android:exported="false"
             android:foregroundServiceType="dataSync"
             />
