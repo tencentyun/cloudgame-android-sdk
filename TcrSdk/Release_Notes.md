@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.31.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.31.0/TcrSdk) (2025-8-1)
+**Features**
+- Support cloud phone acceleration capability
+
 # [Version 3.27.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.27.0/TcrSdk) (2025-8-8)
 **Features**
 - Supports PCMA audio decoding
