@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.tencent.tcr.sdk.api.TcrSdk;
@@ -13,6 +14,7 @@ import com.tencent.tcr.sdk.api.TcrSession.Observer;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
 import com.tencent.tcr.sdk.api.data.VideoStreamConfig;
+import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
@@ -143,6 +145,7 @@ public class PlayActivity extends Activity {
         }
         // 将渲染视图添加到界面上
         ((FrameLayout) findViewById(R.id.render_view_parent)).addView(mRenderView);
+        mRenderView.setOnTouchListener((View.OnTouchListener) new MobileTouchListener(mTcrSession));
     }
 
     /**
