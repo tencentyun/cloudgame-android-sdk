@@ -64,7 +64,7 @@ public class InstanceTokenActivity extends AppCompatActivity {
 
     private void initTcrSdk(CreateAndroidInstancesAccessTokenResponse serverResponse) {
         TcrSdk.TcrConfig config = new TcrSdk.TcrConfig();
-        config.type = TcrSdk.SdkType.CloudPhone;
+        config.type = TcrSdk.SdkType.CloudStream;
         config.ctx = this;
         // 用于接收 SDK 日志的对象，App 需要将收到的 SDK 日志存储到文件和上报，以便分析定位 SDK 运行时的问题。
         // 如果App没有显示设置 logger，SDK 会将日志打印到系统 logcat 以及写入日志文件（/storage/emulated/0/Android/data/app package name/files/tcrlogs 目录下）。
