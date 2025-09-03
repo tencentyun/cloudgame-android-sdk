@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone;
+package com.tencent.tcr.sdk.demo.cloudstream;
 
 import android.annotation.SuppressLint;
 import android.app.Application;

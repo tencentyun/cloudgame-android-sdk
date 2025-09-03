@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.ui;
+package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.tencent.tcr.sdk.demo.cloudphone.R;
+import com.tencent.tcr.sdk.demo.cloudstream.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

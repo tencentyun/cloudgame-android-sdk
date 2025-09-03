@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.network;
+package com.tencent.tcr.sdk.demo.cloudstream.network;
 
 import android.text.TextUtils;
 

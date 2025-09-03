@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.ui;
+package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.api.TcrSdk;
-import com.tencent.tcr.sdk.demo.cloudphone.DemoApp;
-import com.tencent.tcr.sdk.demo.cloudphone.R;
-import com.tencent.tcr.sdk.demo.cloudphone.network.CreateAndroidInstancesAccessTokenBaseRequest;
-import com.tencent.tcr.sdk.demo.cloudphone.network.CreateAndroidInstancesAccessTokenResponse;
+import com.tencent.tcr.sdk.demo.cloudstream.DemoApp;
+import com.tencent.tcr.sdk.demo.cloudstream.R;
+import com.tencent.tcr.sdk.demo.cloudstream.network.CreateAndroidInstancesAccessTokenBaseRequest;
+import com.tencent.tcr.sdk.demo.cloudstream.network.CreateAndroidInstancesAccessTokenResponse;
 
 import java.util.Arrays;
 import java.util.List;

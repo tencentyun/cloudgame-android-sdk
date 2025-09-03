@@ -12,19 +12,19 @@
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.TcrCloudPhoneDemo">
+            android:theme="@style/Theme.TcrCloudStreamDemo">
         <activity
-                android:name="com.tencent.tcr.sdk.demo.cloudphone.ui.InstanceTokenActivity"
+                android:name="com.tencent.tcr.sdk.demo.cloudstream.ui.InstanceTokenActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tencent.tcr.sdk.demo.cloudphone.ui.PlayActivity"
+        <activity android:name="com.tencent.tcr.sdk.demo.cloudstream.ui.PlayActivity"
                 android:configChanges="orientation|screenSize"
                 android:screenOrientation="portrait" />
-        <activity android:name="com.tencent.tcr.sdk.demo.cloudphone.ui.InstanceScreenshotActivity"
+        <activity android:name="com.tencent.tcr.sdk.demo.cloudstream.ui.InstanceScreenshotActivity"
                 android:screenOrientation="portrait" />
     </application>
 </manifest>

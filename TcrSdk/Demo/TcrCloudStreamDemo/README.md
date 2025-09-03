@@ -36,7 +36,7 @@ implementation 'com.tencent.tcr:tcrsdk-full:3.31.0'
 ```java
 private void initTcrSdk(CreateAndroidInstancesAccessTokenResponse serverResponse) {
     TcrSdk.TcrConfig config = new TcrSdk.TcrConfig();
-    config.type = TcrSdk.SdkType.CloudPhone;
+    config.type = TcrSdk.SdkType.CloudStream;
     config.ctx = this;
     // 可选：设置SDK日志回调，便于定位及上报问题
     // config.logger = ...;

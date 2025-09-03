@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.network;
+package com.tencent.tcr.sdk.demo.cloudstream.network;
 
 import android.util.Log;
 
@@ -14,7 +14,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.tcr.sdk.api.AsyncCallback;
-import com.tencent.tcr.sdk.demo.cloudphone.util.GsonUtils;
+import com.tencent.tcr.sdk.demo.cloudstream.util.GsonUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

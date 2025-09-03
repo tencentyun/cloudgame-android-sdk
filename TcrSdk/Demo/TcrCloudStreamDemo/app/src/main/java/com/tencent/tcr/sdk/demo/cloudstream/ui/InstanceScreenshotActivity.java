@@ -1,11 +1,10 @@
-package com.tencent.tcr.sdk.demo.cloudphone.ui;
+package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tencent.tcr.sdk.api.AndroidInstance;
 import com.tencent.tcr.sdk.api.TcrSdk;
-import com.tencent.tcr.sdk.demo.cloudphone.R;
+import com.tencent.tcr.sdk.demo.cloudstream.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

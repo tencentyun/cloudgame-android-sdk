@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.ui;
+package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 
 import android.app.Activity;
@@ -18,7 +18,7 @@ import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
-import com.tencent.tcr.sdk.demo.cloudphone.R;
+import com.tencent.tcr.sdk.demo.cloudstream.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.util;
+package com.tencent.tcr.sdk.demo.cloudstream.util;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,4 +1,4 @@
-package com.tencent.tcr.sdk.demo.cloudphone.ui;
+package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 public class ScreenshotItem {
     private String instanceId;
