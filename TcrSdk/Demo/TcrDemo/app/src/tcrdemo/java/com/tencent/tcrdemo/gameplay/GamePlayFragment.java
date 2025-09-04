@@ -37,7 +37,6 @@ import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
 import com.tencent.tcr.sdk.api.TcrTestEnv;
 import com.tencent.tcr.sdk.api.data.CursorImageInfo;
-import com.tencent.tcr.sdk.api.data.CursorState;
 import com.tencent.tcr.sdk.api.data.MultiUser;
 import com.tencent.tcr.sdk.api.data.MultiUser.Role;
 import com.tencent.tcr.sdk.api.data.MultiUserSeatInfo;
@@ -283,21 +282,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                                                 + "Mb/s   rtt: " + statsInfo.rtt + "ms");
                             }
                         });
-                    }
-                    break;
-                case CURSOR_STATE_CHANGE:
-                    // 鼠标光标显示状态的回调
-                    CursorState cursorState = (CursorState) eventData;
-                    if (cursorState != null) {
-                        Log.i(TAG, "CURSOR_STATE_CHANGE cursorShowState=" + cursorState.cursorShowState);
-                        Activity activity1 = getActivity();
-                        if (activity1 != null) {
-                            activity1.runOnUiThread(() -> {
-                                if (mPcTouchListener != null) {
-                                    mPcTouchListener.setMouseConfig(false, 1.0f, cursorState.cursorShowState);
-                                }
-                            });
-                        }
                     }
                     break;
                 case MULTI_USER_SEAT_INFO:

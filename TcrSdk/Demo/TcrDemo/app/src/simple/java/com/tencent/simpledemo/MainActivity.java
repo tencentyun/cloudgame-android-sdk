@@ -21,7 +21,6 @@ import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
 import com.tencent.tcr.sdk.api.TcrTestEnv;
-import com.tencent.tcr.sdk.api.data.CursorState;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
 import com.tencent.tcr.sdk.api.data.StatsInfo;
 import com.tencent.tcr.sdk.api.data.VideoStreamConfig;
@@ -183,17 +182,6 @@ public class MainActivity extends Activity {
                                             + "Mb/s   rtt: " + statsInfo.rtt + "ms");
                         }
                     });
-                    break;
-                case CURSOR_STATE_CHANGE:
-                    CursorState cursorState = (CursorState) eventData;
-                    if (cursorState != null) {
-                        Log.i(TAG, "CURSOR_STATE_CHANGE cursorShowState=" + cursorState.cursorShowState);
-                        runOnUiThread(() -> {
-                            if (mPcTouchListener != null) {
-                                mPcTouchListener.setMouseConfig(false, 1.0f, cursorState.cursorShowState);
-                            }
-                        });
-                    }
                     break;
                 default:
                     break;

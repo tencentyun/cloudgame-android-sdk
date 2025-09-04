@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response.ErrorListener;
@@ -17,11 +16,9 @@ import com.tencent.simpledemo.data.StartGameRequest;
 import com.tencent.simpledemo.data.StartProjectRequest;
 import com.tencent.simpledemo.data.StopGameRequest;
 import com.tencent.simpledemo.data.StopProjectRequest;
-
+import java.util.UUID;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.UUID;
 
 /**
  * 该类用于请求业务后台接口。<br>
@@ -40,7 +37,7 @@ public class CloudRenderBiz {
      * 使用云渲染测试环境的体验码。<br>
      * 您需要自行到控制台中创建体验码，并且填到该变量中。
      */
-    public static final String EXPERIENCE_CODE = "7T334QYL";
+    public static final String EXPERIENCE_CODE = "";
 
     /**
      * 云游后台游戏ID，该ID对应云游后台部署的游戏。<br>
