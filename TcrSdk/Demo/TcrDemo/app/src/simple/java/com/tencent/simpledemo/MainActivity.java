@@ -1,8 +1,5 @@
 package com.tencent.simpledemo;
 
-import static com.tencent.simpledemo.CloudRenderBiz.EXPERIENCE_CODE;
-import static com.tencent.simpledemo.CloudRenderBiz.USE_TCR_TEST_ENV;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.tencent.simpledemo.data.StartGameResponse;
 import com.tencent.tcr.sdk.api.AsyncCallback;
@@ -36,7 +32,6 @@ import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
 import com.tencent.tcrdemo.R;
-
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
@@ -95,6 +90,7 @@ import java.text.DecimalFormat;
  * <p>
  * 详细的TcrSdk接口如何使用，请参考文档<br>
  * 业务后台的搭建，请参考链接<br>
+ *
  * @see <a href="https://tencentyun.github.io/cloudgame-android-sdk/tcrsdk/index.html">TcrSdK API</a>
  * @see <a href="https://github.com/tencentyun/gs-server-demo">搭建业务后台</a></p>
  */
@@ -136,6 +132,74 @@ public class MainActivity extends Activity {
      * 记录视频分辨率是否发生变化
      */
     private boolean mVideoStreamConfigChanged = false;
+    private PcTouchListener mPcTouchListener;
+    /**
+     * 观察TcrSession通知出的各类事件，处理各类事件通知的消息和数据
+     *
+     * @see TcrSession.Event
+     */
+    private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
+        @Override
+        public void onEvent(TcrSession.Event event, Object eventData) {
+            switch (event) {
+                case STATE_INITED:
+                    // 回调数据中拿到client session并请求ServerSession
+                    String clientSession = (String) eventData;
+                    requestServerSession(clientSession);
+                    break;
+                case STATE_CONNECTED:
+                    // 连接成功后设置操作模式
+                    // 与云端的交互需在此事件回调后开始调用接口
+                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));
+                    createCustomDataChannel();
+                    break;
+                case STATE_RECONNECTING:
+                    showToast("重连中...", Toast.LENGTH_LONG);
+                    break;
+                case STATE_CLOSED:
+                    showToast("会话关闭", Toast.LENGTH_SHORT);
+                    finish();
+                    break;
+                case SCREEN_CONFIG_CHANGE:
+                    mScreenConfig = (ScreenConfig) eventData;
+                    updateRotation();
+                    mScreenConfigChanged = true;
+                    updateRotation();
+                    break;
+                case VIDEO_STREAM_CONFIG_CHANGED:
+                    mVideoStreamConfig = (VideoStreamConfig) eventData;
+                    mVideoStreamConfigChanged = true;
+                    updateRotation();
+                    break;
+                case CLIENT_STATS:
+                    StatsInfo statsInfo = (StatsInfo) eventData;
+                    runOnUiThread(new Runnable() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void run() {
+                            mStatsValueTextView.setText(
+                                    "   fps: " + statsInfo.fps + "   bitrate: " + mDf.format(
+                                            statsInfo.bitrate / 1024.0 / 1024.0)
+                                            + "Mb/s   rtt: " + statsInfo.rtt + "ms");
+                        }
+                    });
+                    break;
+                case CURSOR_STATE_CHANGE:
+                    CursorState cursorState = (CursorState) eventData;
+                    if (cursorState != null) {
+                        Log.i(TAG, "CURSOR_STATE_CHANGE cursorShowState=" + cursorState.cursorShowState);
+                        runOnUiThread(() -> {
+                            if (mPcTouchListener != null) {
+                                mPcTouchListener.setMouseConfig(false, 1.0f, cursorState.cursorShowState);
+                            }
+                        });
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,17 +275,14 @@ public class MainActivity extends Activity {
      */
     private void requestServerSession(String clientSession) {
         Log.i(TAG, "init session success:" + clientSession);
-
-        if (USE_TCR_TEST_ENV) {
-            if (TextUtils.isEmpty(EXPERIENCE_CODE)) {
-                throw new NullPointerException("请在控制台创建体验码，并填写到EXPERIENCE_CODE中!!");
-            }
-            TcrTestEnv.getInstance().startSession(this, EXPERIENCE_CODE, clientSession, serverSession -> {
-                mTcrSession.start(serverSession);
-            }, error -> {
-                showToast("startSession failed, error=" + error, Toast.LENGTH_SHORT);
-            });
-        } else {
+        if (!TextUtils.isEmpty(CloudRenderBiz.EXPERIENCE_CODE)) {
+            TcrTestEnv.getInstance()
+                    .startSession(this, CloudRenderBiz.EXPERIENCE_CODE, clientSession, serverSession -> {
+                        mTcrSession.start(serverSession);
+                    }, error -> {
+                        showToast("startSession failed, error=" + error, Toast.LENGTH_SHORT);
+                    });
+        } else if (!TextUtils.isEmpty(CloudRenderBiz.SERVER_URL)) {
             CloudRenderBiz.getInstance().startGame(clientSession, response -> {
                 Log.i(TAG, "Request ServerSession success, response=" + response.toString());
                 // 用从服务端获取到的server session启动会话
@@ -253,9 +314,10 @@ public class MainActivity extends Activity {
                     showToast(showMessage + result.msg, Toast.LENGTH_LONG);
                 }
             }, error -> Log.i(TAG, "Request ServerSession success, response=" + error.toString()));
+        } else {
+            throw new RuntimeException("请在CloudRenderBiz类中填写体验码或者业务后台地址");
         }
     }
-
 
     /**
      * 旋转屏幕方向以及画面方向, 以便本地的屏幕方向和云端保持一致<br>
@@ -275,7 +337,6 @@ public class MainActivity extends Activity {
 
         Log.w(TAG, "mVideoStreamConfig=" + mVideoStreamConfig);
         Log.w(TAG, "mScreenConfig.degree=" + mScreenConfig.degree);
-
 
         // 1. 根据云端Activity的方向（degree）和视频流的宽高，调整本地屏幕方向(使得本地屏幕方向和云端Activity方向保持一致)
         // 视频流	云端Activity		客户端处理
@@ -314,7 +375,6 @@ public class MainActivity extends Activity {
         }
     }
 
-
     /**
      * 为不同的云端实例设置处理器
      * <p>
@@ -329,11 +389,10 @@ public class MainActivity extends Activity {
                 renderView.setOnTouchListener(new MobileTouchListener(session));
                 break;
             case PC_GAME:
-                PcTouchListener pcTouchListener = new PcTouchListener(session);
-                pcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
-                renderView.setOnTouchListener(pcTouchListener);
-                pcTouchListener.setShortClickListener(new PcClickListener(session));
-                // 如需隐藏本地渲染的鼠标： pcTouchListener.setMouseConfig(false, 1.0f, false);
+                mPcTouchListener = new PcTouchListener(session);
+                renderView.setOnTouchListener(mPcTouchListener);
+                mPcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
+                mPcTouchListener.setShortClickListener(new PcClickListener(session));
                 break;
             default:
                 Log.e(TAG, "UNKNOWN DeviceMode!!");
@@ -343,67 +402,6 @@ public class MainActivity extends Activity {
     private void showToast(String msg, int duration) {
         runOnUiThread(() -> Toast.makeText(MainActivity.this, msg, duration).show());
     }
-
-    /**
-     * 观察TcrSession通知出的各类事件，处理各类事件通知的消息和数据
-     *
-     * @see TcrSession.Event
-     */
-    private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
-        @Override
-        public void onEvent(TcrSession.Event event, Object eventData) {
-            switch (event) {
-                case STATE_INITED:
-                    // 回调数据中拿到client session并请求ServerSession
-                    String clientSession = (String) eventData;
-                    requestServerSession(clientSession);
-                    break;
-                case STATE_CONNECTED:
-                    // 连接成功后设置操作模式
-                    // 与云端的交互需在此事件回调后开始调用接口
-                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));
-                    createCustomDataChannel();
-                    break;
-                case STATE_RECONNECTING:
-                    showToast("重连中...", Toast.LENGTH_LONG);
-                    break;
-                case STATE_CLOSED:
-                    showToast("会话关闭", Toast.LENGTH_SHORT);
-                    finish();
-                    break;
-                case SCREEN_CONFIG_CHANGE:
-                    mScreenConfig = (ScreenConfig) eventData;
-                    updateRotation();
-                    mScreenConfigChanged = true;
-                    updateRotation();
-                    break;
-                case VIDEO_STREAM_CONFIG_CHANGED:
-                    mVideoStreamConfig = (VideoStreamConfig) eventData;
-                    mVideoStreamConfigChanged = true;
-                    updateRotation();
-                    break;
-                case CLIENT_STATS:
-                    StatsInfo statsInfo = (StatsInfo) eventData;
-                    runOnUiThread(new Runnable() {
-                        @SuppressLint("SetTextI18n")
-                        @Override
-                        public void run() {
-                            mStatsValueTextView.setText(
-                                    "   fps: " + statsInfo.fps + "   bitrate: " + mDf.format(
-                                            statsInfo.bitrate / 1024.0 / 1024.0)
-                                            + "Mb/s   rtt: " + statsInfo.rtt + "ms");
-                        }
-                    });
-                    break;
-                case CURSOR_STATE_CHANGE:
-                    CursorState cursorState = (CursorState) eventData;
-                    Log.i(TAG, "cursor showing state changed, " + cursorState.toString());
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
 
     /**
      * 创建自定义数据通道
@@ -440,6 +438,9 @@ public class MainActivity extends Activity {
         }
         if (mRenderView != null) {
             mRenderView.release();
+        }
+        if (mPcTouchListener != null) {
+            mPcTouchListener.release();
         }
         super.onDestroy();
     }

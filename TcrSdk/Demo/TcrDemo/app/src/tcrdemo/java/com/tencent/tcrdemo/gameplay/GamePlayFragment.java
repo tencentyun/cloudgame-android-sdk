@@ -13,8 +13,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
-import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +55,8 @@ import com.tencent.tcrdemo.BR;
 import com.tencent.tcrdemo.R;
 import com.tencent.tcrdemo.adapter.MultiPlayerAdapter;
 import com.tencent.tcrdemo.adapter.SimplePagerAdapter;
+import com.tencent.tcrdemo.bean.CameraStatus;
 import com.tencent.tcrdemo.bean.HitInput;
-import com.tencent.tcrdemo.bean.Camera;
 import com.tencent.tcrdemo.bean.User;
 import com.tencent.tcrdemo.databinding.FragmentGamePlayBinding;
 import com.tencent.tcrdemo.utils.CustomAudioCapturer;
@@ -71,7 +71,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class GamePlayFragment extends Fragment implements Handler.Callback, EasyPermissions.PermissionCallbacks {
@@ -136,22 +135,22 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     private boolean mVideoStreamConfigChanged = false;
     // 本地输入法Activity的启动器
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
-    // Camera.status
-    private String mCameraStatus;
-    void openCamera(String status) {
-        Log.i(sApiTAG, "openCamera() status=" + status);
+    // 摄像头状态
+    private CameraStatus mCameraStatus;
+    private void openCamera(CameraStatus cameraStatus) {
+        Log.i(sApiTAG, "openCamera() status=" + cameraStatus.status + ", width=" + cameraStatus.width + ", height=" + cameraStatus.height);
         if (mSession == null) {
             Log.e(sApiTAG, "openCamera() mSession==null");
             return;
         }
-        switch (status) {
+        switch (cameraStatus.status) {
             case "open_front":
                 mSession.setEnableLocalVideo(true);
-                mSession.setLocalVideoProfile(540, 960, 30, 512, 1024, true);
+                mSession.setLocalVideoProfile(cameraStatus.width, cameraStatus.height, 25, 512, 1024, true);
                 break;
             case "open_back":
                 mSession.setEnableLocalVideo(true);
-                mSession.setLocalVideoProfile(1080, 1920, 30, 1024, 2048, false);
+                mSession.setLocalVideoProfile(cameraStatus.width, cameraStatus.height, 25, 512, 2048, false);
                 break;
             case "close":
                 mSession.setEnableLocalVideo(false);
@@ -227,14 +226,18 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     updateRotation();
                     break;
                 case CAMERA_STATUS_CHANGED:
-                    Camera camera = new Gson().fromJson((String) eventData, Camera.class);
-                    switch (camera.status) {
+                    CameraStatus cameraStatus = new Gson().fromJson((String) eventData, CameraStatus.class);
+                    if (cameraStatus == null) {
+                        Log.e(TAG, "CAMERA_STATUS_CHANGED eventData: " + eventData);
+                        break;
+                    }
+                    switch (cameraStatus.status) {
                         case "open_front":
                         case "open_back":
                             if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
-                                openCamera(camera.status);
+                                openCamera(cameraStatus);
                             } else {
-                                mCameraStatus = camera.status;
+                                mCameraStatus = cameraStatus;
                                 EasyPermissions.requestPermissions(
                                         GamePlayFragment.this,
                                         "需要摄像头权限才能开启摄像头",
@@ -244,7 +247,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                             }
                             break;
                         case "close":
-                            openCamera(camera.status);
+                            openCamera(cameraStatus);
                             break;
                         default:
                     }
@@ -285,7 +288,17 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 case CURSOR_STATE_CHANGE:
                     // 鼠标光标显示状态的回调
                     CursorState cursorState = (CursorState) eventData;
-                    Log.i(sApiTAG, "cursor showing state changed, " + cursorState.toString());
+                    if (cursorState != null) {
+                        Log.i(TAG, "CURSOR_STATE_CHANGE cursorShowState=" + cursorState.cursorShowState);
+                        Activity activity1 = getActivity();
+                        if (activity1 != null) {
+                            activity1.runOnUiThread(() -> {
+                                if (mPcTouchListener != null) {
+                                    mPcTouchListener.setMouseConfig(false, 1.0f, cursorState.cursorShowState);
+                                }
+                            });
+                        }
+                    }
                     break;
                 case MULTI_USER_SEAT_INFO:
                     // 多人互动云游场景下:房间内有人员变动时收到的信息，包含房间所有人员的数据，此处拿到数据更新到UI上
@@ -400,8 +413,10 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
             @Override
             public void onSuccess(Void result) {
                 Log.i(sApiTAG, "TcrSdk#init success.");
-                // SDK初始化成功后创建Session
-                mSession = TcrSdk.getInstance().createTcrSession(createSessionConfig());
+                if (getContext() != null && !isDetached()) {
+                    // SDK初始化成功后创建Session
+                    mSession = TcrSdk.getInstance().createTcrSession(createSessionConfig());
+                }
             }
 
             @Override
@@ -421,22 +436,17 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     }
 
     protected TcrSessionConfig createSessionConfig() {
-        Context context = getContext();
-        if (context == null) {
-            Log.w(TAG, "createSessionConfig() context=null");
-            return null;
-        }
+        Pair<Integer, Integer> screenSize = DeviceUtils.getScreenSize(requireActivity());
         TcrSessionConfig.Builder builder = TcrSessionConfig.builder()
                 .observer(mSessionEventObserver)
                 .idleThreshold(30000)
                 .lowFpsThreshold(31, 5)
-                .remoteDesktopResolution(DeviceUtils.getScreenSize(this.getActivity()).first,
-                        DeviceUtils.getScreenSize(this.getActivity()).second)
+                .remoteDesktopResolution(screenSize.first, screenSize.second)
                 .enableLowLegacyRendering(true);
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
-            builder.enableCustomAudioCapture(true,
-                    mCustomAudioCapturer.getSampleRateInHz(), mCustomAudioCapturer.getChannelNum() == 2);
+            builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(),
+                    mCustomAudioCapturer.getChannelNum() == 2);
         }
         return builder.build();
     }
@@ -598,7 +608,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 }
 
                 // 针对不同的云端实例设置不同的处理器
-                setTouchHandler(mRenderView);
+                setTouchHandler(mRenderView, PC_GAME);
 
                 // 开始我们的测试
                 mTestApiHandler.set(mSession, mRenderView, mPcTouchListener, mGamePadManager,
@@ -738,16 +748,16 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
      * PcTouchListener为将本地触摸转为鼠标操作
      * MobileTouchListener为将本地触摸转为云端触摸(windows应用支持触摸/手游平台)
      */
-    private void setTouchHandler(TcrRenderView renderView) {
-        Log.d(TAG, "setTouchHandler() mGameType=");
-        switch (MOBILE_GAME) {
+    private void setTouchHandler(TcrRenderView renderView, int type) {
+        Log.d(TAG, "setTouchHandler() mGameType=" + type);
+        switch (type) {
             case MOBILE_GAME:
                 renderView.setOnTouchListener(new MobileTouchListener(mSession));
                 break;
             case PC_GAME:
                 mPcTouchListener = new PcTouchListener(mSession);
-                mPcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
                 renderView.setOnTouchListener(mPcTouchListener);
+                mPcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
                 mPcTouchListener.getZoomHandler().setZoomListener(new PcZoomHandler.ZoomListener() {
                     @Override
                     public void onPivot(float x, float y) {

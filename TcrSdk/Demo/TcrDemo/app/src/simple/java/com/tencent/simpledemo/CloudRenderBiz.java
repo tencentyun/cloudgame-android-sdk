@@ -40,7 +40,7 @@ public class CloudRenderBiz {
      * 使用云渲染测试环境的体验码。<br>
      * 您需要自行到控制台中创建体验码，并且填到该变量中。
      */
-    public static final String EXPERIENCE_CODE = "";
+    public static final String EXPERIENCE_CODE = "7T334QYL";
 
     /**
      * 云游后台游戏ID，该ID对应云游后台部署的游戏。<br>
@@ -58,7 +58,7 @@ public class CloudRenderBiz {
      * 在部署业务后台时生成的请求地址。请在部署业务后台之后将地址填写在SERVER_URL中。
      * 文档说明：https://github.com/tencentyun/car-server-demo#3-%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1
      */
-    private static final String SERVER_URL = "";
+    static final String SERVER_URL = "";
 
     /**
      * 网络请求库Volley提供的{@link RequestQueue}，我们通过它发起网络请求
