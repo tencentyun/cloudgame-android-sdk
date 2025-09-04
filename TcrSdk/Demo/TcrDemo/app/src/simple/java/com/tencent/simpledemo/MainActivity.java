@@ -333,6 +333,7 @@ public class MainActivity extends Activity {
                 pcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
                 renderView.setOnTouchListener(pcTouchListener);
                 pcTouchListener.setShortClickListener(new PcClickListener(session));
+                // 如需隐藏本地渲染的鼠标： pcTouchListener.setMouseConfig(false, 1.0f, false);
                 break;
             default:
                 Log.e(TAG, "UNKNOWN DeviceMode!!");
