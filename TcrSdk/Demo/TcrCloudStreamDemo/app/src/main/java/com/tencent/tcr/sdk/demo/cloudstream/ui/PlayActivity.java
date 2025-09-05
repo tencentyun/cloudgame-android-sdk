@@ -2,12 +2,16 @@ package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
@@ -22,7 +26,7 @@ import com.tencent.tcr.sdk.demo.cloudstream.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class PlayActivity extends Activity {
+public class PlayActivity extends AppCompatActivity {
 
     private static final String TAG = "PlayActivity";
 
@@ -120,6 +124,31 @@ public class PlayActivity extends Activity {
         initTcrRenderView();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.play_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        } else if (id == R.id.menu_setRemoteVideoProfile) {
+            mTcrSession.setRemoteVideoProfile(10, 100, 100, 960, 960, null);
+            return true;
+        } else if (id == R.id.menu_pauseStreaming) {
+            mTcrSession.pauseStreaming("video");
+            return true;
+        } else if (id == R.id.menu_resumeStreaming) {
+            mTcrSession.resumeStreaming("video");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // 创建Tcr会话对象
     private void initTcrSession() {
         TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder().observer(mSessionObserver).build();
@@ -146,6 +175,7 @@ public class PlayActivity extends Activity {
         // 将渲染视图添加到界面上
         ((FrameLayout) findViewById(R.id.render_view_parent)).addView(mRenderView);
         mRenderView.setOnTouchListener((View.OnTouchListener) new MobileTouchListener(mTcrSession));
+        //mRenderView.setDisplayDebugView(true);
     }
 
     /**

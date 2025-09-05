@@ -11,6 +11,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.demo.cloudphone.util.GsonUtils;
@@ -81,7 +82,7 @@ public abstract class BaseRequest<T> {
     public void execute(RequestQueue queue) {
         String url = getUrl();
         if (url == null) {
-            Log.e(TAG, "url is null");
+            Log.e(TAG, "rid=" + mRequestID + " url=null");
             if (callback != null) {
                 callback.onFailure(CODE_ERROR_INTERNAL, "url is null");
             }
@@ -91,9 +92,8 @@ public abstract class BaseRequest<T> {
         JSONObject jsonRequest;
         try {
             jsonRequest = buildRequest();
-            Log.d(TAG, "build request: " + jsonRequest);
         } catch (JSONException e) {
-            Log.e(TAG, "build request fail. ex=" + e.getMessage());
+            Log.e(TAG, "rid=" + mRequestID + " buildRequest ex=" + e.getMessage());
             if (callback != null) {
                 callback.onFailure(CODE_ERROR_BUILD_REQUEST, "build request fail: " + e.getMessage());
             }
@@ -101,19 +101,23 @@ public abstract class BaseRequest<T> {
         }
 
         JsonObjectRequest request = new JsonObjectRequest(Method.POST, url, jsonRequest, response -> {
+            T result = null;
             try {
-                T result = GsonUtils.getGson().fromJson(response.toString(), getResponseType().getType());
-                Log.d(TAG, "get response for " + mRequestID + ": " + result);
-                if (callback != null) {
+                result = GsonUtils.getGson().fromJson(response.toString(), getResponseType().getType());
+            } catch (JsonSyntaxException e) {
+                Log.e(TAG, "rid=" + mRequestID + " response JsonSyntaxException=" + e.getMessage() + ". response="
+                        + response);
+            }
+            if (callback != null) {
+                if (result == null) {
+                    callback.onFailure(CODE_ERROR_PROCESS_RESPONSE, "解析响应失败");
+                } else {
                     callback.onSuccess(result);
-                }
-            } catch (Exception e) {
-                Log.e(TAG, "process response fail. ex=" + e.getMessage() + ". response=" + response);
-                if (callback != null) {
-                    callback.onFailure(CODE_ERROR_PROCESS_RESPONSE, "解析响应失败: " + e.getMessage());
                 }
             }
         }, error -> processVolleyError(error, callback, TAG));
+
+        Log.d(TAG, "rid=" + mRequestID + " url=" + url + " request=" + jsonRequest);
         queue.add(request);
     }
 }

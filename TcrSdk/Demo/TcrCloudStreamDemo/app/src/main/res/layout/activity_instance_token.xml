@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请输入实例ID，多个实例用逗号分隔"
-            android:text="ACP250819RHPCLIB,ACP250819OHEI9BD"
+            android:text="ACP250819ZRW142U,ACP2508190H4XE87,ACP250819OHEI9BD"
             android:inputType="text"
             android:layout_marginHorizontal="32dp"
             app:layout_constraintStart_toStartOf="parent"

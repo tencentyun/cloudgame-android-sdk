@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/menu_setRemoteVideoProfile"
+            android:title="修改视频配置"
+            android:showAsAction="never" />
+    <item
+            android:id="@+id/menu_pauseStreaming"
+            android:title="暂停推流"
+            android:showAsAction="never" />
+    <item
+            android:id="@+id/menu_resumeStreaming"
+            android:title="恢复推流"
+            android:showAsAction="never" />
+</menu>
