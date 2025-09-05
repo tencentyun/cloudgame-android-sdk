@@ -32,8 +32,8 @@ public class DescribeAndroidInstancesRequest extends ExpServerRequest<DescribeAn
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("InstanceIds", new JSONArray());
         jsonRequest.put("Limit", 10);
-        jsonRequest.put("Offset", 1);
-        jsonRequest.put("AndroidInstanceZone", "ap-hangzhou-ec-1");
+        jsonRequest.put("Offset", 0);
+        //jsonRequest.put("AndroidInstanceZone", "ap-hangzhou-ec-1");
         jsonRequest.put("RequestId", "d2522c46-4711-47df-945d-92f5194ad975");
         return jsonRequest;
     }

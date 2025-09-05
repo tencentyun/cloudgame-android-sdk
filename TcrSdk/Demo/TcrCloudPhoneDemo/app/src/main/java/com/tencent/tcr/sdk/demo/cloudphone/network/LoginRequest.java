@@ -40,7 +40,7 @@ public class LoginRequest extends ExpServerRequest<LoginResponse> {
 
     @Override
     protected TypeToken<ExpServerResponse<LoginResponse>> getResponseType() {
-        return new TypeToken<ExpServerResponse<LoginResponse>>() {
+        return new TypeToken<>() {
         };
     }
 }

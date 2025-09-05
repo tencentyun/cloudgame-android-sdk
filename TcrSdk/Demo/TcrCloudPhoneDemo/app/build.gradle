@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id 'com.android.application'
 }
+
 
 android {
     namespace 'com.tencent.tcr.sdk.demo.cloudphone'
@@ -27,7 +28,11 @@ android {
 }
 
 dependencies {
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.tcrsdk
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation "com.google.android.material:material:1.13.0"
+    if (gradle.ext.use_local_module_TcrSdkFull) {
+        implementation project(':TcrSdkFull')
+    } else {
+        implementation "com.tencent.tcr:tcrsdk-full:$rootProject.tcrsdkVersion"
+    }
 }
