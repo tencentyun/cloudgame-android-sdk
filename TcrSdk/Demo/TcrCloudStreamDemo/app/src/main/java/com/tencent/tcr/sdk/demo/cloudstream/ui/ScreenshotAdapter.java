@@ -35,9 +35,12 @@ public class ScreenshotAdapter extends RecyclerView.Adapter<ScreenshotAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ScreenshotItem item = screenshotItems.get(position);
-        holder.instanceIdText.setText(item.getInstanceId());
+        holder.instanceIdText.setText(item.instanceId);
+        holder.checkbox.setChecked(item.isSelected);
+        // 先设置占位符或清空图片，再加载新图片
+        holder.screenshotImage.setImageResource(0);
         Glide.with(holder.itemView.getContext())
-                .load(item.getImageUrl())
+                .load(item.imageUrl)
                 .placeholder(holder.screenshotImage.getDrawable())
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(holder.screenshotImage);
@@ -48,7 +51,17 @@ public class ScreenshotAdapter extends RecyclerView.Adapter<ScreenshotAdapter.Vi
         return screenshotItems.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onViewRecycled(@NonNull ViewHolder holder) {
+        super.onViewRecycled(holder);
+        try {
+            Glide.with(holder.itemView).clear(holder.screenshotImage);
+        } catch (IllegalArgumentException e) {
+            // 忽略。 此时Activity已销毁，Glide会自动清理资源
+        }
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView screenshotImage;
         TextView instanceIdText;
         CheckBox checkbox;
@@ -58,7 +71,10 @@ public class ScreenshotAdapter extends RecyclerView.Adapter<ScreenshotAdapter.Vi
             screenshotImage = itemView.findViewById(R.id.screenshotImage);
             instanceIdText = itemView.findViewById(R.id.instanceIdText);
             checkbox = itemView.findViewById(R.id.checkbox);
-
+            checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                ScreenshotItem item = screenshotItems.get(getBindingAdapterPosition());
+                item.isSelected = isChecked;
+            });
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(itemView.getContext(), PlayActivity.class);
                 intent.putExtra("instanceIds", new ArrayList<>(Collections.singletonList(instanceIdText.getText().toString())));

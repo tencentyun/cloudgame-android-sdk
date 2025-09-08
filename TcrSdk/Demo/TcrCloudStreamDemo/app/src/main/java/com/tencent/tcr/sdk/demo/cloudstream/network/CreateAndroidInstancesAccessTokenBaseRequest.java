@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class CreateAndroidInstancesAccessTokenBaseRequest extends
         BaseRequest<CreateAndroidInstancesAccessTokenResponse> {
 
-    public static final String TAG = "[TCR]Create...AccessTokenReq";
+    public static final String TAG = "Create...AccessTokenReq";
 
     private final List<String> instanceIds;
     private final String userIp;

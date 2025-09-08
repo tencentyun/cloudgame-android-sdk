@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.tencent.tcr.sdk.api.AndroidInstance;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.demo.cloudstream.R;
@@ -39,7 +40,7 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
 
         List<String> instanceIdsList = Arrays.asList(instanceIds.split(","));
         for (String instanceId : instanceIdsList) {
-            screenshotItems.add(new ScreenshotItem(instanceId, null));
+            screenshotItems.add(new ScreenshotItem(instanceId, null, false));
         }
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -50,14 +51,9 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
         Button startControlButton = findViewById(R.id.startControlButton);
         startControlButton.setOnClickListener(v -> {
             ArrayList<String> selectedInstanceIds = new ArrayList<>();
-            for (int i = 0; i < recyclerView.getChildCount(); i++) {
-                RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(recyclerView.getChildAt(i));
-                if (viewHolder instanceof ScreenshotAdapter.ViewHolder) {
-                    ScreenshotAdapter.ViewHolder holder = (ScreenshotAdapter.ViewHolder) viewHolder;
-                    if (holder.checkbox.isChecked()) {
-                        selectedInstanceIds.add(holder.instanceIdText.getText().toString());
-                        Log.d(TAG, "Selected instance ID: " + holder.instanceIdText.getText());
-                    }
+            for (ScreenshotItem item : screenshotItems) {
+                if (item.isSelected) {
+                    selectedInstanceIds.add(item.instanceId);
                 }
             }
             if (!selectedInstanceIds.isEmpty()) {
@@ -85,7 +81,7 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
     private void updateScreenshots() {
         for (ScreenshotItem item : screenshotItems) {
             Map<String, Object> params = new HashMap<>();
-            params.put("instance_id", item.getInstanceId());
+            params.put("instance_id", item.instanceId);
 
             AndroidInstance instance = TcrSdk.getInstance().getAndroidInstance();
             if (instance == null) {
@@ -97,7 +93,7 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
                 Log.e(TAG, "imageUrl is empty");
                 return;
             }
-            item.setImageUrl(imageUrl);
+            item.imageUrl = imageUrl;
         }
         adapter.notifyDataSetChanged();
     }
@@ -106,5 +102,7 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(pollRunnable);
+        Glide.get(this).clearMemory();
+        recyclerView.setAdapter(null);
     }
 }

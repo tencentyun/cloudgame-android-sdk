@@ -24,7 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 public abstract class BaseRequest<T> {
-    protected static final String TAG = "[TCR]Request";
+    protected static final String TAG = "Request";
 
     // 错误码常量定义
     public static final int CODE_SUCCESS = 0;   // success
