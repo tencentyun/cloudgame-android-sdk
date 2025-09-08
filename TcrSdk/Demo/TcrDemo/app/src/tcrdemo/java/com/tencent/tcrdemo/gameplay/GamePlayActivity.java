@@ -5,18 +5,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.tencent.tcrdemo.R;
 import com.tencent.tcrdemo.ViewModelHolder;
 import com.tencent.tcrdemo.utils.ActivityUtils;
 import com.tencent.tcrdemo.utils.DownloadManagerHelper;
 import com.tencent.tcrdemo.utils.GameConfigParcelable;
-
-import pub.devrel.easypermissions.EasyPermissions;
 
 
 public class GamePlayActivity extends AppCompatActivity {
@@ -76,18 +70,6 @@ public class GamePlayActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                     ViewModelHolder.createContainer(gamePlayViewModel), VIEW_MODEL_TAG);
             return gamePlayViewModel;
-        }
-    }
-
-    private long mBackFirst;
-
-    @Override
-    public void onBackPressed() {
-        if (System.currentTimeMillis() - mBackFirst < 500) {
-            super.onBackPressed();
-        } else {
-            Toast.makeText(this, "连按Back键退出", Toast.LENGTH_SHORT).show();
-            mBackFirst = System.currentTimeMillis();
         }
     }
 

@@ -91,6 +91,7 @@ public class InstanceTokenActivity extends AppCompatActivity {
                 });
             }
         };
+        // 访问信息AceessInfo和鉴权Token，在初始化SDK时不是必须的。可以后续再调用 TcrSdk.getInstance().setAccessToken() 进行设置。
         config.accessInfo = serverResponse.AccessInfo;
         config.token = serverResponse.Token;
         TcrSdk.getInstance().init(config);

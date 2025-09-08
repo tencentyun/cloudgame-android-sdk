@@ -149,7 +149,7 @@ public class MainActivity extends Activity {
                 case STATE_CONNECTED:
                     // 连接成功后设置操作模式
                     // 与云端的交互需在此事件回调后开始调用接口
-                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, PC_GAME));
+                    runOnUiThread(() -> setTouchHandler(mTcrSession, mRenderView, MOBILE_GAME));
                     createCustomDataChannel();
                     break;
                 case STATE_RECONNECTING:
