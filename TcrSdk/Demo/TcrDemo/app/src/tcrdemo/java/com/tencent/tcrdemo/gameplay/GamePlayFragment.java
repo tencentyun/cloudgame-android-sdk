@@ -426,7 +426,9 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 .idleThreshold(30000)
                 .lowFpsThreshold(31, 5)
                 .remoteDesktopResolution(screenSize.first, screenSize.second)
-                .enableLowLegacyRendering(true);
+                .enableLowLegacyRendering(true)
+                //.enableCustomVideoCapture(true)// 测试自定义视频采集上行
+                ;
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
             builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(),
@@ -592,7 +594,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 }
 
                 // 针对不同的云端实例设置不同的处理器
-                setTouchHandler(mRenderView, PC_GAME);
+                setTouchHandler(mRenderView, MOBILE_GAME);
 
                 // 开始我们的测试
                 mTestApiHandler.set(mSession, mRenderView, mPcTouchListener, mGamePadManager,

@@ -8,11 +8,11 @@ ext {
     twebrtcVersion = "0.1.16"
     tpmonetVersion = "0.0.5"
     TcrProxyVersion = "1.1.8"
-    tcrsdkVersion = "3.32.0"
+    tcrsdkVersion = "3.31.201"
 
     // =========== 构建参数 ===========
     buildTime = project.findProperty('buildTime') ?: new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
-    buildVersion = project.findProperty('buildVersion') ?: "3.0.0-SNAPSHOT"
+    buildVersion = project.findProperty('buildVersion') ?: tcrsdkVersion
     buildNumber = project.findProperty('buildNumber') ?: "1"
     debugLevel = project.findProperty('debugLevel') ?: 2 // VERBOSE
     pluginName = project.findProperty('pluginName') ?: ""

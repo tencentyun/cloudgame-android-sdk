@@ -8,10 +8,8 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.Window;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.tencent.tcrdemo.R;
 import com.tencent.tcrdemo.utils.GameConfigParcelable;
 
@@ -64,8 +62,10 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
     }
 
     private void setupDefaultId() {
-        String experienceCode = mPrefs
-                .getString(getResources().getString(R.string.key_experience_code), "");
+        String experienceCode = mPrefs.getString(getResources().getString(R.string.key_experience_code), "");
+        if (experienceCode.isEmpty()) {
+            experienceCode = "NWPY2MWL";
+        }
         String userID = mPrefs.getString(getResources().getString(R.string.key_set_userid), "");
         String hostUserId = mPrefs.getString(getResources().getString(R.string.key_set_host_userid), "");
         mExperiencePageView.setExperienceCode(experienceCode);

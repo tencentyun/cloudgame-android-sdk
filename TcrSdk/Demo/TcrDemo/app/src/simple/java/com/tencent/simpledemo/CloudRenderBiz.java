@@ -28,16 +28,12 @@ import org.json.JSONObject;
 public class CloudRenderBiz {
 
     private static final String TAG = "CloudRenderBiz";
-
-    /**
-     * 是否使用云渲染团队提供的测试环境运行SDK。
-     */
-    public static final boolean USE_TCR_TEST_ENV = true;
+    
     /**
      * 使用云渲染测试环境的体验码。<br>
      * 您需要自行到控制台中创建体验码，并且填到该变量中。
      */
-    public static final String EXPERIENCE_CODE = "";
+    public static final String EXPERIENCE_CODE = "CMNSC0Z1";
 
     /**
      * 云游后台游戏ID，该ID对应云游后台部署的游戏。<br>

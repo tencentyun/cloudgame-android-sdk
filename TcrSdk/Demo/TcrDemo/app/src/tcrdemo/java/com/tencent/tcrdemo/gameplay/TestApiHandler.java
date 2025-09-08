@@ -17,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.api.CustomDataChannel;
 import com.tencent.tcr.sdk.api.Mouse.CursorStyle;
@@ -33,9 +32,10 @@ import com.tencent.tcr.sdk.api.view.TcrRenderView.ScaleType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
 import com.tencent.tcrdemo.R;
 import com.tencent.tcrdemo.bean.User;
+import com.tencent.tcrdemo.customvideo.CustomVideoI420;
+import com.tencent.tcrdemo.customvideo.CustomVideoTexture;
 import com.tencent.tcrdemo.utils.CustomAudioCapturer;
 import com.tencent.tcrgamepad.GamepadManager;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
@@ -49,8 +49,49 @@ import java.util.Map;
  */
 public class TestApiHandler {
 
+    /**
+     * 返回键KeyCode
+     */
+    static final int KEY_BACK = 158;
+    /**
+     * 菜单键KeyCode
+     */
+    static final int KEY_MENU = 139;
+    /**
+     * Home键KeyCode
+     */
+    static final int KEY_HOME = 172;
     private static final String TAG = "TestApiHandler";
     private static final String sApiTAG = "ApiTest";
+    private static final VideoRotation[] ROTATIONS = {
+            VideoRotation.ROTATION_0,
+            VideoRotation.ROTATION_90,
+            VideoRotation.ROTATION_180,
+            VideoRotation.ROTATION_270
+    };
+    private static final ScaleType[] SCALETYPES = {
+            ScaleType.SCALE_ASPECT_FIT,
+            ScaleType.SCALE_ASPECT_FILL,
+            ScaleType.SCALE_ASPECT_CROP
+    };
+    private static final KeyType[] KEYTYPES = {
+            KeyType.LEFT,
+            KeyType.MIDDLE,
+            KeyType.RIGHT
+    };
+    private final Map<Integer, Integer> mIDMap = new HashMap<Integer, Integer>() {{
+        put(R.id.paste_layout_button, R.id.paste_layout);
+        put(R.id.set_res_layout_button, R.id.set_res_layout);
+        put(R.id.data_channel_layout_button, R.id.data_channel_layout);
+        put(R.id.auto_login_layout_button, R.id.auto_login_layout);
+        put(R.id.media_up_layout_button, R.id.media_up_layout);
+        put(R.id.media_down_layout_button, R.id.media_down_layout);
+        put(R.id.set_view_pinch_layout_button, R.id.set_view_pinch_layout);
+        put(R.id.multiply_host_layout_button, R.id.multiply_host_layout);
+        put(R.id.multiply_guest_layout_button, R.id.multiply_guest_layout);
+        put(R.id.pc_input_layout_button, R.id.pc_input_layout);
+        put(R.id.mobile_input_layout_button, R.id.mobile_input_layout);
+    }};
     private GamePlayFragment mFragment;
     private GamePlayViewModel mModel;
     // session会话
@@ -65,52 +106,39 @@ public class TestApiHandler {
      */
     private String mCustomGamePadCfg;
     private CustomDataChannel mDataChannel;
-
     /**
      * MouseConfig
      */
     private boolean mMouseRelativeMove = false;
     private float mMoveSensitivity = 1.0f;
     private boolean mMouseVisibility = true;
-
     private TextView mPivotTextView;
     private TextView mScaleTextView;
-
     private PcClickListener mPcClickListener;
     private CustomAudioCapturer mCustomAudioCapturer;
+    private CustomVideoI420 mCustomVideoSource;
 
-    private static final VideoRotation[] ROTATIONS = {
-            VideoRotation.ROTATION_0,
-            VideoRotation.ROTATION_90,
-            VideoRotation.ROTATION_180,
-            VideoRotation.ROTATION_270
-    };
-
-    private static final ScaleType[] SCALETYPES = {
-            ScaleType.SCALE_ASPECT_FIT,
-            ScaleType.SCALE_ASPECT_FILL,
-            ScaleType.SCALE_ASPECT_CROP
-    };
-
-    private static final KeyType[] KEYTYPES = {
-            KeyType.LEFT,
-            KeyType.MIDDLE,
-            KeyType.RIGHT
-    };
-
-    private final Map<Integer, Integer> mIDMap = new HashMap<Integer, Integer>() {{
-        put(R.id.paste_layout_button, R.id.paste_layout);
-        put(R.id.set_res_layout_button, R.id.set_res_layout);
-        put(R.id.data_channel_layout_button, R.id.data_channel_layout);
-        put(R.id.auto_login_layout_button, R.id.auto_login_layout);
-        put(R.id.media_up_layout_button, R.id.media_up_layout);
-        put(R.id.media_down_layout_button, R.id.media_down_layout);
-        put(R.id.set_view_pinch_layout_button,R.id.set_view_pinch_layout);
-        put(R.id.multiply_host_layout_button,R.id.multiply_host_layout);
-        put(R.id.multiply_guest_layout_button,R.id.multiply_guest_layout);
-        put(R.id.pc_input_layout_button,R.id.pc_input_layout);
-        put(R.id.mobile_input_layout_button,R.id.mobile_input_layout);
-    }};
+    /**
+     * 读取配置文件
+     *
+     * @param fileName 文件名
+     * @return 返回String类型JsonConfig内容
+     */
+    private static String readConfigFile(Context context, String fileName) {
+        try {
+            AssetManager am = context.getAssets();
+            InputStream is = am.open(fileName);
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            char[] input = new char[is.available()];
+            isr.read(input);
+            isr.close();
+            is.close();
+            return new String(input);
+        } catch (Exception e) {
+            Log.e(TAG, "readConfigFile failed:" + e);
+        }
+        return null;
+    }
 
     public void setFragment(GamePlayFragment fragment) {
         mFragment = fragment;
@@ -122,8 +150,9 @@ public class TestApiHandler {
     }
 
     public void set(TcrSession session, TcrRenderView renderView,
-                    PcTouchListener pcTouchListener, GamepadManager gamepadManager, RelativeLayout keyboardParent, TextView pivotTextView, TextView scaleTextView,
-                    CustomAudioCapturer customAudioCapturer) {
+            PcTouchListener pcTouchListener, GamepadManager gamepadManager, RelativeLayout keyboardParent,
+            TextView pivotTextView, TextView scaleTextView,
+            CustomAudioCapturer customAudioCapturer) {
         mSession = session;
         mPcTouchListener = pcTouchListener;
         mGamePadManager = gamepadManager;
@@ -243,7 +272,7 @@ public class TestApiHandler {
             mRenderView.setVideoRotation(ROTATIONS[integer]);
         });
 
-        viewModel.cursorStyle.observe(mFragment,integer -> {
+        viewModel.cursorStyle.observe(mFragment, integer -> {
             if (mSession == null || integer == null) {
                 return;
             }
@@ -254,14 +283,14 @@ public class TestApiHandler {
             }
         });
 
-        viewModel.renderViewScaleType.observe(mFragment,integer -> {
+        viewModel.renderViewScaleType.observe(mFragment, integer -> {
             if (mRenderView == null || integer == null) {
                 return;
             }
             mRenderView.setVideoScaleType(SCALETYPES[integer]);
         });
 
-        viewModel.mouseClickType.observe(mFragment,integer -> {
+        viewModel.mouseClickType.observe(mFragment, integer -> {
             if (mRenderView == null || mPcTouchListener == null) {
                 return;
             }
@@ -270,7 +299,6 @@ public class TestApiHandler {
         });
 
     }
-
 
     /**
      * View layout面板的展开与收起
@@ -284,7 +312,6 @@ public class TestApiHandler {
             expandLayout.setVisibility(View.VISIBLE);
         }
     }
-
 
     /**
      * 点击暂停推流
@@ -355,21 +382,6 @@ public class TestApiHandler {
         }
     }
 
-    /**
-     * 返回键KeyCode
-     */
-    static final int KEY_BACK = 158;
-
-    /**
-     * 菜单键KeyCode
-     */
-    static final int KEY_MENU = 139;
-
-    /**
-     * Home键KeyCode
-     */
-    static final int KEY_HOME = 172;
-
     public void onClickMenu(View view) {
         if (mSession != null) {
             mSession.getKeyboard().onKeyboard(KEY_MENU, true);
@@ -398,7 +410,6 @@ public class TestApiHandler {
     public void onClickStopProxy(View view) {
         ProxyService.stopProxy(view.getContext());
     }
-
 
     /**
      * 点击重启云端App
@@ -509,15 +520,16 @@ public class TestApiHandler {
      * 切换为端游操作模式
      */
     public void switchPCOnTouch() {
-        if (mSession != null && mPcTouchListener!=null) {
+        if (mSession != null && mPcTouchListener != null) {
             mPcTouchListener = new PcTouchListener(mSession);
             mPcTouchListener.getZoomHandler().setZoomRatio(1, 5);
             mPcTouchListener.setMouseConfig(mMouseRelativeMove, mMoveSensitivity, mMouseVisibility);
         }
-        if (mRenderView!=null) {
+        if (mRenderView != null) {
             mRenderView.setOnTouchListener(mPcTouchListener);
         }
     }
+
     /**
      * 切换为手游操作模式
      */
@@ -557,6 +569,20 @@ public class TestApiHandler {
             mPcTouchListener.getZoomHandler().resetZoom();
         }
     }
+//    /**
+//     * 更改上行音量
+//     */
+//    public void onLocalVolumeChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//        if (mSession == null) {
+//            return;
+//        }
+//        if (progress >= 0 && progress <= 100) {
+//            // 我们接口对外定义值为[0-10],默认1，超过1可能会声音失真
+//            mSession.setLocalAudioProfile((float) (progress / 10.0));
+//        }
+//    }
+
+    ///////////////////////////////////////////// 互动云游 begin ////////////////////////////////////////////
 
     /**
      * 传递motion event事件
@@ -582,20 +608,6 @@ public class TestApiHandler {
             mSession.setRemoteAudioPlayProfile((float) (progress / 10.0));
         }
     }
-//    /**
-//     * 更改上行音量
-//     */
-//    public void onLocalVolumeChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//        if (mSession == null) {
-//            return;
-//        }
-//        if (progress >= 0 && progress <= 100) {
-//            // 我们接口对外定义值为[0-10],默认1，超过1可能会声音失真
-//            mSession.setLocalAudioProfile((float) (progress / 10.0));
-//        }
-//    }
-
-    ///////////////////////////////////////////// 互动云游 begin ////////////////////////////////////////////
 
     /**
      * 点击'同步全部用户信息'
@@ -664,6 +676,7 @@ public class TestApiHandler {
                                 role, seatIndex);
                         logAndToast(msg);
                     }
+
                     @Override
                     public void onFailure(int code, String msg) {
                         String myMsg =
@@ -676,6 +689,9 @@ public class TestApiHandler {
                     }
                 });
     }
+    ///////////////////////////////////////////// 互动云游 end ////////////////////////////////////////////
+
+    /// ////////////////////////////////////////// 音视频上行 begin ////////////////////////////////////////////
 
     private void applyToRole(Context context, MultiUser.Role role) {
         if (mSession == null) {
@@ -743,9 +759,6 @@ public class TestApiHandler {
                     }
                 });
     }
-    ///////////////////////////////////////////// 互动云游 end ////////////////////////////////////////////
-
-    ///////////////////////////////////////////// 音视频上行 begin ////////////////////////////////////////////
 
     /**
      * 开关麦克风上行
@@ -787,6 +800,23 @@ public class TestApiHandler {
         }
     }
 
+    /**
+     * 开关自定义视频采集上行.
+     * 可以构造 {@link CustomVideoI420} 或者 {@link CustomVideoTexture}.
+     */
+    public void enableCustomVideo(RadioGroup group, int checkedId) {
+        boolean enable = checkedId == R.id.radio_btn_enable_custom_video;
+        if (enable) {
+            if (mCustomVideoSource == null) {
+                mCustomVideoSource = new CustomVideoI420(mSession);
+            }
+        } else {
+            if (mCustomVideoSource != null) {
+                mCustomVideoSource.release();
+                mCustomVideoSource = null;
+            }
+        }
+    }
 
     /**
      * 设置桌面分辨率
@@ -870,6 +900,7 @@ public class TestApiHandler {
         }
     }
 
+    /// ////////////////////////////////////////// 视频上行 end ////////////////////////////////////////////
 
     public void startAutoLogin(View view) {
         if (mSession == null) {
@@ -895,30 +926,6 @@ public class TestApiHandler {
 //                logAndToast("自动登录检查失败:"+s);
 //            }
 //        });
-    }
-
-    ///////////////////////////////////////////// 视频上行 end ////////////////////////////////////////////
-
-    /**
-     * 读取配置文件
-     *
-     * @param fileName 文件名
-     * @return 返回String类型JsonConfig内容
-     */
-    private static String readConfigFile(Context context, String fileName) {
-        try {
-            AssetManager am = context.getAssets();
-            InputStream is = am.open(fileName);
-            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-            char[] input = new char[is.available()];
-            isr.read(input);
-            isr.close();
-            is.close();
-            return new String(input);
-        } catch (Exception e) {
-            Log.e(TAG, "readConfigFile failed:" + e);
-        }
-        return null;
     }
 
 }
