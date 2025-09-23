@@ -9,12 +9,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.tencent.tcr.sdk.api.AndroidInstance;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.demo.cloudstream.R;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -51,14 +49,18 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
         Button startControlButton = findViewById(R.id.startControlButton);
         startControlButton.setOnClickListener(v -> {
             ArrayList<String> selectedInstanceIds = new ArrayList<>();
+            ArrayList<String> pending_join_InstanceIds = new ArrayList<>();
             for (ScreenshotItem item : screenshotItems) {
                 if (item.isSelected) {
                     selectedInstanceIds.add(item.instanceId);
+                } else {
+                    pending_join_InstanceIds.add(item.instanceId);
                 }
             }
             if (!selectedInstanceIds.isEmpty()) {
                 Intent intent = new Intent(InstanceScreenshotActivity.this, PlayActivity.class);
                 intent.putStringArrayListExtra("instanceIds", selectedInstanceIds);
+                intent.putStringArrayListExtra("pending_join_instanceIds", pending_join_InstanceIds);
                 intent.putExtra("isGroupControl", true);
                 startActivity(intent);
             }

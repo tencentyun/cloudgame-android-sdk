@@ -2,7 +2,6 @@ package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +16,6 @@ import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
-import com.tencent.tcr.sdk.api.data.VideoStreamConfig;
 import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
@@ -41,6 +39,7 @@ public class PlayActivity extends AppCompatActivity {
     private final DecimalFormat mDf = new DecimalFormat("#.##");
     boolean mIsGroupControl;//是否是群控云手机
     private ArrayList<String> mGroupInstanceIds;//云手机的实例ID列表。如果是非群控（单机模式），则只取第一个实例ID。
+    private ArrayList<String> mPendingJoinInstanceIds;//待加入的云手机的实例ID列表。
     // 渲染视图
     private TcrRenderView mRenderView;
     // 云渲染会话
@@ -67,7 +66,7 @@ public class PlayActivity extends AppCompatActivity {
                         String masterId = mGroupInstanceIds.get(0);
                         TcrSdk.getInstance().getAndroidInstance().setMaster(masterId);
                         TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds);
-                        TcrSdk.getInstance().getAndroidInstance().requestStream(masterId, "open", "low");
+                        TcrSdk.getInstance().getAndroidInstance().requestStream(masterId, "open", "normal");
                     }
                     break;
                 case STATE_RECONNECTING:
@@ -102,6 +101,7 @@ public class PlayActivity extends AppCompatActivity {
         // 获取传入的参数
         mIsGroupControl = getIntent().getBooleanExtra("isGroupControl", false);
         mGroupInstanceIds = getIntent().getStringArrayListExtra("instanceIds");
+        mPendingJoinInstanceIds = getIntent().getStringArrayListExtra("pending_join_instanceIds");
         findViewById(R.id.back).setOnClickListener(v -> onBackKeyPressed());
         findViewById(R.id.menu).setOnClickListener(v -> onMenuKeyPressed());
         findViewById(R.id.home).setOnClickListener(v -> onHomeKeyPressed());
@@ -132,6 +132,17 @@ public class PlayActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.menu_resumeStreaming) {
             mTcrSession.resumeStreaming("video");
+            return true;
+        } else if (id == R.id.menu_joinGroup) {
+            if (mIsGroupControl) {
+                TcrSdk.getInstance().getAndroidInstance().joinGroupControl(mPendingJoinInstanceIds);
+                mGroupInstanceIds.addAll(mPendingJoinInstanceIds);
+                mPendingJoinInstanceIds.clear();
+                TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds);
+            } else {
+                Log.e(TAG, "not in group control");
+                Toast.makeText(this, "not in group control", Toast.LENGTH_SHORT).show();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);

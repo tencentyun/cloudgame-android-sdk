@@ -10,9 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.tencent.tcr.sdk.demo.cloudstream.R;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,11 +37,12 @@ public class ScreenshotAdapter extends RecyclerView.Adapter<ScreenshotAdapter.Vi
         holder.checkbox.setChecked(item.isSelected);
         // 先设置占位符或清空图片，再加载新图片
         holder.screenshotImage.setImageResource(0);
-        Glide.with(holder.itemView.getContext())
-                .load(item.imageUrl)
-                .placeholder(holder.screenshotImage.getDrawable())
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(holder.screenshotImage);
+        // 新方案下没有可用的图片 url 了，先注释掉，避免 Glide 一直打印失败日志
+//        Glide.with(holder.itemView.getContext())
+//                .load(item.imageUrl)
+//                .placeholder(holder.screenshotImage.getDrawable())
+//                .transition(DrawableTransitionOptions.withCrossFade())
+//                .into(holder.screenshotImage);
     }
 
     @Override
