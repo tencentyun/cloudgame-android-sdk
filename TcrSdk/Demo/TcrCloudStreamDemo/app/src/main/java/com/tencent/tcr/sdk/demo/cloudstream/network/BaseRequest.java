@@ -1,10 +1,8 @@
 package com.tencent.tcr.sdk.demo.cloudstream.network;
 
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request.Method;
@@ -17,11 +15,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.tcr.sdk.api.AsyncCallback;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public abstract class BaseRequest<T> {
     protected static final String TAG = "Request";
@@ -34,7 +31,7 @@ public abstract class BaseRequest<T> {
     public static final int CODE_ERROR_NETWORK = -111;          // network error
     public static final int CODE_ERROR_PROCESS_RESPONSE = -112; // process response fail
 
-    protected static final String BASE_URL = "https://test-xiaosuan-server.cloud-device.crtrcloud.com";
+    protected static final String BASE_URL = "https://test-accelerator-biz-server.cai.crtrcloud.com";
     protected final String mRequestID = UUID.randomUUID().toString();
 
     protected final AsyncCallback<T> callback;
