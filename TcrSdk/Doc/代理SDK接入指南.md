@@ -5,7 +5,7 @@
 ## 接入声明
 
 > **重要提示：**  
-> 当代理功能开启后，云端实例的所有网络访问流量将会经由本地客户端设备转发，即“云端应用请求 → 互联网 → 真机客户端 → 互联网 → 真机客户端 → 互联网 → 云端应用响应“
+> 当代理功能开启后，云端实例的所有网络访问流量将会经由本地客户端设备转发，即"云端应用请求 → 互联网 → 真机客户端 → 互联网 → 真机客户端 → 互联网 → 云端应用响应"
 > 由于链路较长，并且受限于客户端设备的上行带宽，极有可能导致云端实例访问网页时出现卡顿、延迟甚至无法联网等问题。请务必根据实际网络环境评估代理能力，避免因带宽瓶颈影响业务体验。
 
 ## 目录
@@ -25,6 +25,8 @@
 >需要注意的是，前台服务并非强制要求。如果你的业务场景下，代理的开启和关闭始终与界面（如 Activity 的生命周期）保持同步，例如用户进入某个页面时启动代理，离开页面时关闭代理，那么你完全可以直接在 Activity 中调用 Proxy 的相关方法，无需额外启动Service。
 >但请务必确保在 Activity 销毁（如 onDestroy()）时，及时调用 Proxy.getInstance().stopProxy() 停止代理服务，释放相关资源，避免后台代理进程无故占用系统资源或引发安全风险。
 
+- **连接状态监听**：通过 `setOnConnectionStateChangedListener` 可以监听代理服务的连接状态变化，包括连接断开、连接中/重连中、连接完成等状态。
+
 ---
 
 ## 集成准备
@@ -34,7 +36,7 @@
    在你的 `build.gradle` 中添加：
 
    ```groovy
-   implementation 'com.tencent.tcr:proxy:1.1.6'
+   implementation 'com.tencent.tcr:proxy:1.2.0'
    ```
 
 2. **引入 [ProxyService](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Demo/TcrDemo/app/src/tcrdemo/java/com/tencent/tcrdemo/gameplay/ProxyService.java) **
@@ -91,10 +93,24 @@
 String relayInfoJson = ...; // 从云端获取
 ProxyService.initProxy(context, relayInfoJson);
 
-// 2. 启动代理
+// 2. 设置连接状态监听
+Proxy.getInstance().setOnConnectionStateChangedListener(new OnConnectionStateChangedListener() {
+    @Override
+    public void onConnectionStateChanged(ConnectionState connectionState, String message) {
+        if (connectionState == ConnectionState.Connecting) {
+            // 处理连接中状态
+        } else if (connectionState == ConnectionState.Connected) {
+            // 处理连接成功状态
+        } else if (connectionState == ConnectionState.Disconnected) {
+            // 处理连接断开状态
+        }
+    }
+});
+
+// 3. 启动代理
 ProxyService.startProxy(context);
 
-// 3. 停止代理
+// 4. 停止代理
 ProxyService.stopProxy(context);
 ```
 
@@ -118,3 +134,16 @@ ProxyService.stopProxy(context);
 | `public boolean init(String bandwidth, String relayInfoString)` | 初始化代理服务，并指定本地设备的上行带宽限制 | `bandwidth`：上行带宽限制（如 `'1MB'`、`'500KB'`，最大`4MB`）<br>`relayInfoString`：云端下发的代理中继信息 | `true`/`false` | 带宽参数可选，建议根据实际网络情况设置               |
 | `public void startProxy()`                                      | 启动代理服务，开始转发云端实例的网络请求   | 无                                                                                | 无              | 必须已成功调用 `init()`                  |
 | `public void stopProxy()`                                       | 停止代理服务，终止网络转发          | 无                                                                                | 无              |                                   |
+| `public void setOnConnectionStateChangedListener(OnConnectionStateChangedListener listener)` | 设置连接状态变化监听器 | `listener`：连接状态变化监听器，传null可清除监听 | 无              | 用于监听代理服务的连接状态变化 |
+
+### 连接状态相关接口
+
+#### ConnectionState 枚举
+定义代理服务的连接状态：
+- `Disconnected`：连接断开
+- `Connecting`：连接中/重连中  
+- `Connected`：连接完成
+
+#### OnConnectionStateChangedListener 接口
+连接状态变化回调接口，包含方法：
+- `void onConnectionStateChanged(ConnectionState state, String message)`：连接状态变化时回调
