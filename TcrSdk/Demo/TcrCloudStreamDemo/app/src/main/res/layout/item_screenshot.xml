@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/screenshotImage"
-        android:layout_width="216dp"
-        android:layout_height="384dp"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
         android:scaleType="centerCrop" />
 
     <TextView
