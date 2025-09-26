@@ -66,7 +66,7 @@ public class InstanceScreenshotActivity extends AppCompatActivity {
             }
         });
 
-        startPolling();
+        // startPolling(); 新方案下没有可用的图片 url 了
     }
 
     private void startPolling() {
