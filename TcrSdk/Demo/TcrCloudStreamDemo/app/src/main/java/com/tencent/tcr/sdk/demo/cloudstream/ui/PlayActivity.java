@@ -138,7 +138,8 @@ public class PlayActivity extends AppCompatActivity {
                 TcrSdk.getInstance().getAndroidInstance().joinGroupControl(mPendingJoinInstanceIds);
                 mGroupInstanceIds.addAll(mPendingJoinInstanceIds);
                 mPendingJoinInstanceIds.clear();
-                TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds);
+                // 延迟一会后，同步操作列表
+                mRenderView.postDelayed(() -> TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds), 1000);
             } else {
                 Log.e(TAG, "not in group control");
                 Toast.makeText(this, "not in group control", Toast.LENGTH_SHORT).show();
