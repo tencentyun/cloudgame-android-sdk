@@ -4,6 +4,7 @@ package com.tencent.tcr.sdk.demo.cloudstream.ui;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -136,6 +137,7 @@ public class PlayActivity extends AppCompatActivity {
         } else if (id == R.id.menu_joinGroup) {
             if (mIsGroupControl) {
                 TcrSdk.getInstance().getAndroidInstance().joinGroupControl(mPendingJoinInstanceIds);
+                Toast.makeText(this, "joinGroup:"+ TextUtils.join(",", mPendingJoinInstanceIds), Toast.LENGTH_SHORT).show();
                 mGroupInstanceIds.addAll(mPendingJoinInstanceIds);
                 mPendingJoinInstanceIds.clear();
                 // 延迟一会后，同步操作列表
