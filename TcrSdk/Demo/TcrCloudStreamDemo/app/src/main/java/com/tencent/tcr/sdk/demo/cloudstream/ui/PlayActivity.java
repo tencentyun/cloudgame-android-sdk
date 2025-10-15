@@ -287,7 +287,7 @@ public class PlayActivity extends AppCompatActivity {
                 Log.d(TAG, "CustomDataChannel onMessage: port=" + port);
             }
         };
-        mCustomDataChannel_23331 = mTcrSession.createCustomDataChannel(23331, "Android", observer);
-        mCustomDataChannel_23332 = mTcrSession.createCustomDataChannel(23332, "Android_broadcast", observer);
+        mCustomDataChannel_23331 = mTcrSession.createCustomDataChannel(23331, "android", observer);
+        mCustomDataChannel_23332 = mTcrSession.createCustomDataChannel(23332, "android_broadcast", observer);
     }
 }
