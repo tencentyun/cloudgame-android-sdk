@@ -8,10 +8,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.tencent.tcr.sdk.api.CustomDataChannel;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
@@ -22,34 +22,21 @@ import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
 import com.tencent.tcr.sdk.demo.cloudstream.R;
-import java.text.DecimalFormat;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 public class PlayActivity extends AppCompatActivity {
 
     private static final String TAG = "PlayActivity";
-
-    // 返回键KeyCode
-    private static final int KEY_BACK = 158;
-
-    // 菜单键KeyCode
-    private static final int KEY_MENU = 139;
-
-    // Home键KeyCode
-    private static final int KEY_HOME = 172;
-    private final DecimalFormat mDf = new DecimalFormat("#.##");
     boolean mIsGroupControl;//是否是群控云手机
     private ArrayList<String> mGroupInstanceIds;//云手机的实例ID列表。如果是非群控（单机模式），则只取第一个实例ID。
-    private ArrayList<String> mPendingJoinInstanceIds;//待加入的云手机的实例ID列表。
-    // 渲染视图
-    private TcrRenderView mRenderView;
-    // 云渲染会话
-    private TcrSession mTcrSession;
-    // 云端横竖屏信息
-    private ScreenConfig mScreenConfig;
-    // 视频流分辨率信息
-    // Tcr会话的观察者，处理各类事件通知的消息和数据
-    private final Observer mSessionObserver = new Observer() {
+    private ArrayList<String> mPendingJoinInstanceIds;//待加入的云手机的实例ID列表。用于测试 join 操作
+    private TcrRenderView mRenderView;// 渲染视图
+    private TcrSession mTcrSession;// 云渲染会话
+    private ScreenConfig mScreenConfig;// 云端屏幕信息
+    private CustomDataChannel mCustomDataChannel_23331, mCustomDataChannel_23332;//自定义数据通道
+    private boolean mIsConnected_23331, mIsConnected_23332;//标记自定义数据通道的状态
+    private final Observer mSessionObserver = new Observer() {// Tcr会话的观察者，处理各类事件通知的消息和数据
         @Override
         public void onEvent(TcrSession.Event event, Object eventData) {
             switch (event) {
@@ -69,6 +56,7 @@ public class PlayActivity extends AppCompatActivity {
                         TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds);
                         TcrSdk.getInstance().getAndroidInstance().requestStream(masterId, "open", "normal");
                     }
+                    mRenderView.postDelayed(() -> createCustomDataChannel(), 1000);
                     break;
                 case STATE_RECONNECTING:
                     showToast("重连中...", Toast.LENGTH_LONG);
@@ -115,7 +103,7 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.play_menu, menu);
+        getMenuInflater().inflate(R.menu.play_menu, menu);
         return true;
     }
 
@@ -137,16 +125,29 @@ public class PlayActivity extends AppCompatActivity {
         } else if (id == R.id.menu_joinGroup) {
             if (mIsGroupControl) {
                 TcrSdk.getInstance().getAndroidInstance().joinGroupControl(mPendingJoinInstanceIds);
-                Toast.makeText(this, "joinGroup:"+ TextUtils.join(",", mPendingJoinInstanceIds), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "joinGroup:" + TextUtils.join(",", mPendingJoinInstanceIds), Toast.LENGTH_SHORT)
+                        .show();
                 mGroupInstanceIds.addAll(mPendingJoinInstanceIds);
                 mPendingJoinInstanceIds.clear();
                 // 延迟一会后，同步操作列表
-                mRenderView.postDelayed(() -> TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds), 1000);
+                mRenderView.postDelayed(() -> TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds),
+                        1000);
             } else {
                 Log.e(TAG, "not in group control");
                 Toast.makeText(this, "not in group control", Toast.LENGTH_SHORT).show();
             }
             return true;
+        } else if (id == R.id.menu_sendCustomMsg) {
+            if (mCustomDataChannel_23331 == null || !mIsConnected_23331) {
+                Toast.makeText(this, "mCustomDataChannel_23331 不可用", Toast.LENGTH_SHORT).show();
+            } else {
+                mCustomDataChannel_23331.send(ByteBuffer.wrap("hello world 1".getBytes()));
+            }
+            if (mCustomDataChannel_23332 == null || !mIsConnected_23332) {
+                Toast.makeText(this, "mCustomDataChannel2 不可用", Toast.LENGTH_SHORT).show();
+            } else {
+                mCustomDataChannel_23332.send(ByteBuffer.wrap("hello world 2".getBytes()));
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -176,7 +177,7 @@ public class PlayActivity extends AppCompatActivity {
         }
         // 将渲染视图添加到界面上
         ((FrameLayout) findViewById(R.id.render_view_parent)).addView(mRenderView);
-        mRenderView.setOnTouchListener((View.OnTouchListener) new MobileTouchListener(mTcrSession));
+        mRenderView.setOnTouchListener(new MobileTouchListener(mTcrSession));
         //mRenderView.setDisplayDebugView(true);
     }
 
@@ -232,6 +233,7 @@ public class PlayActivity extends AppCompatActivity {
             Log.e(TAG, "mTcrSession = null");
             return;
         }
+        int KEY_HOME = 172; // Home键KeyCode
         mTcrSession.getKeyboard().onKeyboard(KEY_HOME, true);
         mTcrSession.getKeyboard().onKeyboard(KEY_HOME, false);
     }
@@ -242,6 +244,7 @@ public class PlayActivity extends AppCompatActivity {
             Log.e(TAG, "mTcrSession = null");
             return;
         }
+        final int KEY_BACK = 158; // 返回键KeyCode
         mTcrSession.getKeyboard().onKeyboard(KEY_BACK, true);
         mTcrSession.getKeyboard().onKeyboard(KEY_BACK, false);
     }
@@ -252,7 +255,39 @@ public class PlayActivity extends AppCompatActivity {
             Log.e(TAG, "mTcrSession = null");
             return;
         }
+        int KEY_MENU = 139;// 菜单键KeyCode
         mTcrSession.getKeyboard().onKeyboard(KEY_MENU, true);
         mTcrSession.getKeyboard().onKeyboard(KEY_MENU, false);
+    }
+
+    private void createCustomDataChannel() {
+        CustomDataChannel.Observer observer = new CustomDataChannel.Observer() {
+            @Override
+            public void onConnected(int port) {
+                Log.d(TAG, "CustomDataChannel onConnected: " + port);
+                if (port == 23331) {
+                    mIsConnected_23331 = true;
+                } else if (port == 23332) {
+                    mIsConnected_23332 = true;
+                }
+            }
+
+            @Override
+            public void onError(int port, int code, String msg) {
+                Log.d(TAG, "CustomDataChannel onError: port=" + port + ", code=" + code + ", msg=" + msg);
+                if (port == 23331) {
+                    mIsConnected_23331 = false;
+                } else if (port == 23332) {
+                    mIsConnected_23332 = false;
+                }
+            }
+
+            @Override
+            public void onMessage(int port, ByteBuffer buffer) {
+                Log.d(TAG, "CustomDataChannel onMessage: port=" + port);
+            }
+        };
+        mCustomDataChannel_23331 = mTcrSession.createCustomDataChannel(23331, "Android", observer);
+        mCustomDataChannel_23332 = mTcrSession.createCustomDataChannel(23332, "Android_broadcast", observer);
     }
 }

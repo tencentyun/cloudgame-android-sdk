@@ -33,14 +33,14 @@ public class DescribeAndroidInstancesRequest extends ExpServerRequest<DescribeAn
         jsonRequest.put("InstanceIds", new JSONArray());
         jsonRequest.put("Limit", 10);
         jsonRequest.put("Offset", 0);
-        jsonRequest.put("AndroidInstanceZone", "ap-shenzhen-1");
+        jsonRequest.put("AndroidInstanceZone", "ap-singapore-2");//"ap-shenzhen-1"
         jsonRequest.put("RequestId", "d2522c46-4711-47df-945d-92f5194ad975");
         return jsonRequest;
     }
 
     @Override
     protected TypeToken<ExpServerResponse<DescribeAndroidInstancesResponse>> getResponseType() {
-        return new TypeToken<ExpServerResponse<DescribeAndroidInstancesResponse>>() {
+        return new TypeToken<>() {
         };
     }
 }

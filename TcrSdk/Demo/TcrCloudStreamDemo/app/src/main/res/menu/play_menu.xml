@@ -17,4 +17,8 @@
             android:id="@+id/menu_joinGroup"
             android:title="加入群控"
             app:showAsAction="never" />
+    <item
+            android:id="@+id/menu_sendCustomMsg"
+            android:title="发送消息"
+            app:showAsAction="never" />
 </menu>

@@ -47,7 +47,7 @@ public class CreateAndroidInstancesAccessTokenRequest extends
 
     @Override
     protected TypeToken<ExpServerResponse<CreateAndroidInstancesAccessTokenResponse>> getResponseType() {
-        return new TypeToken<ExpServerResponse<CreateAndroidInstancesAccessTokenResponse>>() {
+        return new TypeToken<>() {
         };
     }
 }
