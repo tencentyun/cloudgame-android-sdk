@@ -49,6 +49,7 @@ public class PlayActivity extends AppCompatActivity {
                     }
                     break;
                 case STATE_CONNECTED:// 成功和指定的云手机建立连接
+                    showToast("云手机连接成功", Toast.LENGTH_SHORT);
                     // 设置群控云手机的主控、同步列表、请求主控视频流
                     if (mIsGroupControl) {
                         String masterId = mGroupInstanceIds.get(0);
@@ -265,6 +266,7 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onConnected(int port) {
                 Log.d(TAG, "CustomDataChannel onConnected: " + port);
+                showToast("自定义数据通道连接成功 port="+port, Toast.LENGTH_SHORT);
                 if (port == 23331) {
                     mIsConnected_23331 = true;
                 } else if (port == 23332) {
@@ -274,7 +276,9 @@ public class PlayActivity extends AppCompatActivity {
 
             @Override
             public void onError(int port, int code, String msg) {
-                Log.d(TAG, "CustomDataChannel onError: port=" + port + ", code=" + code + ", msg=" + msg);
+                Log.e(TAG, "CustomDataChannel onError: port=" + port + ", code=" + code + ", msg=" + msg);
+                showToast("自定义数据通道连接失败 port=" + port + ", code=" + code + ", msg=" + msg,
+                        Toast.LENGTH_SHORT);
                 if (port == 23331) {
                     mIsConnected_23331 = false;
                 } else if (port == 23332) {
