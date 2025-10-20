@@ -1,0 +1,1851 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>TcrSession 3.33.0 API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.tencent.tcr.sdk.api</a></div>
+        <h2 title="Interface TcrSession" class="title">Interface TcrSession</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public interface <span class="typeNameLabel"><a href=TcrSession.html>TcrSession</a></span>
+
+                    </pre>
+                    <div class="block"><p>This interface represents a session between the client and the TCR server.</p></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public enum</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="TcrSession.Event.html">TcrSession.Event</a></span></code>
+                                            </th>
+                                            <td class="colLast"><p>Session event definitions.</p></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>public interface</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="TcrSession.Observer.html">TcrSession.Observer</a></span></code>
+                                            </th>
+                                            <td class="colLast"><p>This interface represents the observer of TcrSession.</p></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>abstract boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#start(java.lang.String)>start</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> serverSession) </code>
+                                            </th>
+                                            <td class="colLast">Starts the session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>abstract boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#access(java.util.List,boolean)>access</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; instanceIds, boolean isGroupControl) </code>
+                                            </th>
+                                            <td class="colLast">Start the session and establish a connection to the cloud phone.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#release()>release</a>() </code>
+                                            </th>
+                                            <td class="colLast">Release the session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getRequestId()>getRequestId</a>() </code>
+                                            </th>
+                                            <td class="colLast">Get the current connection's requestId.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setVideoSink(VideoSink)>setVideoSink</a>(VideoSink videoSink) </code>
+                                            </th>
+                                            <td class="colLast">Sets a video sink for this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setAudioSink(AudioSink)>setAudioSink</a>(AudioSink audioSink) </code>
+                                            </th>
+                                            <td class="colLast">Sets a audio sink for this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setEnableAudioPlaying(boolean)>setEnableAudioPlaying</a>(boolean enable) </code>
+                                            </th>
+                                            <td class="colLast">Set whether the SDK plays audio.</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#pauseStreaming()>pauseStreaming</a>() </code>
+                                            </th>
+                                            <td class="colLast">Pause the media stream.</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#pauseStreaming(java.lang.String)>pauseStreaming</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> type) </code>
+                                            </th>
+                                            <td class="colLast">Pause the media stream.</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#resumeStreaming()>resumeStreaming</a>() </code>
+                                            </th>
+                                            <td class="colLast">Resume the media stream.</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#resumeStreaming(java.lang.String)>resumeStreaming</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> type) </code>
+                                            </th>
+                                            <td class="colLast">Resume the media stream.</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setRemoteVideoProfile(int,int,int,AsyncCallback<String>)>setRemoteVideoProfile</a>(int fps, int minBitrate, int maxBitrate, AsyncCallback&lt;String&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setRemoteVideoProfile(int,int,int,int,int,AsyncCallback<String>)>setRemoteVideoProfile</a>(int fps, int minBitrate, int maxBitrate, int width, int height, AsyncCallback&lt;String&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setRemoteAudioPlayProfile(float)>setRemoteAudioPlayProfile</a>(float volume) </code>
+                                            </th>
+                                            <td class="colLast">Set the playing profile of the remote audio.</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setLocalVideoProfile(int,int,int,int,int,boolean)>setLocalVideoProfile</a>(int width, int height, int fps, int minBitrate, int maxBitrate, boolean isFrontCamera) </code>
+                                            </th>
+                                            <td class="colLast">Set the local video profile.</td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setEnableLocalVideo(boolean)>setEnableLocalVideo</a>(boolean enableLocalVideo) </code>
+                                            </th>
+                                            <td class="colLast">Enable or disable the local video track that is captured from the camera.</td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setEnableLocalAudio(boolean)>setEnableLocalAudio</a>(boolean enableLocalAudio) </code>
+                                            </th>
+                                            <td class="colLast">Enable or disable the local audio track that is captured from the mic.</td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#sendCustomAudioData(java.nio.ByteBuffer,long)>sendCustomAudioData</a>(<a href=https://developer.android.com/reference/kotlin/java/nio/ByteBuffer.html>ByteBuffer</a> audioData, long captureTimeNs) </code>
+                                            </th>
+                                            <td class="colLast">Send custom audio data.</td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#sendCustomVideo(VideoFrame)>sendCustomVideo</a>(VideoFrame videoFrame) </code>
+                                            </th>
+                                            <td class="colLast">Send custom video frame.</td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#restartCloudApp()>restartCloudApp</a>() </code>
+                                            </th>
+                                            <td class="colLast">Restart the cloud application process.</td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#pasteText(java.lang.String)>pasteText</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> text) </code>
+                                            </th>
+                                            <td class="colLast">Send the text to the input box in the cloud application.</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setDisableCloudInput(boolean)>setDisableCloudInput</a>(boolean disableCloudInput) </code>
+                                            </th>
+                                            <td class="colLast">Disable the Cloud input.</td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setRemoteDesktopResolution(int,int)>setRemoteDesktopResolution</a>(int width, int height) </code>
+                                            </th>
+                                            <td class="colLast">Set the resolution of Cloud Desktop.</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>abstract LoginHelper</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getLoginHelper()>getLoginHelper</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns a login helper object for implementing automatic login functionality.</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#distributeApp(java.lang.String)>distributeApp</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pkgName) </code>
+                                            </th>
+                                            <td class="colLast">Distributes and installs the APK corresponding to the specified package name on the cloud device.</td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#preserveApps(java.util.List)>preserveApps</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; packageNames) </code>
+                                            </th>
+                                            <td class="colLast">Preserve Specified Apps.</td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#keepAppInForeground(java.lang.String)>keepAppInForeground</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pkgName) </code>
+                                            </th>
+                                            <td class="colLast">Launches the specified app and keeps it persistently in the foreground.</td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#disableForegroundApp()>disableForegroundApp</a>() </code>
+                                            </th>
+                                            <td class="colLast">Disables the persistent foreground mode.</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>abstract Keyboard</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getKeyboard()>getKeyboard</a>() </code>
+                                            </th>
+                                            <td class="colLast">Return the interface to interact with the cloud keyboard in this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>abstract Mouse</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getMouse()>getMouse</a>() </code>
+                                            </th>
+                                            <td class="colLast">Return the interface to interact with the cloud Mouse in this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>abstract Gamepad</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getGamepad()>getGamepad</a>() </code>
+                                            </th>
+                                            <td class="colLast">Return the interface to interact with the cloud Gamepad in this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i31" class="rowColor">
+                                            <td class="colFirst"><code>abstract TouchScreen</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getTouchScreen()>getTouchScreen</a>() </code>
+                                            </th>
+                                            <td class="colLast">Return the interface to interact with the cloud TouchScreen in this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i32" class="altColor">
+                                            <td class="colFirst"><code>abstract MotionSensor</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#getMotionSensor()>getMotionSensor</a>() </code>
+                                            </th>
+                                            <td class="colLast">Return the interface to interact with the cloud Sensor in this session.</td>
+                                        </tr>
+                                        
+                                        <tr id="i33" class="rowColor">
+                                            <td class="colFirst"><code>abstract CustomDataChannel</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#createCustomDataChannel(int,com.tencent.tcr.sdk.api.CustomDataChannel.Observer)>createCustomDataChannel</a>(int port, <a href=CustomDataChannel.Observer.html>CustomDataChannel.Observer</a> observer) </code>
+                                            </th>
+                                            <td class="colLast">Creates a custom data channel.</td>
+                                        </tr>
+                                        
+                                        <tr id="i34" class="altColor">
+                                            <td class="colFirst"><code>abstract CustomDataChannel</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#createCustomDataChannel(int,java.lang.String,com.tencent.tcr.sdk.api.CustomDataChannel.Observer)>createCustomDataChannel</a>(int port, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> type, <a href=CustomDataChannel.Observer.html>CustomDataChannel.Observer</a> observer) </code>
+                                            </th>
+                                            <td class="colLast">Creates a custom data channel.</td>
+                                        </tr>
+                                        
+                                        <tr id="i35" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#changeSeat(java.lang.String,Role,int,AsyncCallback<Void>)>changeSeat</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> userId, Role targetRole, int targetPlayerIndex, AsyncCallback&lt;Void&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Switch the role and seat of a user (`userID`) to `targetRole` and `targetPlayerIndex` respectively.</td>
+                                        </tr>
+                                        
+                                        <tr id="i36" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#requestChangeSeat(java.lang.String,Role,int,AsyncCallback<Void>)>requestChangeSeat</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> userId, Role targetRole, int targetPlayerIndex, AsyncCallback&lt;Void&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Apply to the room owner to switch the role and seat of a player (`userID`) to `targetRole` and `targetPlayerIndex` respectively.</td>
+                                        </tr>
+                                        
+                                        <tr id="i37" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#setMicMute(java.lang.String,int,AsyncCallback<Void>)>setMicMute</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> userID, int micStatus, AsyncCallback&lt;Void&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Change the mic status of the `<code>userID</code>` user.</td>
+                                        </tr>
+                                        
+                                        <tr id="i38" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TcrSession.html#syncRoomInfo()>syncRoomInfo</a>() </code>
+                                            </th>
+                                            <td class="colLast">Refresh the information of all seats.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="start(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>start</h4>
+                                        <pre class="methodSignature"> abstract boolean <a href=TcrSession.html#start(java.lang.String)>start</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> serverSession)</pre>
+                                        <div class="block"><p>Starts the session. This method should only be called once.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>serverSession</code> - The <code>ServerSession</code> returned from <a href=https://cloud.tencent.com/document/api/1162/40740.html>CreateSession</a>API.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>true if success, false otherwise.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="access(java.util.List,boolean)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>access</h4>
+                                        <pre class="methodSignature"> abstract boolean <a href=TcrSession.html#access(java.util.List,boolean)>access</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; instanceIds, boolean isGroupControl)</pre>
+                                        <div class="block"><p>Start the session and establish a connection to the cloud phone. </p><p> After the local session object is successfully initialized (triggered by the <a href=TcrSession.Observer.html#onEvent(com.tencent.tcr.sdk.api.TcrSession.Event,Object)>onEvent</a> with <a href=TcrSession.Event.html#STATE_INITED>STATE_INITED</a>), call this method to establish a connection to the specified cloud phone instance. Only after the connection is established can this session object interact with the cloud phone. </p><p>Note:</p><ul><li>Before calling this method, ensure: <ul><li>The SDK has been initialized via init and the callback is successful.</li><li>The session object has been created via createTcrSession.</li><li>The session initialization success event (<code>STATE_INITED</code>) has been received.</li><li>A valid accessToken has been set (via init parameters or setAccessToken).</li></ul></li><li>The connection result will be asynchronously returned via <a href=TcrSession.Observer.html#onEvent(com.tencent.tcr.sdk.api.TcrSession.Event,Object)>onEvent</a>: <ul><li>Success event: <a href=TcrSession.Event.html#STATE_CONNECTED>STATE_CONNECTED</a></li><li>Failure event: <a href=TcrSession.Event.html#STATE_CLOSED>STATE_CLOSED</a></li></ul></li></ul></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceIds</code> - List of cloud phone instance IDs to connect to.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>isGroupControl</code> - Whether to enable group control mode.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Whether the connection request was successfully initiated (Note: The actual connection result is returned asynchronously). </p><p>Returns true: The connection request was successfully initiated.</p><p>Returns false: The request failed to send (usually due to invalid parameters or abnormal state).</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="release()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>release</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#release()>release</a>()</pre>
+                                        <div class="block"><p>Release the session.  The session will disconnect from the sever, and the local resources of this session will be released. Once released, this session instance cannot be used anymore.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getRequestId()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getRequestId</h4>
+                                        <pre class="methodSignature"> abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=TcrSession.html#getRequestId()>getRequestId</a>()</pre>
+                                        <div class="block"><p>Get the current connection's requestId. It takes effect after calling <a href=TcrSession.html#start(java.lang.String)>start</a>.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setVideoSink(VideoSink)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setVideoSink</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setVideoSink(VideoSink)>setVideoSink</a>(VideoSink videoSink)</pre>
+                                        <div class="block"><p>Sets a video sink for this session. After that, the SDK will callback the decoded video frame data to the videoSink. </p><p>You may use this interface to post-process or render video images.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>videoSink</code> - The view sink to be set.This can be null to remove any existing one.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setAudioSink(AudioSink)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setAudioSink</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setAudioSink(AudioSink)>setAudioSink</a>(AudioSink audioSink)</pre>
+                                        <div class="block"><p>Sets a audio sink for this session. After that, the SDK will callback the audio data to the audioSink</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>audioSink</code> - The audio sink to be set.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setEnableAudioPlaying(boolean)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setEnableAudioPlaying</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setEnableAudioPlaying(boolean)>setEnableAudioPlaying</a>(boolean enable)</pre>
+                                        <div class="block"><p>Set whether the SDK plays audio.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>enable</code> - true to enable audio playback, false otherwise.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="pauseStreaming()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pauseStreaming</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#pauseStreaming()>pauseStreaming</a>()</pre>
+                                        <div class="block"><p>Pause the media stream.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="pauseStreaming(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pauseStreaming</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#pauseStreaming(java.lang.String)>pauseStreaming</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> type)</pre>
+                                        <div class="block"><p>Pause the media stream.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>type</code> - &quot;audio&quot; or &quot;video&quot;</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="resumeStreaming()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>resumeStreaming</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#resumeStreaming()>resumeStreaming</a>()</pre>
+                                        <div class="block"><p>Resume the media stream.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="resumeStreaming(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>resumeStreaming</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#resumeStreaming(java.lang.String)>resumeStreaming</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> type)</pre>
+                                        <div class="block"><p>Resume the media stream.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>type</code> - &quot;audio&quot; or &quot;video&quot;</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setRemoteVideoProfile(int,int,int,AsyncCallback&lt;String&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setRemoteVideoProfile</h4>
+                                        <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/java/lang/Deprecated.html>Deprecated</a>() abstract void <a href=TcrSession.html#setRemoteVideoProfile(int,int,int,AsyncCallback<String>)>setRemoteVideoProfile</a>(int fps, int minBitrate, int maxBitrate, AsyncCallback&lt;String&gt; callback)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setRemoteVideoProfile(int,int,int,int,int,AsyncCallback&lt;String&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setRemoteVideoProfile</h4>
+                                        <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/java/lang/Deprecated.html>Deprecated</a>() abstract void <a href=TcrSession.html#setRemoteVideoProfile(int,int,int,int,int,AsyncCallback<String>)>setRemoteVideoProfile</a>(int fps, int minBitrate, int maxBitrate, int width, int height, AsyncCallback&lt;String&gt; callback)</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setRemoteAudioPlayProfile(float)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setRemoteAudioPlayProfile</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setRemoteAudioPlayProfile(float)>setRemoteAudioPlayProfile</a>(float volume)</pre>
+                                        <div class="block"><p>Set the playing profile of the remote audio.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>volume</code> - The volume scalar in the range of [0,10] that will be set on this remote audio stream.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setLocalVideoProfile(int,int,int,int,int,boolean)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setLocalVideoProfile</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setLocalVideoProfile(int,int,int,int,int,boolean)>setLocalVideoProfile</a>(int width, int height, int fps, int minBitrate, int maxBitrate, boolean isFrontCamera)</pre>
+                                        <div class="block"><p>Set the local video profile. Each parameter value of this method needs to be within its valid range, otherwise the method call will be invalid.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>width</code> - The frame width, range[128, 1920].</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>height</code> - The frame height, range[128, 1920].</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>fps</code> - The frame rate must be greater than 0.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>minBitrate</code> - The minimum bitrate in kbps must be greater than or equal to 0.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>maxBitrate</code> - The maximum bitrate in kbps must be greater than 0.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>isFrontCamera</code> - whether to use the front camera.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setEnableLocalVideo(boolean)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setEnableLocalVideo</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setEnableLocalVideo(boolean)>setEnableLocalVideo</a>(boolean enableLocalVideo)</pre>
+                                        <div class="block"><p>Enable or disable the local video track that is captured from the camera.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>enableLocalVideo</code> - true to enable the local video, false otherwise.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setEnableLocalAudio(boolean)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setEnableLocalAudio</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setEnableLocalAudio(boolean)>setEnableLocalAudio</a>(boolean enableLocalAudio)</pre>
+                                        <div class="block"><p>Enable or disable the local audio track that is captured from the mic.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>enableLocalAudio</code> - true to enable the local audio, false otherwise.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="sendCustomAudioData(java.nio.ByteBuffer,long)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>sendCustomAudioData</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#sendCustomAudioData(java.nio.ByteBuffer,long)>sendCustomAudioData</a>(<a href=https://developer.android.com/reference/kotlin/java/nio/ByteBuffer.html>ByteBuffer</a> audioData, long captureTimeNs)</pre>
+                                        <div class="block"><p>Send custom audio data.  You MUST call this method within the same thread. Use this method to send audio data to the processing pipeline when custom audio capture is enabled. This method is only effective when enableCustomAudioCapture is true.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>audioData</code> - A ByteBuffer containing the audio data.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>captureTimeNs</code> - The capture time of the audio data, in nanoseconds.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="sendCustomVideo(VideoFrame)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>sendCustomVideo</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#sendCustomVideo(VideoFrame)>sendCustomVideo</a>(VideoFrame videoFrame)</pre>
+                                        <div class="block"><p>Send custom video frame.  Note: MUST set <a href=TcrSessionConfig.Builder.html#enableCustomVideoCapture(boolean)>enableCustomVideoCapture</a> true when creating this session.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>videoFrame</code> - The video frame to be sent.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="restartCloudApp()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>restartCloudApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#restartCloudApp()>restartCloudApp</a>()</pre>
+                                        <div class="block"><p>Restart the cloud application process.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="pasteText(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pasteText</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#pasteText(java.lang.String)>pasteText</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> text)</pre>
+                                        <div class="block"><p>Send the text to the input box in the cloud application. The input box of the cloud application must have obtained the focus and allow the user to paste text from the clipboard. For Android cloud applications, sent text replaces the input box content. For Windows cloud applications, sent text is added to the existing content in the input box.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>text</code> - The text to be sent</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setDisableCloudInput(boolean)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setDisableCloudInput</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setDisableCloudInput(boolean)>setDisableCloudInput</a>(boolean disableCloudInput)</pre>
+                                        <div class="block"><p>Disable the Cloud input. When the cloud input is disable, the cloud application's soft keyboard won't appear. This function is only supported for mobile cloud applications.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>disableCloudInput</code> - true disables the cloud input.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setRemoteDesktopResolution(int,int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setRemoteDesktopResolution</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setRemoteDesktopResolution(int,int)>setRemoteDesktopResolution</a>(int width, int height)</pre>
+                                        <div class="block"><p>Set the resolution of Cloud Desktop. If the cloud PC application is in full-screen mode, the resolution of the downstream video stream will also change accordingly. This method is currently only valid for scenarios where the cloud is a PC application, and the scenario where the cloud is a mobile application is to be supported.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>width</code> - Width of cloud desktop.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>height</code> - Height of cloud desktop.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getLoginHelper()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getLoginHelper</h4>
+                                        <pre class="methodSignature">@<a href=https://developer.android.com/reference/kotlin/java/lang/Deprecated.html>Deprecated</a>() abstract LoginHelper <a href=TcrSession.html#getLoginHelper()>getLoginHelper</a>()</pre>
+                                        <div class="block"><p>Returns a login helper object for implementing automatic login functionality.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>This function must be called after the successful execution of <a href=TcrSession.html#start(java.lang.String)>start</a> function, otherwise the return value will be null.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="distributeApp(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>distributeApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#distributeApp(java.lang.String)>distributeApp</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pkgName)</pre>
+                                        <div class="block"><p>Distributes and installs the APK corresponding to the specified package name on the cloud device. </p><p> This interface is effective in cloud phone scenarios. After calling this method, the distribution status will be notified through the <a href=TcrSession.Event.html#DISTRIBUTE_STATUS_CHANGED>DISTRIBUTE_STATUS_CHANGED</a> event.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>pkgName</code> - The package name of the APK to be distributed and installed</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="preserveApps(java.util.List)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>preserveApps</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#preserveApps(java.util.List)>preserveApps</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; packageNames)</pre>
+                                        <div class="block"><p>Preserve Specified Apps. After invocation, the cloud phone will retain only the specified package names; all other non-system apps will be stopped or removed.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>packageNames</code> - the list of package names to be preserved</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="keepAppInForeground(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>keepAppInForeground</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#keepAppInForeground(java.lang.String)>keepAppInForeground</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> pkgName)</pre>
+                                        <div class="block"><p>Launches the specified app and keeps it persistently in the foreground. If the app is closed or killed, it will be automatically relaunched to remain in the foreground.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>pkgName</code> - The package name of the app to be kept in the foreground</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="disableForegroundApp()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>disableForegroundApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#disableForegroundApp()>disableForegroundApp</a>()</pre>
+                                        <div class="block"><p>Disables the persistent foreground mode.  No app will be forcefully kept in the foreground, and the device returns to normal behavior.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getKeyboard()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getKeyboard</h4>
+                                        <pre class="methodSignature"> abstract Keyboard <a href=TcrSession.html#getKeyboard()>getKeyboard</a>()</pre>
+                                        <div class="block"><p>Return the interface to interact with the cloud keyboard in this session.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>The interface to interact with the cloud keyboard in this session.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getMouse()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getMouse</h4>
+                                        <pre class="methodSignature"> abstract Mouse <a href=TcrSession.html#getMouse()>getMouse</a>()</pre>
+                                        <div class="block"><p>Return the interface to interact with the cloud Mouse in this session.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>The interface to interact with the cloud Mouse in this session.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getGamepad()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getGamepad</h4>
+                                        <pre class="methodSignature"> abstract Gamepad <a href=TcrSession.html#getGamepad()>getGamepad</a>()</pre>
+                                        <div class="block"><p>Return the interface to interact with the cloud Gamepad in this session.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>The interface to interact with the cloud Gamepad in this session.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getTouchScreen()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getTouchScreen</h4>
+                                        <pre class="methodSignature"> abstract TouchScreen <a href=TcrSession.html#getTouchScreen()>getTouchScreen</a>()</pre>
+                                        <div class="block"><p>Return the interface to interact with the cloud TouchScreen in this session.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>The interface to interact with the cloud TouchScreen in this session.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getMotionSensor()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getMotionSensor</h4>
+                                        <pre class="methodSignature"> abstract MotionSensor <a href=TcrSession.html#getMotionSensor()>getMotionSensor</a>()</pre>
+                                        <div class="block"><p>Return the interface to interact with the cloud Sensor in this session.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>The interface to interact with the cloud Sensor in this session.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createCustomDataChannel(int,com.tencent.tcr.sdk.api.CustomDataChannel.Observer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createCustomDataChannel</h4>
+                                        <pre class="methodSignature"> abstract CustomDataChannel <a href=TcrSession.html#createCustomDataChannel(int,com.tencent.tcr.sdk.api.CustomDataChannel.Observer)>createCustomDataChannel</a>(int port, <a href=CustomDataChannel.Observer.html>CustomDataChannel.Observer</a> observer)</pre>
+                                        <div class="block"><p>Creates a custom data channel.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>port</code> - The cloud port number uniquely identifying the data channel.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>observer</code> - The <a href=CustomDataChannel.Observer.html>CustomDataChannel.Observer</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>the created data channel.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createCustomDataChannel(int,java.lang.String,com.tencent.tcr.sdk.api.CustomDataChannel.Observer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createCustomDataChannel</h4>
+                                        <pre class="methodSignature"> abstract CustomDataChannel <a href=TcrSession.html#createCustomDataChannel(int,java.lang.String,com.tencent.tcr.sdk.api.CustomDataChannel.Observer)>createCustomDataChannel</a>(int port, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> type, <a href=CustomDataChannel.Observer.html>CustomDataChannel.Observer</a> observer)</pre>
+                                        <div class="block"><p>Creates a custom data channel.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>port</code> - The cloud port number uniquely identifying the data channel.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>type</code> - The type of the data channel.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>observer</code> - The <a href=CustomDataChannel.Observer.html>CustomDataChannel.Observer</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>the created data channel.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="changeSeat(java.lang.String,Role,int,AsyncCallback&lt;Void&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>changeSeat</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#changeSeat(java.lang.String,Role,int,AsyncCallback<Void>)>changeSeat</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> userId, Role targetRole, int targetPlayerIndex, AsyncCallback&lt;Void&gt; callback)</pre>
+                                        <div class="block"><p>Switch the role and seat of a user (`userID`) to `targetRole` and `targetPlayerIndex` respectively.  If the change succeeds, `onSuccess` will be called back.  If there is another player on the target seat, the call will fail, and `MULTI_PLAYER_ASSIGN_SEAT_FAILED` will be passed in to `<code>code</code>` of the `onFailure` callback.  Only the room owner can call this API. If it is called by a user who is not the room owner, the call will fail, and `MULTI_PLAYER_NO_AUTHORIZED` will be passed in to `<code>code</code>` of the `onFailure` callback.  If the API call times out, the call will fail, and `ERR_TIMEOUT` will be passed in to `<code>code</code>` of the `onFailure` callback.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>userId</code> - The target user ID</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>targetRole</code> - The target role `Role`</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>targetPlayerIndex</code> - The target seat.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - The callback for the setting result.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="requestChangeSeat(java.lang.String,Role,int,AsyncCallback&lt;Void&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requestChangeSeat</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#requestChangeSeat(java.lang.String,Role,int,AsyncCallback<Void>)>requestChangeSeat</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> userId, Role targetRole, int targetPlayerIndex, AsyncCallback&lt;Void&gt; callback)</pre>
+                                        <div class="block"><p>Apply to the room owner to switch the role and seat of a player (`userID`) to `targetRole` and `targetPlayerIndex` respectively.  If the change succeeds, `onSuccess` will be called back.  This API can only be called by a user who is not the room owner. If it is called by the room owner, the call will fail, and `MULTI_PLAYER_IGNORED_HOST_SUBMIT` will be passed in to `<code>code</code>` of the `onFailure` callback.  If the API call times out, the call will fail, and `ERR_TIMEOUT` will be passed in to `<code>code</code>` of the `onFailure` callback.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>userId</code> - The target player ID</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>targetRole</code> - The target role `Role`</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>targetPlayerIndex</code> - The target seat.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - The callback for the setting result.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setMicMute(java.lang.String,int,AsyncCallback&lt;Void&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setMicMute</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#setMicMute(java.lang.String,int,AsyncCallback<Void>)>setMicMute</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> userID, int micStatus, AsyncCallback&lt;Void&gt; callback)</pre>
+                                        <div class="block"><p>Change the mic status of the `<code>userID</code>` user.  The room owner can change the mic status of all users, but other users can change only their own mic status. If the room owner disables the mic of a user, the user cannot enable it.  If the change succeeds, `onSuccess` will be called back.  If a non-room owner user passes in `<code>userID</code>` of another user, `onFailure` will be called back, and MULTI_PLAYER_NO_AUTHORIZED will be passed in to `<code>
+code</code>`.  If `<code>userID</code>` is incorrect, `onFailure` will be called back, and `MULTI_PLAYER_NO_SUCH_USER` will be passed in to `<code>code</code>`.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            
+                                            
+                                            <dd><code>micStatus</code> - The mic status.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - The callback for the setting result.</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="syncRoomInfo()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>syncRoomInfo</h4>
+                                        <pre class="methodSignature"> abstract void <a href=TcrSession.html#syncRoomInfo()>syncRoomInfo</a>()</pre>
+                                        <div class="block"><p>Refresh the information of all seats. The result will be notified through the <a href=TcrSession.Event.html#MULTI_USER_SEAT_INFO>MULTI_USER_SEAT_INFO</a> callback.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

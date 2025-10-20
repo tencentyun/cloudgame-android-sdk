@@ -1,0 +1,35 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.tencent.tcr.sdk.api.data/AccessInfo.AcceleratorAddress///PointingToDeclaration/com/tencent/tcr/sdk/api/data/AccessInfo.AcceleratorAddress.html
+$dokka.location:com.tencent.tcr.sdk.api.data/AccessInfo.AccessInfoItem///PointingToDeclaration/com/tencent/tcr/sdk/api/data/AccessInfo.AccessInfoItem.html
+$dokka.location:com.tencent.tcr.sdk.api.data/AccessInfo.InstanceInfo///PointingToDeclaration/com/tencent/tcr/sdk/api/data/AccessInfo.InstanceInfo.html
+$dokka.location:com.tencent.tcr.sdk.api.data/AccessInfo.InstancesInfoItem///PointingToDeclaration/com/tencent/tcr/sdk/api/data/AccessInfo.InstancesInfoItem.html
+$dokka.location:com.tencent.tcr.sdk.api.data/MultiUser.Role///PointingToDeclaration/com/tencent/tcr/sdk/api/data/MultiUser.Role.html
+$dokka.location:com.tencent.tcr.sdk.api.view/PcTouchListener.OnClickListener///PointingToDeclaration/com/tencent/tcr/sdk/api/view/PcTouchListener.OnClickListener.html
+$dokka.location:com.tencent.tcr.sdk.api.view/PcTouchListener.OnDoubleClickListener///PointingToDeclaration/com/tencent/tcr/sdk/api/view/PcTouchListener.OnDoubleClickListener.html
+$dokka.location:com.tencent.tcr.sdk.api.view/PcZoomHandler.ZoomListener///PointingToDeclaration/com/tencent/tcr/sdk/api/view/PcZoomHandler.ZoomListener.html
+$dokka.location:com.tencent.tcr.sdk.api.view/TcrRenderView.InputDeviceType///PointingToDeclaration/com/tencent/tcr/sdk/api/view/TcrRenderView.InputDeviceType.html
+$dokka.location:com.tencent.tcr.sdk.api.view/TcrRenderView.Observer///PointingToDeclaration/com/tencent/tcr/sdk/api/view/TcrRenderView.Observer.html
+$dokka.location:com.tencent.tcr.sdk.api.view/TcrRenderView.ScaleType///PointingToDeclaration/com/tencent/tcr/sdk/api/view/TcrRenderView.ScaleType.html
+$dokka.location:com.tencent.tcr.sdk.api.view/TcrRenderView.TcrRenderViewType///PointingToDeclaration/com/tencent/tcr/sdk/api/view/TcrRenderView.TcrRenderViewType.html
+$dokka.location:com.tencent.tcr.sdk.api.view/TcrRenderView.VideoRotation///PointingToDeclaration/com/tencent/tcr/sdk/api/view/TcrRenderView.VideoRotation.html
+$dokka.location:com.tencent.tcr.sdk.api/AndroidInstance.UploadFileItem///PointingToDeclaration/com/tencent/tcr/sdk/api/AndroidInstance.UploadFileItem.html
+$dokka.location:com.tencent.tcr.sdk.api/CustomDataChannel.Observer///PointingToDeclaration/com/tencent/tcr/sdk/api/CustomDataChannel.Observer.html
+$dokka.location:com.tencent.tcr.sdk.api/Gamepad.KeyType///PointingToDeclaration/com/tencent/tcr/sdk/api/Gamepad.KeyType.html
+$dokka.location:com.tencent.tcr.sdk.api/MotionSensor.SensorType///PointingToDeclaration/com/tencent/tcr/sdk/api/MotionSensor.SensorType.html
+$dokka.location:com.tencent.tcr.sdk.api/Mouse.CursorStyle///PointingToDeclaration/com/tencent/tcr/sdk/api/Mouse.CursorStyle.html
+$dokka.location:com.tencent.tcr.sdk.api/Mouse.KeyType///PointingToDeclaration/com/tencent/tcr/sdk/api/Mouse.KeyType.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrCode.SessionStop///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrCode.SessionStop.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrSdk.SdkType///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrSdk.SdkType.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrSdk.TcrConfig///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrSdk.TcrConfig.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrSession.Event///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrSession.Event.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrSession.Observer///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrSession.Observer.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrSessionConfig.Builder///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrSessionConfig.Builder.html
+$dokka.location:com.tencent.tcr.sdk.api/TcrSessionConfig.VideoCodecType///PointingToDeclaration/com/tencent/tcr/sdk/api/TcrSessionConfig.VideoCodecType.html
+$dokka.location:com.tencent.tcr.sdk.api/VideoFrame.Buffer///PointingToDeclaration/com/tencent/tcr/sdk/api/VideoFrame.Buffer.html
+$dokka.location:com.tencent.tcr.sdk.api/VideoFrame.I420Buffer///PointingToDeclaration/com/tencent/tcr/sdk/api/VideoFrame.I420Buffer.html
+$dokka.location:com.tencent.tcr.sdk.api/VideoFrame.TextureBuffer///PointingToDeclaration/com/tencent/tcr/sdk/api/VideoFrame.TextureBuffer.html
+com.tencent.tcr.sdk.api
+com.tencent.tcr.sdk.api.data
+com.tencent.tcr.sdk.api.utils
+com.tencent.tcr.sdk.api.view
