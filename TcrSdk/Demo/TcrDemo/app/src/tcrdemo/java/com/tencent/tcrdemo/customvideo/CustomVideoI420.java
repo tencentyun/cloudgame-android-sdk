@@ -134,6 +134,7 @@ public class CustomVideoI420 {
 
         // 发送自定义视频帧到 TcrSession 会话
         mSession.sendCustomVideo(videoFrame);
+        videoFrame.release();//必须调用，谁创建谁释放
     }
 
     /**

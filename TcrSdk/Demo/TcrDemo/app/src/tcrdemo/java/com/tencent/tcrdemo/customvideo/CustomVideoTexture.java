@@ -248,5 +248,6 @@ public class CustomVideoTexture implements VideoSink {
     public void onFrame(VideoFrame videoFrame) {
         // 将处理后的视频帧提交给会话
         mSession.sendCustomVideo(videoFrame);
+        // videoFrame.release();//不要调用。因为这个 videoFrame 是 CustomVideoTextureHelper 创建的，它在回调完这个 onFrame() 方法后，会调用 videoFrame.release()。谁创建谁释放。
     }
 }
