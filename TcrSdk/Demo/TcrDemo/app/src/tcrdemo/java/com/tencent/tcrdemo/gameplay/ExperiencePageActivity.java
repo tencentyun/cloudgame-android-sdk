@@ -64,7 +64,7 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
     private void setupDefaultId() {
         String experienceCode = mPrefs.getString(getResources().getString(R.string.key_experience_code), "");
         if (experienceCode.isEmpty()) {
-            experienceCode = "5N02FBYG";
+            experienceCode = "38CVL11Y";//"7U4BJ48Z";//网晴"38CVL11Y";//开发自测云手机"WR2416S6";
         }
         String userID = mPrefs.getString(getResources().getString(R.string.key_set_userid), "");
         String hostUserId = mPrefs.getString(getResources().getString(R.string.key_set_host_userid), "");

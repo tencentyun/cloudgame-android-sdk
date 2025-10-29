@@ -427,7 +427,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 .lowFpsThreshold(31, 5)
                 .remoteDesktopResolution(screenSize.first, screenSize.second)
                 .enableLowLegacyRendering(true)
-                //.enableCustomVideoCapture(true)// 测试自定义视频采集上行
+                .enableCustomVideoCapture(true)// 测试自定义视频采集上行
                 ;
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
