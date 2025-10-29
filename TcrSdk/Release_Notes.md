@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.33.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.32.0/TcrSdk) (2025-10-29)
+**Bug Fixes** 
+- Fixed issue with cloud phone Pass unable to use TcrProxy SDK.
+
 # [Version 3.31.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.31.0/TcrSdk) (2025-8-1)
 **Features**
 - Support cloud phone acceleration capability
