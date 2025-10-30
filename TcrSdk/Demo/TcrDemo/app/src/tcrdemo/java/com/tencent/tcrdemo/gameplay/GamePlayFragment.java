@@ -125,13 +125,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     private String mExperienceCode;
     // 自定义数据通道
     private CustomDataChannel mCustomDataChannel;
-    // 视频流分辨率信息
-    private VideoStreamConfig mVideoStreamConfig;
-    // 云端横竖屏信息
+    // 云端屏幕信息
     private ScreenConfig mScreenConfig;
-    // 旋转视图的两个信号量
-    private boolean mScreenConfigChanged = false;
-    private boolean mVideoStreamConfigChanged = false;
     // 本地输入法Activity的启动器
     private ActivityResultLauncher<Intent> mInputActivityLauncher;
     // 摄像头状态
@@ -209,19 +204,11 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     getActivity().finish();
                     break;
                 case SCREEN_CONFIG_CHANGE:
-                    // 屏幕方向以及大小回调
                     mScreenConfig = (ScreenConfig) eventData;
                     if (mScreenConfig == null) {
                         Log.e(sApiTAG, "screenConfig parse error");
                         break;
                     }
-                    mScreenConfigChanged = true;
-                    updateRotation();
-                    break;
-                case VIDEO_STREAM_CONFIG_CHANGED:
-                    // 流分辨率的回调
-                    mVideoStreamConfig = (VideoStreamConfig) eventData;
-                    mVideoStreamConfigChanged = true;
                     updateRotation();
                     break;
                 case CAMERA_STATUS_CHANGED:
@@ -671,49 +658,26 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         });
     }
 
+
     /**
      * 旋转屏幕方向以及画面方向, 以便本地的屏幕方向和云端保持一致<br>
      * 注意: 请确保Manifest中的Activity有android:configChanges="orientation|screenSize"配置, 避免Activity因旋转而被销毁.<br>
      **/
     private void updateRotation() {
-        if (!mScreenConfigChanged || !mVideoStreamConfigChanged) {
-            Log.w(TAG, "updateRotation failed,mScreenConfigChanged=" + mScreenConfigChanged
-                    + "  mVideoStreamConfigChanged=" + mScreenConfigChanged);
-            return;
-        }
         Activity activity = getActivity();
         if (activity == null) {
             Log.w(TAG, "updateOrientation() activity=null");
             return;
         }
 
-        Log.w(TAG, "mVideoStreamConfig=" + mVideoStreamConfig);
-        Log.w(TAG, "mScreenConfig.degree=" + mScreenConfig.degree);
-
-
-        // 1. 根据云端Activity的方向（degree）和视频流的宽高，调整本地屏幕方向(使得本地屏幕方向和云端Activity方向保持一致)
-        // 视频流	云端Activity		客户端处理
-        // 横屏	      竖屏		    设置竖屏
-        // 竖屏        竖屏           设置竖屏
-        // 竖屏        横屏           设置横屏
-        // 横屏        横屏           设置横屏
-        boolean isLandscape = mScreenConfig.degree.equals("90_degree") || mScreenConfig.degree.equals("270_degree");
-        boolean isPortrait = mScreenConfig.degree.equals("0_degree") || mScreenConfig.degree.equals("180_degree");
-        if (mVideoStreamConfig.width > mVideoStreamConfig.height) {
-            if (isLandscape) {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
+        // 设置屏幕方向
+        if (mScreenConfig.screenHeight > mScreenConfig.screenWidth) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {
-            if (isPortrait) {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
-        // 2. 根据云端屏幕方向，调整本地画面方向(云端画面为逆时针旋转, 本地视图setVideoRotation设置的是顺时针旋转)
+        // 设置画面方向
         if (mScreenConfig.degree.equals("0_degree")) {
             mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
         }

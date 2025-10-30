@@ -30,11 +30,11 @@ public class DescribeAndroidInstancesRequest extends ExpServerRequest<DescribeAn
     @Override
     protected JSONObject buildRequest() throws JSONException {
         JSONObject jsonRequest = new JSONObject();
+        jsonRequest.put("RequestId", mRequestID);
         jsonRequest.put("InstanceIds", new JSONArray());
-        jsonRequest.put("Limit", 10);
-        jsonRequest.put("Offset", 0);
-        jsonRequest.put("AndroidInstanceZone", "ap-singapore-2");//"ap-shenzhen-1"
-        jsonRequest.put("RequestId", "d2522c46-4711-47df-945d-92f5194ad975");
+        //jsonRequest.put("Limit", 10);
+        //jsonRequest.put("Offset", 67);//后台每次只能返回 20 个，所以需要分页请求
+        //jsonRequest.put("AndroidInstanceZone", "ap-hangzhou-ec");//"ap-shenzhen-1"、"ap-singapore-2"、
         return jsonRequest;
     }
 

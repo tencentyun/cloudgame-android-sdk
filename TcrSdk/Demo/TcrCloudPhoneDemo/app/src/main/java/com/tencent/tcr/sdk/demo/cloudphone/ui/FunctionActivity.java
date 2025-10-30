@@ -174,7 +174,7 @@ public class FunctionActivity extends AppCompatActivity {
                 finish();
             }
         };
-        AsyncCallback<ExpServerResponse<DescribeAndroidInstancesResponse>> describeAndroidInstancesCallback = new AsyncCallback<ExpServerResponse<DescribeAndroidInstancesResponse>>() {
+        AsyncCallback<ExpServerResponse<DescribeAndroidInstancesResponse>> describeAndroidInstancesCallback = new AsyncCallback<>() {
             @Override
             public void onSuccess(ExpServerResponse<DescribeAndroidInstancesResponse> expServerResponse) {
                 if (expServerResponse.Error != null) {
