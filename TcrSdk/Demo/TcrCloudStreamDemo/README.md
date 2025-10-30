@@ -45,7 +45,7 @@ private void initTcrSdk(CreateAndroidInstancesAccessTokenResponse serverResponse
         public void onSuccess(Void result) {
             runOnUiThread(() -> {
                 Log.i(TAG, "init TcrSdk success");
-                Intent intent = new Intent(InstanceTokenActivity.this, InstanceScreenshotActivity.class);
+                Intent intent = new Intent(InstanceTokenActivity.this, InstanceListActivity.class);
                 intent.putExtra("INSTANCE_IDS", etInstanceIds.getText().toString().trim());
                 startActivity(intent);
                 finish();
@@ -81,7 +81,7 @@ private void initTcrSdk(CreateAndroidInstancesAccessTokenResponse serverResponse
 
 ```java
 private void updateScreenshots() {
-    for (ScreenshotItem item : screenshotItems) {
+    for (InstanceListItem item : instanceListItems) {
         Map<String, Object> params = new HashMap<>();
         params.put("instance_id", item.getInstanceId());
         AndroidInstance instance = TcrSdk.getInstance().getAndroidInstance();

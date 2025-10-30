@@ -26,18 +26,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                <!-- 操作按钮区域 -->
-                <GridLayout
+                <!-- 单机操作区域容器 -->
+                <LinearLayout
+                        android:id="@+id/single_operation_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:columnCount="2"
-                        android:rowCount="24"
-                        android:alignmentMode="alignMargins"
-                        android:columnOrderPreserved="false"
-                        android:useDefaultMargins="true"
-                        android:layout_marginTop="16dp">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                    <!-- 单机操作测试区域 -->
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -45,413 +41,432 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:layout_marginTop="16dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_columnSpan="2" />
+                            android:layout_marginBottom="8dp" />
 
-                    <Button
-                            android:id="@+id/btnScreenshot"
-                            android:layout_width="0dp"
+                    <GridLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="截图"
-                            android:layout_margin="4dp" />
+                            android:columnCount="2"
+                            android:rowCount="8"
+                            android:alignmentMode="alignMargins"
+                            android:columnOrderPreserved="false"
+                            android:useDefaultMargins="true"
+                            android:layout_marginTop="16dp">
 
-                    <Button
-                            android:id="@+id/btnDownloadFile"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="下载文件"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnScreenshot"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="截图"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnGetFileDownloadUrl"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="获取文件下载地址"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnDownloadFile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="下载文件"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnGetLogDownloadUrl"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="获取日志下载地址"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnGetFileDownloadUrl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="获取文件下载地址"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnUploadFile"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="上传文件"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnGetLogDownloadUrl"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="获取日志下载地址"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnUploadMedia"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="上传媒体"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnUploadFile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="上传文件"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnEnterSingleCloudPhone"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="进入云手机(单机)"
-                            android:layout_margin="4dp"
-                            android:textStyle="bold" />
+                        <Button
+                                android:id="@+id/btnUploadMedia"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="上传媒体"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnEnterGroupCloudPhone"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="进入云手机(群控)"
-                            android:layout_margin="4dp"
-                            android:textStyle="bold" />
+                        <Button
+                                android:id="@+id/btnEnterSingleCloudPhone"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="进入云手机(单机)"
+                                android:layout_margin="4dp"
+                                android:textStyle="bold" />
+                    </GridLayout>
+                </LinearLayout>
 
+                <!-- 批量操作区域容器 -->
+                <LinearLayout
+                        android:id="@+id/batch_operation_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:layout_marginTop="24dp">
 
-                    <!-- 批量操作测试区域 -->
                     <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="批量操作"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_columnSpan="2" />
+                            android:layout_marginBottom="8dp" />
 
-                    <Button
-                            android:id="@+id/btnModifyResolution"
-                            android:layout_width="0dp"
+                    <GridLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="修改分辨率"
-                            android:layout_margin="4dp" />
+                            android:columnCount="2"
+                            android:rowCount="24"
+                            android:alignmentMode="alignMargins"
+                            android:columnOrderPreserved="false"
+                            android:useDefaultMargins="true">
 
-                    <Button
-                            android:id="@+id/btnModifyGps"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="修改GPS位置"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnModifyResolution"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="修改分辨率"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnPasteText"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="粘贴文本"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnModifyGps"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="修改GPS位置"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnModifyClipboard"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="修改剪贴板"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnPasteText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="粘贴文本"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnModifySensor"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="修改传感器"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnModifyClipboard"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="修改剪贴板"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnShake"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="摇一摇"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnModifySensor"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="修改传感器"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnBlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="吹一吹"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnShake"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="摇一摇"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnSendMessage"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="发送消息"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnBlow"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="吹一吹"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnQueryInstanceAttr"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询实例属性"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnSendMessage"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="发送消息"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnModifyInstanceAttr"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="修改实例属性"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnQueryInstanceAttr"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询实例属性"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnQueryApps"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询应用列表"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnModifyInstanceAttr"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="修改实例属性"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnModifyForegroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="修改前台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnQueryApps"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询应用列表"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnQueryForegroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询前台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnModifyForegroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="修改前台保活"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnUninstallApp"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="卸载应用"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnQueryForegroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询前台保活"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnLaunchApp"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="启动应用"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnUninstallApp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="卸载应用"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnStopApp"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="停止应用"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnLaunchApp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="启动应用"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnClearAppData"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="清除应用数据"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnStopApp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="停止应用"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnEnableApp"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="启用应用"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnClearAppData"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="清除应用数据"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnDisableApp"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="禁用应用"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnEnableApp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="启用应用"
+                                android:layout_margin="4dp" />
 
+                        <Button
+                                android:id="@+id/btnDisableApp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="禁用应用"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnPlayMedia"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="播放媒体文件"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnPlayMedia"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="播放媒体文件"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnStopMedia"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="停止播放媒体"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnStopMedia"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="停止播放媒体"
+                                android:layout_margin="4dp" />
 
+                        <Button
+                                android:id="@+id/btnQueryMediaStatus"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询媒体状态"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnQueryMediaStatus"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询媒体状态"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnShowImage"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="显示图片"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnShowImage"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="显示图片"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnAddBackgroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="增加后台保活"
+                                android:layout_margin="4dp" />
 
+                        <Button
+                                android:id="@+id/btnRemoveBackgroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="移除后台保活"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnAddBackgroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="增加后台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnSetBackgroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="覆盖后台保活"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnRemoveBackgroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="移除后台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnQueryBackgroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询后台保活"
+                                android:layout_margin="4dp" />
 
+                        <Button
+                                android:id="@+id/btnClearBackgroundKeep"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="清空后台保活"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnSetBackgroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="覆盖后台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnToggleMute"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="静音开关"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnQueryBackgroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询后台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnSearchMedia"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="媒体库搜索"
+                                android:layout_margin="4dp" />
 
+                        <Button
+                                android:id="@+id/btnRebootInstance"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="重启实例"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnClearBackgroundKeep"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="清空后台保活"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnQueryAllApps"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询所有应用"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnToggleMute"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="静音开关"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnMoveToBackground"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="关闭至后台"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnSearchMedia"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="媒体库搜索"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnAddInstallBlacklist"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="新增安装黑名单"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnRebootInstance"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="重启实例"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnRemoveInstallBlacklist"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="移除安装黑名单"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnQueryAllApps"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询所有应用"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnSetInstallBlacklist"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="覆盖安装黑名单"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnMoveToBackground"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="关闭至后台"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnQueryInstallBlacklist"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="查询安装黑名单"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnAddInstallBlacklist"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="新增安装黑名单"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnClearInstallBlacklist"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="清空安装黑名单"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnRemoveInstallBlacklist"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="移除安装黑名单"
-                            android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnGetNavigationBarStatus"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="获取系统导航栏状态"
+                                android:layout_margin="4dp" />
 
-                    <Button
-                            android:id="@+id/btnSetInstallBlacklist"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="覆盖安装黑名单"
-                            android:layout_margin="4dp" />
-
-                    <Button
-                            android:id="@+id/btnQueryInstallBlacklist"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="查询安装黑名单"
-                            android:layout_margin="4dp" />
-
-                    <Button
-                            android:id="@+id/btnClearInstallBlacklist"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="清空安装黑名单"
-                            android:layout_margin="4dp" />
-
-                    <Button
-                            android:id="@+id/btnGetNavigationBarStatus"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="获取系统导航栏状态"
-                            android:layout_margin="4dp" />
-
-                    <Button
-                            android:id="@+id/btnGetMediaVolume"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:text="获取系统媒体音量"
-                            android:layout_margin="4dp" />
-
-                </GridLayout>
+                        <Button
+                                android:id="@+id/btnGetMediaVolume"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="获取系统媒体音量"
+                                android:layout_margin="4dp" />
+                        <Button
+                                android:id="@+id/btnEnterGroupCloudPhone"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_columnWeight="1"
+                                android:text="进入云手机(群控)"
+                                android:layout_margin="4dp"
+                                android:textStyle="bold" />
+                    </GridLayout>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
@@ -474,7 +489,7 @@
 
             <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="400dp"
                     app:cardElevation="4dp"
                     app:cardCornerRadius="8dp"
                     android:layout_marginBottom="8dp">

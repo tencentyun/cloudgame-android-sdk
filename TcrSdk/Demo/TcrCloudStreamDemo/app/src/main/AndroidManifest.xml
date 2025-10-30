@@ -3,8 +3,8 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
+            android:name="android.hardware.camera"
+            android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -19,18 +19,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.TcrCloudStreamDemo">
-        <activity
-                android:name="com.tencent.tcr.sdk.demo.cloudstream.ui.InstanceTokenActivity"
-                android:exported="true">
+
+
+        <activity android:name=".HomeActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tencent.tcr.sdk.demo.cloudstream.ui.PlayActivity"
-                android:configChanges="orientation|screenSize"
-                android:screenOrientation="portrait" />
-        <activity android:name="com.tencent.tcr.sdk.demo.cloudstream.ui.InstanceScreenshotActivity"
-                android:screenOrientation="portrait" />
+
+        <activity android:name=".sfu.ui.GetTokenActivity" />
+        <activity android:name=".sfu.ui.PlayActivity" android:configChanges="orientation|screenSize" />
+        <activity android:name=".sfu.ui.InstanceListActivity" />
+
+        <activity android:name=".operator.ui.LoginActivity"/>
+        <activity android:name=".operator.ui.FunctionActivity" />
+        <activity android:name=".operator.ui.PlayActivity" />
     </application>
 </manifest>
