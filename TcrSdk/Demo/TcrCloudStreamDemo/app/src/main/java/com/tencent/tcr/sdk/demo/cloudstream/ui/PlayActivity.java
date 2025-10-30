@@ -214,23 +214,25 @@ public class PlayActivity extends AppCompatActivity {
             return;
         }
 
+        // 设置屏幕方向
         if (mScreenConfig.screenHeight > mScreenConfig.screenWidth) {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
+        // 设置画面方向
         if (mScreenConfig.degree.equals("0_degree")) {
             mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
         }
         if (mScreenConfig.degree.equals("90_degree")) {
-            mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
+            mRenderView.setVideoRotation(VideoRotation.ROTATION_270);
         }
         if (mScreenConfig.degree.equals("180_degree")) {
             mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
         }
         if (mScreenConfig.degree.equals("270_degree")) {
-            mRenderView.setVideoRotation(VideoRotation.ROTATION_270);
+            mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
         }
     }
 
