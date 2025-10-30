@@ -1,5 +1,6 @@
 package com.tencent.tcr.sdk.demo.cloudstream.ui;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.api.TcrSdk;
@@ -18,6 +21,8 @@ import com.tencent.tcr.sdk.demo.cloudstream.network.CreateAndroidInstancesAccess
 
 import java.util.Arrays;
 import java.util.List;
+
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class InstanceTokenActivity extends AppCompatActivity {
 
@@ -44,6 +49,21 @@ public class InstanceTokenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instance_token);
         initViews();
+        initPermissions();
+    }
+
+    private void initPermissions() {
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
+        if (!EasyPermissions.hasPermissions(this, permissions)) {
+            EasyPermissions.requestPermissions(this, "测试包需要录音、摄像头、SD卡读写权限", 0, permissions);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
     private void initViews() {

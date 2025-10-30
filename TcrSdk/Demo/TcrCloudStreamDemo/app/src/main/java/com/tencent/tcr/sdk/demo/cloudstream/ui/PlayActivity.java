@@ -108,6 +108,7 @@ public class PlayActivity extends AppCompatActivity {
         return true;
     }
 
+    boolean enableDebugView = false;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -149,6 +150,26 @@ public class PlayActivity extends AppCompatActivity {
             } else {
                 mCustomDataChannel_23332.send(ByteBuffer.wrap("hello world 2".getBytes()));
             }
+        } else if (id == R.id.menu_debugview) {
+            enableDebugView = !enableDebugView;
+            mRenderView.setDisplayDebugView(enableDebugView);
+            return true;
+        } else if (id == R.id.menu_openCamera) {
+            Toast.makeText(this, "打开摄像头", Toast.LENGTH_SHORT).show();
+            mTcrSession.setEnableLocalVideo(true);
+            return true;
+        } else if (id == R.id.menu_closeCamera) {
+            mTcrSession.setEnableLocalVideo(false);
+            Toast.makeText(this, "关闭摄像头", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.menu_openMic) {
+            mTcrSession.setEnableLocalAudio(true);
+            Toast.makeText(this, "打开麦克风", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.menu_closeMic) {
+            mTcrSession.setEnableLocalAudio(false);
+            Toast.makeText(this, "关闭麦克风", Toast.LENGTH_SHORT).show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
