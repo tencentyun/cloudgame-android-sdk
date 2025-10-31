@@ -30,8 +30,7 @@ public abstract class BaseRequest<T> {
     public static final int CODE_ERROR_BUILD_REQUEST = -110;   // build request fail
     public static final int CODE_ERROR_NETWORK = -111;          // network error
     public static final int CODE_ERROR_PROCESS_RESPONSE = -112; // process response fail
-
-    protected static final String BASE_URL = "https://test-accelerator-biz-server.cai.crtrcloud.com";
+    protected static final boolean USE_TEST_URL = false; // 是否测试环境
     protected final String mRequestID = UUID.randomUUID().toString();
 
     protected final AsyncCallback<T> callback;
@@ -75,7 +74,11 @@ public abstract class BaseRequest<T> {
     }
 
     protected String getUrl() {
-        return BASE_URL + "/" + getCmd();
+        if (USE_TEST_URL) {
+            return "https://test-accelerator-biz-server.cai.crtrcloud.com/" + getCmd();
+        } else {
+            return "https://accelerator-biz-server.cai.crtrcloud.com/" + getCmd();
+        }
     }
 
     protected abstract String getCmd();
