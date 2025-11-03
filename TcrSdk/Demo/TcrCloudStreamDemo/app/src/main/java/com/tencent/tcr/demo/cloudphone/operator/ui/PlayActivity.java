@@ -8,16 +8,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import com.tencent.tcr.demo.cloudphone.R;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
-import com.tencent.tcr.sdk.api.data.VideoStreamConfig;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
-import com.tencent.tcr.demo.cloudphone.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -43,12 +42,6 @@ public class PlayActivity extends Activity {
     private TcrSession mTcrSession;
     // 云端横竖屏信息
     private ScreenConfig mScreenConfig;
-    // 视频流分辨率信息
-    private VideoStreamConfig mVideoStreamConfig;
-    // 记录云端屏幕配置是否发生变化
-    private boolean mScreenConfigChanged = false;
-    // 记录视频分辨率是否发生变化
-    private boolean mVideoStreamConfigChanged = false;
     // Tcr会话的观察者，处理各类事件通知的消息和数据
     private final Observer mSessionObserver = new Observer() {
         @Override
@@ -80,13 +73,6 @@ public class PlayActivity extends Activity {
                     break;
                 case SCREEN_CONFIG_CHANGE:
                     mScreenConfig = (ScreenConfig) eventData;
-                    updateRotation();
-                    mScreenConfigChanged = true;
-                    updateRotation();
-                    break;
-                case VIDEO_STREAM_CONFIG_CHANGED:
-                    mVideoStreamConfig = (VideoStreamConfig) eventData;
-                    mVideoStreamConfigChanged = true;
                     updateRotation();
                     break;
                 case CAI_TRANS_MESSAGE:
@@ -163,40 +149,20 @@ public class PlayActivity extends Activity {
      * 注意: 请确保Manifest中的Activity有android:configChanges="orientation|screenSize"配置, 避免Activity因旋转而被销毁.<br>
      **/
     private void updateRotation() {
-        if (!mScreenConfigChanged || !mVideoStreamConfigChanged) {
-            Log.w(TAG, "updateRotation failed,mScreenConfigChanged=" + mScreenConfigChanged
-                    + "  mVideoStreamConfigChanged=" + mScreenConfigChanged);
-            return;
-        }
         Activity activity = this;
         if (activity == null) {
             Log.w(TAG, "updateOrientation() activity=null");
             return;
         }
 
-        // 1. 根据云端Activity的方向（degree）和视频流的宽高，调整本地屏幕方向(使得本地屏幕方向和云端Activity方向保持一致)
-        // 视频流	云端Activity		客户端处理
-        // 横屏	      竖屏		    设置竖屏
-        // 竖屏        竖屏           设置竖屏
-        // 竖屏        横屏           设置横屏
-        // 横屏        横屏           设置横屏
-        boolean isLandscape = mScreenConfig.degree.equals("90_degree") || mScreenConfig.degree.equals("270_degree");
-        boolean isPortrait = mScreenConfig.degree.equals("0_degree") || mScreenConfig.degree.equals("180_degree");
-        if (mVideoStreamConfig.width > mVideoStreamConfig.height) {
-            if (isLandscape) {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
+        // 设置屏幕方向
+        if (mScreenConfig.screenHeight > mScreenConfig.screenWidth) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {
-            if (isPortrait) {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
-        // 2. 根据云端屏幕方向，调整本地画面方向(云端画面为逆时针旋转, 本地视图setVideoRotation设置的是顺时针旋转)
+        // 设置画面方向
         if (mScreenConfig.degree.equals("0_degree")) {
             mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
         }
