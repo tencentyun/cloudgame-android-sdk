@@ -1,7 +1,6 @@
 package com.tencent.tcr.demo.cloudphone.sfu.ui;
 
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,6 +38,10 @@ public class PlayActivity extends AppCompatActivity {
     private final Observer mSessionObserver = new Observer() {// Tcr会话的观察者，处理各类事件通知的消息和数据
         @Override
         public void onEvent(TcrSession.Event event, Object eventData) {
+            if (isFinishing() || isDestroyed()) {
+                Log.w(TAG, "onEvent() activity is finishing or destroyed, return");
+                return;
+            }
             switch (event) {
                 case STATE_INITED:// 本地会话对象初始化完成
                     // 可以开始连接指定的云手机。
@@ -209,31 +212,30 @@ public class PlayActivity extends AppCompatActivity {
      * 注意: 请确保Manifest中的Activity有android:configChanges="orientation|screenSize"配置, 避免Activity因旋转而被销毁.<br>
      **/
     private void updateRotation() {
-        Activity activity = this;
-        if (activity == null) {
-            Log.w(TAG, "updateOrientation() activity=null");
-            return;
-        }
-
-        // 设置屏幕方向
+        // 旋转屏幕方向。逻辑：如果屏幕高度大于宽度，则认为竖屏，否则认为横屏。
         if (mScreenConfig.screenHeight > mScreenConfig.screenWidth) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
-        // 设置画面方向
-        if (mScreenConfig.degree.equals("0_degree")) {
-            mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
-        }
-        if (mScreenConfig.degree.equals("90_degree")) {
-            mRenderView.setVideoRotation(VideoRotation.ROTATION_270);
-        }
-        if (mScreenConfig.degree.equals("180_degree")) {
-            mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
-        }
-        if (mScreenConfig.degree.equals("270_degree")) {
-            mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
+        // 旋转画面方向。逻辑：反方向旋转degree，如果为负数则+360
+        switch (mScreenConfig.degree) {
+            case "0_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
+                break;
+            case "90_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_270);
+                break;
+            case "180_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
+                break;
+            case "270_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
+                break;
+            default:
+                Log.w(TAG, "updateRotation() unknown degree=" + mScreenConfig.degree);
+                break;
         }
     }
 
