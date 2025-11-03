@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.tencent.tcr.demo.cloudphone.R;
 import com.tencent.tcr.sdk.api.CustomDataChannel;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
@@ -21,7 +22,6 @@ import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
-import com.tencent.tcr.demo.cloudphone.R;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
@@ -117,7 +117,7 @@ public class PlayActivity extends AppCompatActivity {
             finish();
             return true;
         } else if (id == R.id.menu_setRemoteVideoProfile) {
-            mTcrSession.setRemoteVideoProfile(10, 100, 100, 960, 960, null);
+            mTcrSession.setRemoteVideoProfile(25, 500, 2000, 720, 1280, null);
             return true;
         } else if (id == R.id.menu_pauseStreaming) {
             mTcrSession.pauseStreaming("video");
