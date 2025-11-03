@@ -19,6 +19,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tencent.tcr.demo.cloudphone.R;
+import com.tencent.tcr.demo.cloudphone.common.ui.PlayActivity;
 import com.tencent.tcr.demo.cloudphone.common.util.GsonUtils;
 import com.tencent.tcr.demo.cloudphone.operator.network.UploadResponse;
 import com.tencent.tcr.sdk.api.AndroidInstance;
@@ -40,7 +41,7 @@ public class FunctionActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_FILE_SELECT = 1001;
     private static final int REQUEST_CODE_MEDIA_SELECT = 1002;
     private ArrayList<String> mInstanceIds;//这个页面测试的实例ID列表
-    private ArrayList<String> mPendingJoinInstanceIds;//待加入的云手机的实例ID列表。用于测试 join 操作
+    private ArrayList<String> mJoinLeaveInstanceIds;//待加入的云手机的实例ID列表。用于测试 join 操作
     private boolean mIsBatchOperator;//是否是批量操作模式
     private TextView mResultTextView;
     private final AsyncCallback<BatchTaskResponse> mBatchCallback = new AsyncCallback<BatchTaskResponse>() {
@@ -83,7 +84,7 @@ public class FunctionActivity extends AppCompatActivity {
 
         mIsBatchOperator = getIntent().getBooleanExtra("isBatchOperator", false);
         mInstanceIds = getIntent().getStringArrayListExtra("instanceIds");
-        mPendingJoinInstanceIds = getIntent().getStringArrayListExtra("pending_join_instanceIds");
+        mJoinLeaveInstanceIds = getIntent().getStringArrayListExtra("joinLeaveInstanceIds");
         if (mInstanceIds == null) {
             Toast.makeText(this, "请传入实例", Toast.LENGTH_LONG).show();
             finish();
@@ -378,7 +379,7 @@ public class FunctionActivity extends AppCompatActivity {
         mResultTextView.setText("进入云手机(群控): " + instanceIdsText);
         Intent intent = new Intent(FunctionActivity.this, PlayActivity.class);
         intent.putStringArrayListExtra("instanceIds", mInstanceIds);
-        intent.putStringArrayListExtra("joinLeaveInstanceIds", mPendingJoinInstanceIds);
+        intent.putStringArrayListExtra("joinLeaveInstanceIds", mJoinLeaveInstanceIds);
         intent.putExtra("isGroupControl", true);
         startActivity(intent);
     }

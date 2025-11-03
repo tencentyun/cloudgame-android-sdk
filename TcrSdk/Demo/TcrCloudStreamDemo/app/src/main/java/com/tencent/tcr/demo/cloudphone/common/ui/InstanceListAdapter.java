@@ -1,4 +1,4 @@
-package com.tencent.tcr.demo.cloudphone.sfu.ui;
+package com.tencent.tcr.demo.cloudphone.common.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;

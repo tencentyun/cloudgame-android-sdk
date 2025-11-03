@@ -1,4 +1,4 @@
-package com.tencent.tcr.demo.cloudphone.sfu.ui;
+package com.tencent.tcr.demo.cloudphone.common.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -83,7 +83,7 @@ public class InstanceListActivity extends AppCompatActivity implements InstanceL
             updateSelectedInstanceIds();
             Intent intent = new Intent(InstanceListActivity.this, PlayActivity.class);
             intent.putStringArrayListExtra("instanceIds", selectedInstanceIds);
-            intent.putStringArrayListExtra("pending_join_instanceIds", unselectedInstanceIds);
+            intent.putStringArrayListExtra("joinLeaveInstanceIds", unselectedInstanceIds);
             intent.putExtra("isGroupControl", true);
             startActivity(intent);
         });
@@ -91,7 +91,7 @@ public class InstanceListActivity extends AppCompatActivity implements InstanceL
             updateSelectedInstanceIds();
             Intent intent = new Intent(InstanceListActivity.this, FunctionActivity.class);
             intent.putStringArrayListExtra("instanceIds", selectedInstanceIds);
-            intent.putStringArrayListExtra("pending_join_instanceIds", unselectedInstanceIds);
+            intent.putStringArrayListExtra("joinLeaveInstanceIds", unselectedInstanceIds);
             intent.putExtra("isBatchOperator", true);
             startActivity(intent);
         });

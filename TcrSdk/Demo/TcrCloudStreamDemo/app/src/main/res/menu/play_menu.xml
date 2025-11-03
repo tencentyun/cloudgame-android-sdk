@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/menu_debugview"
-            android:title="调试信息" />
+            android:id="@+id/menu_switchDebugView"
+            android:title="开/关 调试视图" />
+    <item
+            android:id="@+id/menu_switchJoinLeaveGroup"
+            android:title="加入/退出 群控" />
     <item
             android:id="@+id/menu_setRemoteVideoProfile"
             android:title="设置视频参数" />
     <item
-            android:id="@+id/menu_pauseStreaming"
-            android:title="暂停推流" />
+            android:id="@+id/menu_switchPauseResumeStreaming"
+            android:title="暂停/恢复 推流" />
     <item
-            android:id="@+id/menu_resumeStreaming"
-            android:title="恢复推流" />
+            android:id="@+id/menu_switchCamera"
+            android:title="打开/关闭 摄像头" />
     <item
-            android:id="@+id/menu_joinGroup"
-            android:title="加入群控" />
+            android:id="@+id/menu_switchMic"
+            android:title="打开/关闭 麦克风" />
     <item
             android:id="@+id/menu_sendCustomMsg"
             android:title="发送自定义消息" />
     <item
-            android:id="@+id/menu_openCamera"
-            android:title="打开摄像头" />
+            android:id="@+id/menu_transMessage"
+            android:title="transMessage" />
     <item
-            android:id="@+id/menu_closeCamera"
-            android:title="关闭摄像头" />
-    <item
-            android:id="@+id/menu_openMic"
-            android:title="打开麦克风" />
-    <item
-            android:id="@+id/menu_closeMic"
-            android:title="关闭麦克风" />
+            android:id="@+id/menu_switchIME"
+            android:title="switchIME" />
 </menu>

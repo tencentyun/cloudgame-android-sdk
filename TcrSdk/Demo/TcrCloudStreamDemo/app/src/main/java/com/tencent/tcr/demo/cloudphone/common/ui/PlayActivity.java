@@ -1,4 +1,4 @@
-package com.tencent.tcr.demo.cloudphone.sfu.ui;
+package com.tencent.tcr.demo.cloudphone.common.ui;
 
 
 import android.content.pm.ActivityInfo;
@@ -17,7 +17,6 @@ import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
-import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
@@ -29,7 +28,7 @@ public class PlayActivity extends AppCompatActivity {
     private static final String TAG = "PlayActivity";
     boolean mIsGroupControl;//是否是群控云手机
     private ArrayList<String> mGroupInstanceIds;//云手机的实例ID列表。如果是非群控（单机模式），则只取第一个实例ID。
-    private ArrayList<String> mPendingJoinInstanceIds;//待加入的云手机的实例ID列表。用于测试 join 操作
+    private ArrayList<String> mJoinLeaveInstanceIds;//待加入或退出的群控云手机的实例ID列表
     private TcrRenderView mRenderView;// 渲染视图
     private TcrSession mTcrSession;// 云渲染会话
     private ScreenConfig mScreenConfig;// 云端屏幕信息
@@ -85,6 +84,12 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
     };
+    private boolean isLocalIME = true; // 默认使用local输入法
+    private boolean menu_switchDebugView_state = false;// 调试视图，true显示，false不显示
+    private boolean menu_switchJoinGroup_state = false;// true 加入群控，false 退出群控
+    private boolean menu_switchPauseResumeStreaming_state = false;// true 暂停推流，false 恢复群控
+    private boolean menu_switchCamera_state = false;// true 打开摄像头，false 关闭摄像头
+    private boolean menu_switchMic_state = false;// true 打开麦克风，false 关闭麦克风
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +99,7 @@ public class PlayActivity extends AppCompatActivity {
         // 获取传入的参数
         mIsGroupControl = getIntent().getBooleanExtra("isGroupControl", false);
         mGroupInstanceIds = getIntent().getStringArrayListExtra("instanceIds");
-        mPendingJoinInstanceIds = getIntent().getStringArrayListExtra("pending_join_instanceIds");
+        mJoinLeaveInstanceIds = getIntent().getStringArrayListExtra("joinLeaveInstanceIds");
         findViewById(R.id.back).setOnClickListener(v -> onBackKeyPressed());
         findViewById(R.id.menu).setOnClickListener(v -> onMenuKeyPressed());
         findViewById(R.id.home).setOnClickListener(v -> onHomeKeyPressed());
@@ -108,10 +113,13 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.play_menu, menu);
+
+        if (!mIsGroupControl) {
+            menu.findItem(R.id.menu_switchJoinLeaveGroup).setVisible(false);
+        }
+
         return true;
     }
-
-    boolean enableDebugView = false;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -122,25 +130,32 @@ public class PlayActivity extends AppCompatActivity {
         } else if (id == R.id.menu_setRemoteVideoProfile) {
             mTcrSession.setRemoteVideoProfile(25, 500, 2000, 720, 1280, null);
             return true;
-        } else if (id == R.id.menu_pauseStreaming) {
-            mTcrSession.pauseStreaming("video");
-            return true;
-        } else if (id == R.id.menu_resumeStreaming) {
-            mTcrSession.resumeStreaming("video");
-            return true;
-        } else if (id == R.id.menu_joinGroup) {
-            if (mIsGroupControl) {
-                TcrSdk.getInstance().getAndroidInstance().joinGroupControl(mPendingJoinInstanceIds);
-                Toast.makeText(this, "joinGroup:" + TextUtils.join(",", mPendingJoinInstanceIds), Toast.LENGTH_SHORT)
-                        .show();
-                mGroupInstanceIds.addAll(mPendingJoinInstanceIds);
-                mPendingJoinInstanceIds.clear();
-                // 延迟一会后，同步操作列表
-                mRenderView.postDelayed(() -> TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds),
-                        1000);
+        } else if (id == R.id.menu_switchPauseResumeStreaming) {
+            menu_switchPauseResumeStreaming_state = !menu_switchPauseResumeStreaming_state;
+            if (menu_switchPauseResumeStreaming_state) {
+                mTcrSession.pauseStreaming("video");
+                Toast.makeText(this, "暂停推流", Toast.LENGTH_SHORT).show();
             } else {
-                Log.e(TAG, "not in group control");
-                Toast.makeText(this, "not in group control", Toast.LENGTH_SHORT).show();
+                mTcrSession.resumeStreaming("video");
+                Toast.makeText(this, "恢复推流", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        } else if (id == R.id.menu_switchJoinLeaveGroup) {
+            menu_switchJoinGroup_state = !menu_switchJoinGroup_state;
+            if (menu_switchJoinGroup_state) {// 加入群控
+                TcrSdk.getInstance().getAndroidInstance().joinGroupControl(mJoinLeaveInstanceIds);
+                // 同步操作列表(延迟一会)
+                ArrayList<String> list3 = new ArrayList<>(mGroupInstanceIds);
+                list3.addAll(mJoinLeaveInstanceIds);
+                mRenderView.postDelayed(() -> TcrSdk.getInstance().getAndroidInstance().setSyncList(list3), 1000);
+                // ui 交互
+                Toast.makeText(this, "加入群控:" + TextUtils.join(",", mJoinLeaveInstanceIds), Toast.LENGTH_LONG)
+                        .show();
+            } else {// 退出群控
+                TcrSdk.getInstance().getAndroidInstance().setSyncList(mGroupInstanceIds);
+                // ui 交互
+                Toast.makeText(this, "退出群控:" + TextUtils.join(",", mJoinLeaveInstanceIds), Toast.LENGTH_LONG)
+                        .show();
             }
             return true;
         } else if (id == R.id.menu_sendCustomMsg) {
@@ -154,25 +169,38 @@ public class PlayActivity extends AppCompatActivity {
             } else {
                 mCustomDataChannel_23332.send(ByteBuffer.wrap("hello world 2".getBytes()));
             }
-        } else if (id == R.id.menu_debugview) {
-            enableDebugView = !enableDebugView;
-            mRenderView.setDisplayDebugView(enableDebugView);
+        } else if (id == R.id.menu_switchDebugView) {
+            menu_switchDebugView_state = !menu_switchDebugView_state;
+            mRenderView.setDisplayDebugView(menu_switchDebugView_state);
             return true;
-        } else if (id == R.id.menu_openCamera) {
-            Toast.makeText(this, "打开摄像头", Toast.LENGTH_SHORT).show();
-            mTcrSession.setEnableLocalVideo(true);
+        } else if (id == R.id.menu_switchCamera) {
+            menu_switchCamera_state = !menu_switchCamera_state;
+            if (menu_switchCamera_state) {
+                Toast.makeText(this, "打开摄像头", Toast.LENGTH_SHORT).show();
+                mTcrSession.setEnableLocalVideo(true);
+            } else {
+                mTcrSession.setEnableLocalVideo(false);
+                Toast.makeText(this, "关闭摄像头", Toast.LENGTH_SHORT).show();
+            }
             return true;
-        } else if (id == R.id.menu_closeCamera) {
-            mTcrSession.setEnableLocalVideo(false);
-            Toast.makeText(this, "关闭摄像头", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.menu_switchMic) {
+            menu_switchMic_state = !menu_switchMic_state;
+            if (menu_switchCamera_state) {
+                mTcrSession.setEnableLocalAudio(true);
+                Toast.makeText(this, "打开麦克风", Toast.LENGTH_SHORT).show();
+            } else {
+                mTcrSession.setEnableLocalAudio(false);
+                Toast.makeText(this, "关闭麦克风", Toast.LENGTH_SHORT).show();
+            }
             return true;
-        } else if (id == R.id.menu_openMic) {
-            mTcrSession.setEnableLocalAudio(true);
-            Toast.makeText(this, "打开麦克风", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.menu_transMessage) {
+            TcrSdk.getInstance().getAndroidInstance().transMessage("com.example.myapplication", "trans_message");
             return true;
-        } else if (id == R.id.menu_closeMic) {
-            mTcrSession.setEnableLocalAudio(false);
-            Toast.makeText(this, "关闭麦克风", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.menu_switchIME) {
+            String imeType = isLocalIME ? "cloud" : "local";
+            TcrSdk.getInstance().getAndroidInstance().switchIME(imeType);
+            Toast.makeText(PlayActivity.this, "输入法已切换为" + imeType, Toast.LENGTH_SHORT).show();
+            isLocalIME = !isLocalIME; // 切换状态
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -203,12 +231,11 @@ public class PlayActivity extends AppCompatActivity {
         }
         // 将渲染视图添加到界面上
         ((FrameLayout) findViewById(R.id.render_view_parent)).addView(mRenderView);
-        mRenderView.setOnTouchListener(new MobileTouchListener(mTcrSession));
         //mRenderView.setDisplayDebugView(true);
     }
 
     /**
-     * 旋转屏幕方向以及画面方向, 以便本地的屏幕方向和云端保持一致<br>
+     * 旋转屏幕方向以及画面方向, 以便本地的显示和云端一致<br>
      * 注意: 请确保Manifest中的Activity有android:configChanges="orientation|screenSize"配置, 避免Activity因旋转而被销毁.<br>
      **/
     private void updateRotation() {
@@ -232,6 +259,27 @@ public class PlayActivity extends AppCompatActivity {
                 break;
             case "270_degree":
                 mRenderView.setVideoRotation(VideoRotation.ROTATION_90);
+                break;
+            default:
+                Log.w(TAG, "updateRotation() unknown degree=" + mScreenConfig.degree);
+                break;
+        }
+    }
+
+    private void updateRotation_mode2() {
+        // 屏幕方向不旋转。画面方向 180 和 0 的显示一样，270 和 90 的显示一样。
+        switch (mScreenConfig.degree) {
+            case "0_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
+                break;
+            case "90_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
+                break;
+            case "180_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
+                break;
+            case "270_degree":
+                mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
                 break;
             default:
                 Log.w(TAG, "updateRotation() unknown degree=" + mScreenConfig.degree);
@@ -303,7 +351,8 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onError(int port, int code, String msg) {
                 Log.e(TAG, "CustomDataChannel onError: port=" + port + ", code=" + code + ", msg=" + msg);
-                showToast("自定义数据通道连接失败 port=" + port + ", code=" + code + ", msg=" + msg, Toast.LENGTH_SHORT);
+                showToast("自定义数据通道连接失败 port=" + port + ", code=" + code + ", msg=" + msg,
+                        Toast.LENGTH_SHORT);
                 if (port == 23331) {
                     mIsConnected_23331 = false;
                 } else if (port == 23332) {

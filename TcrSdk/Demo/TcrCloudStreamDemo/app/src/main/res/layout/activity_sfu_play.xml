@@ -27,32 +27,32 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_gravity="bottom"
-        android:weightSum="3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_gravity="bottom"
+            android:weightSum="3"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
 
         <Button
-            android:id="@+id/back"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="返回" />
+                android:id="@+id/back"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="返回" />
 
         <Button
-            android:id="@+id/home"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="主页" />
+                android:id="@+id/home"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="主页" />
 
         <Button
-            android:id="@+id/menu"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="菜单" />
+                android:id="@+id/menu"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="菜单" />
     </LinearLayout>
 
 

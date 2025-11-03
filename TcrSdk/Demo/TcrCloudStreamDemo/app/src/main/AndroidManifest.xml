@@ -29,11 +29,12 @@
         </activity>
 
         <activity android:name=".sfu.ui.GetTokenActivity" />
-        <activity android:name=".sfu.ui.PlayActivity" android:configChanges="orientation|screenSize" />
-        <activity android:name=".sfu.ui.InstanceListActivity" />
+        <activity
+                android:name=".common.ui.PlayActivity"
+                android:configChanges="orientation|screenSize" />
+        <activity android:name=".common.ui.InstanceListActivity" />
 
         <activity android:name=".operator.ui.LoginActivity"/>
         <activity android:name=".operator.ui.FunctionActivity" />
-        <activity android:name=".operator.ui.PlayActivity" />
     </application>
 </manifest>

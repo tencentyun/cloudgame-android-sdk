@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="请输入实例ID，多个实例用逗号分隔"
-            android:text="cc_12_2"
+            android:text="ACP250912L3WXP9S,ACP250912QTIBFLZ,ACP250912VLR5Y1C"
             android:inputType="text"
             android:layout_marginHorizontal="32dp"
             app:layout_constraintStart_toStartOf="parent"
