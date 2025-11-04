@@ -1,5 +1,9 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.33.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.32.0/TcrSdk) (2025-11-04)
+**Bug Fixes** 
+- Fixed garbled screen issue in `TcrRenderView.Observer#onFrame` callback Bitmap when video stream resolution changes.
+
 # [Version 3.33.1](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.32.0/TcrSdk) (2025-10-29)
 **Bug Fixes** 
 - Fixed issue with cloud phone Pass unable to use TcrProxy SDK.
