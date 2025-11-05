@@ -124,13 +124,9 @@ public class CustomVideoI420 {
         ByteBuffer[] i420Buffers = FrameDumper.getI420(mPreviewTexture, GLES11Ext.GL_TEXTURE_EXTERNAL_OES, videoWidth,
                 videoHeight, transformMatrix);
 
-        // 使用工具类构造视频帧对象
-        VideoFrame videoFrame = CustomVideoI420Helper.buildFrame(i420Buffers[0],  // Y平面
-                i420Buffers[1],  // U平面
-                i420Buffers[2],  // V平面
-                videoWidth, videoHeight, 0,               // 旋转角度
-                System.nanoTime()// 时间戳
-        );
+        // 使用工具类构造视频帧对象。建议监听releaseCallback，复用传入的ByteBuffer，避免频繁的内存申请释放影响性能。
+        VideoFrame videoFrame = CustomVideoI420Helper.buildFrame(i420Buffers[0], i420Buffers[1], i420Buffers[2],
+                videoWidth, videoHeight, 0, System.nanoTime(), null);
 
         // 发送自定义视频帧到 TcrSession 会话
         mSession.sendCustomVideo(videoFrame);

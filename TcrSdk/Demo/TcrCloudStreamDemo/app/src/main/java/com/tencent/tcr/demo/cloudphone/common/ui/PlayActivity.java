@@ -91,14 +91,8 @@ public class PlayActivity extends AppCompatActivity {
                         mInputActivityLauncher.launch(intent);
                     }
                     break;
-                case CAI_TRANS_MESSAGE:
-                case CAI_SYSTEM_USAGE:
-                case CAI_CLIPBOARD:
-                case CAI_NOTIFICATION:
-                case CAI_SYSTEM_STATUS:
-                    Log.d(TAG, "android instance event:" + event.name() + " msg: " + eventData.toString());
-                    break;
                 default:
+                    Log.d(TAG, "onEvent() event:" + event.name() + " msg: " + eventData.toString());
                     break;
             }
         }
