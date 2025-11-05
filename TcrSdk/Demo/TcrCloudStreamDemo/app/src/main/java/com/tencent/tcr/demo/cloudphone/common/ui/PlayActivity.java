@@ -118,6 +118,9 @@ public class PlayActivity extends AppCompatActivity {
             menu.findItem(R.id.menu_switchJoinLeaveGroup).setVisible(false);
         }
 
+        // 默认隐藏。完整逻辑的演示参考 https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Demo/TcrDemo/app/src/tcrdemo/java/com/tencent/tcrdemo/gameplay/InputActivity.java 和 INPUT_STATE_CHANGE 事件的处理。
+        menu.findItem(R.id.menu_switchIME).setVisible(false);
+
         return true;
     }
 
@@ -178,6 +181,7 @@ public class PlayActivity extends AppCompatActivity {
             if (menu_switchCamera_state) {
                 Toast.makeText(this, "打开摄像头", Toast.LENGTH_SHORT).show();
                 mTcrSession.setEnableLocalVideo(true);
+                mTcrSession.setLocalVideoProfile(720, 1280, 25, 500, 2000, false);//可选，设置，使用前置摄像头
             } else {
                 mTcrSession.setEnableLocalVideo(false);
                 Toast.makeText(this, "关闭摄像头", Toast.LENGTH_SHORT).show();
