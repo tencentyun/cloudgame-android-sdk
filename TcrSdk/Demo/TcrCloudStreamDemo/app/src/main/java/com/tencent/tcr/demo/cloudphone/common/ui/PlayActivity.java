@@ -1,6 +1,8 @@
 package com.tencent.tcr.demo.cloudphone.common.ui;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,8 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.gson.Gson;
 import com.tencent.tcr.demo.cloudphone.R;
+import com.tencent.tcr.demo.cloudphone.bean.HitInput;
 import com.tencent.tcr.sdk.api.CustomDataChannel;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
@@ -72,6 +78,19 @@ public class PlayActivity extends AppCompatActivity {
                     mScreenConfig = (ScreenConfig) eventData;
                     updateRotation();
                     break;
+                case INPUT_STATE_CHANGE:
+                    HitInput hitinput = new Gson().fromJson((String) eventData, HitInput.class);
+                    showToast("INPUT_STATE_CHANGE() hitinput=" + hitinput, Toast.LENGTH_SHORT);
+                    if (hitinput == null) {
+                        showToast("onEvent() hitinput=null" + hitinput, Toast.LENGTH_SHORT);
+                        break;
+                    }
+                    if ("normal_input".equals(hitinput.field_type)) {
+                        Intent intent = new Intent(PlayActivity.this, InputActivity.class);
+                        intent.putExtra(InputActivity.INPUT_TEXT, hitinput.text);
+                        mInputActivityLauncher.launch(intent);
+                    }
+                    break;
                 case CAI_TRANS_MESSAGE:
                 case CAI_SYSTEM_USAGE:
                 case CAI_CLIPBOARD:
@@ -91,6 +110,9 @@ public class PlayActivity extends AppCompatActivity {
     private boolean menu_switchCamera_state = false;// true 打开摄像头，false 关闭摄像头
     private boolean menu_switchMic_state = false;// true 打开麦克风，false 关闭麦克风
 
+    // 本地输入法Activity的启动器
+    private ActivityResultLauncher<Intent> mInputActivityLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +130,32 @@ public class PlayActivity extends AppCompatActivity {
         initTcrSession();
         // 创建渲染视图
         initTcrRenderView();
+
+        mInputActivityLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (mTcrSession == null) {
+                        Log.e(TAG, "onActivityResult mSession=null");
+                        return;
+                    }
+
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data == null) {
+                            Log.e(TAG, "onActivityResult data=null");
+                            return;
+                        }
+                        String input = data.getStringExtra(InputActivity.INPUT_TEXT);
+                        if (input == null) {
+                            Log.e(TAG, "onActivityResult input=null");
+                            return;
+                        }
+
+                        Log.d(TAG, "onActivityResult input:" + input);
+                        mTcrSession.inputText(input, true, input.length());
+                    }
+                });
+
     }
 
     @Override
@@ -117,10 +165,6 @@ public class PlayActivity extends AppCompatActivity {
         if (!mIsGroupControl) {
             menu.findItem(R.id.menu_switchJoinLeaveGroup).setVisible(false);
         }
-
-        // 默认隐藏。完整逻辑的演示参考 https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Demo/TcrDemo/app/src/tcrdemo/java/com/tencent/tcrdemo/gameplay/InputActivity.java 和 INPUT_STATE_CHANGE 事件的处理。
-        menu.findItem(R.id.menu_switchIME).setVisible(false);
-
         return true;
     }
 

@@ -9,7 +9,7 @@ ext {
     twebrtcVersion = "0.1.21"
     tpmonetVersion = "0.0.5"
     TcrProxyVersion = "1.2.0"
-    tcrsdkVersion = "3.33.5"
+    tcrsdkVersion = "3.33.7"
 
     // =========== 构建参数 ===========
     buildTime = project.findProperty('buildTime') ?: new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))

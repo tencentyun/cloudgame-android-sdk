@@ -33,6 +33,9 @@
                 android:name=".common.ui.PlayActivity"
                 android:configChanges="orientation|screenSize" />
         <activity android:name=".common.ui.InstanceListActivity" />
+        <activity
+            android:name=".common.ui.InputActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity android:name=".operator.ui.LoginActivity"/>
         <activity android:name=".operator.ui.FunctionActivity" />
