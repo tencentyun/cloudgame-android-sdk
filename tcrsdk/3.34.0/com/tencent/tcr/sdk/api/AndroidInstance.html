@@ -1,0 +1,2605 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>AndroidInstance 3.34.0 API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.tencent.tcr.sdk.api</a></div>
+        <h2 title="Interface AndroidInstance" class="title">Interface AndroidInstance</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public interface <span class="typeNameLabel"><a href=AndroidInstance.html>AndroidInstance</a></span>
+
+                    </pre>
+                    <div class="block"><p>AndroidInstance接口定义了云手机实例的各种操作功能。 </p><p> 该接口提供了对云手机实例的单实例操作和批量操作功能，包括： </p><ul><li>截图和文件上传下载</li><li>系统设置（分辨率、GPS、传感器等）</li><li>应用管理（安装、卸载、启动、停止等）</li><li>媒体控制（播放、停止、搜索等）</li><li>群控功能（连接、同步等）</li></ul> 所有操作均通过异步回调返回结果。</div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public class</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="AndroidInstance.UploadFileItem.html">AndroidInstance.UploadFileItem</a></span></code>
+                                            </th>
+                                            <td class="colLast"><p>文件上传项数据结构</p></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#getInstanceImage(java.util.Map,AsyncCallback<Bitmap>)>getInstanceImage</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, <a href=https://developer.android.com/reference/kotlin/java/lang/Object.html>Object</a>&gt; params, AsyncCallback&lt;Bitmap&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">获取云手机实例截图</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#getInstanceImageAddress(java.util.Map)>getInstanceImageAddress</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, <a href=https://developer.android.com/reference/kotlin/java/lang/Object.html>Object</a>&gt; params) </code>
+                                            </th>
+                                            <td class="colLast">获取云手机实例截图地址</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#uploadFile(java.lang.String,kotlin.Array,AsyncCallback<String>)>uploadFile</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html>Array</a>&lt;<a href=AndroidInstance.UploadFileItem.html>AndroidInstance.UploadFileItem</a>&gt; files, AsyncCallback&lt;String&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">上传多个文件到云手机实例 默认上传到/sdcard/Download目录下，可使用path指定上传目录（仅支持/sdcard/下目录）</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#uploadMedia(java.lang.String,kotlin.Array,AsyncCallback<String>)>uploadMedia</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html>Array</a>&lt;<a href=AndroidInstance.UploadFileItem.html>AndroidInstance.UploadFileItem</a>&gt; files, AsyncCallback&lt;String&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">上传多个媒体文件到云手机实例 固定上传至/data/media/0/DCIM目录，上传完毕会通知系统添加媒体文件到相册中</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#downloadFile(java.util.Map,java.io.File,AsyncCallback<String>)>downloadFile</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, <a href=https://developer.android.com/reference/kotlin/java/lang/Object.html>Object</a>&gt; params, <a href=https://developer.android.com/reference/kotlin/java/io/File.html>File</a> localFile, AsyncCallback&lt;String&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">从云手机实例下载文件</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#getInstanceDownloadAddress(java.lang.String,java.lang.String)>getInstanceDownloadAddress</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> path) </code>
+                                            </th>
+                                            <td class="colLast">获取云手机实例文件的下载地址</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#getInstanceDownloadLogcatAddress(java.lang.String,int)>getInstanceDownloadLogcatAddress</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, int recentDays) </code>
+                                            </th>
+                                            <td class="colLast">获取云手机实例日志的下载地址</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#switchIME(java.lang.String)>switchIME</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ime) </code>
+                                            </th>
+                                            <td class="colLast">切换输入法</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setResolution(java.util.Map,AsyncCallback<BatchTaskResponse>)>setResolution</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">修改云手机实例的分辨率（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setLocation(java.util.Map,AsyncCallback<BatchTaskResponse>)>setLocation</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">修改云手机实例的GPS位置（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#paste(java.util.Map,AsyncCallback<BatchTaskResponse>)>paste</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">在云手机实例中粘贴文本（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#sendClipboard(java.util.Map,AsyncCallback<BatchTaskResponse>)>sendClipboard</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">修改云手机实例的剪贴板内容（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setSensor(java.util.Map,AsyncCallback<BatchTaskResponse>)>setSensor</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">修改云手机实例的传感器数据（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#shake(java.util.Map,AsyncCallback<BatchTaskResponse>)>shake</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">触发云手机实例的摇动事件（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#blow(java.util.Map,AsyncCallback<BatchTaskResponse>)>blow</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">触发云手机实例的吹气事件（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#sendTransMessage(java.util.Map,AsyncCallback<BatchTaskResponse>)>sendTransMessage</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">向云手机实例发送消息（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#describeInstanceProperties(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeInstanceProperties</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询云手机实例属性（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#modifyInstanceProperties(java.util.Map,AsyncCallback<BatchTaskResponse>)>modifyInstanceProperties</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">修改云手机实例属性（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#listUserApps(java.util.Map,AsyncCallback<BatchTaskResponse>)>listUserApps</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询云手机实例上安装的应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#modifyKeepFrontAppStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>modifyKeepFrontAppStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">修改云手机实例的前台保活设置（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#describeKeepFrontAppStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeKeepFrontAppStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询云手机实例的前台保活状态（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#unInstallByPackageName(java.util.Map,AsyncCallback<BatchTaskResponse>)>unInstallByPackageName</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">卸载云手机实例上的应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#startApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>startApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">启动云手机实例上的应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#stopApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>stopApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">停止云手机实例上正在运行的应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#clearAppData(java.util.Map,AsyncCallback<BatchTaskResponse>)>clearAppData</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">清除云手机实例上应用程序的数据（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#enableApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>enableApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">启用云手机实例上的应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#disableApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>disableApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">禁用云手机实例上的应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#startCameraMediaPlay(java.util.Map,AsyncCallback<BatchTaskResponse>)>startCameraMediaPlay</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">在云手机实例上播放媒体文件（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#stopCameraMediaPlay(java.util.Map,AsyncCallback<BatchTaskResponse>)>stopCameraMediaPlay</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">停止云手机实例上正在播放的媒体（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#describeCameraMediaPlayStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeCameraMediaPlayStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询云手机实例上媒体的播放状态（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#displayCameraImage(java.util.Map,AsyncCallback<BatchTaskResponse>)>displayCameraImage</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">在云手机实例上显示图片（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i31" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#addKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>addKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">添加后台保活应用（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i32" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#removeKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>removeKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">移除后台保活应用（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i33" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>setKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">设置后台保活应用列表（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i34" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#describeKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询后台保活应用列表（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i35" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#clearKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>clearKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">清空后台保活应用列表（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i36" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#mute(java.util.Map,AsyncCallback<BatchTaskResponse>)>mute</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">切换云手机实例的静音状态（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i37" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#mediaSearch(java.util.Map,AsyncCallback<BatchTaskResponse>)>mediaSearch</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">在云手机实例中搜索媒体文件（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i38" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#reboot(java.util.Map,AsyncCallback<BatchTaskResponse>)>reboot</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">重启云手机实例（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i39" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#listAllApps(java.util.Map,AsyncCallback<BatchTaskResponse>)>listAllApps</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询云手机实例上所有应用程序（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i40" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#moveAppBackground(java.util.Map,AsyncCallback<BatchTaskResponse>)>moveAppBackground</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">将应用移动到后台运行（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i41" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#addAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>addAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">添加安装黑名单应用（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i42" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#removeAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>removeAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">移除应用安装黑名单（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i43" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>setAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">设置应用安装黑名单列表（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i44" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#describeAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">查询应用安装黑名单列表（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i45" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#clearAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>clearAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">清空应用安装黑名单（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i46" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#getNavVisibleStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>getNavVisibleStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">获取系统导航栏显示状态（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i47" class="rowColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#getSystemMusicVolume(java.util.Map,AsyncCallback<BatchTaskResponse>)>getSystemMusicVolume</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">获取系统媒体音量大小（支持批量操作）</td>
+                                        </tr>
+                                        
+                                        <tr id="i48" class="altColor">
+                                            <td class="colFirst"><code>abstract boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setMaster(java.lang.String)>setMaster</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId) </code>
+                                            </th>
+                                            <td class="colLast">设置群控主控实例</td>
+                                        </tr>
+                                        
+                                        <tr id="i49" class="rowColor">
+                                            <td class="colFirst"><code>abstract boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#setSyncList(java.util.List)>setSyncList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; instanceIds) </code>
+                                            </th>
+                                            <td class="colLast">设置群控同步列表</td>
+                                        </tr>
+                                        
+                                        <tr id="i50" class="altColor">
+                                            <td class="colFirst"><code>abstract void</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#joinGroupControl(java.util.List)>joinGroupControl</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; instanceIds) </code>
+                                            </th>
+                                            <td class="colLast">加入群控</td>
+                                        </tr>
+                                        
+                                        <tr id="i51" class="rowColor">
+                                            <td class="colFirst"><code>abstract boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#requestStream(java.lang.String,java.lang.String,java.lang.String)>requestStream</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> status, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> level) </code>
+                                            </th>
+                                            <td class="colLast">请求被控串流</td>
+                                        </tr>
+                                        
+                                        <tr id="i52" class="altColor">
+                                            <td class="colFirst"><code>abstract boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AndroidInstance.html#transMessage(java.lang.String,java.lang.String)>transMessage</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> packageName, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> msg) </code>
+                                            </th>
+                                            <td class="colLast">发送App binder消息</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getInstanceImage(java.util.Map,AsyncCallback&lt;Bitmap&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getInstanceImage</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#getInstanceImage(java.util.Map,AsyncCallback<Bitmap>)>getInstanceImage</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, <a href=https://developer.android.com/reference/kotlin/java/lang/Object.html>Object</a>&gt; params, AsyncCallback&lt;Bitmap&gt; callback)</pre>
+                                        <div class="block"><p>获取云手机实例截图</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 截图参数Map，必须包含以下字段： <ul><li>instance_id: 云手机实例ID</li><li>screenshot_quality: 截图质量(0-100)，默认20</li><li>screenshot_width: 截图宽度（可选）</li><li>screenshot_height: 截图高度（可选）</li></ul></dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回截图结果（Bitmap）或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getInstanceImageAddress(java.util.Map)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getInstanceImageAddress</h4>
+                                        <pre class="methodSignature"> abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=AndroidInstance.html#getInstanceImageAddress(java.util.Map)>getInstanceImageAddress</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, <a href=https://developer.android.com/reference/kotlin/java/lang/Object.html>Object</a>&gt; params)</pre>
+                                        <div class="block"><p>获取云手机实例截图地址</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 截图参数Map，必须包含以下字段： <ul><li>instance_id: 云手机实例ID</li><li>screenshot_quality: 截图质量(0-100)，默认20</li><li>screenshot_width: 截图宽度（可选）</li><li>screenshot_height: 截图高度（可选）</li></ul></dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>截图URL地址，如果获取失败返回null</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="uploadFile(java.lang.String,kotlin.Array,AsyncCallback&lt;String&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>uploadFile</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#uploadFile(java.lang.String,kotlin.Array,AsyncCallback<String>)>uploadFile</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html>Array</a>&lt;<a href=AndroidInstance.UploadFileItem.html>AndroidInstance.UploadFileItem</a>&gt; files, AsyncCallback&lt;String&gt; callback)</pre>
+                                        <div class="block"><p>上传多个文件到云手机实例 </p><p>默认上传到/sdcard/Download目录下，可使用path指定上传目录（仅支持/sdcard/下目录）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceId</code> - 目标云手机实例ID</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>files</code> - 要上传的文件数组，每个文件包含： <ul><li>fileBytes: 文件二进制内容</li><li>fileName: 文件名（含扩展名）</li><li>filePath: 云端存储路径（如 &quot;/sdcard/DCIM/&quot;）</li></ul></dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，返回上传结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="uploadMedia(java.lang.String,kotlin.Array,AsyncCallback&lt;String&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>uploadMedia</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#uploadMedia(java.lang.String,kotlin.Array,AsyncCallback<String>)>uploadMedia</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html>Array</a>&lt;<a href=AndroidInstance.UploadFileItem.html>AndroidInstance.UploadFileItem</a>&gt; files, AsyncCallback&lt;String&gt; callback)</pre>
+                                        <div class="block"><p>上传多个媒体文件到云手机实例 </p><p>固定上传至/data/media/0/DCIM目录，上传完毕会通知系统添加媒体文件到相册中</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceId</code> - 目标云手机实例ID</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>files</code> - 要上传的媒体文件数组</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，返回上传结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="downloadFile(java.util.Map,java.io.File,AsyncCallback&lt;String&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>downloadFile</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#downloadFile(java.util.Map,java.io.File,AsyncCallback<String>)>downloadFile</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, <a href=https://developer.android.com/reference/kotlin/java/lang/Object.html>Object</a>&gt; params, <a href=https://developer.android.com/reference/kotlin/java/io/File.html>File</a> localFile, AsyncCallback&lt;String&gt; callback)</pre>
+                                        <div class="block"><p>从云手机实例下载文件</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 下载参数Map，必须包含以下字段： <ul><li>instance_id: 云手机实例ID</li><li>path: 云端文件路径</li></ul></dd>
+                                            
+                                            
+                                            
+                                            <dd><code>localFile</code> - 要保存的本地文件</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回下载结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getInstanceDownloadAddress(java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getInstanceDownloadAddress</h4>
+                                        <pre class="methodSignature"> abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=AndroidInstance.html#getInstanceDownloadAddress(java.lang.String,java.lang.String)>getInstanceDownloadAddress</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> path)</pre>
+                                        <div class="block"><p>获取云手机实例文件的下载地址</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceId</code> - 云手机实例ID</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>path</code> - 云端文件路径</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>文件下载URL，如果获取失败返回null</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getInstanceDownloadLogcatAddress(java.lang.String,int)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getInstanceDownloadLogcatAddress</h4>
+                                        <pre class="methodSignature"> abstract <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> <a href=AndroidInstance.html#getInstanceDownloadLogcatAddress(java.lang.String,int)>getInstanceDownloadLogcatAddress</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, int recentDays)</pre>
+                                        <div class="block"><p>获取云手机实例日志的下载地址</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceId</code> - 云手机实例ID</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>recentDays</code> - 表示下载几天内修改过的logcat日志文件</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>日志下载URL，如果获取失败返回null</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="switchIME(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>switchIME</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#switchIME(java.lang.String)>switchIME</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> ime)</pre>
+                                        <div class="block"><p>切换输入法</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>ime</code> - 输入法类型：&quot;cloud&quot; : 云端输入法，&quot;local&quot;：本地输入法</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setResolution(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setResolution</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#setResolution(java.util.Map,AsyncCallback<BatchTaskResponse>)>setResolution</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>修改云手机实例的分辨率（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含修改分辨率所需参数的Map，格式：{&quot;实例ID1&quot;: {&quot;Width&quot;:宽,&quot;Height&quot;:高,&quot;DPI&quot;:像素密度}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setLocation(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setLocation</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#setLocation(java.util.Map,AsyncCallback<BatchTaskResponse>)>setLocation</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>修改云手机实例的GPS位置（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含GPS位置信息的Map，格式：{&quot;实例ID1&quot;: {&quot;Longitude&quot;:经度,&quot;Latitude&quot;:纬度}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="paste(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>paste</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#paste(java.util.Map,AsyncCallback<BatchTaskResponse>)>paste</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>在云手机实例中粘贴文本（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含要粘贴的文本内容的Map，格式：{&quot;实例ID1&quot;: {&quot;Text&quot;:&quot;内容&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="sendClipboard(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>sendClipboard</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#sendClipboard(java.util.Map,AsyncCallback<BatchTaskResponse>)>sendClipboard</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>修改云手机实例的剪贴板内容（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含剪贴板新内容的Map，格式：{&quot;实例ID1&quot;: {&quot;Text&quot;:&quot;内容&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setSensor(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setSensor</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#setSensor(java.util.Map,AsyncCallback<BatchTaskResponse>)>setSensor</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>修改云手机实例的传感器数据（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含传感器数据的Map，格式：{&quot;实例ID1&quot;: {&quot;Type&quot;:&quot;类型&quot;,&quot;Accuracy&quot;:精度,&quot;Values&quot;:[x,y,z]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="shake(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>shake</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#shake(java.util.Map,AsyncCallback<BatchTaskResponse>)>shake</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>触发云手机实例的摇动事件（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 摇动参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="blow(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>blow</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#blow(java.util.Map,AsyncCallback<BatchTaskResponse>)>blow</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>触发云手机实例的吹气事件（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 吹气参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="sendTransMessage(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>sendTransMessage</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#sendTransMessage(java.util.Map,AsyncCallback<BatchTaskResponse>)>sendTransMessage</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>向云手机实例发送消息（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含消息内容的Map，格式：{&quot;实例ID1&quot;: {&quot;PackageName&quot;:&quot;包名&quot;,&quot;Msg&quot;:&quot;消息内容&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="describeInstanceProperties(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>describeInstanceProperties</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#describeInstanceProperties(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeInstanceProperties</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询云手机实例属性（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 查询条件Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回查询结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="modifyInstanceProperties(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>modifyInstanceProperties</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#modifyInstanceProperties(java.util.Map,AsyncCallback<BatchTaskResponse>)>modifyInstanceProperties</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>修改云手机实例属性（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含属性键值对的Map，格式：{&quot;实例ID1&quot;: {&quot;RequestID&quot;:&quot;UUID&quot;,&quot;DeviceInfo&quot;:{},&quot;ProxyInfo&quot;:{},&quot;GPSInfo&quot;:{},&quot;SIMInfo&quot;:{},&quot;LocaleInfo&quot;:{},&quot;LanguageInfo&quot;:{},&quot;ExtraProperties&quot;:[]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listUserApps(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listUserApps</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#listUserApps(java.util.Map,AsyncCallback<BatchTaskResponse>)>listUserApps</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询云手机实例上安装的应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含查询条件的Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回应用列表或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="modifyKeepFrontAppStatus(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>modifyKeepFrontAppStatus</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#modifyKeepFrontAppStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>modifyKeepFrontAppStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>修改云手机实例的前台保活设置（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含保活设置的Map，格式：{&quot;实例ID1&quot;: {&quot;PackageName&quot;:&quot;包名&quot;,&quot;Enable&quot;:状态,&quot;RestartInterValSeconds&quot;:重新拉起最长间隔秒数}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="describeKeepFrontAppStatus(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>describeKeepFrontAppStatus</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#describeKeepFrontAppStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeKeepFrontAppStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询云手机实例的前台保活状态（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含查询条件的Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回保活状态或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="unInstallByPackageName(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>unInstallByPackageName</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#unInstallByPackageName(java.util.Map,AsyncCallback<BatchTaskResponse>)>unInstallByPackageName</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>卸载云手机实例上的应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="startApp(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>startApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#startApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>startApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>启动云手机实例上的应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名和启动参数的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;,&quot;activity&quot;:&quot;活动名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="stopApp(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>stopApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#stopApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>stopApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>停止云手机实例上正在运行的应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="clearAppData(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>clearAppData</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#clearAppData(java.util.Map,AsyncCallback<BatchTaskResponse>)>clearAppData</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>清除云手机实例上应用程序的数据（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="enableApp(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>enableApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#enableApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>enableApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>启用云手机实例上的应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="disableApp(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>disableApp</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#disableApp(java.util.Map,AsyncCallback<BatchTaskResponse>)>disableApp</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>禁用云手机实例上的应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="startCameraMediaPlay(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>startCameraMediaPlay</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#startCameraMediaPlay(java.util.Map,AsyncCallback<BatchTaskResponse>)>startCameraMediaPlay</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>在云手机实例上播放媒体文件（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含媒体文件路径和播放参数的Map，格式：{&quot;实例ID1&quot;: {&quot;filePath&quot;:&quot;路径&quot;,&quot;loops&quot;:循环次数}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="stopCameraMediaPlay(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>stopCameraMediaPlay</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#stopCameraMediaPlay(java.util.Map,AsyncCallback<BatchTaskResponse>)>stopCameraMediaPlay</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>停止云手机实例上正在播放的媒体（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 停止参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="describeCameraMediaPlayStatus(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>describeCameraMediaPlayStatus</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#describeCameraMediaPlayStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeCameraMediaPlayStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询云手机实例上媒体的播放状态（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 媒体查询参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回媒体状态或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="displayCameraImage(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>displayCameraImage</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#displayCameraImage(java.util.Map,AsyncCallback<BatchTaskResponse>)>displayCameraImage</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>在云手机实例上显示图片（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含图片路径和显示参数的Map，格式：{&quot;实例ID1&quot;: {&quot;imagePath&quot;:&quot;路径&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="addKeepAliveList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addKeepAliveList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#addKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>addKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>添加后台保活应用（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;appList&quot;:[&quot;包名&quot;]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="removeKeepAliveList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>removeKeepAliveList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#removeKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>removeKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>移除后台保活应用（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;appList&quot;:[&quot;包名&quot;]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setKeepAliveList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setKeepAliveList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#setKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>setKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>设置后台保活应用列表（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名列表的Map，格式：{&quot;实例ID1&quot;: {&quot;appList&quot;:[&quot;包名1&quot;,&quot;包名2&quot;]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="describeKeepAliveList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>describeKeepAliveList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#describeKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询后台保活应用列表（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 查询参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回保活应用列表或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="clearKeepAliveList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>clearKeepAliveList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#clearKeepAliveList(java.util.Map,AsyncCallback<BatchTaskResponse>)>clearKeepAliveList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>清空后台保活应用列表（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 清空参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="mute(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>mute</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#mute(java.util.Map,AsyncCallback<BatchTaskResponse>)>mute</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>切换云手机实例的静音状态（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含静音状态的Map，格式：{&quot;实例ID1&quot;: {&quot;mute&quot;:状态}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="mediaSearch(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>mediaSearch</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#mediaSearch(java.util.Map,AsyncCallback<BatchTaskResponse>)>mediaSearch</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>在云手机实例中搜索媒体文件（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含搜索条件的Map，格式：{&quot;实例ID1&quot;: {&quot;keyword&quot;:&quot;关键词&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回搜索结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="reboot(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>reboot</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#reboot(java.util.Map,AsyncCallback<BatchTaskResponse>)>reboot</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>重启云手机实例（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 重启参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="listAllApps(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>listAllApps</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#listAllApps(java.util.Map,AsyncCallback<BatchTaskResponse>)>listAllApps</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询云手机实例上所有应用程序（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 查询参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回应用列表或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="moveAppBackground(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>moveAppBackground</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#moveAppBackground(java.util.Map,AsyncCallback<BatchTaskResponse>)>moveAppBackground</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>将应用移动到后台运行（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;packageName&quot;:&quot;包名&quot;}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="addAppInstallBlackList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addAppInstallBlackList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#addAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>addAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>添加安装黑名单应用（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;appList&quot;:[&quot;包名&quot;]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="removeAppInstallBlackList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>removeAppInstallBlackList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#removeAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>removeAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>移除应用安装黑名单（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名的Map，格式：{&quot;实例ID1&quot;: {&quot;appList&quot;:[&quot;包名&quot;]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setAppInstallBlackList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setAppInstallBlackList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#setAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>setAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>设置应用安装黑名单列表（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 包含应用包名列表的Map，格式：{&quot;实例ID1&quot;: {&quot;appList&quot;:[&quot;包名1&quot;,&quot;包名2&quot;]}, &quot;实例ID2&quot;: {...</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="describeAppInstallBlackList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>describeAppInstallBlackList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#describeAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>describeAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>查询应用安装黑名单列表（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 查询参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回黑名单列表或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="clearAppInstallBlackList(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>clearAppInstallBlackList</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#clearAppInstallBlackList(java.util.Map,AsyncCallback<BatchTaskResponse>)>clearAppInstallBlackList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>清空应用安装黑名单（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 清空参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回操作结果或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getNavVisibleStatus(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getNavVisibleStatus</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#getNavVisibleStatus(java.util.Map,AsyncCallback<BatchTaskResponse>)>getNavVisibleStatus</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>获取系统导航栏显示状态（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 查询参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回导航栏状态或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSystemMusicVolume(java.util.Map,AsyncCallback&lt;BatchTaskResponse&gt;)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSystemMusicVolume</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#getSystemMusicVolume(java.util.Map,AsyncCallback<BatchTaskResponse>)>getSystemMusicVolume</a>(<a href=https://developer.android.com/reference/kotlin/java/util/Map.html>Map</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>, JsonObject&gt; params, AsyncCallback&lt;BatchTaskResponse&gt; callback)</pre>
+                                        <div class="block"><p>获取系统媒体音量大小（支持批量操作）</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>params</code> - 查询参数Map，格式：{&quot;实例ID1&quot;: {}, &quot;实例ID2&quot;: {}}</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - 请求回调，用于返回音量大小或错误信息</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setMaster(java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setMaster</h4>
+                                        <pre class="methodSignature"> abstract boolean <a href=AndroidInstance.html#setMaster(java.lang.String)>setMaster</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId)</pre>
+                                        <div class="block"><p>设置群控主控实例</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceId</code> - 要设置为主控的实例ID</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否设置成功</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="setSyncList(java.util.List)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setSyncList</h4>
+                                        <pre class="methodSignature"> abstract boolean <a href=AndroidInstance.html#setSyncList(java.util.List)>setSyncList</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; instanceIds)</pre>
+                                        <div class="block"><p>设置群控同步列表</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceIds</code> - 要同步的实例ID列表</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否设置成功</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="joinGroupControl(java.util.List)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>joinGroupControl</h4>
+                                        <pre class="methodSignature"> abstract void <a href=AndroidInstance.html#joinGroupControl(java.util.List)>joinGroupControl</a>(<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; instanceIds)</pre>
+                                        <div class="block"><p>加入群控</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceIds</code> - 要加入群控的实例ID列表</dd>
+                                            
+                                            
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="requestStream(java.lang.String,java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requestStream</h4>
+                                        <pre class="methodSignature"> abstract boolean <a href=AndroidInstance.html#requestStream(java.lang.String,java.lang.String,java.lang.String)>requestStream</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> instanceId, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> status, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> level)</pre>
+                                        <div class="block"><p>请求被控串流</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>instanceId</code> - 请求串流的instanceId</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>status</code> - 串流状态（&quot;open&quot;开启/&quot;close&quot;关闭）</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>level</code> - 串流质量等级（&quot;low&quot;/&quot;normal&quot;/&quot;high&quot;）</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否请求成功</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="transMessage(java.lang.String,java.lang.String)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>transMessage</h4>
+                                        <pre class="methodSignature"> abstract boolean <a href=AndroidInstance.html#transMessage(java.lang.String,java.lang.String)>transMessage</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> packageName, <a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> msg)</pre>
+                                        <div class="block"><p>发送App binder消息</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>packageName</code> - 目标应用包名</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>msg</code> - 消息内容</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>是否发送成功</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>
