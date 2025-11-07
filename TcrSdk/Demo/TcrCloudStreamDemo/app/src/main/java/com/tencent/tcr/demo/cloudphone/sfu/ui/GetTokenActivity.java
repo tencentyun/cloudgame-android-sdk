@@ -6,11 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.tencent.tcr.demo.cloudphone.DemoApp;
 import com.tencent.tcr.demo.cloudphone.R;
 import com.tencent.tcr.demo.cloudphone.common.ui.InstanceListActivity;
+import com.tencent.tcr.demo.cloudphone.sfu.network.BaseRequest;
 import com.tencent.tcr.demo.cloudphone.sfu.network.CreateAndroidInstancesAccessTokenBaseRequest;
 import com.tencent.tcr.demo.cloudphone.sfu.network.CreateAndroidInstancesAccessTokenResponse;
 import com.tencent.tcr.sdk.api.AsyncCallback;
@@ -45,6 +47,10 @@ public class GetTokenActivity extends AppCompatActivity {
         etInstanceIds = findViewById(R.id.etInstanceIds);
         etUserIp = findViewById(R.id.etUserIp);
         findViewById(R.id.btnConfirm).setOnClickListener(mClickListener);
+        RadioGroup rgEnvironment = findViewById(R.id.rg_environment);
+        rgEnvironment.setOnCheckedChangeListener((group, checkedId) -> {
+            BaseRequest.USE_TEST_URL = checkedId == R.id.rb_test;
+        });
     }
 
 
@@ -54,7 +60,7 @@ public class GetTokenActivity extends AppCompatActivity {
             @Override
             public void onSuccess(CreateAndroidInstancesAccessTokenResponse response) {
                 // 给 TcrSdk 设置访问信息和令牌
-                Log.e(TAG, "CreateAndroidInstancesAccessToken Response AccessInfo=" + response.AccessInfo + " Token="
+                Log.i(TAG, "CreateAndroidInstancesAccessToken Response AccessInfo=" + response.AccessInfo + " Token="
                         + response.Token);
                 TcrSdk.getInstance().setAccessToken(response.AccessInfo, response.Token);
 
