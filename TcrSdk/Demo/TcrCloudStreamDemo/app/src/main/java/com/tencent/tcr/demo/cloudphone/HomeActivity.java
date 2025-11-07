@@ -20,8 +20,8 @@ import pub.devrel.easypermissions.EasyPermissions.PermissionCallbacks;
 public class HomeActivity extends AppCompatActivity implements PermissionCallbacks {
 
     private static final String TAG = "com.tencent.tcr.demo.HomeActivity";
-    private Button sfuDemo, operatorDemo;
-    private TextView textView;
+    private Button btnSfuDemo, btnOperatorDemo;
+    private TextView tvMsg;
     private volatile boolean initTcrSdkSuccess = false;
 
     @Override
@@ -29,11 +29,13 @@ public class HomeActivity extends AppCompatActivity implements PermissionCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        sfuDemo = findViewById(R.id.sfuDemo);
-        operatorDemo = findViewById(R.id.operatorDemo);
-        textView = findViewById(R.id.textView);
-        sfuDemo.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, GetTokenActivity.class)));
-        operatorDemo.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, LoginActivity.class)));
+        TextView tvVersion = findViewById(R.id.tv_version);
+        tvVersion.setText("Demo:" + BuildConfig.Demo_GitVersion + " TcrSdk:" + BuildConfig.TcrSdk_Version);
+        btnSfuDemo = findViewById(R.id.btn_sfu_demo);
+        btnSfuDemo.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, GetTokenActivity.class)));
+        btnOperatorDemo = findViewById(R.id.btn_op_demo);
+        btnOperatorDemo.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, LoginActivity.class)));
+        tvMsg = findViewById(R.id.tv_msg);
 
         requestPermissions();// 请求权限
 
@@ -63,15 +65,15 @@ public class HomeActivity extends AppCompatActivity implements PermissionCallbac
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         Log.e(TAG, "onPermissionsDenied requestCode:" + requestCode + " perms:" + perms);
-        textView.setText("Demo 需要录音、摄像头权限");
+        tvMsg.setText("Demo 需要录音、摄像头权限");
     }
 
     private void tryEnableDemo() {
         String[] permissions = {android.Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
         if (EasyPermissions.hasPermissions(this, permissions) && initTcrSdkSuccess) {
-            sfuDemo.setEnabled(true);
-            operatorDemo.setEnabled(true);
-            textView.setText("");
+            btnSfuDemo.setEnabled(true);
+            btnOperatorDemo.setEnabled(true);
+            tvMsg.setText("");
         }
     }
 
@@ -98,7 +100,7 @@ public class HomeActivity extends AppCompatActivity implements PermissionCallbac
                 runOnUiThread(() -> {
                     String errorMsg = "初始化TcrSdk失败：" + code + " msg:" + msg;
                     Log.e(TAG, errorMsg);
-                    textView.setText(errorMsg);
+                    tvMsg.setText(errorMsg);
                 });
             }
         };

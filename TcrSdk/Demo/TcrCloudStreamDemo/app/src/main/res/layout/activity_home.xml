@@ -8,7 +8,7 @@
         tools:context=".HomeActivity">
 
     <Button
-            android:id="@+id/sfuDemo"
+            android:id="@+id/btn_sfu_demo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
@@ -19,23 +19,32 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-            android:id="@+id/operatorDemo"
+            android:id="@+id/btn_op_demo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="false"
             android:text="云手机 Paas Demo"
             android:layout_margin="32dp"
-            app:layout_constraintTop_toBottomOf="@id/sfuDemo"
+            app:layout_constraintTop_toBottomOf="@id/btn_sfu_demo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:textColor="@color/teal_200"
-            app:layout_constraintTop_toBottomOf="@id/operatorDemo"
+            app:layout_constraintTop_toBottomOf="@id/btn_op_demo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
