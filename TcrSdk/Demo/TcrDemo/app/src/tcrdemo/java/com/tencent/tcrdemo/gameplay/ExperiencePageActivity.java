@@ -19,7 +19,9 @@ import java.util.List;
 import pub.devrel.easypermissions.EasyPermissions;
 import pub.devrel.easypermissions.EasyPermissions.PermissionCallbacks;
 
-public class ExperiencePageActivity extends AppCompatActivity implements ExperiencePageView.Listener, PermissionCallbacks {
+public class ExperiencePageActivity extends AppCompatActivity implements ExperiencePageView.Listener,
+        PermissionCallbacks {
+
     private static final String TAG = "ExperiencePageActivity";
 
     private ExperiencePageView mExperiencePageView;
@@ -44,6 +46,8 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
         String[] permissions = {android.Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
         if (!EasyPermissions.hasPermissions(this, permissions)) {
             EasyPermissions.requestPermissions(this, "Demo 需要录音、摄像头权限", 0, permissions);
+        } else {
+            mExperiencePageView.enableStartBtn(true);
         }
     }
 
@@ -81,9 +85,8 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
         }
         saveConfig(experienceCode, userId, hostUserId);
         Intent intent = new Intent(ExperiencePageActivity.this, GamePlayActivity.class);
-        Parcelable gameParcelable = new GameConfigParcelable(experienceCode,
-                mExperiencePageView.isTestEnv(), userId, hostUserId,
-                mExperiencePageView.isRolePlayer(), mExperiencePageView.isIntlEnv());
+        Parcelable gameParcelable = new GameConfigParcelable(experienceCode, mExperiencePageView.isTestEnv(), userId,
+                hostUserId, mExperiencePageView.isRolePlayer(), mExperiencePageView.isIntlEnv());
         intent.putExtra(GameConfigParcelable.GAME_CONFIG_KEY, gameParcelable);
         startActivityForResult(intent, 1);
     }
@@ -99,9 +102,12 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
         if (!TextUtils.isEmpty(hostUserId)) {
             editor.putString(getResources().getString(R.string.key_set_host_userid), hostUserId);
         }
-        editor.putInt(getResources().getString(R.string.key_index_of_test_env_opt), mExperiencePageView.getTestEnvIndex());
-        editor.putInt(getResources().getString(R.string.key_index_of_intl_env_opt), mExperiencePageView.getIntlEnvIndex());
-        editor.putInt(getResources().getString(R.string.key_index_of_role_opt), mExperiencePageView.isRolePlayer() ? 1 : 0);
+        editor.putInt(getResources().getString(R.string.key_index_of_test_env_opt),
+                mExperiencePageView.getTestEnvIndex());
+        editor.putInt(getResources().getString(R.string.key_index_of_intl_env_opt),
+                mExperiencePageView.getIntlEnvIndex());
+        editor.putInt(getResources().getString(R.string.key_index_of_role_opt),
+                mExperiencePageView.isRolePlayer() ? 1 : 0);
         editor.apply();
     }
 
@@ -113,12 +119,14 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
         String userID = mPrefs.getString(getResources().getString(R.string.key_set_userid), "");
         String hostUserId = mPrefs.getString(getResources().getString(R.string.key_set_host_userid), "");
         mExperiencePageView.setExperienceCode(experienceCode);
-        mExperiencePageView.setTestEnvIndex(mPrefs.getInt(getResources().getString(R.string.key_index_of_test_env_opt), 0));
-        mExperiencePageView.setIntlEnvIndex(mPrefs.getInt(getResources().getString(R.string.key_index_of_intl_env_opt), 0));
+        mExperiencePageView.setTestEnvIndex(
+                mPrefs.getInt(getResources().getString(R.string.key_index_of_test_env_opt), 0));
+        mExperiencePageView.setIntlEnvIndex(
+                mPrefs.getInt(getResources().getString(R.string.key_index_of_intl_env_opt), 0));
         mExperiencePageView.setUserID(userID);
         mExperiencePageView.setHostUserId(hostUserId);
-        mExperiencePageView
-                .setEnableRolePlayer(mPrefs.getInt(getResources().getString(R.string.key_index_of_role_opt), 1) == 1);
+        mExperiencePageView.setEnableRolePlayer(
+                mPrefs.getInt(getResources().getString(R.string.key_index_of_role_opt), 1) == 1);
     }
 
 }

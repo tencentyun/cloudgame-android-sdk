@@ -31,9 +31,24 @@ public class CustomAudioCapturer {
     private final int bufferSizeInBytes = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
     private AudioRecord audioRecord;
     private volatile boolean running = false;
-    Thread audioThread = new Thread(new Runnable() {
-        @Override
-        public void run() {
+    private Thread audioThread;
+
+    public void startRecording(TcrSession session) {
+        if (running) {
+            return;
+        }
+        mSession = session;
+        final int audioSource = MediaRecorder.AudioSource.MIC;
+        if (VERSION.SDK_INT >= VERSION_CODES.M) {
+            audioRecord = createAudioRecordOnMOrHigher(
+                    audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
+        } else {
+            audioRecord = createAudioRecordOnLowerThanM(audioSource, sampleRateInHz, channelConfig, audioFormat,
+                    bufferSizeInBytes);
+        }
+        running = true;
+
+        audioThread = new Thread(() -> {
             // 使用CustomAudioBufferUtil分配ByteBuffer大小
             ByteBuffer byteBuffer = ByteBuffer.allocateDirect(CustomAudioBufferUtil
                     .getCustomAudioCaptureDataBufferSize(sampleRateInHz, channelNum == 2));
@@ -61,35 +76,19 @@ public class CustomAudioCapturer {
                     byteBuffer.clear();
                 }
             }
-        }
-    });
-
-    public void startRecording(TcrSession session) {
-        if (running) {
-            return;
-        }
-        mSession = session;
-        final int audioSource = MediaRecorder.AudioSource.MIC;
-        if (VERSION.SDK_INT >= VERSION_CODES.M) {
-            audioRecord = createAudioRecordOnMOrHigher(
-                    audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSizeInBytes);
-        } else {
-            audioRecord = createAudioRecordOnLowerThanM(audioSource, sampleRateInHz, channelConfig, audioFormat,
-                    bufferSizeInBytes);
-        }
-        running = true;
+        });
         audioThread.start();
     }
 
     public void stopRecording() {
         running = false;
-        audioRecord.stop();
+        if(audioRecord!=null)audioRecord.stop();
         audioRecord = null;
         audioThread = null;
         mSession = null;
     }
 
-    private AudioRecord createAudioRecordOnMOrHigher(
+    private static AudioRecord createAudioRecordOnMOrHigher(
             int audioSource, int sampleRate, int channelConfig, int audioFormat, int bufferSizeInBytes) {
         if (ActivityCompat.checkSelfPermission(getContext(), permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED || VERSION.SDK_INT < VERSION_CODES.M) {
@@ -106,7 +105,7 @@ public class CustomAudioCapturer {
                 .build();
     }
 
-    private AudioRecord createAudioRecordOnLowerThanM(
+    private static AudioRecord createAudioRecordOnLowerThanM(
             int audioSource, int sampleRate, int channelConfig, int audioFormat, int bufferSizeInBytes) {
         if (ActivityCompat.checkSelfPermission(getContext(), permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {

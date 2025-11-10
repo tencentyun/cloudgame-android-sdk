@@ -766,10 +766,16 @@ public class TestApiHandler {
     public void enableLocalAudio(RadioGroup group, int checkedId) {
         boolean enable = checkedId == R.id.radio_btn_enable_local_audio;
         if (mSession != null) {
-            mSession.setEnableLocalAudio(enable);
+            // 开启/停止 采集
             if (mCustomAudioCapturer != null) {
-                mCustomAudioCapturer.startRecording(mSession);
+                if (enable) {
+                    mCustomAudioCapturer.startRecording(mSession);
+                } else {
+                    mCustomAudioCapturer.stopRecording();
+                }
             }
+            // 开启/停止 上行
+            mSession.setEnableLocalAudio(enable);
         }
     }
 
