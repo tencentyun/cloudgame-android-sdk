@@ -315,7 +315,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     // 自定义采集麦克风数据
     private CustomAudioCapturer mCustomAudioCapturer;
     // 是否开启自定义采集麦克风数据
-    private boolean mEnableCustomAudioCapture;
+    private boolean mEnableCustomAudioCapture = false;
 
     public GamePlayFragment() {
         mTestApiHandler.setFragment(this);

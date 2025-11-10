@@ -19,7 +19,7 @@ import pub.devrel.easypermissions.EasyPermissions.PermissionCallbacks;
 
 public class HomeActivity extends AppCompatActivity implements PermissionCallbacks {
 
-    private static final String TAG = "com.tencent.tcr.demo.HomeActivity";
+    private static final String TAG = "HomeActivity";
     private Button btnSfuDemo, btnOperatorDemo;
     private TextView tvMsg;
     private volatile boolean initTcrSdkSuccess = false;

@@ -7,6 +7,7 @@ import android.transition.TransitionManager;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -31,6 +32,7 @@ public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnC
     private final EditText mHostUserIdEdit;
     private final Context mContext;
     private Listener mListener;
+    private final Button mStartBtn;
 
     /**
      * 启动游戏，回调用户输入的启动参数
@@ -68,8 +70,8 @@ public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnC
             }
             mDialogContainer.setLayoutParams(lp);
         });
-        parent.findViewById(R.id.start).setOnClickListener(this);
-
+        mStartBtn = parent.findViewById(R.id.start);
+        mStartBtn.setOnClickListener(this);
     }
 
 
@@ -163,5 +165,9 @@ public class ExperiencePageView implements View.OnClickListener,  RadioGroup.OnC
                        @Nullable String userId,
                        @Nullable String hostUserId
         );
+    }
+
+    public void enableStartBtn(boolean enable){
+        mStartBtn.setEnabled(enable);
     }
 }
