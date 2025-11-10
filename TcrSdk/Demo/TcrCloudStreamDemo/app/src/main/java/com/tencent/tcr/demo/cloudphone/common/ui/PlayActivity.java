@@ -227,7 +227,7 @@ public class PlayActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.menu_switchMic) {
             menu_switchMic_state = !menu_switchMic_state;
-            if (menu_switchCamera_state) {
+            if (menu_switchMic_state) {
                 mTcrSession.setEnableLocalAudio(true);
                 Toast.makeText(this, "打开麦克风", Toast.LENGTH_SHORT).show();
             } else {
