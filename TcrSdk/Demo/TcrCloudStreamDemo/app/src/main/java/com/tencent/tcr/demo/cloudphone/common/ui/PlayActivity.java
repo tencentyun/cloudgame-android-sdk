@@ -244,6 +244,9 @@ public class PlayActivity extends AppCompatActivity {
             Toast.makeText(PlayActivity.this, "输入法已切换为" + imeType, Toast.LENGTH_SHORT).show();
             isLocalIME = !isLocalIME; // 切换状态
             return true;
+        } else if (id == R.id.menu_setRemoteDesktopResolution) {
+            showResolutionInputDialog();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -409,5 +412,28 @@ public class PlayActivity extends AppCompatActivity {
         };
         mCustomDataChannel_23331 = mTcrSession.createCustomDataChannel(23331, "android", observer);
         mCustomDataChannel_23332 = mTcrSession.createCustomDataChannel(23332, "android_broadcast", observer);
+    }
+
+    /**
+     * 显示分辨率输入对话框
+     */
+    private void showResolutionInputDialog() {
+        DialogUtils.showDoubleInputDialog(
+                this,
+                "设置云手机物理分辨率",
+                "请输入需要修改的云手机物理分辨率",
+                "宽度（例如：1280）",
+                "高度（例如：720）",
+                "1280",
+                "720",
+                (width, height) -> {
+                    if (mTcrSession != null) {
+                        mTcrSession.setRemoteDesktopResolution(width, height);
+                        Toast.makeText(this, "已设置分辨率为 " + width + "x" + height, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "会话未初始化", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 }
