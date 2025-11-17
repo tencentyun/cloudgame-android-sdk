@@ -169,7 +169,7 @@ public class PlayActivity extends AppCompatActivity {
             finish();
             return true;
         } else if (id == R.id.menu_setRemoteVideoProfile) {
-            mTcrSession.setRemoteVideoProfile(25, 500, 2000, 720, 1280, null);
+            mTcrSession.setRemoteVideoProfile(30, 1000, 8000, 1080, 1920, null);
             return true;
         } else if (id == R.id.menu_switchPauseResumeStreaming) {
             menu_switchPauseResumeStreaming_state = !menu_switchPauseResumeStreaming_state;
@@ -219,7 +219,7 @@ public class PlayActivity extends AppCompatActivity {
             if (menu_switchCamera_state) {
                 Toast.makeText(this, "打开摄像头", Toast.LENGTH_SHORT).show();
                 mTcrSession.setEnableLocalVideo(true);
-                mTcrSession.setLocalVideoProfile(540, 960, 25, 200, 1000, false);//可选，true使用前置摄像头
+                mTcrSession.setLocalVideoProfile(720, 1280, 25, 1000, 3000, false);//可选，true使用前置摄像头
             } else {
                 mTcrSession.setEnableLocalVideo(false);
                 Toast.makeText(this, "关闭摄像头", Toast.LENGTH_SHORT).show();

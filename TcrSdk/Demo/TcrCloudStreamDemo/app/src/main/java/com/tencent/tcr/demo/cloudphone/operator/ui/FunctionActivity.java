@@ -578,7 +578,8 @@ public class FunctionActivity extends AppCompatActivity {
         for (String instanceId : mInstanceIds) {
             JsonObject param = new JsonObject();
             param.addProperty("PackageName", "com.example.app");
-            param.addProperty("ActivityName", "com.example.app.MainActivity");
+            param.addProperty("ActivityName", "com.example.app.MainActivity");//可选
+            param.addProperty("CheckFrontApp", true);//可选
             params.put(instanceId, param);
         }
         getAndroidInstance().startApp(params, mBatchCallback);
