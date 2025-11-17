@@ -92,7 +92,7 @@ public class PlayActivity extends AppCompatActivity {
                     }
                     break;
                 default:
-                    Log.d(TAG, "onEvent() event:" + event.name() + " msg: " + eventData.toString());
+                    Log.v(TAG, "onEvent() " + event.name() + " msg: " + eventData.toString());
                     break;
             }
         }
@@ -219,7 +219,7 @@ public class PlayActivity extends AppCompatActivity {
             if (menu_switchCamera_state) {
                 Toast.makeText(this, "打开摄像头", Toast.LENGTH_SHORT).show();
                 mTcrSession.setEnableLocalVideo(true);
-                mTcrSession.setLocalVideoProfile(720, 1280, 25, 500, 2000, false);//可选，设置，使用前置摄像头
+                mTcrSession.setLocalVideoProfile(540, 960, 25, 200, 1000, false);//可选，true使用前置摄像头
             } else {
                 mTcrSession.setEnableLocalVideo(false);
                 Toast.makeText(this, "关闭摄像头", Toast.LENGTH_SHORT).show();

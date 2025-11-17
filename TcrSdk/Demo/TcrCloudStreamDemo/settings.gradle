@@ -27,43 +27,43 @@ include ':app'
 
 ////////////////// 解析 local.properties，获取依赖本地子模块代码还是远端 maven 库 //////////////////
 def readLocalProperties = { propFile, key ->
-    boolean result = false
+    def result = null
     File localPropsFile = file(propFile)
-
     if (localPropsFile.exists()) {
         Properties properties = new Properties()
         properties.load(new FileInputStream(localPropsFile))
-        if (properties.containsKey(key)) {
-            result = properties.getProperty(key).toBoolean()
-        }
+        result = properties.getProperty(key)
     } else {
         println "#readLocalProperties file not exist:" + localPropsFile.absolutePath
     }
     return result
 }
 // 先将变量挂载到 gradle.ext 全局对象，以便其他模块使用
-gradle.ext.use_local_module_TcrSdkFull = readLocalProperties('local.properties', 'use_local_module_TcrSdkFull')
+gradle.ext.use_local_module_TcrSdkFull = readLocalProperties('local.properties', 'use_local_module_TcrSdkFull')?.toBoolean()
 if (gradle.ext.use_local_module_TcrSdkFull) {
     include ':TcrSdkFull'
     project(':TcrSdkFull').projectDir = new File('../../../../cloud_gaming_android/TcrSdkProject/TcrSdkFull')
 }
-gradle.ext.use_local_module_TcrSdk = readLocalProperties('local.properties', 'use_local_module_TcrSdk')
+gradle.ext.use_local_module_TcrSdk = readLocalProperties('local.properties', 'use_local_module_TcrSdk')?.toBoolean()
 if (gradle.ext.use_local_module_TcrSdk) {
     include ':TcrSdk'
     project(':TcrSdk').projectDir = new File('../../../../cloud_gaming_android/TcrSdkProject/TcrSdk')
 }
-gradle.ext.use_local_module_TcrGui = readLocalProperties('local.properties', 'use_local_module_TcrGui')
+gradle.ext.use_local_module_TcrGui = readLocalProperties('local.properties', 'use_local_module_TcrGui')?.toBoolean()
 if (gradle.ext.use_local_module_TcrGui) {
     include ':TcrGui'
     project(':TcrGui').projectDir = new File('../../../../cloud_gaming_android/TcrSdkProject/TcrGui')
 }
-gradle.ext.use_local_module_webrtc = readLocalProperties('local.properties', 'use_local_module_webrtc')
+gradle.ext.use_local_module_webrtc = readLocalProperties('local.properties', 'use_local_module_webrtc')?.toBoolean()
 if (gradle.ext.use_local_module_webrtc) {
     include ':webrtc_sources'
     project(":webrtc_sources").projectDir = file('../../../../cloud_gaming_android/TcrSdkProject/webrtc_sources/sdk/android/twebrtcsdk')
 }
-gradle.ext.use_local_module_proxy = readLocalProperties('local.properties', 'use_local_module_proxy')
+gradle.ext.use_local_module_proxy = readLocalProperties('local.properties', 'use_local_module_proxy')?.toBoolean()
 if (gradle.ext.use_local_module_proxy) {
     include ':TcrProxy'
     project(':TcrProxy').projectDir = new File('../../../../cloud_gaming_android/TcrSdkProject/TcrProxy')
 }
+// 登录
+gradle.ext.paas_login_name = readLocalProperties('local.properties', 'paas_login_name') ?: ""
+gradle.ext.paas_login_password = readLocalProperties('local.properties', 'paas_login_password') ?: ""

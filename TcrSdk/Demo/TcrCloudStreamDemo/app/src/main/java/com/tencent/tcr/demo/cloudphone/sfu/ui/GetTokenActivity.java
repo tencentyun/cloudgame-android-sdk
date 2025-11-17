@@ -49,8 +49,20 @@ public class GetTokenActivity extends AppCompatActivity {
         findViewById(R.id.btnConfirm).setOnClickListener(mClickListener);
         RadioGroup rgEnvironment = findViewById(R.id.rg_environment);
         rgEnvironment.setOnCheckedChangeListener((group, checkedId) -> {
-            BaseRequest.USE_TEST_URL = checkedId == R.id.rb_test;
+            if (checkedId == R.id.rb_prod) {
+                BaseRequest.ENV = 0;
+                etInstanceIds.setText("cc_12_2");
+            } else if (checkedId == R.id.rb_test) {
+                BaseRequest.ENV = 1;
+                etInstanceIds.setText("ACP250912L3WXP9S,ACP250912QTIBFLZ,ACP250912VLR5Y1C");
+            } else if (checkedId == R.id.rb_armcloud) {
+                BaseRequest.ENV = 2;
+                etInstanceIds.setText("ACP5BA4H05QSWWEA,ACP5BA4H05QSWWE9,ACP5BA4H05QSWWE8");
+            } else {
+                Log.e(TAG, "unexpected environment");
+            }
         });
+        rgEnvironment.check(R.id.rb_test);
     }
 
 

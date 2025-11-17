@@ -30,7 +30,7 @@ public abstract class BaseRequest<T> {
     public static final int CODE_ERROR_BUILD_REQUEST = -110;   // build request fail
     public static final int CODE_ERROR_NETWORK = -111;          // network error
     public static final int CODE_ERROR_PROCESS_RESPONSE = -112; // process response fail
-    public static boolean USE_TEST_URL = true; // 是否测试环境
+    public static int ENV = 0; // 环境: 0-正式环境, 1-小s老环境, 2-小s新环境
     protected final String mRequestID = UUID.randomUUID().toString();
 
     protected final AsyncCallback<T> callback;
@@ -74,10 +74,15 @@ public abstract class BaseRequest<T> {
     }
 
     protected String getUrl() {
-        if (USE_TEST_URL) {
-            return "https://test-accelerator-biz-server.cai.crtrcloud.com/" + getCmd();
-        } else {
+        if (ENV == 0) {
             return "https://accelerator-biz-server.cai.crtrcloud.com/" + getCmd();
+        } else if (ENV == 1) {
+            return "https://test-accelerator-biz-server.cai.crtrcloud.com/" + getCmd();
+        } else if (ENV == 2) {
+            return "https://dev-gateway.armcloud.net:1443/" + getCmd();
+        } else {
+            Log.e(TAG, "unexpected environment");
+            return "https://accelerator-biz-server.cai.crtrcloud.com/" + getCmd();//返回正式环境
         }
     }
 

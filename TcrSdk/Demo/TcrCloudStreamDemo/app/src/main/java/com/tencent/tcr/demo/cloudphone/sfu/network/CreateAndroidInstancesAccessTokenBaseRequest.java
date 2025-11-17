@@ -1,7 +1,6 @@
 package com.tencent.tcr.demo.cloudphone.sfu.network;
 
 import android.text.TextUtils;
-
 import com.google.gson.reflect.TypeToken;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import java.util.List;
@@ -26,6 +25,9 @@ public class CreateAndroidInstancesAccessTokenBaseRequest extends
 
     @Override
     protected String getCmd() {
+        if (ENV == 2) {
+            return "api/center/tencent/createAndroidInstancesAccessToken";
+        }
         return "CreateAndroidInstancesAccessToken";
     }
 

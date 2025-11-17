@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.tencent.tcr.demo.cloudphone.BuildConfig;
 import com.tencent.tcr.demo.cloudphone.DemoApp;
 import com.tencent.tcr.demo.cloudphone.R;
 import com.tencent.tcr.demo.cloudphone.common.ui.InstanceListActivity;
@@ -73,7 +74,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         etUsername = findViewById(R.id.etUsername);
+        etUsername.setText(BuildConfig.paas_login_name);
         etPassword = findViewById(R.id.etPassword);
+        etPassword.setText(BuildConfig.paas_login_password);
         findViewById(R.id.btnLogin).setOnClickListener(mClickListener);
     }
 

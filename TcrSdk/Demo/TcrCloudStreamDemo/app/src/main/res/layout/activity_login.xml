@@ -24,7 +24,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="用户名"
-            android:text="handley"
             android:inputType="text"
             android:layout_marginHorizontal="32dp"
             app:layout_constraintStart_toStartOf="parent"

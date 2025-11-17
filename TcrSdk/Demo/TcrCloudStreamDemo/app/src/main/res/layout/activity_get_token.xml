@@ -28,18 +28,25 @@
             app:layout_constraintBottom_toBottomOf="@id/tv_env_title">
 
         <RadioButton
-                android:id="@+id/rb_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="测试" />
-
-        <RadioButton
                 android:id="@+id/rb_prod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:checked="true"
                 android:text="正式" />
+
+        <RadioButton
+                android:id="@+id/rb_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试" />
+
+        <RadioButton
+                android:id="@+id/rb_armcloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="armcloud" />
     </RadioGroup>
 
     <!-- 第二行：实例列表 -->
@@ -58,7 +65,7 @@
             android:layout_height="wrap_content"
             android:hint="用逗号分隔"
             android:textSize="14sp"
-            android:text="ACP250912L3WXP9S,ACP250912QTIBFLZ,ACP250912VLR5Y1C"
+            android:text="cc_12_2"
             android:inputType="text"
             app:layout_constraintStart_toEndOf="@+id/title_instance"
             app:layout_constraintEnd_toEndOf="parent"
