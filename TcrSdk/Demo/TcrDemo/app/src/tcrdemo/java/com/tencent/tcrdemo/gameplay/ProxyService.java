@@ -13,6 +13,8 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import com.tencent.component.utils.LogUtils;
+import com.tencent.tcr.ConnectionState;
+import com.tencent.tcr.OnConnectionStateChangedListener;
 import com.tencent.tcr.Proxy;
 
 /**
@@ -64,6 +66,14 @@ public class ProxyService extends Service {
         handlerThread.start();
         handler = new Handler(handlerThread.getLooper());
         startForegroundService();
+        Proxy.getInstance().setOnConnectionStateChangedListener(new OnConnectionStateChangedListener() {
+
+            @Override
+            public void onConnectionStateChanged(ConnectionState connectionState, String s) {
+                LogUtils.i(TAG, "onConnectionStateChanged: " + connectionState.name() + ", " + s);
+            }
+        });
+
     }
 
     @Override
