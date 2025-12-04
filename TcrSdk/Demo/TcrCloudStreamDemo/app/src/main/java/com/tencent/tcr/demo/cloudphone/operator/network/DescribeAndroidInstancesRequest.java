@@ -32,9 +32,14 @@ public class DescribeAndroidInstancesRequest extends ExpServerRequest<DescribeAn
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("RequestId", mRequestID);
         JSONArray androidInstanceIds = new JSONArray();
+        // 深圳实例
         androidInstanceIds.put("cai-1300056159-ea9958y2kce");
         androidInstanceIds.put("cai-1300056159-ea99ybnc74p");
         androidInstanceIds.put("cai-1300056159-ea9944ngcp9");
+        // 杭州实例
+        androidInstanceIds.put("cai-1300056159-fe2drzi1m6g");
+        androidInstanceIds.put("cai-1300056159-fe2dgdzdkxu");
+        androidInstanceIds.put("cai-1300056159-fe2d9m8w3an");
         jsonRequest.put("AndroidInstanceIds", androidInstanceIds);
         //jsonRequest.put("Limit", 10);
         //jsonRequest.put("Offset", 67);//后台每次只能返回 20 个，所以需要分页请求
