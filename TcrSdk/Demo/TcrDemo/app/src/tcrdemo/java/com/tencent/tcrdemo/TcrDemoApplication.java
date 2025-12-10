@@ -17,7 +17,7 @@ public class TcrDemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashReport.initCrashReport(getApplicationContext(), "b21f18effe", false);
         sContext = getApplicationContext();
+        CrashReport.initCrashReport(sContext, "b21f18effe", false);
     }
 }

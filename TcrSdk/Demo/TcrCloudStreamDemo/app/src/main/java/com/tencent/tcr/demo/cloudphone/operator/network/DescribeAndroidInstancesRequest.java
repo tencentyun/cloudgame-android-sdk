@@ -32,10 +32,10 @@ public class DescribeAndroidInstancesRequest extends ExpServerRequest<DescribeAn
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("RequestId", mRequestID);
         JSONArray androidInstanceIds = new JSONArray();
-        // 深圳实例
-        androidInstanceIds.put("cai-1300056159-ea9958y2kce");
-        androidInstanceIds.put("cai-1300056159-ea99ybnc74p");
-        androidInstanceIds.put("cai-1300056159-ea9944ngcp9");
+        // 深圳实例。20251210 这几台实例目前连不上
+//        androidInstanceIds.put("cai-1300056159-ea9958y2kce");
+//        androidInstanceIds.put("cai-1300056159-ea99ybnc74p");
+//        androidInstanceIds.put("cai-1300056159-ea9944ngcp9");
         // 杭州实例
         androidInstanceIds.put("cai-1300056159-fe2drzi1m6g");
         androidInstanceIds.put("cai-1300056159-fe2dgdzdkxu");

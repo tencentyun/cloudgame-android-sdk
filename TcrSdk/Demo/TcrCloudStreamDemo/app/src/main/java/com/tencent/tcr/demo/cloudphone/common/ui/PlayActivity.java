@@ -311,27 +311,6 @@ public class PlayActivity extends AppCompatActivity {
         }
     }
 
-    private void updateRotation_mode2() {
-        // 屏幕方向不旋转。画面方向 180 和 0 的显示一样，270 和 90 的显示一样。
-        switch (mScreenConfig.degree) {
-            case "0_degree":
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
-                break;
-            case "90_degree":
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_0);
-                break;
-            case "180_degree":
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
-                break;
-            case "270_degree":
-                mRenderView.setVideoRotation(VideoRotation.ROTATION_180);
-                break;
-            default:
-                Log.w(TAG, "updateRotation() unknown degree=" + mScreenConfig.degree);
-                break;
-        }
-    }
-
     private void showToast(String msg, int duration) {
         runOnUiThread(() -> Toast.makeText(PlayActivity.this, msg, duration).show());
     }

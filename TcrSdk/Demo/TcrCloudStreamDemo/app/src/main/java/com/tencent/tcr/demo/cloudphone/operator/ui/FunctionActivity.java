@@ -272,7 +272,7 @@ public class FunctionActivity extends AppCompatActivity {
             files[i].filePath = "/sdcard/Movies/";
         }
 
-        AsyncCallback<String> callback = new AsyncCallback<String>() {
+        AsyncCallback<String> callback = new AsyncCallback<>() {
             @Override
             public void onSuccess(String response) {
                 // 示例数据 {Code=0, Message='null', FileStatus=[FileStatus{FileName='testDownloadFile', CloudPath='/sdcard/Download/testDownloadFile'}]}

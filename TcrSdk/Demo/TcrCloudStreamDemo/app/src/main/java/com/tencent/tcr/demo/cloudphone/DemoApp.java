@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.tencent.bugly.crashreport.CrashReport;
 
 public class DemoApp extends Application {
 
@@ -24,6 +25,7 @@ public class DemoApp extends Application {
     public void onCreate() {
         super.onCreate();
         sContext = getApplicationContext();
+        CrashReport.initCrashReport(sContext, "b21f18effe", false);
         sQueue = Volley.newRequestQueue(sContext);
     }
 }
