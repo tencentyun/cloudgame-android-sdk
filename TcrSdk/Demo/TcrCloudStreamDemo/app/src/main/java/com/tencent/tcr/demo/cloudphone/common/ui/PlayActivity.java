@@ -271,7 +271,7 @@ public class PlayActivity extends AppCompatActivity {
             return;
         }
         // 创建渲染视图
-        mRenderView = TcrSdk.getInstance().createTcrRenderView(this, mTcrSession, TcrRenderViewType.SURFACE);
+        mRenderView = TcrSdk.getInstance().createTcrRenderView(this, mTcrSession, TcrRenderViewType.TEXTURE);
         if (mRenderView == null) {
             Log.e(TAG, "mRenderView = null");
             showToast("创建渲染失败，请检查TcrSdk是否初始化成功", Toast.LENGTH_SHORT);
