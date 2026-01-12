@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,6 @@ import com.tencent.tcr.sdk.api.data.MultiUserSeatInfo;
 import com.tencent.tcr.sdk.api.data.RoleApplyInfo;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
 import com.tencent.tcr.sdk.api.data.StatsInfo;
-import com.tencent.tcr.sdk.api.data.VideoStreamConfig;
 import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.PcTouchListener;
 import com.tencent.tcr.sdk.api.view.PcZoomHandler;
@@ -59,7 +57,6 @@ import com.tencent.tcrdemo.bean.HitInput;
 import com.tencent.tcrdemo.bean.User;
 import com.tencent.tcrdemo.databinding.FragmentGamePlayBinding;
 import com.tencent.tcrdemo.utils.CustomAudioCapturer;
-import com.tencent.tcrdemo.utils.DeviceUtils;
 import com.tencent.tcrdemo.utils.TcrSdkWrapper;
 import com.tencent.tcrgamepad.GamepadManager;
 import com.tencent.tcrgui.keyboard.KeyboardView;
@@ -407,15 +404,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     }
 
     protected TcrSessionConfig createSessionConfig() {
-        Pair<Integer, Integer> screenSize = DeviceUtils.getScreenSize(requireActivity());
-        TcrSessionConfig.Builder builder = TcrSessionConfig.builder()
-                .observer(mSessionEventObserver)
-                .idleThreshold(30000)
-                .lowFpsThreshold(31, 5)
-                .remoteDesktopResolution(screenSize.first, screenSize.second)
-                .enableLowLegacyRendering(true)
-                //.enableCustomVideoCapture(true)// 测试自定义视频采集上行
-                ;
+        TcrSessionConfig.Builder builder = TcrSessionConfig.builder().observer(mSessionEventObserver);
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
             builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(),
@@ -569,6 +558,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                         mRenderView.requestPointerCapture();
                     }
                 });
+                mRenderView.setDisplayDebugView(true);
                 mGamePadManager = new GamepadManager(context, mSession);
                 mKeyboardView = new KeyboardView(context, mSession);
                 // 把云游视图添加到View树上

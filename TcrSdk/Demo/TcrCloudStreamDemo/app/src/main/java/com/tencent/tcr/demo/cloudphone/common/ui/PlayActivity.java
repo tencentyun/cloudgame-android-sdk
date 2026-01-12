@@ -279,7 +279,7 @@ public class PlayActivity extends AppCompatActivity {
         }
         // 将渲染视图添加到界面上
         ((FrameLayout) findViewById(R.id.render_view_parent)).addView(mRenderView);
-        //mRenderView.setDisplayDebugView(true);
+        mRenderView.setDisplayDebugView(true);
     }
 
     /**
