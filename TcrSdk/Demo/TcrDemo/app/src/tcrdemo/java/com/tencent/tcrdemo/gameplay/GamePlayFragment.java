@@ -43,13 +43,13 @@ import com.tencent.tcr.sdk.api.data.MultiUserSeatInfo;
 import com.tencent.tcr.sdk.api.data.RoleApplyInfo;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
 import com.tencent.tcr.sdk.api.data.StatsInfo;
-import com.tencent.tcr.sdk.api.data.VideoStreamConfig;
 import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.PcTouchListener;
 import com.tencent.tcr.sdk.api.view.PcZoomHandler;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
+import com.tencent.tcr.sdk.plugin.utils.VideoReceiverDelayCalculator;
 import com.tencent.tcrdemo.BR;
 import com.tencent.tcrdemo.R;
 import com.tencent.tcrdemo.adapter.MultiPlayerAdapter;
@@ -70,6 +70,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicLong;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class GamePlayFragment extends Fragment implements Handler.Callback, EasyPermissions.PermissionCallbacks {
@@ -99,6 +101,54 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
             BR.multiUser);
     private final DecimalFormat mDf = new DecimalFormat("#.##");
     private final Handler mUIThreadHandler = new Handler(this);
+    // RTT历史数据存储（最近10秒）
+    private final ConcurrentLinkedQueue<RttData> mRttHistory = new ConcurrentLinkedQueue<>();
+    private final AtomicLong mLastRttUpdateTime = new AtomicLong(0);
+    private static final long RTT_HISTORY_DURATION = 10000; // 10秒
+
+    // RTT数据记录类
+    private static class RttData {
+
+        final long timestamp;
+        final int rtt;
+
+        RttData(long timestamp, int rtt) {
+            this.timestamp = timestamp;
+            this.rtt = rtt;
+        }
+    }
+
+    // 计算最近10秒的RTT均值
+    private int calculateAverageRtt() {
+        long currentTime = System.currentTimeMillis();
+        long cutoffTime = currentTime - RTT_HISTORY_DURATION;
+
+        // 清理过期数据
+        while (!mRttHistory.isEmpty() && mRttHistory.peek().timestamp < cutoffTime) {
+            mRttHistory.poll();
+        }
+
+        if (mRttHistory.isEmpty()) {
+            return 0;
+        }
+
+        int sum = 0;
+        int count = 0;
+        for (RttData data : mRttHistory) {
+            sum += data.rtt;
+            count++;
+        }
+
+        return count > 0 ? sum / count : 0;
+    }
+
+    // 添加新的RTT数据
+    private void addRttData(int rtt) {
+        long currentTime = System.currentTimeMillis();
+        mRttHistory.offer(new RttData(currentTime, rtt));
+        mLastRttUpdateTime.set(currentTime);
+    }
+
     private FragmentGamePlayBinding mViewDataBinding;
     private GamePlayViewModel mViewModel;
     // 会话
@@ -180,6 +230,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                             final String msg = "{\"connected\":true}";
                             mCustomDataChannel.send(ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8)));
                             Log.i(sApiTAG, "onConnected() send data to port " + port + ": " + msg);
+                            //mSession.setRemoteVideoProfile(30, 8000, 10000, 720, 1280, null);
                         }
 
                         @Override
@@ -257,16 +308,21 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 case CLIENT_STATS:
                     // 性能状态信息数据的回调，这里拿到其中三个常用数据显示到右上角view上
                     StatsInfo statsInfo = (StatsInfo) eventData;
+                    // 添加rtt数据到历史记录
+                    addRttData((int) statsInfo.rtt);
+                    // 计算最近10秒的rtt均值
+                    int averageRtt = calculateAverageRtt();
                     Activity activity = getActivity();
                     if (activity != null) {
                         activity.runOnUiThread(new Runnable() {
                             @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
+                                String bitrateText = String.format(Locale.CHINA, "%.1f",
+                                        statsInfo.bitrate / 1024.0 / 1024.0);
                                 mViewDataBinding.statsValue.setText(
-                                        "   fps: " + statsInfo.fps + "   bitrate: "
-                                                + mDf.format(statsInfo.bitrate / 1024.0 / 1024.0)
-                                                + "Mb/s   rtt: " + statsInfo.rtt + "ms");
+                                        "bitrate=" + bitrateText + ", rtt=" + (int) statsInfo.rtt + ", "
+                                                + mVideoMetric + ", tag=1000");
                             }
                         });
                     }
@@ -404,15 +460,22 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         // 初始化SDK
         TcrSdkWrapper.getInstance().init(getContext(), initCallback);
         setLogger();
+
+        VideoReceiverDelayCalculator.getInstance()
+                .setMetricsListener(metrics -> {
+                    mVideoMetric = metrics.getLog();
+                    //LogUtils.d(TAG, "onMetricsUpdated: " + mVideoMetric);
+                });
     }
 
+    private String mVideoMetric;
     protected TcrSessionConfig createSessionConfig() {
         Pair<Integer, Integer> screenSize = DeviceUtils.getScreenSize(requireActivity());
         TcrSessionConfig.Builder builder = TcrSessionConfig.builder()
                 .observer(mSessionEventObserver)
                 .idleThreshold(30000)
                 .lowFpsThreshold(31, 5)
-                .remoteDesktopResolution(screenSize.first, screenSize.second)
+                //.remoteDesktopResolution(720, 1280)
                 .enableLowLegacyRendering(true)
                 //.enableCustomVideoCapture(true)// 测试自定义视频采集上行
                 ;
@@ -569,6 +632,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                         mRenderView.requestPointerCapture();
                     }
                 });
+                mRenderView.setDisplayDebugView(true);
                 mGamePadManager = new GamepadManager(context, mSession);
                 mKeyboardView = new KeyboardView(context, mSession);
                 // 把云游视图添加到View树上

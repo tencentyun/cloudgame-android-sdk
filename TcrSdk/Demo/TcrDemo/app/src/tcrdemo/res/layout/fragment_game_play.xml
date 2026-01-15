@@ -30,22 +30,19 @@
         <FrameLayout
             android:id="@+id/render_view_parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="right">
-
-            <TextView
+        <TextView
                 android:id="@+id/stats_value"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:layout_marginRight="30dp"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:background="@color/black"
+                android:visibility="visible" />
 
         <LinearLayout
             android:layout_width="wrap_content"
