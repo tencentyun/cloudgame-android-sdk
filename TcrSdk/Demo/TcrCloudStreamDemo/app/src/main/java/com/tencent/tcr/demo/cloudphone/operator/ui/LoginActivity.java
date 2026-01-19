@@ -3,6 +3,7 @@ package com.tencent.tcr.demo.cloudphone.operator.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,7 +24,11 @@ import com.tencent.tcr.demo.cloudphone.operator.network.LoginRequest;
 import com.tencent.tcr.demo.cloudphone.operator.network.LoginResponse;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.api.TcrSdk;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,17 +36,19 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<String> mInstanceIds;
     private EditText etUsername;
     private EditText etPassword;
+    private EditText etToken;
+    private EditText etAccessInfo;
     private final OnClickListener mClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             String username = etUsername.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
             if (username.isEmpty()) {
-                showToast("please input name");
+                showToast("请输入用户名");
                 return;
             }
             if (password.isEmpty()) {
-                showToast("please input password");
+                showToast("请输入密码");
                 return;
             }
 
@@ -50,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(ExpServerResponse<LoginResponse> expServerResponse) {
                     if (expServerResponse.Error != null) {
-                        showToast("login fail：" + expServerResponse.Error.Message);
+                        showToast("登录失败：" + expServerResponse.Error.Message);
                     } else {
                         requestAccessToken();
                     }
@@ -58,14 +65,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(int code, String errorMsg) {
-                    showToast("login fail：" + errorMsg);
+                    showToast("登录失败：" + errorMsg);
                 }
             };
             new LoginRequest(username, password, callback).execute(DemoApp.getQueue());
-        }
-
-        private void showToast(String message) {
-            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -77,7 +80,85 @@ public class LoginActivity extends AppCompatActivity {
         etUsername.setText(BuildConfig.paas_login_name);
         etPassword = findViewById(R.id.etPassword);
         etPassword.setText(BuildConfig.paas_login_password);
+        etToken = findViewById(R.id.etToken);
+        etAccessInfo = findViewById(R.id.etAccessInfo);
         findViewById(R.id.btnLogin).setOnClickListener(mClickListener);
+        findViewById(R.id.btnTokenLogin).setOnClickListener(v -> handleTokenLogin());
+    }
+
+    private void handleTokenLogin() {
+        String token = etToken.getText().toString().trim();
+        String accessInfo = etAccessInfo.getText().toString().trim();
+        if (token.isEmpty()) {
+            showToast("请输入 Token");
+            return;
+        }
+        if (accessInfo.isEmpty()) {
+            showToast("请输入 AccessInfo");
+            return;
+        }
+        ArrayList<String> instanceIds = parseInstanceIdsFromAccessInfo(accessInfo);
+        if (instanceIds.isEmpty()) {
+            showToast("无法从 AccessInfo 中解析实例 ID");
+            return;
+        }
+        TcrSdk.getInstance().setAccessToken(accessInfo, token);
+        mInstanceIds = instanceIds;
+        startInstanceListActivity(instanceIds);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void startInstanceListActivity(ArrayList<String> instanceIds) {
+        if (instanceIds == null || instanceIds.isEmpty()) {
+            showToast("暂无可用实例");
+            return;
+        }
+        Intent intent = new Intent(LoginActivity.this, InstanceListActivity.class);
+        intent.putExtra("INSTANCE_IDS", TextUtils.join(",", instanceIds));
+        intent.putExtra("IS_SFU", false);
+        startActivity(intent);
+        finish();
+    }
+
+    private ArrayList<String> parseInstanceIdsFromAccessInfo(String accessInfo) {
+        ArrayList<String> instanceIds = new ArrayList<>();
+        if (TextUtils.isEmpty(accessInfo)) {
+            return instanceIds;
+        }
+        String jsonPayload = accessInfo.trim();
+        try {
+            if (!jsonPayload.startsWith("{")) {
+                byte[] decoded = Base64.decode(accessInfo, Base64.DEFAULT);
+                jsonPayload = new String(decoded, StandardCharsets.UTF_8);
+            }
+            JSONObject root = new JSONObject(jsonPayload);
+            JSONArray accessArray = root.optJSONArray("AccessInfo");
+            if (accessArray == null) {
+                return instanceIds;
+            }
+            for (int i = 0; i < accessArray.length(); i++) {
+                JSONObject zoneInfo = accessArray.optJSONObject(i);
+                if (zoneInfo == null) {
+                    continue;
+                }
+                JSONArray idsArray = zoneInfo.optJSONArray("InstanceIds");
+                if (idsArray == null) {
+                    continue;
+                }
+                for (int j = 0; j < idsArray.length(); j++) {
+                    String id = idsArray.optString(j);
+                    if (!TextUtils.isEmpty(id) && !instanceIds.contains(id)) {
+                        instanceIds.add(id);
+                    }
+                }
+            }
+        } catch (IllegalArgumentException | JSONException e) {
+            Log.e(TAG, "解析 AccessInfo 失败: " + e.getMessage());
+        }
+        return instanceIds;
     }
 
     // 请求云手机实例的访问信息AceessInfo和鉴权Token
@@ -101,11 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                         .setAccessToken(expServerResponse.Response.AccessInfo, expServerResponse.Response.Token);
 
                 // 跳转
-                Intent intent = new Intent(LoginActivity.this, InstanceListActivity.class);
-                intent.putExtra("INSTANCE_IDS", TextUtils.join(",", mInstanceIds));
-                intent.putExtra("IS_SFU", false);
-                startActivity(intent);
-                finish();
+                startInstanceListActivity(mInstanceIds);
             }
 
             @Override
