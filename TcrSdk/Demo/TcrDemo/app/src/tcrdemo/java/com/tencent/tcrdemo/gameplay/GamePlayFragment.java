@@ -156,12 +156,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
     private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
         @Override
         public void onEvent(TcrSession.Event event, Object eventData) {
-            if (TcrSession.Event.CLIENT_STATS != event && TcrSession.Event.REMOTE_DESKTOP_INFO != event
-                    && TcrSession.Event.CURSOR_IMAGE_INFO != event) {
-                // 不打印回调次数频繁的事件
-                Log.i(sApiTAG, "event:" + event + " msg:" + eventData);
-            }
-
             switch (event) {
                 case STATE_INITED:
                     // 初始化成功，将回调的数据(clientSession)回调出去请求serverSessoin
