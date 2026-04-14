@@ -8,8 +8,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.reflect.TypeToken;
-import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.demo.cloudphone.common.util.GsonUtils;
+import com.tencent.tcr.sdk.api.AsyncCallback;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -19,7 +19,7 @@ import org.json.JSONObject;
 public abstract class ExpServerRequest<T> extends BaseRequest<ExpServerResponse<T>> {
 
     protected static final String TAG = "[TCR]ExpServerRequest";
-    protected static final String BASE_URL = "https://test-cai-server.cloud-device.crtrcloud.com";
+    protected static final String TEST_ENV_URL = "https://test-cai-experience-server.crtrcloud.com/external";
     protected static String sCookie;
     protected final String mRequestID = UUID.randomUUID().toString();
 
@@ -29,7 +29,7 @@ public abstract class ExpServerRequest<T> extends BaseRequest<ExpServerResponse<
 
     @Override
     protected String getUrl() {
-        return BASE_URL + "/" + getCmd();
+        return TEST_ENV_URL + "/" + getCmd();
     }
 
     protected abstract String getCmd();
@@ -82,6 +82,8 @@ public abstract class ExpServerRequest<T> extends BaseRequest<ExpServerResponse<
             @Override
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
+                headers.put("Request-Host", "ap-shenzhen");
+                headers.put("Origin", "https://mouhong.test-cai-experience.crtrcloud.com");
                 if (sCookie != null) {
                     headers.put("Cookie", sCookie);
                 }

@@ -114,7 +114,7 @@ public class ExperiencePageActivity extends AppCompatActivity implements Experie
     private void setupDefaultId() {
         String experienceCode = mPrefs.getString(getResources().getString(R.string.key_experience_code), "");
         if (experienceCode.isEmpty()) {
-            experienceCode = "7K1IX8CV";
+            experienceCode = "L5XB5PSN";
         }
         String userID = mPrefs.getString(getResources().getString(R.string.key_set_userid), "");
         String hostUserId = mPrefs.getString(getResources().getString(R.string.key_set_host_userid), "");
