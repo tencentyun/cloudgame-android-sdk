@@ -31,8 +31,7 @@ See the [latest version](Release_Notes.md).
 ```shell
 .
 ├── Demo
-│   ├── SimpleLightDemo.zip
-│   ├── SimpleDemo.zip
+│   ├── TcrDemo
 │   ├── VKtoolDemo.zip
 │   └── ExperienceDemo.apk
 ├── Doc
@@ -56,9 +55,6 @@ See the [latest version](Release_Notes.md).
 
 [TcrDemo](Demo/TcrDemo) demonstrate how to integrate the Real-Time Cloud Rendering SDK for Android to build a business client program.
 
-The Real-Time Cloud Rendering SDK for Android is designed as a plugin to provide complete and lightweight SDKs, which use the same APIs. If you want to control the size of your application installation package, you can choose the lightweight SDK. After integration, your package size is increased only by 65 KB, and the SDK plugin (9 MB in size) can be downloaded online and dynamically loaded when you run the SDK. 
-The lite compilation in [TcrDemo](Demo/TcrDemo) demonstrates this process.
-
 [VKtoolDemo.zip](Demo/VKtoolDemo.zip) demonstrates how to integrate the custom virtual key SDK and customize key features in your application as needed.
 
 [TCRExperienceDemo.apk](Demo/TCRExperience.apk) is a trial app installation package that can be used to experience cloud rendering applications by entering the experience code. You can generate an application experience code in the Tencent Cloud console.
@@ -73,5 +69,4 @@ The lite compilation in [TcrDemo](Demo/TcrDemo) demonstrates this process.
 
 ## Package Size
 
-Full integration: APK package size increase is approximately 4MB(arm64-v8a)   
-Lightweight plugin integration: APK package size increase is 0.1MB.
+SDK integration: APK package size increase is approximately 4MB(arm64-v8a).

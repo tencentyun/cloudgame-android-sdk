@@ -16,20 +16,12 @@
 implementation 'com.tencent.tcr:tcrsdk-full:3.34.0'
 ```
 
-如果选择集成轻量版SDK，则引用
-
-```java
-implementation 'com.tencent.tcr:tcrsdk-lite:3.34.0' 
-```
-
 2. 初始化SDK
 
 ```java
 // 初始化SDK
 TcrSdk.getInstance().init(this, null, mInitSdkCallback);
 ```
-
-如果引用的是轻量版SDK，则需要应用先下载SDK插件，再调用init()函数时通过第二个参数传入插件文件的路径。下载SDK插件的URL可以通过 TcrSdk.getPluginUrl() 获取。
 
 3. 初始化SDK，异步回调成功后，可以创建和初始化会话对象、渲染视图。
 
@@ -130,8 +122,5 @@ API使用方法参考[API文档](API文档.md)。
 # FAQs
 1. **云渲染SDK支持的最低Android系统版本。**  
 Android 4.4（API 级别 19）。
-
-2. **完整版SDK 和 轻量版SDK，该如何选择。**  
-轻量版SDK需要客户端程序先从网络上下载插件文件，在初始化SDK时传入给SDK进行动态加载。除此之外，二者在使用接口上并无区别。如果您对APP包体积大小有严格要求，可以选择集成轻量版SDK；否则，推荐使用完整版SDK。
 
 

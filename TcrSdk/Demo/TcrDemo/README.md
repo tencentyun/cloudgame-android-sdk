@@ -3,9 +3,8 @@
 
 ## 目录介绍
 
-app/src下可打包3个demo，分别是测试demo(tcrDemo)和场景demo(scenes)以及最轻量的simple demo(simple)。
+app/src下可打包3个demo，分别是测试demo(tcrDemo)、场景demo(scenes)以及简单demo(simple)。
 通过build variants打包不同的demo apk。
-其中测试demo有两类构建方式，分别为full和lite构建，其区别在于full使用完整版sdk，lite使用轻量版sdk。lite版需要在运行时下载并加载插件。
 三个Demo都需要您通过腾讯云控制台生成体验码才可正常体验。
 其中测试demo可以在运行后在主界面输入体验码进行体验，simple demo和场景demo需要在CloudRenderBiz.java文件中填写体验码到变量EXPERIENCE_CODE中。
 

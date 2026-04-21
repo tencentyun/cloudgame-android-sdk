@@ -55,8 +55,6 @@
 
 云游戏/云应用接入演示Demo [TcrDemo](Demo/TcrDemo) 演示了如何集成云渲染Android SDK，构建业务客户端程序。
 
-云渲染Android SDK采用插件化设计，对外提供 完整版SDK 和 轻量版SDK，两个版本的使用接口一致。如果您的App十分在意安装包体积大小，可以选择轻量版SDK，集成的体积增量仅65KB，运行时再从网络下载SDK插件（9MB）后进行动态加载。 [TcrDemo](Demo/TcrDemo)中lite编译演示了这一过程。
-
 自定义虚拟按键Demo [VKtoolDemo.zip](Demo/VKtoolDemo.zip) 演示了如何集成自定义虚拟按键SDK，并在应用中自定义编辑您所需要的按键功能。
 
 [TCRExperienceDemo.apk](Demo/TCRExperience.apk)是云应用体验App的安装包。您可以在腾讯云控制台生成云端应用的体验码，然后输入到这个App里体验云端应用。
@@ -71,5 +69,4 @@
 
 ## 包体
 
-集成完整版: APK包大小增量 约4MB(arm64-v8a)  
-集成插件化轻量版: APK包大小增量 0.1M
+集成SDK: APK包大小增量 约4MB(arm64-v8a)

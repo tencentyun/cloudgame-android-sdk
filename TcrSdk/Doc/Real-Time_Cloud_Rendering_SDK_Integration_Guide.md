@@ -12,12 +12,6 @@ Make sure that you understand the business logic and frontend-backend interactio
 implementation 'com.tencent.tcr:tcrsdk-full:3.34.0'
 ```
 
-To integrate the lightweight SDK, import the following content:
-
-```java
-implementation 'com.tencent.tcr:tcrsdk-lite:3.34.0' 
-```
-
 2. Configure the network permissions in `AndroidManifest`:
 
 ```java
@@ -31,8 +25,6 @@ implementation 'com.tencent.tcr:tcrsdk-lite:3.34.0'
 // Initialize the SDK.
 TcrSdk.getInstance().init(this, null, mInitSdkCallback);
 ```
-
-To import the lightweight SDK, the application needs to download the SDK plugin first and pass in the plugin file path to the second parameter when calling the `init()` function. You can get the SDK plugin download URL through `TcrSdk.getPluginUrl()`.
 
 4. Initialize the SDK. After the async callback succeeds, you can create and initialize the session object and rendering view.
 
@@ -134,5 +126,4 @@ API usage reference[API_Documentation](API_Documentation.md). For more functiona
 1. **Which is the earliest Android version supported by the Real-Time Cloud Rendering SDK?**  
 Android 4.4 (API level 19).
 
-2. **How do I choose between the complete and lightweight SDKs?**  
-To use the lightweight SDK, the client program needs to download the plugin file over the network and pass it in to the SDK during SDK initialization for dynamic loading. However, the two SDKs share the same APIs. If you have strict requirements for the application package size, you can choose the lightweight SDK; otherwise, we recommend you use the complete SDK.
+

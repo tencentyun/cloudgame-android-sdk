@@ -2,9 +2,8 @@
 
 ## Directory introduction
 
-Three demos can be packaged under app/src, namely test demo (tcrDemo), scene demo (scenes) and the lightest simple demo (simple).
+Three demos can be packaged under app/src, namely test demo (tcrDemo), scene demo (scenes) and simple demo (simple).
 Package different demo apks through build variants.
-There are two types of build methods for test demo, full and lite. The difference is that full uses the full version of SDK and lite uses the lightweight version of SDK. The lite version needs to download and load the plug-in at runtime.
 All three demos require you to generate an experience code through the Tencent Cloud console to experience it normally.
 The test demo can enter the experience code in the main interface after running to experience it. The simple demo and scene demo need to fill in the experience code in the variable EXPERIENCE_CODE in the CloudRenderBiz.java file.
 
