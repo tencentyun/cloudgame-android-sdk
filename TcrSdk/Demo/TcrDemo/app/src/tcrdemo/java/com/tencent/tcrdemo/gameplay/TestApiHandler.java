@@ -225,7 +225,7 @@ public class TestApiHandler {
             if (mRenderView == null) {
                 return;
             }
-            mRenderView.setEnableSuperResolution(aBoolean);
+            throw new RuntimeException("Not implemented");
         });
 
         // 开关鼠标是否可见
