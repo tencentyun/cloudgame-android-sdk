@@ -36,7 +36,7 @@
    在你的 `build.gradle` 中添加：
 
    ```groovy
-   implementation 'com.tencent.tcr:proxy:1.2.0'
+   implementation 'com.tencent.tcr:proxy:1.3.1'
    ```
 
 2. **引入 [ProxyService](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Demo/TcrDemo/app/src/tcrdemo/java/com/tencent/tcrdemo/gameplay/ProxyService.java) **
@@ -127,23 +127,18 @@ ProxyService.stopProxy(context);
 - **Proxy** 是 TcrProxy SDK 提供的核心代理能力接口，采用单例模式，所有操作均通过 `Proxy.getInstance()` 获取实例。其主要接口和功能如下：
 #### Proxy接口说明
 
-| 方法签名                                                            | 说明                     | 参数                                                                               | 返回值            | 备注                                |
-| --------------------------------------------------------------- | ---------------------- | -------------------------------------------------------------------------------- | -------------- | --------------------------------- |
-| `public static Proxy getInstance()`                             | 获取全局唯一的 Proxy 实例       | 无                                                                                | Proxy 实例       | 单例模式                              |
-| `public boolean init(String relayInfoString)`                   | 初始化代理服务                | `relayInfoString`：云端下发的代理中继信息                                                    | `true`/`false` | 必须在 `startProxy()` 前调用，初始化失败需检查日志 |
-| `public boolean init(String bandwidth, String relayInfoString)` | 初始化代理服务，并指定本地设备的上行带宽限制 | `bandwidth`：上行带宽限制（如 `'1MB'`、`'500KB'`，最大`4MB`）<br>`relayInfoString`：云端下发的代理中继信息 | `true`/`false` | 带宽参数可选，建议根据实际网络情况设置               |
-| `public void startProxy()`                                      | 启动代理服务，开始转发云端实例的网络请求   | 无                                                                                | 无              | 必须已成功调用 `init()`                  |
-| `public void stopProxy()`                                       | 停止代理服务，终止网络转发          | 无                                                                                | 无              |                                   |
-| `public void setOnConnectionStateChangedListener(OnConnectionStateChangedListener listener)` | 设置连接状态变化监听器 | `listener`：连接状态变化监听器，传null可清除监听 | 无              | 用于监听代理服务的连接状态变化 |
+| 方法签名                                                                                    | 说明                           | 参数                                                                                                                                                                              | 返回值            | 备注                                |
+| --------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------- |
+| `public static Proxy getInstance()`                                                     | 获取全局唯一的 Proxy 实例             | 无                                                                                                                                                                               | Proxy 实例       | 单例模式                              |
+| `public boolean init(String relayInfoString)`                                           | 初始化代理服务                      | `relayInfoString`：云端下发的代理中继信息                                                                                                                                                 | `true`/`false` | 必须在 `startProxy()` 前调用，初始化失败需检查日志 |
+| ~~`public boolean init(String uploadBandwidth, String relayInfoString)`~~               | ~~初始化代理服务，并指定上行带宽限制~~        | ~~`uploadBandwidth`：上行带宽限制（如 `"1MB"`、`"500KB"`，最大 `4MB`）；`relayInfoString`：云端下发的代理中继信息~~                                                                                       | `true`/`false` | **已废弃**，请使用下方三参数版本                |
+| `public boolean init(String uploadBandwidth, String downloadBandwidth, String relayInfoString)` | 初始化代理服务，分别指定上行和下行带宽限制 | `uploadBandwidth`：上行带宽限制，即本地设备发往云端（如 `"2MB"`、`"512KB"`，空字符串使用默认值 `4MB`）<br>`downloadBandwidth`：下行带宽限制，即云端发往本地设备（如 `"4MB"`、`"1MB"`，空字符串使用默认值 `4MB`）<br>`relayInfoString`：云端下发的代理中继信息 | `true`/`false` | 上下行独立限速，互不影响；建议根据实际网络情况设置         |
+| `public void startProxy()`                                                              | 启动代理服务，开始转发云端实例的网络请求         | 无                                                                                                                                                                               | 无              | 必须已成功调用 `init()`                  |
+| `public void stopProxy()`                                                               | 停止代理服务，终止网络转发                | 无                                                                                                                                                                               | 无              |                                   |
 
-### 连接状态相关接口
-
-#### ConnectionState 枚举
-定义代理服务的连接状态：
-- `Disconnected`：连接断开
-- `Connecting`：连接中/重连中  
-- `Connected`：连接完成
-
-#### OnConnectionStateChangedListener 接口
-连接状态变化回调接口，包含方法：
-- `void onConnectionStateChanged(ConnectionState state, String message)`：连接状态变化时回调
+> **带宽参数设置注意事项：**
+> 请根据本地设备的**实际可用网络带宽**合理设置，**切勿盲目设置过大**，否则可能导致以下问题：
+> - **上行（`uploadBandwidth`）设置过大**：本地真机的代理服务会大量占用本地上行带宽，与串流的音视频上行、触摸等控制指令争抢资源，导致上行丢包、操控延迟升高等问题。
+> - **下行（`downloadBandwidth`）设置过大**：云机下发的代理请求流量会与云渲染视频流（均为云机 → 本地的下行流量）争抢本地下行带宽，导致云端画面出现卡顿、延迟升高，严重时影响正常串流体验。
+>
+> 建议结合实际网络测速结果，为代理留出合理的带宽余量，避免与音视频流争抢带宽资源。
