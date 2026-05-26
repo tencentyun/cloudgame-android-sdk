@@ -42,6 +42,7 @@ import com.tencent.tcr.sdk.api.data.MultiUserSeatInfo;
 import com.tencent.tcr.sdk.api.data.RoleApplyInfo;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
 import com.tencent.tcr.sdk.api.data.StatsInfo;
+import com.tencent.tcr.sdk.api.data.StreamProfile;
 import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.PcTouchListener;
 import com.tencent.tcr.sdk.api.view.PcZoomHandler;
@@ -184,6 +185,9 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                         }
                     });
                     Log.i(sApiTAG, "requestId = " + mSession.getRequestId());
+                    // 测试
+                    mSession.setRemoteVideoProfile(30, 1000, 2000, 540, 960, null);
+                    mSession.setRemoteDesktopResolution(540, 960);
                     break;
                 case STATE_RECONNECTING:
                     // 内部发现链接断开，正在进行重连的回调通知
@@ -404,6 +408,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
             builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(),
                     mCustomAudioCapturer.getChannelNum() == 2);
         }
+        //builder.remoteDesktopResolution(960, 540);//设置远程桌面分辨率，只对 PC 有效
+        //builder.streamProfile(new StreamProfile(540,1200, 30, 1000, 2000,"Kbps"));//似乎无效果
         return builder.build();
     }
 

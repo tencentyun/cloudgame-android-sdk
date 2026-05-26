@@ -18,7 +18,7 @@
     </data>
 
     <ScrollView
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:splitMotionEvents="true"
             android:orientation="vertical">
@@ -29,6 +29,7 @@
                 android:orientation="vertical">
 
             <TextView
+                    android:visibility="gone"
                     android:gravity="center_horizontal"
                     android:text="@string/basic_test"
                     style="@style/textview"
@@ -36,6 +37,7 @@
                     android:layout_height="wrap_content" />
 
             <RadioGroup
+                    android:visibility="gone"
                     android:layout_weight="1"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
@@ -61,6 +63,7 @@
             </RadioGroup>
 
             <Button
+                    android:visibility="gone"
                     android:text="@string/pc_input_test"
                     android:id="@+id/pc_input_layout_button"
                     android:onClick="@{handlers::onClickExpandLayoutShow}"
@@ -188,6 +191,7 @@
             </LinearLayout>
 
             <Button
+                    android:visibility="gone"
                     android:text="@string/mobile_input_test"
                     android:onClick="@{handlers::onClickExpandLayoutShow}"
                     android:id="@+id/mobile_input_layout_button"
@@ -198,8 +202,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/mobile_input_layout"
-                    android:visibility="gone"
-                    android:layout_marginTop="20dp"
+                    android:visibility="visible"
+                    android:layout_marginTop="0dp"
                     android:orientation="vertical">
 
                 <LinearLayout
@@ -207,25 +211,77 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                    <RadioGroup
+                            android:id="@+id/radio_group_enhance_mode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:onCheckedChanged="@{handlers::switchEnhanceMode}">
+
+                        <RadioButton
+                                style="@style/textview"
+                                android:id="@+id/radio_btn_enhance_off"
+                                android:checked="true"
+                                android:textSize="10sp"
+                                android:text="@string/enhance_mode_off"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <RadioButton
+                                style="@style/textview"
+                                android:id="@+id/radio_btn_enhance_sr"
+                                android:layout_marginLeft="5dp"
+                                android:textSize="10sp"
+                                android:text="@string/enhance_mode_sr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <RadioButton
+                                style="@style/textview"
+                                android:id="@+id/radio_btn_enhance_enhance"
+                                android:layout_marginLeft="5dp"
+                                android:textSize="10sp"
+                                android:text="@string/enhance_mode_enhance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </RadioGroup>
+
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
+                            android:layout_marginTop="10dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:textSize="10sp"
+                        android:alpha="0.65"
                         android:onClick="@{handlers::onClickMenu}"
                         android:text="Menu" />
 
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:textSize="10sp"
+                        android:alpha="0.65"
                         android:onClick="@{handlers::onClickHome}"
                         android:text="Home" />
 
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="32dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:padding="0dp"
+                        android:textSize="10sp"
+                        android:alpha="0.65"
                         android:onClick="@{handlers::onClickBack}"
                         android:text="Back" />
 
                     <CheckBox
+                            android:visibility="gone"
                             style="@style/textview"
                             android:layout_marginEnd="0dp"
                             android:text="@string/disable_cloud_local_input_method"
@@ -234,12 +290,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     <Button
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="@{handlers::onClickStartProxy}"
                         android:text="@string/start_proxy" />
 
                     <Button
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="@{handlers::onClickStopProxy}"
@@ -250,7 +308,12 @@
 
             <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:textSize="10sp"
+                    android:alpha="0.65"
                     android:onClick="@{handlers::onClickExit}"
                     android:text="@string/exit_game" />
         </LinearLayout>

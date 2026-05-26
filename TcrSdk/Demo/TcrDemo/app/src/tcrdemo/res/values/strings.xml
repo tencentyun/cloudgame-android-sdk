@@ -96,6 +96,9 @@
     <string name="proxy_test">代理功能测试</string>
     <string name="performance_view">性能视图</string>
     <string name="toggle_super_resolution">开关超分</string>
+    <string name="enhance_mode_off">关闭</string>
+    <string name="enhance_mode_sr">超分</string>
+    <string name="enhance_mode_enhance">增强</string>
     <string name="cursor_visible">光标可见</string>
     <string name="view_angle">视图角度</string>
     <string name="rotation_angle">旋转角度</string>

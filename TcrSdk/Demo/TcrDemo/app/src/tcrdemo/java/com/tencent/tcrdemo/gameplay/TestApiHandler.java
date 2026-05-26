@@ -28,6 +28,7 @@ import com.tencent.tcr.sdk.api.view.MobileTouchListener;
 import com.tencent.tcr.sdk.api.view.PcClickListener;
 import com.tencent.tcr.sdk.api.view.PcTouchListener;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
+import com.tencent.tcr.sdk.api.view.TcrRenderView.EnhanceMode;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.ScaleType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
 import com.tencent.tcrdemo.R;
@@ -225,7 +226,17 @@ public class TestApiHandler {
             if (mRenderView == null) {
                 return;
             }
-            mRenderView.setEnableSuperResolution(aBoolean);
+            mRenderView.setEnhanceMode(EnhanceMode.ENHANCE, new AsyncCallback<>() {
+                @Override
+                public void onSuccess(EnhanceMode result) {
+                    Log.i(sApiTAG, result.name());
+                }
+
+                @Override
+                public void onFailure(int code, String msg) {
+                    Log.i(sApiTAG, "code=" + code);
+                }
+            });
         });
 
         // 开关鼠标是否可见
@@ -514,6 +525,38 @@ public class TestApiHandler {
         } else {
             switchMobileOnTouch();
         }
+    }
+
+    /**
+     * 切换视图增强模式：关闭 / 超分 / 增强
+     */
+    public void switchEnhanceMode(RadioGroup radioGroup, int checkedId) {
+        if (mRenderView == null) {
+            return;
+        }
+        final EnhanceMode mode;
+        if (checkedId == R.id.radio_btn_enhance_sr) {
+            mode = EnhanceMode.SUPER_RESOLUTION;
+        } else if (checkedId == R.id.radio_btn_enhance_enhance) {
+            mode = EnhanceMode.ENHANCE;
+        } else {
+            mode = EnhanceMode.OFF;
+        }
+        mRenderView.setEnhanceMode(mode, new AsyncCallback<>() {
+            @Override
+            public void onSuccess(EnhanceMode result) {
+                Log.i(sApiTAG, "setEnhanceMode success: " + result.name());
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                Log.i(sApiTAG, "setEnhanceMode failed, code=" + code + " msg=" + msg);
+                radioGroup.post(() -> {
+                    logAndToast("不支持. code=" + code + " msg=" + msg);
+                    radioGroup.check(R.id.radio_btn_enhance_off);
+                });
+            }
+        });
     }
 
     /**
