@@ -232,6 +232,7 @@
                                 android:id="@+id/radio_btn_enhance_sr"
                                 android:layout_marginLeft="5dp"
                                 android:textSize="10sp"
+                                android:visibility="gone"
                                 android:text="@string/enhance_mode_sr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />

@@ -186,8 +186,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     });
                     Log.i(sApiTAG, "requestId = " + mSession.getRequestId());
                     // 测试
-                    mSession.setRemoteVideoProfile(30, 1000, 2000, 540, 960, null);
-                    mSession.setRemoteDesktopResolution(540, 960);
+                    mSession.setRemoteVideoProfile(30, 1500, 2500, 720, 1280, null);
+                    mSession.setRemoteDesktopResolution(720, 1280);
                     break;
                 case STATE_RECONNECTING:
                     // 内部发现链接断开，正在进行重连的回调通知
@@ -403,10 +403,11 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
 
     protected TcrSessionConfig createSessionConfig() {
         TcrSessionConfig.Builder builder = TcrSessionConfig.builder().observer(mSessionEventObserver);
+        // 优先使用 H265 编码
+        builder.preferredCodec(TcrSessionConfig.VideoCodecType.H265);
         if (mEnableCustomAudioCapture) {
             mCustomAudioCapturer = new CustomAudioCapturer();
-            builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(),
-                    mCustomAudioCapturer.getChannelNum() == 2);
+            builder.enableCustomAudioCapture(true, mCustomAudioCapturer.getSampleRateInHz(), mCustomAudioCapturer.getChannelNum() == 2);
         }
         //builder.remoteDesktopResolution(960, 540);//设置远程桌面分辨率，只对 PC 有效
         //builder.streamProfile(new StreamProfile(540,1200, 30, 1000, 2000,"Kbps"));//似乎无效果
