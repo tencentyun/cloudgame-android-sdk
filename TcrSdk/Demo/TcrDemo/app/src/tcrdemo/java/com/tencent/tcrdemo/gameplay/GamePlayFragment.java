@@ -186,8 +186,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     });
                     Log.i(sApiTAG, "requestId = " + mSession.getRequestId());
                     // 测试
-                    mSession.setRemoteVideoProfile(30, 1500, 2500, 720, 1280, null);
-                    mSession.setRemoteDesktopResolution(720, 1280);
+                    mSession.setRemoteVideoProfile(30, 1000, 1500, 540, 960, null);
+                    mSession.setRemoteDesktopResolution(540, 960);
                     break;
                 case STATE_RECONNECTING:
                     // 内部发现链接断开，正在进行重连的回调通知
