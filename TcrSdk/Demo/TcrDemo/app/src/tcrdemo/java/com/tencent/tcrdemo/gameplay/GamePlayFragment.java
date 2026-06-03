@@ -187,7 +187,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     Log.i(sApiTAG, "requestId = " + mSession.getRequestId());
                     // 测试
                     mSession.setRemoteVideoProfile(30, 1000, 1500, 540, 960, null);
-                    mSession.setRemoteDesktopResolution(540, 960);
+                    mSession.setRemoteDesktopResolution(720, 1280);//瑞驰实例最低720P，设置更低会出错。
                     break;
                 case STATE_RECONNECTING:
                     // 内部发现链接断开，正在进行重连的回调通知
