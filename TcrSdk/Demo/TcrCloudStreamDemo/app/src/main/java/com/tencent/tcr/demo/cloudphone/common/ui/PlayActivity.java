@@ -91,8 +91,9 @@ public class PlayActivity extends AppCompatActivity {
                         mInputActivityLauncher.launch(intent);
                     }
                     break;
+                case CAI_SYSTEM_STATUS:
+                case CLIENT_STATS:
                 case FIRST_FRAME_RECEIVED:
-                    Log.d(TAG, "onEvent() FIRST_FRAME_RECEIVED 用于统计推流成功率");
                     break;
                 default:
                     Log.v(TAG, "onEvent() " + event.name() + " msg: " + eventData);

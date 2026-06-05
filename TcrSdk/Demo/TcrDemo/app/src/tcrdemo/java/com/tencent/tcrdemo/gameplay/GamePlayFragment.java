@@ -30,7 +30,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.gson.Gson;
 import com.tencent.tcr.sdk.api.AsyncCallback;
 import com.tencent.tcr.sdk.api.CustomDataChannel;
-import com.tencent.tcr.sdk.api.TcrLogger;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
@@ -394,7 +393,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         };
         // 初始化SDK
         TcrSdkWrapper.getInstance().init(getContext(), initCallback);
-        setLogger();
     }
 
     protected TcrSessionConfig createSessionConfig() {
@@ -608,40 +606,6 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
         }
         return true;
     }
-
-    /**
-     * 点击设置Logger，然后将回调的日志TAG前加 sdk
-     */
-    private void setLogger() {
-        final String SDKLogTAG = "TcrSdk";
-        TcrSdk.getInstance().setLogger(new TcrLogger() {
-            @Override
-            public void v(String tag, String msg) {
-                Log.v(SDKLogTAG + ":" + tag, msg);
-            }
-
-            @Override
-            public void d(String tag, String msg) {
-                Log.d(SDKLogTAG + ":" + tag, msg);
-            }
-
-            @Override
-            public void i(String tag, String msg) {
-                Log.i(SDKLogTAG + ":" + tag, msg);
-            }
-
-            @Override
-            public void e(String tag, String msg) {
-                Log.e(SDKLogTAG + ":" + tag, msg);
-            }
-
-            @Override
-            public void w(String tag, String msg) {
-                Log.w(SDKLogTAG + ":" + tag, msg);
-            }
-        });
-    }
-
 
     /**
      * 旋转屏幕方向以及画面方向, 以便本地的屏幕方向和云端保持一致<br>

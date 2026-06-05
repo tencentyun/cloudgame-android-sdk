@@ -41,7 +41,6 @@
 
         <activity
             android:name=".gameplay.GamePlayActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.OverlapSystemBar"
             android:configChanges="orientation|screenSize">
         </activity>
