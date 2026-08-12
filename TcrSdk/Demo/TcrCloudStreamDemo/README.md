@@ -22,7 +22,7 @@
 在应用模块（`app/build.gradle`）中添加依赖：
 
 ```groovy
-implementation 'com.tencent.tcr:tcrsdk-full:3.31.0'
+implementation 'com.tencent.tcr:tcrsdk-full:3.36.0'
 ```
 
 ---

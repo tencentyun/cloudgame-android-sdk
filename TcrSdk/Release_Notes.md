@@ -1,5 +1,27 @@
 - [中文文档](发布记录.md)
 
+# [Version 3.36.0](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.36.0/TcrSdk) 
+**Features**
+- Added granular connection failure codes to `TcrSession.Event#STATE_CLOSED`: `CONNECT_FAILED_SERVER_REJECTED`(104009), `CONNECT_FAILED_SDP`(104010), `CONNECT_FAILED_DISCONNECTED`(104011). (2026-08-13)
+- Added `FIRST_FRAME_RECEIVED` event to `TcrSession.Event`, triggered when the first video frame from the cloud is received. (2026-01-12)
+- Added `TOKEN_EXPIRED` event to `TcrSession.Event`, triggered when the connection auth token expires. (2026-06-22)
+- Added `sessionMode` field to `TcrSessionConfig`, supporting `"ExclusiveSession"` (disconnect other clients' streaming connections) and `"SharedSession"` (keep other clients' connections, default). (2026-01-21)
+- Added `lockMouse(boolean)` interface to `PcTouchListener` to lock/unlock the local mouse cursor (the cloud hides the cursor while locked). (2026-01-23)
+- Added `WebRTCBackupAddress` field to `AccessInfo`; `TcrSession#play()` automatically retries connection with the backup address. (2026-01-14)
+- Added `raw_rtt`, `rtt` and `edge_rtt` fields to `StatsInfo`; `edge_rtt` is the network round-trip time measured at the edge server. (2025-12-10 / 2025-12-11)
+- Removed the deprecated marker from `TcrSession#setRemoteVideoProfile()`, making it available again. (2025-12-01)
+- Automatically switch to software decoding when the device is an emulator, fixing slow decoding on emulators like MuMu. (2026-01-28)
+
+**Bug Fixes**
+- Fixed an occasional crash in `TcrRenderViewType.TEXTURE` rendering mode. (2025-12-12)
+- Fixed `FIRST_FRAME_RECEIVED` event being reported multiple times. (2026-01-12)
+- Fixed auto-reconnect failure after network disconnect when `SdkType` is not set. (2026-03-06)
+- Fixed H265 hardware decoding compatibility issue on devices such as Snapdragon 8 Elite Gen 5; automatically falls back to software decoding on failure. (2026-07-27)
+- Fixed occasional crash in `SurfaceTextureHelper` (updated twebrtc library). (2026-03-19)
+
+**Attention (Behavior Change)**
+- On connection failure, the SDK no longer reports `TcrCode.SessionStop#CONNECT_FAILED`(104007) and reports one of the granular codes above instead. If your code matches 104007 exactly, please adapt it to the granular codes, or treat 104007 as a fallback for unknown connection failures.
+
 # [Version 3.33.4](https://github.com/tencentyun/cloudgame-android-sdk/tree/tcrsdk/3.32.0/TcrSdk) (2025-11-04)
 **Bug Fixes** 
 - Fixed garbled screen issue in `TcrRenderView.Observer#onFrame` callback Bitmap when video stream resolution changes.
