@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.tencent.tcr.sdk.api"},{"l":"com.tencent.tcr.sdk.api.data"},{"l":"com.tencent.tcr.sdk.api.utils"},{"l":"com.tencent.tcr.sdk.api.view"}];updateSearchResults();
