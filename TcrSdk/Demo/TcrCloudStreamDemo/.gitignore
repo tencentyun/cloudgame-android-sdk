@@ -1,5 +1,3 @@
-.DS_Store
-
 ### Android template
 # Gradle files
 .gradle/
@@ -35,3 +33,6 @@ google-services.json
 # Android Profiling
 *.hprof
 
+# others
+.DS_Store
+/.codebuddy/

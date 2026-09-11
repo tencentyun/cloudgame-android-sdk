@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
@@ -96,6 +98,22 @@ public class InstanceListActivity extends AppCompatActivity implements InstanceL
             startActivity(intent);
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.instance_list_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_session_settings) {
+            // 可选入口：修改串流会话参数（TcrSessionConfig），不进入则沿用已保存/默认参数
+            startActivity(new Intent(this, SessionSettingsActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void updateSelectedInstanceIds() {

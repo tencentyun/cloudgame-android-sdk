@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements PermissionCallbac
         setContentView(R.layout.activity_home);
 
         TextView tvVersion = findViewById(R.id.tv_version);
-        tvVersion.setText("Demo:" + BuildConfig.Demo_GitVersion + " TcrSdk:" + BuildConfig.TcrSdk_Version);
+        tvVersion.setText("Demo:" + BuildConfig.Demo_BuildTime + " TcrSdk:" + BuildConfig.TcrSdk_Version);
         btnSfuDemo = findViewById(R.id.btn_sfu_demo);
         btnSfuDemo.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, GetTokenActivity.class)));
         btnOperatorDemo = findViewById(R.id.btn_op_demo);

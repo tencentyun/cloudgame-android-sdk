@@ -29,9 +29,10 @@
         </activity>
 
         <activity android:name=".sfu.ui.GetTokenActivity" />
-        <activity
-                android:name=".common.ui.PlayActivity"
+        <activity android:name=".common.ui.PlayActivity"
                 android:configChanges="orientation|screenSize" />
+        <activity android:name=".common.ui.SessionSettingsActivity"
+                android:label="会话参数设置" />
         <activity android:name=".common.ui.InstanceListActivity" />
         <activity
             android:name=".common.ui.InputActivity"

@@ -54,7 +54,8 @@ public class GetTokenActivity extends AppCompatActivity {
                 etInstanceIds.setText("cc_12_2");
             } else if (checkedId == R.id.rb_test) {
                 BaseRequest.ENV = 1;
-                etInstanceIds.setText("ACP250912L3WXP9S,ACP250912QTIBFLZ,ACP250912VLR5Y1C");
+                etInstanceIds.setText(
+                        "cai-1300056159-fe2dg36v59e,cai-1300056159-fe2d35vq2b8,cai-1300056159-fe2dlmr4ws7,cai-1300056159-fe2dln5kwcf");
             } else if (checkedId == R.id.rb_armcloud) {
                 BaseRequest.ENV = 2;
                 etInstanceIds.setText("ACP5BA4H05QSWWEA,ACP5BA4H05QSWWE9,ACP5BA4H05QSWWE8");

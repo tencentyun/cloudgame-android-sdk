@@ -17,12 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.tencent.tcr.demo.cloudphone.R;
 import com.tencent.tcr.demo.cloudphone.bean.HitInput;
+import com.tencent.tcr.demo.cloudphone.common.util.SessionSettings;
 import com.tencent.tcr.sdk.api.CustomDataChannel;
 import com.tencent.tcr.sdk.api.TcrSdk;
 import com.tencent.tcr.sdk.api.TcrSession;
 import com.tencent.tcr.sdk.api.TcrSession.Observer;
 import com.tencent.tcr.sdk.api.TcrSessionConfig;
+import com.tencent.tcr.sdk.api.TcrSessionConfig.VideoCodecType;
 import com.tencent.tcr.sdk.api.data.ScreenConfig;
+import com.tencent.tcr.sdk.api.data.ServerSessionInfo;
 import com.tencent.tcr.sdk.api.view.TcrRenderView;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.TcrRenderViewType;
 import com.tencent.tcr.sdk.api.view.TcrRenderView.VideoRotation;
@@ -49,14 +52,18 @@ public class PlayActivity extends AppCompatActivity {
             }
             switch (event) {
                 case STATE_INITED:// 本地会话对象初始化完成
+                    Log.i(TAG, "onEvent() STATE_INITED, 开始连接云手机: " + mGroupInstanceIds
+                            + ", isGroupControl=" + mIsGroupControl);
                     // 可以开始连接指定的云手机。
                     boolean ret = mTcrSession.access(mGroupInstanceIds, mIsGroupControl);
                     if (!ret) {
+                        Log.e(TAG, "onEvent() STATE_INITED, access() 失败");
                         showToast("连接云手机失败，请重试", Toast.LENGTH_SHORT);
                         finish();
                     }
                     break;
                 case STATE_CONNECTED:// 成功和指定的云手机建立连接
+                    Log.i(TAG, "onEvent() STATE_CONNECTED, 云手机连接成功");
                     showToast("云手机连接成功", Toast.LENGTH_SHORT);
                     // 设置群控云手机的主控、同步列表、请求主控视频流
                     if (mIsGroupControl) {
@@ -68,15 +75,22 @@ public class PlayActivity extends AppCompatActivity {
                     mRenderView.postDelayed(() -> createCustomDataChannel(), 1000);
                     break;
                 case STATE_RECONNECTING:
+                    Log.i(TAG, "onEvent() STATE_RECONNECTING, 会话重连中");
                     showToast("重连中...", Toast.LENGTH_LONG);
                     break;
                 case STATE_CLOSED:
+                    Log.i(TAG, "onEvent() STATE_CLOSED, 会话已关闭");
                     showToast("会话关闭", Toast.LENGTH_SHORT);
                     finish();
                     break;
                 case SCREEN_CONFIG_CHANGE:
                     mScreenConfig = (ScreenConfig) eventData;
                     updateRotation();
+                    break;
+                case SERVER_SESSION_INFO:// 云端会话信息（连接成功后上报，重连成功后会再次上报）
+                    // 注意：该事件可能在非UI线程回调
+                    ServerSessionInfo serverSessionInfo = (ServerSessionInfo) eventData;
+                    Log.i(TAG, "onEvent() SERVER_SESSION_INFO: " + serverSessionInfo);
                     break;
                 case INPUT_STATE_CHANGE:
                     HitInput hitinput = new Gson().fromJson((String) eventData, HitInput.class);
@@ -255,9 +269,15 @@ public class PlayActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // 创建Tcr会话对象
+    // 创建Tcr会话对象（preferredCodec 等会话参数来自可选进入的会话设置页；为 null 表示"不设置"，由 SDK 使用默认编解码策略）
     private void initTcrSession() {
-        TcrSessionConfig tcrSessionConfig = TcrSessionConfig.builder().observer(mSessionObserver).build();
+        VideoCodecType preferredCodec = SessionSettings.getPreferredCodec();
+        Log.i(TAG, "initTcrSession() preferredCodec=" + preferredCodec);
+        TcrSessionConfig.Builder builder = TcrSessionConfig.builder().observer(mSessionObserver);
+        if (preferredCodec != null) {
+            builder.preferredCodec(preferredCodec);
+        }
+        TcrSessionConfig tcrSessionConfig = builder.build();
         mTcrSession = TcrSdk.getInstance().createTcrSession(tcrSessionConfig);
         if (mTcrSession == null) {
             Log.e(TAG, "mTcrSession = null");

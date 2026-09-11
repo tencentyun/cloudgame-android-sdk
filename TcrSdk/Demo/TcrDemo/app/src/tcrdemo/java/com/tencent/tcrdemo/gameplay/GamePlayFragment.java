@@ -537,10 +537,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                     TcrTestEnv.getInstance()
                             .startSession(context, mExperienceCode, clientSession, null, null, null, mIsTestEnv,
                                     mIsIntlEnv, response -> {
-                                        boolean res = mSession.start(response);
-                                        if (!res) {
-                                            Log.e(sApiTAG, "TcrSession#start() fail.");
-                                        }
+                                        mSession.start(response);
                                     }, error -> {
                                         showToast(getContext(), error.getLocalizedMessage(), Toast.LENGTH_LONG);
                                         Log.w(TAG, error);
@@ -563,7 +560,7 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 }
 
                 // 针对不同的云端实例设置不同的处理器
-                setTouchHandler(mRenderView, MOBILE_GAME);
+                setTouchHandler(mRenderView, PC_GAME);
 
                 // 开始我们的测试
                 mTestApiHandler.set(mSession, mRenderView, mPcTouchListener, mGamePadManager,
@@ -654,8 +651,8 @@ public class GamePlayFragment extends Fragment implements Handler.Callback, Easy
                 break;
             case PC_GAME:
                 mPcTouchListener = new PcTouchListener(mSession);
-                renderView.setOnTouchListener(mPcTouchListener);
                 mPcTouchListener.getZoomHandler().setZoomRatio(1f, 5f);
+                renderView.setOnTouchListener(mPcTouchListener);
                 mPcTouchListener.getZoomHandler().setZoomListener(new PcZoomHandler.ZoomListener() {
                     @Override
                     public void onPivot(float x, float y) {

@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+// TcrSdk 版本展示：依赖本地源码模块时没有 maven 版本号，显示 "source"，依赖远端 maven 库时显示真实的版本号。
+def tcrSdkVersionForDisplay =
+        gradle.ext.use_local_module_TcrSdkFull ? "source" : "${rootProject.ext.tcrsdkVersion}"
+
 android {
     namespace 'com.tencent.tcr.demo.cloudphone'
     compileSdk 35
@@ -13,8 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "Demo_GitVersion", "\"${rootProject.ext.gitRevision}\""
-        buildConfigField "String", "TcrSdk_Version", "\"${rootProject.ext.tcrsdkVersion}\""
+        buildConfigField "String", "Demo_BuildTime", "\"${rootProject.ext.buildTime}\""
+        buildConfigField "String", "TcrSdk_Version", "\"${tcrSdkVersionForDisplay}\""
         buildConfigField "String", "paas_login_name", "\"${gradle.ext.paas_login_name}\""
         buildConfigField "String", "paas_login_password", "\"${gradle.ext.paas_login_password}\""
         ndk {
