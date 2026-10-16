@@ -1,12 +1,12 @@
 - [英文文档](Real-Time_Cloud_Rendering_SDK_Integration_Guide.md)
 
 # 准备工作
+
 请先理解腾讯云渲染的业务逻辑和前后端交互流程，申请好腾讯云渲染服务和搭建好业务后台程序。（参考[链接](../README.md)）
 
 # 调用云渲染Android SDK的主要流程
-<br>
-<img src="images/云渲染sdk调用流程.jpeg" height="500px">
-<br>
+
+![](images/云渲染sdk调用流程.jpeg)
 
 # 接入云渲染SDK的步骤
 
@@ -16,14 +16,14 @@
 implementation 'com.tencent.tcr:tcrsdk-full:3.37.0'
 ```
 
-2. 初始化SDK
+1. 初始化SDK
 
 ```java
 // 初始化SDK
 TcrSdk.getInstance().init(this, null, mInitSdkCallback);
 ```
 
-3. 初始化SDK，异步回调成功后，可以创建和初始化会话对象、渲染视图。
+1. 初始化SDK，异步回调成功后，可以创建和初始化会话对象、渲染视图。
 
 ```java
 // 创建和初始化会话对象
@@ -37,8 +37,8 @@ mRenderView = TcrSdk.getInstance().createTcrRenderView(MainActivity.this, mTcrSe
 ((FrameLayout) MainActivity.this.findViewById(R.id.render_view_parent)).addView(mRenderView);
 ```
 
-4. 创建会话对象后会自动初始化对象，初始化成功后会通过步骤4传入的mSessionEventObserver对象向外通知事件。其中Session初始化完成的事件为TcrSession.Event.EVENT_INITED，在通知的事件中获得clientSession，用于进一步请求业务后台，再调用云API，启动指定应用实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。 
-事件通知:
+1. 创建会话对象后会自动初始化对象，初始化成功后会通过步骤4传入的mSessionEventObserver对象向外通知事件。其中Session初始化完成的事件为TcrSession.Event.EVENT_INITED，在通知的事件中获得clientSession，用于进一步请求业务后台，再调用云API，启动指定应用实例并返回serverSession。客户端调用会话对象的start()接口传入serverSession参数，就可以启动会话，发起SDK到云端的连接。启动会话异步回调成功后，客户端程序就会显示出云端应用的画面。  
+   事件通知:
 
 ```java
 private final TcrSession.Observer mSessionEventObserver = new TcrSession.Observer() {
@@ -100,8 +100,8 @@ CloudRenderBiz.getInstance().startGame(clientSession, response -> {
 
 请求业务后台的接口由业务自定义，在[Demo](../Demo)例子中，封装在CloudRenderBiz类里。
 
-5. 除了能在客户端上看到云端应用的画面，我们通常还需要能操作应用，即把客户端的操作同步给云端。SDK提供了KeyBoard、Mouse、GamePad等抽象对象，客户端可以调用这些对象的接口，实现与云端输入设备的交互。  
-同时，Android SDK还实现了默认的屏幕触摸处理器：MobileTouchListener 和 PcTouchListener。MobileTouchListener针对云端为手机应用的场景，将本地屏幕触摸事件同步给云端；PcTouchListener针对云端为PC应用的场景，将本地屏幕触摸事件转化为云端的鼠标移动、单击、长按、双击事件。您也可以自定义实现自己的屏幕触摸处理器。将屏幕触摸处理器设置给TcrRenderView即可使用。
+1. 除了能在客户端上看到云端应用的画面，我们通常还需要能操作应用，即把客户端的操作同步给云端。SDK提供了KeyBoard、Mouse、GamePad等抽象对象，客户端可以调用这些对象的接口，实现与云端输入设备的交互。  
+   同时，Android SDK还实现了默认的屏幕触摸处理器：MobileTouchListener 和 PcTouchListener。MobileTouchListener针对云端为手机应用的场景，将本地屏幕触摸事件同步给云端；PcTouchListener针对云端为PC应用的场景，将本地屏幕触摸事件转化为云端的鼠标移动、单击、长按、双击事件。您也可以自定义实现自己的屏幕触摸处理器。将屏幕触摸处理器设置给TcrRenderView即可使用。
 
 ```java
 // 手机应用
@@ -111,16 +111,16 @@ renderView.setOnTouchListener(new MobileTouchListener(session));
 renderView.setOnTouchListener(new PcTouchListener(session));
 ```
 
-<br><p>
-**以上就是接入的核心步骤，具体代码可以参考[Demo](../Demo)。
-API使用方法参考[API文档](API文档.md)。
-更多功能场景的实现参考[场景功能](场景功能.md)。** 
+<p>    
+\*\*以上就是接入的核心步骤，具体代码可以参考\[Demo\](../Demo)。    
+API使用方法参考\[API文档\](API文档.md)。    
+更多功能场景的实现参考\[场景功能\](场景功能.md)。\**
 
 # 隐私政策
+
 参见[链接](https://github.com/tencentyun/cloudgame-android-sdk/blob/master/TcrSdk/Doc/privacy.md)
 
 # FAQs
+
 1. **云渲染SDK支持的最低Android系统版本。**  
-Android 4.4（API 级别 19）。
-
-
+   Android 4.4（API 级别 19）。

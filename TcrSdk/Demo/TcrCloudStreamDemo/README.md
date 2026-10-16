@@ -68,6 +68,7 @@ private void initTcrSdk(CreateAndroidInstancesAccessTokenResponse serverResponse
 ```
 
 **说明**：
+
 - `serverResponse` 由业务后台返回，包括 `Token` 和 `AccessInfo` 字段。
 - 日志回调建议接入并存储文件，便于 SDK 问题排查。
 
@@ -190,9 +191,9 @@ private void initTcrRenderView() {
     ((FrameLayout) findViewById(R.id.render_view_parent)).addView(mRenderView);
 }
 ```
+
 **说明**：  
 `TcrRenderView`除了负责渲染云端画面以外，还负责把用户的触摸事件转发到云端。
-
 
 ---
 
@@ -296,3 +297,9 @@ protected void onDestroy() {
 1. **SDK日志采集**：正式发布前需要将 SDK 日志写入文件或上传，便于异常情况反馈问题。
 2. **权限要求**：需申请存储、网络等基本运行权限。
 3. **后台服务接口**：可联系开发团队获取后台源码。
+
+---
+
+
+
+- 上级导航：[Demo/README.md](../README.md)、[TcrSdk/README.md](../../README.md)
